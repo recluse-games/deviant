@@ -29,7 +29,7 @@ namespace Deviant {
             "BnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Deviant.Direction), }, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Deviant.Direction), }, null, null));
     }
     #endregion
 

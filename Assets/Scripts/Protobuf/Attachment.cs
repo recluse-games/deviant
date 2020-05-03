@@ -28,7 +28,7 @@ namespace Deviant {
             "SUQQAEIJWgdkZXZpYW50YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Deviant.Attachment), }, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Deviant.Attachment), }, null, null));
     }
     #endregion
 

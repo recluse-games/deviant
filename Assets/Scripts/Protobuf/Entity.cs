@@ -37,8 +37,8 @@ namespace Deviant {
             "d25lcklkGAwgASgJQglaB2RldmlhbnRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.AlignmentReflection.Descriptor, global::Deviant.AttachmentReflection.Descriptor, global::Deviant.ClassesReflection.Descriptor, global::Deviant.ConditionsReflection.Descriptor, global::Deviant.HandReflection.Descriptor, global::Deviant.DeckReflection.Descriptor, global::Deviant.DiscardReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Entity), global::Deviant.Entity.Parser, new[]{ "Id", "Hp", "Ap", "Alignment", "Class", "Conditions", "Attachments", "Hand", "Deck", "Discard", "Initiative", "OwnerId" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Entity), global::Deviant.Entity.Parser, new[]{ "Id", "Hp", "Ap", "Alignment", "Class", "Conditions", "Attachments", "Hand", "Deck", "Discard", "Initiative", "OwnerId" }, null, null, null, null)
           }));
     }
     #endregion
@@ -125,7 +125,7 @@ namespace Deviant {
 
     /// <summary>Field number for the "alignment" field.</summary>
     public const int AlignmentFieldNumber = 4;
-    private global::Deviant.Alignment alignment_ = 0;
+    private global::Deviant.Alignment alignment_ = global::Deviant.Alignment.Friendly;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Deviant.Alignment Alignment {
       get { return alignment_; }
@@ -136,7 +136,7 @@ namespace Deviant {
 
     /// <summary>Field number for the "class" field.</summary>
     public const int ClassFieldNumber = 5;
-    private global::Deviant.Classes class_ = 0;
+    private global::Deviant.Classes class_ = global::Deviant.Classes.Warrior;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Deviant.Classes Class {
       get { return class_; }
@@ -254,8 +254,8 @@ namespace Deviant {
       if (Id.Length != 0) hash ^= Id.GetHashCode();
       if (Hp != 0) hash ^= Hp.GetHashCode();
       if (Ap != 0) hash ^= Ap.GetHashCode();
-      if (Alignment != 0) hash ^= Alignment.GetHashCode();
-      if (Class != 0) hash ^= Class.GetHashCode();
+      if (Alignment != global::Deviant.Alignment.Friendly) hash ^= Alignment.GetHashCode();
+      if (Class != global::Deviant.Classes.Warrior) hash ^= Class.GetHashCode();
       hash ^= conditions_.GetHashCode();
       hash ^= attachments_.GetHashCode();
       if (hand_ != null) hash ^= Hand.GetHashCode();
@@ -288,11 +288,11 @@ namespace Deviant {
         output.WriteRawTag(24);
         output.WriteInt32(Ap);
       }
-      if (Alignment != 0) {
+      if (Alignment != global::Deviant.Alignment.Friendly) {
         output.WriteRawTag(32);
         output.WriteEnum((int) Alignment);
       }
-      if (Class != 0) {
+      if (Class != global::Deviant.Classes.Warrior) {
         output.WriteRawTag(40);
         output.WriteEnum((int) Class);
       }
@@ -335,10 +335,10 @@ namespace Deviant {
       if (Ap != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Ap);
       }
-      if (Alignment != 0) {
+      if (Alignment != global::Deviant.Alignment.Friendly) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Alignment);
       }
-      if (Class != 0) {
+      if (Class != global::Deviant.Classes.Warrior) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Class);
       }
       size += conditions_.CalculateSize(_repeated_conditions_codec);
@@ -378,10 +378,10 @@ namespace Deviant {
       if (other.Ap != 0) {
         Ap = other.Ap;
       }
-      if (other.Alignment != 0) {
+      if (other.Alignment != global::Deviant.Alignment.Friendly) {
         Alignment = other.Alignment;
       }
-      if (other.Class != 0) {
+      if (other.Class != global::Deviant.Classes.Warrior) {
         Class = other.Class;
       }
       conditions_.Add(other.conditions_);

@@ -32,8 +32,8 @@ namespace Deviant {
             "aWFudC5FbnRpdHlCCVoHZGV2aWFudGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.BoardReflection.Descriptor, global::Deviant.EntityReflection.Descriptor, global::Deviant.TurnReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Encounter), global::Deviant.Encounter.Parser, new[]{ "Id", "Completed", "Board", "Turn", "ActiveEntityOrder", "ActiveEntity" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Encounter), global::Deviant.Encounter.Parser, new[]{ "Id", "Completed", "Board", "Turn", "ActiveEntityOrder", "ActiveEntity" }, null, null, null, null)
           }));
     }
     #endregion

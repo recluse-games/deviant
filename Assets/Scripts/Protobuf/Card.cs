@@ -32,8 +32,8 @@ namespace Deviant {
             "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.CardActionReflection.Descriptor, global::Deviant.CardTypeReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Card), global::Deviant.Card.Parser, new[]{ "Id", "Cost", "Title", "Flavor", "Description", "Type", "Action" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Card), global::Deviant.Card.Parser, new[]{ "Id", "Cost", "Title", "Flavor", "Description", "Type", "Action" }, null, null, null, null)
           }));
     }
     #endregion
@@ -137,7 +137,7 @@ namespace Deviant {
 
     /// <summary>Field number for the "type" field.</summary>
     public const int TypeFieldNumber = 6;
-    private global::Deviant.CardType type_ = 0;
+    private global::Deviant.CardType type_ = global::Deviant.CardType.Attack;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Deviant.CardType Type {
       get { return type_; }
@@ -188,7 +188,7 @@ namespace Deviant {
       if (Title.Length != 0) hash ^= Title.GetHashCode();
       if (Flavor.Length != 0) hash ^= Flavor.GetHashCode();
       if (Description.Length != 0) hash ^= Description.GetHashCode();
-      if (Type != 0) hash ^= Type.GetHashCode();
+      if (Type != global::Deviant.CardType.Attack) hash ^= Type.GetHashCode();
       if (action_ != null) hash ^= Action.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -223,7 +223,7 @@ namespace Deviant {
         output.WriteRawTag(42);
         output.WriteString(Description);
       }
-      if (Type != 0) {
+      if (Type != global::Deviant.CardType.Attack) {
         output.WriteRawTag(48);
         output.WriteEnum((int) Type);
       }
@@ -254,7 +254,7 @@ namespace Deviant {
       if (Description.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Description);
       }
-      if (Type != 0) {
+      if (Type != global::Deviant.CardType.Attack) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
       }
       if (action_ != null) {
@@ -286,7 +286,7 @@ namespace Deviant {
       if (other.Description.Length != 0) {
         Description = other.Description;
       }
-      if (other.Type != 0) {
+      if (other.Type != global::Deviant.CardType.Attack) {
         Type = other.Type;
       }
       if (other.action_ != null) {

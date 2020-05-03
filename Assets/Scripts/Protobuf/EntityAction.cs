@@ -30,8 +30,8 @@ namespace Deviant {
             "YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.EntityActionNamesReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EntityAction), global::Deviant.EntityAction.Parser, new[]{ "Id", "Name" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EntityAction), global::Deviant.EntityAction.Parser, new[]{ "Id", "Name" }, null, null, null, null)
           }));
     }
     #endregion
@@ -86,7 +86,7 @@ namespace Deviant {
 
     /// <summary>Field number for the "name" field.</summary>
     public const int NameFieldNumber = 2;
-    private global::Deviant.EntityActionNames name_ = 0;
+    private global::Deviant.EntityActionNames name_ = global::Deviant.EntityActionNames.Play;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Deviant.EntityActionNames Name {
       get { return name_; }
@@ -117,7 +117,7 @@ namespace Deviant {
     public override int GetHashCode() {
       int hash = 1;
       if (Id.Length != 0) hash ^= Id.GetHashCode();
-      if (Name != 0) hash ^= Name.GetHashCode();
+      if (Name != global::Deviant.EntityActionNames.Play) hash ^= Name.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -135,7 +135,7 @@ namespace Deviant {
         output.WriteRawTag(10);
         output.WriteString(Id);
       }
-      if (Name != 0) {
+      if (Name != global::Deviant.EntityActionNames.Play) {
         output.WriteRawTag(16);
         output.WriteEnum((int) Name);
       }
@@ -150,7 +150,7 @@ namespace Deviant {
       if (Id.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
       }
-      if (Name != 0) {
+      if (Name != global::Deviant.EntityActionNames.Play) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Name);
       }
       if (_unknownFields != null) {
@@ -167,7 +167,7 @@ namespace Deviant {
       if (other.Id.Length != 0) {
         Id = other.Id;
       }
-      if (other.Name != 0) {
+      if (other.Name != global::Deviant.EntityActionNames.Play) {
         Name = other.Name;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);

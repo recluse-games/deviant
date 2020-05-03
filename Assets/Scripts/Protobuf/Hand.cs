@@ -29,8 +29,8 @@ namespace Deviant {
             "aWFudGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.CardReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Hand), global::Deviant.Hand.Parser, new[]{ "Id", "Cards" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Hand), global::Deviant.Hand.Parser, new[]{ "Id", "Cards" }, null, null, null, null)
           }));
     }
     #endregion

@@ -29,8 +29,8 @@ namespace Deviant {
             "dHlCCVoHZGV2aWFudGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.EntityReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EntitiesRow), global::Deviant.EntitiesRow.Parser, new[]{ "Entities" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EntitiesRow), global::Deviant.EntitiesRow.Parser, new[]{ "Entities" }, null, null, null, null)
           }));
     }
     #endregion

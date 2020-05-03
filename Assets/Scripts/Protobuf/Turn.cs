@@ -29,8 +29,8 @@ namespace Deviant {
             "dXJuUGhhc2VOYW1lc0IJWgdkZXZpYW50YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.TurnPhaseNamesReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Turn), global::Deviant.Turn.Parser, new[]{ "Id", "Phase" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Turn), global::Deviant.Turn.Parser, new[]{ "Id", "Phase" }, null, null, null, null)
           }));
     }
     #endregion
@@ -85,7 +85,7 @@ namespace Deviant {
 
     /// <summary>Field number for the "phase" field.</summary>
     public const int PhaseFieldNumber = 2;
-    private global::Deviant.TurnPhaseNames phase_ = 0;
+    private global::Deviant.TurnPhaseNames phase_ = global::Deviant.TurnPhaseNames.PhasePoint;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Deviant.TurnPhaseNames Phase {
       get { return phase_; }
@@ -116,7 +116,7 @@ namespace Deviant {
     public override int GetHashCode() {
       int hash = 1;
       if (Id.Length != 0) hash ^= Id.GetHashCode();
-      if (Phase != 0) hash ^= Phase.GetHashCode();
+      if (Phase != global::Deviant.TurnPhaseNames.PhasePoint) hash ^= Phase.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -134,7 +134,7 @@ namespace Deviant {
         output.WriteRawTag(10);
         output.WriteString(Id);
       }
-      if (Phase != 0) {
+      if (Phase != global::Deviant.TurnPhaseNames.PhasePoint) {
         output.WriteRawTag(16);
         output.WriteEnum((int) Phase);
       }
@@ -149,7 +149,7 @@ namespace Deviant {
       if (Id.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
       }
-      if (Phase != 0) {
+      if (Phase != global::Deviant.TurnPhaseNames.PhasePoint) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Phase);
       }
       if (_unknownFields != null) {
@@ -166,7 +166,7 @@ namespace Deviant {
       if (other.Id.Length != 0) {
         Id = other.Id;
       }
-      if (other.Phase != 0) {
+      if (other.Phase != global::Deviant.TurnPhaseNames.PhasePoint) {
         Phase = other.Phase;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);

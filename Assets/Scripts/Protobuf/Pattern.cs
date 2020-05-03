@@ -32,9 +32,9 @@ namespace Deviant {
             "dG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.DirectionReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Offset), global::Deviant.Offset.Parser, new[]{ "Direction", "Distance" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Pattern), global::Deviant.Pattern.Parser, new[]{ "Direction", "Distance", "Offset" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Offset), global::Deviant.Offset.Parser, new[]{ "Direction", "Distance" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Pattern), global::Deviant.Pattern.Parser, new[]{ "Direction", "Distance", "Offset" }, null, null, null, null)
           }));
     }
     #endregion
@@ -78,7 +78,7 @@ namespace Deviant {
 
     /// <summary>Field number for the "direction" field.</summary>
     public const int DirectionFieldNumber = 1;
-    private global::Deviant.Direction direction_ = 0;
+    private global::Deviant.Direction direction_ = global::Deviant.Direction.Up;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Deviant.Direction Direction {
       get { return direction_; }
@@ -119,7 +119,7 @@ namespace Deviant {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Direction != 0) hash ^= Direction.GetHashCode();
+      if (Direction != global::Deviant.Direction.Up) hash ^= Direction.GetHashCode();
       if (Distance != 0) hash ^= Distance.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -134,7 +134,7 @@ namespace Deviant {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Direction != 0) {
+      if (Direction != global::Deviant.Direction.Up) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Direction);
       }
@@ -150,7 +150,7 @@ namespace Deviant {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Direction != 0) {
+      if (Direction != global::Deviant.Direction.Up) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Direction);
       }
       if (Distance != 0) {
@@ -167,7 +167,7 @@ namespace Deviant {
       if (other == null) {
         return;
       }
-      if (other.Direction != 0) {
+      if (other.Direction != global::Deviant.Direction.Up) {
         Direction = other.Direction;
       }
       if (other.Distance != 0) {
@@ -236,7 +236,7 @@ namespace Deviant {
 
     /// <summary>Field number for the "direction" field.</summary>
     public const int DirectionFieldNumber = 1;
-    private global::Deviant.Direction direction_ = 0;
+    private global::Deviant.Direction direction_ = global::Deviant.Direction.Up;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Deviant.Direction Direction {
       get { return direction_; }
@@ -288,7 +288,7 @@ namespace Deviant {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Direction != 0) hash ^= Direction.GetHashCode();
+      if (Direction != global::Deviant.Direction.Up) hash ^= Direction.GetHashCode();
       if (Distance != 0) hash ^= Distance.GetHashCode();
       hash ^= offset_.GetHashCode();
       if (_unknownFields != null) {
@@ -304,7 +304,7 @@ namespace Deviant {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Direction != 0) {
+      if (Direction != global::Deviant.Direction.Up) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Direction);
       }
@@ -321,7 +321,7 @@ namespace Deviant {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Direction != 0) {
+      if (Direction != global::Deviant.Direction.Up) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Direction);
       }
       if (Distance != 0) {
@@ -339,7 +339,7 @@ namespace Deviant {
       if (other == null) {
         return;
       }
-      if (other.Direction != 0) {
+      if (other.Direction != global::Deviant.Direction.Up) {
         Direction = other.Direction;
       }
       if (other.Distance != 0) {

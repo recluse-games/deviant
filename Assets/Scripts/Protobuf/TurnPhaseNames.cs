@@ -30,7 +30,7 @@ namespace Deviant {
             "EAQSDQoJUEhBU0VfRU5EEAVCCVoHZGV2aWFudGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Deviant.TurnPhaseNames), }, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Deviant.TurnPhaseNames), }, null, null));
     }
     #endregion
 

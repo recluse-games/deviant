@@ -29,7 +29,7 @@ namespace Deviant {
             "RU1FTlQQBEIJWgdkZXZpYW50YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Deviant.CardType), }, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Deviant.CardType), }, null, null));
     }
     #endregion
 

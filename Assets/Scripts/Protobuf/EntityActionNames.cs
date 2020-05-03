@@ -30,7 +30,7 @@ namespace Deviant {
             "dG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Deviant.EntityActionNames), }, null));
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Deviant.EntityActionNames), }, null, null));
     }
     #endregion
 

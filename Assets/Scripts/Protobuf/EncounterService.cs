@@ -37,9 +37,9 @@ namespace Deviant {
             "ZXNwb25zZSgBMAFCCVoHZGV2aWFudGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.EncounterReflection.Descriptor, global::Deviant.EntityActionNamesReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterRequest), global::Deviant.EncounterRequest.Parser, new[]{ "PlayerId", "Encounter", "EntityActionName" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterResponse), global::Deviant.EncounterResponse.Parser, new[]{ "PlayerId", "Encounter" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterRequest), global::Deviant.EncounterRequest.Parser, new[]{ "PlayerId", "Encounter", "EntityActionName" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterResponse), global::Deviant.EncounterResponse.Parser, new[]{ "PlayerId", "Encounter" }, null, null, null, null)
           }));
     }
     #endregion
@@ -109,7 +109,7 @@ namespace Deviant {
 
     /// <summary>Field number for the "entityActionName" field.</summary>
     public const int EntityActionNameFieldNumber = 3;
-    private global::Deviant.EntityActionNames entityActionName_ = 0;
+    private global::Deviant.EntityActionNames entityActionName_ = global::Deviant.EntityActionNames.Play;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Deviant.EntityActionNames EntityActionName {
       get { return entityActionName_; }
@@ -142,7 +142,7 @@ namespace Deviant {
       int hash = 1;
       if (PlayerId.Length != 0) hash ^= PlayerId.GetHashCode();
       if (encounter_ != null) hash ^= Encounter.GetHashCode();
-      if (EntityActionName != 0) hash ^= EntityActionName.GetHashCode();
+      if (EntityActionName != global::Deviant.EntityActionNames.Play) hash ^= EntityActionName.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -164,7 +164,7 @@ namespace Deviant {
         output.WriteRawTag(18);
         output.WriteMessage(Encounter);
       }
-      if (EntityActionName != 0) {
+      if (EntityActionName != global::Deviant.EntityActionNames.Play) {
         output.WriteRawTag(24);
         output.WriteEnum((int) EntityActionName);
       }
@@ -182,7 +182,7 @@ namespace Deviant {
       if (encounter_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Encounter);
       }
-      if (EntityActionName != 0) {
+      if (EntityActionName != global::Deviant.EntityActionNames.Play) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) EntityActionName);
       }
       if (_unknownFields != null) {
@@ -205,7 +205,7 @@ namespace Deviant {
         }
         Encounter.MergeFrom(other.Encounter);
       }
-      if (other.EntityActionName != 0) {
+      if (other.EntityActionName != global::Deviant.EntityActionNames.Play) {
         EntityActionName = other.EntityActionName;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
