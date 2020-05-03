@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    private bool mouse_over = false;
-    
-     void Update()
-     {
-         if (mouse_over)
-         {
-             Debug.Log("Mouse Over");
-         }
-     }
+    public string id = default;
+
+    public void SetId(string id)
+    {
+        this.id = id;
+    }
+
+    public string GetId()
+    {
+        return this.id;
+    }
 }

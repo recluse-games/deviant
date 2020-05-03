@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Linq;
+using Deviant;
+using System.Collections;
 
 public class UI : MonoBehaviour
 {
@@ -19,16 +21,14 @@ public class UI : MonoBehaviour
         int x = -250;
         int y = -170;
 
+        foreach (var deckCardObject in GameObject.FindGameObjectsWithTag("deck"))
+        {
+            deckCardObject.GetComponent <
+        }
+
         foreach (var card in activeEntity.Hand.Cards)
         {
             GameObject existingHandCardGameObject = GameObject.Find("hand_" + card.Id);
-            GameObject existingDeckCardGameObject = GameObject.Find("deck_" + card.Id);
-
-            if(existingHandCardGameObject != null && existingDeckCardGameObject != null) {
-                Destroy(existingDeckCardGameObject);
-                x += 70;
-                continue;
-            }
 
             if(existingHandCardGameObject != null) {
                 x += 70;
@@ -38,19 +38,18 @@ public class UI : MonoBehaviour
             CardPrefab newCard = Instantiate(cardPrefab);
             newCard.transform.localPosition = new Vector3Int(x, y, 0);
             newCard.transform.SetParent(transform, false);
+            newCard.transform.gameObject.tag = "hand";
             newCard.transform.gameObject.name = "hand_" + card.Id;
+            newCard.transform.gameObject.GetComponent<Card>().SetId(card.Id);
             newCard.SetVisability(true);
             x += 70;
         }
-
     }
 
     private void CreateDeck(Deviant.Entity activeEntity)
     {
         int deckx = -350;
         int decky = -163;
-
-        Debug.Log(activeEntity.Deck.Cards);
 
         foreach (var card in activeEntity.Deck.Cards)
         {
@@ -61,7 +60,9 @@ public class UI : MonoBehaviour
                 newDeckCardGameObject.setSprite();
                 newDeckCardGameObject.transform.localPosition = new Vector3Int(deckx, decky, 0);
                 newDeckCardGameObject.transform.SetParent(transform, false);
+                newDeckCardGameObject.transform.gameObject.tag = "deck";
                 newDeckCardGameObject.transform.gameObject.name = "deck_" + card.Id;
+                newDeckCardGameObject.GetComponent<Card>().SetId(card.Id);
             }
         }
     }
@@ -78,7 +79,12 @@ public class UI : MonoBehaviour
 		Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
         Deviant.Entity activeEntity = encounterState.ActiveEntity;
 
-        CreateDeck(activeEntity);
-        CreateHand(activeEntity);
+        // 0000 should be replaced with the current players ID
+        if(activeEntity.OwnerId == "0000")
+        {
+            Debug.Log(activeEntity.Hand.Cards);
+            CreateDeck(activeEntity);
+            CreateHand(activeEntity);
+        }
     }
 }

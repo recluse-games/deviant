@@ -8,10 +8,12 @@ public class CardPrefab: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 	[SerializeField]
 	Transform entity = default;
     private bool mouse_over = false;
-
+    
     private bool selected = false;
     private bool visable = false;
     public EncounterState encounterStateRef = default;
+
+    public string id = default;
 
     public void SetVisability(bool visability) {
         this.visable = visability;

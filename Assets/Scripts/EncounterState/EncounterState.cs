@@ -93,4 +93,9 @@ public class EncounterState : MonoBehaviour
             throw ex;
         }
     }
+
+    public void OnDestroyed()
+    {
+        _channel.ShutdownAsync().Wait();
+    }
 }

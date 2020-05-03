@@ -1839,6 +1839,7 @@ GameObject:
   - component: {fileID: 1427246418}
   - component: {fileID: 1427246417}
   - component: {fileID: 1427246419}
+  - component: {fileID: 1427246420}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -1916,6 +1917,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 2
   m_AspectRatio: 0.6
+--- !u!114 &1427246420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427246415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 811fab09ee71c4b4ca6d07d10f97f073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 
 --- !u!1 &1433982317
 GameObject:
   m_ObjectHideFlags: 0
@@ -2140,6 +2154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 1427246416}
   encounterStateRef: {fileID: 0}
+  id: 
 --- !u!4 &1694134466
 Transform:
   m_ObjectHideFlags: 0
