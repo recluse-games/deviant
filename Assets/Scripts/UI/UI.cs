@@ -55,7 +55,7 @@ public class UI : MonoBehaviour
     private void CreateDeck(Deviant.Entity activeEntity)
     {
         int deckx = -350;
-        int decky = -163;
+        int decky = -170;
 
         foreach (var card in activeEntity.Deck.Cards)
         {
