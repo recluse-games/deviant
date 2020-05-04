@@ -23,7 +23,7 @@ public class UI : MonoBehaviour
 
         foreach (var card in activeEntity.Hand.Cards)
         {
-            GameObject existingHandCardGameObject = GameObject.Find("hand_" + card.Id);
+            GameObject existingHandCardGameObject = GameObject.Find("hand_" + card.InstanceId);
 
             if(existingHandCardGameObject != null) {
                 x += 70;
@@ -34,8 +34,8 @@ public class UI : MonoBehaviour
             newCard.transform.localPosition = new Vector3Int(x, y, 0);
             newCard.transform.SetParent(transform, false);
             newCard.transform.gameObject.tag = "hand";
-            newCard.transform.gameObject.name = "hand_" + card.Id;
-            newCard.GetComponentInChildren<Card>().SetId(card.Id);
+            newCard.transform.gameObject.name = "hand_" + card.InstanceId;
+            newCard.GetComponentInChildren<Card>().SetId(card.InstanceId);
             newCard.SetVisability(true);
             x += 70;
         }
@@ -59,7 +59,7 @@ public class UI : MonoBehaviour
 
         foreach (var card in activeEntity.Deck.Cards)
         {
-            GameObject existingDeckCardGameObject = GameObject.Find("deck_" + card.Id);
+            GameObject existingDeckCardGameObject = GameObject.Find("deck_" + card.InstanceId);
 
             if(existingDeckCardGameObject == null) {
                 CardPrefab newDeckCardGameObject = Instantiate(cardPrefab);
@@ -67,8 +67,8 @@ public class UI : MonoBehaviour
                 newDeckCardGameObject.transform.localPosition = new Vector3Int(deckx, decky, 0);
                 newDeckCardGameObject.transform.SetParent(transform, false);
                 newDeckCardGameObject.transform.gameObject.tag = "deck";
-                newDeckCardGameObject.transform.gameObject.name = "deck_" + card.Id;
-                newDeckCardGameObject.GetComponentInChildren<Card>().SetId(card.Id);
+                newDeckCardGameObject.transform.gameObject.name = "deck_" + card.InstanceId;
+                newDeckCardGameObject.GetComponentInChildren<Card>().SetId(card.InstanceId);
             }
         }
     }
