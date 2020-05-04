@@ -33,7 +33,6 @@ public class TurnOrderUnitPrefab : MonoBehaviour
         if (activeEntity.Id == this.id)
         {
             this.gameObject.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
-            this.gameObject.transform.position = this.gameObject.transform.position + new Vector3(0, 0, 5);
         }
 
         if (activeEntity.Id != this.id)
