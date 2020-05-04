@@ -26,7 +26,7 @@ public class TurnOrder : MonoBehaviour
 
         var turnOrderUnits = GameObject.FindGameObjectsWithTag("ui_turn_order_unit");
 
-        if (turnOrderUnits.Length < Encounter.ActiveEntityOrderFieldNumber)
+        if (turnOrderUnits.Length < encounter.ActiveEntityOrder.Count)
         {
             for (var i = 0; i < encounter.ActiveEntityOrder.Count; i++)
             {
