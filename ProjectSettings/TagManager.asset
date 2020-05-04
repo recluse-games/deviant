@@ -6,6 +6,7 @@ TagManager:
   tags:
   - deck
   - hand
+  - ui_ap
   layers:
   - Default
   - TransparentFX
