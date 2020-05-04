@@ -21,11 +21,6 @@ public class UI : MonoBehaviour
         int x = -250;
         int y = -170;
 
-        foreach (var deckCardObject in GameObject.FindGameObjectsWithTag("deck"))
-        {
-            deckCardObject.GetComponent <
-        }
-
         foreach (var card in activeEntity.Hand.Cards)
         {
             GameObject existingHandCardGameObject = GameObject.Find("hand_" + card.Id);
@@ -40,9 +35,20 @@ public class UI : MonoBehaviour
             newCard.transform.SetParent(transform, false);
             newCard.transform.gameObject.tag = "hand";
             newCard.transform.gameObject.name = "hand_" + card.Id;
-            newCard.transform.gameObject.GetComponent<Card>().SetId(card.Id);
+            newCard.GetComponentInChildren<Card>().SetId(card.Id);
             newCard.SetVisability(true);
             x += 70;
+        }
+
+        foreach (var deckCardObject in GameObject.FindGameObjectsWithTag("deck"))
+        {
+            foreach (var handCardObject in GameObject.FindGameObjectsWithTag("hand"))
+            {
+                if (deckCardObject.GetComponentInChildren<Card>().GetId() == handCardObject.GetComponentInChildren<Card>().GetId())
+                {
+                    Destroy(deckCardObject);
+                }
+            }
         }
     }
 
@@ -62,7 +68,7 @@ public class UI : MonoBehaviour
                 newDeckCardGameObject.transform.SetParent(transform, false);
                 newDeckCardGameObject.transform.gameObject.tag = "deck";
                 newDeckCardGameObject.transform.gameObject.name = "deck_" + card.Id;
-                newDeckCardGameObject.GetComponent<Card>().SetId(card.Id);
+                newDeckCardGameObject.GetComponentInChildren<Card>().SetId(card.Id);
             }
         }
     }

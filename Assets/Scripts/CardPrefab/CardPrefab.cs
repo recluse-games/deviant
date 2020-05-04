@@ -13,8 +13,6 @@ public class CardPrefab: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private bool visable = false;
     public EncounterState encounterStateRef = default;
 
-    public string id = default;
-
     public void SetVisability(bool visability) {
         this.visable = visability;
     }

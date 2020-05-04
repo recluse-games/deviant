@@ -13,6 +13,6 @@ public class Card : MonoBehaviour
 
     public string GetId()
     {
-        return this.id;
+        return id;
     }
 }
