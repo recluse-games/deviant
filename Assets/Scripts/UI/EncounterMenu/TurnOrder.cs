@@ -22,16 +22,19 @@ public class TurnOrder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var encounter = encounterStateRef.GetEncounter();
+
         var turnOrderUnits = GameObject.FindGameObjectsWithTag("ui_turn_order_unit");
 
         if (turnOrderUnits.Length < Encounter.ActiveEntityOrderFieldNumber)
         {
-            for (var i = 0; i < Encounter.ActiveEntityOrderFieldNumber; i++)
+            for (var i = 0; i < encounter.ActiveEntityOrder.Count; i++)
             {
                 TurnOrderUnitPrefab turnOrderUnit = Instantiate(TurnOrderUnitPrefab);
                 turnOrderUnit.transform.SetParent(transform, false);
                 turnOrderUnit.transform.gameObject.tag = "ui_turn_order_unit";
                 turnOrderUnit.transform.SetParent(turnOrderUnit.GetComponentInParent<HorizontalLayoutGroup>().transform, true);
+                turnOrderUnit.SetId(encounter.ActiveEntityOrder[i]);
                 turnOrderUnit.transform.localPosition = new Vector3(0, 0, 0);
             }
         }
