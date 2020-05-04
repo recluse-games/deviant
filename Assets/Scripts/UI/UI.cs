@@ -88,7 +88,6 @@ public class UI : MonoBehaviour
         // 0000 should be replaced with the current players ID
         if(activeEntity.OwnerId == "0000")
         {
-            Debug.Log(activeEntity.Hand.Cards);
             CreateDeck(activeEntity);
             CreateHand(activeEntity);
         }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
+using Google.Protobuf.WellKnownTypes;
 
 public class EntitySpawner : MonoBehaviour
 {
@@ -31,8 +32,8 @@ public class EntitySpawner : MonoBehaviour
 				Deviant.Alignment entityAlignment = board.Entities.Entities_[y].Entities[x].Alignment;
 				Vector3Int currentTileLocation = new Vector3Int(x, y, 0);				
 
-				// Validate that we haven't already spawned this unit in and that it's not an empty placeholder.
-				if (this.activeEntities.Contains(entityId) == false && entityId != "0") {
+				// Validate that we haven't already spawned this unit in and that it's not an empty placeholder object.
+				if (this.activeEntities.Contains(entityId) == false && entityId != "") {
 					EntityPrefab entity = Instantiate(entityPrefab);
 					
 					// Set the Sprite Based off the entity class + alignment
