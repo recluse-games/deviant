@@ -25,15 +25,15 @@ namespace Deviant {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CgpDYXJkLnByb3RvEgdEZXZpYW50GhBDYXJkQWN0aW9uLnByb3RvGg5DYXJk",
-            "VHlwZS5wcm90byKuAQoEQ2FyZBIKCgJpZBgBIAEoCRISCgppbnN0YW5jZUlk",
-            "GAIgASgJEgwKBGNvc3QYAyABKAUSDQoFdGl0bGUYBCABKAkSDgoGZmxhdm9y",
-            "GAUgASgJEhMKC2Rlc2NyaXB0aW9uGAYgASgJEh8KBHR5cGUYByABKA4yES5E",
-            "ZXZpYW50LkNhcmRUeXBlEiMKBmFjdGlvbhgIIAEoCzITLkRldmlhbnQuQ2Fy",
-            "ZEFjdGlvbkIJWgdkZXZpYW50YgZwcm90bzM="));
+            "VHlwZS5wcm90byK+AQoEQ2FyZBIKCgJpZBgBIAEoCRISCgppbnN0YW5jZUlk",
+            "GAIgASgJEg4KBmJhY2tJZBgDIAEoCRIMCgRjb3N0GAQgASgFEg0KBXRpdGxl",
+            "GAUgASgJEg4KBmZsYXZvchgGIAEoCRITCgtkZXNjcmlwdGlvbhgHIAEoCRIf",
+            "CgR0eXBlGAggASgOMhEuRGV2aWFudC5DYXJkVHlwZRIjCgZhY3Rpb24YCSAB",
+            "KAsyEy5EZXZpYW50LkNhcmRBY3Rpb25CCVoHZGV2aWFudGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.CardActionReflection.Descriptor, global::Deviant.CardTypeReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Card), global::Deviant.Card.Parser, new[]{ "Id", "InstanceId", "Cost", "Title", "Flavor", "Description", "Type", "Action" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Card), global::Deviant.Card.Parser, new[]{ "Id", "InstanceId", "BackId", "Cost", "Title", "Flavor", "Description", "Type", "Action" }, null, null, null, null)
           }));
     }
     #endregion
@@ -67,6 +67,7 @@ namespace Deviant {
     public Card(Card other) : this() {
       id_ = other.id_;
       instanceId_ = other.instanceId_;
+      backId_ = other.backId_;
       cost_ = other.cost_;
       title_ = other.title_;
       flavor_ = other.flavor_;
@@ -103,8 +104,19 @@ namespace Deviant {
       }
     }
 
+    /// <summary>Field number for the "backId" field.</summary>
+    public const int BackIdFieldNumber = 3;
+    private string backId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string BackId {
+      get { return backId_; }
+      set {
+        backId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     /// <summary>Field number for the "cost" field.</summary>
-    public const int CostFieldNumber = 3;
+    public const int CostFieldNumber = 4;
     private int cost_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int Cost {
@@ -115,7 +127,7 @@ namespace Deviant {
     }
 
     /// <summary>Field number for the "title" field.</summary>
-    public const int TitleFieldNumber = 4;
+    public const int TitleFieldNumber = 5;
     private string title_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Title {
@@ -126,7 +138,7 @@ namespace Deviant {
     }
 
     /// <summary>Field number for the "flavor" field.</summary>
-    public const int FlavorFieldNumber = 5;
+    public const int FlavorFieldNumber = 6;
     private string flavor_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Flavor {
@@ -137,7 +149,7 @@ namespace Deviant {
     }
 
     /// <summary>Field number for the "description" field.</summary>
-    public const int DescriptionFieldNumber = 6;
+    public const int DescriptionFieldNumber = 7;
     private string description_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Description {
@@ -148,7 +160,7 @@ namespace Deviant {
     }
 
     /// <summary>Field number for the "type" field.</summary>
-    public const int TypeFieldNumber = 7;
+    public const int TypeFieldNumber = 8;
     private global::Deviant.CardType type_ = global::Deviant.CardType.Attack;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Deviant.CardType Type {
@@ -159,7 +171,7 @@ namespace Deviant {
     }
 
     /// <summary>Field number for the "action" field.</summary>
-    public const int ActionFieldNumber = 8;
+    public const int ActionFieldNumber = 9;
     private global::Deviant.CardAction action_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Deviant.CardAction Action {
@@ -184,6 +196,7 @@ namespace Deviant {
       }
       if (Id != other.Id) return false;
       if (InstanceId != other.InstanceId) return false;
+      if (BackId != other.BackId) return false;
       if (Cost != other.Cost) return false;
       if (Title != other.Title) return false;
       if (Flavor != other.Flavor) return false;
@@ -198,6 +211,7 @@ namespace Deviant {
       int hash = 1;
       if (Id.Length != 0) hash ^= Id.GetHashCode();
       if (InstanceId.Length != 0) hash ^= InstanceId.GetHashCode();
+      if (BackId.Length != 0) hash ^= BackId.GetHashCode();
       if (Cost != 0) hash ^= Cost.GetHashCode();
       if (Title.Length != 0) hash ^= Title.GetHashCode();
       if (Flavor.Length != 0) hash ^= Flavor.GetHashCode();
@@ -225,28 +239,32 @@ namespace Deviant {
         output.WriteRawTag(18);
         output.WriteString(InstanceId);
       }
+      if (BackId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(BackId);
+      }
       if (Cost != 0) {
-        output.WriteRawTag(24);
+        output.WriteRawTag(32);
         output.WriteInt32(Cost);
       }
       if (Title.Length != 0) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(42);
         output.WriteString(Title);
       }
       if (Flavor.Length != 0) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(50);
         output.WriteString(Flavor);
       }
       if (Description.Length != 0) {
-        output.WriteRawTag(50);
+        output.WriteRawTag(58);
         output.WriteString(Description);
       }
       if (Type != global::Deviant.CardType.Attack) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(64);
         output.WriteEnum((int) Type);
       }
       if (action_ != null) {
-        output.WriteRawTag(66);
+        output.WriteRawTag(74);
         output.WriteMessage(Action);
       }
       if (_unknownFields != null) {
@@ -262,6 +280,9 @@ namespace Deviant {
       }
       if (InstanceId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(InstanceId);
+      }
+      if (BackId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(BackId);
       }
       if (Cost != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Cost);
@@ -297,6 +318,9 @@ namespace Deviant {
       }
       if (other.InstanceId.Length != 0) {
         InstanceId = other.InstanceId;
+      }
+      if (other.BackId.Length != 0) {
+        BackId = other.BackId;
       }
       if (other.Cost != 0) {
         Cost = other.Cost;
@@ -338,27 +362,31 @@ namespace Deviant {
             InstanceId = input.ReadString();
             break;
           }
-          case 24: {
+          case 26: {
+            BackId = input.ReadString();
+            break;
+          }
+          case 32: {
             Cost = input.ReadInt32();
             break;
           }
-          case 34: {
+          case 42: {
             Title = input.ReadString();
             break;
           }
-          case 42: {
+          case 50: {
             Flavor = input.ReadString();
             break;
           }
-          case 50: {
+          case 58: {
             Description = input.ReadString();
             break;
           }
-          case 56: {
+          case 64: {
             Type = (global::Deviant.CardType) input.ReadEnum();
             break;
           }
-          case 66: {
+          case 74: {
             if (action_ == null) {
               Action = new global::Deviant.CardAction();
             }
