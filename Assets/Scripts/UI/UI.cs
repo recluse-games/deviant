@@ -33,7 +33,7 @@ public class UI : MonoBehaviour
             CardPrefab newCard = Instantiate(cardPrefab);
             newCard.transform.localPosition = new Vector3Int(x, y, 0);
             newCard.transform.SetParent(transform, false);
-            newCard.setSprite(card.Id, card.BackId);
+            newCard.setSprite(card.Id, "Front");
             newCard.transform.gameObject.tag = "hand";
             newCard.transform.gameObject.name = "hand_" + card.InstanceId;
             newCard.GetComponentInChildren<Card>().SetId(card.InstanceId);
@@ -64,7 +64,7 @@ public class UI : MonoBehaviour
 
             if(existingDeckCardGameObject == null) {
                 CardPrefab newDeckCardGameObject = Instantiate(cardPrefab);
-                newDeckCardGameObject.setSprite(card.Id, card.BackId);
+                newDeckCardGameObject.setSprite(card.BackId, "Back");
                 newDeckCardGameObject.transform.localPosition = new Vector3Int(deckx, decky, 0);
                 newDeckCardGameObject.transform.SetParent(transform, false);
                 newDeckCardGameObject.transform.gameObject.tag = "deck";

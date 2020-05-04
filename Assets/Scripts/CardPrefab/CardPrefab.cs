@@ -23,7 +23,6 @@ public class CardPrefab: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         if(this.visable == true) {
             this.gameObject.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
-            this.gameObject.transform.position = this.gameObject.transform.position + new Vector3(0, 0, 5);
             mouse_over = true;
         }
     }
@@ -50,7 +49,7 @@ public class CardPrefab: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             GridLayout isometricGameGridLayout = isometricGameGrid.transform.GetComponent<GridLayout>();
             Vector3Int entityCellLocation = isometricGameGridLayout.WorldToCell(entity.transform.position);
 
-            Tile selectedTile = Resources.Load<Tile>("Art/Tiles/select_0000");
+            UnityEngine.Tilemaps.Tile selectedTile = Resources.Load<UnityEngine.Tilemaps.Tile>("Art/Tiles/select_0000");
             GameObject battleFieldOverlay = GameObject.Find("BattlefieldOverlay");
             Tilemap battleFieldOverlayTilemap = battleFieldOverlay.GetComponent<Tilemap>();
 
@@ -61,7 +60,7 @@ public class CardPrefab: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
             foreach (var card in activeEntity.Hand.Cards)
             {
-                if(card.Id ==  gameObject.GetComponentInChildren<Card>().GetId()) {
+                if(card.InstanceId ==  gameObject.GetComponentInChildren<Card>().GetId()) {
                     foreach(var entry in card.Action.Pattern)
                     {
                         Vector3Int offsetVector = new Vector3Int(0, 0, 0);
@@ -150,21 +149,21 @@ public class CardPrefab: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 }
             }
 
-        if(this.selected == true) {
-            var animation = entity.transform.gameObject.GetComponentInChildren<Animator>();
-            entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-StopAttack");
-            this.selected = false;
-        } else {
-            var animation = entity.transform.gameObject.GetComponentInChildren<Animator>();
-            entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-Attack");
-            this.selected = true;
-        }
+            if(this.selected == true) {
+                var animation = entity.transform.gameObject.GetComponentInChildren<Animator>();
+                entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-StopAttack");
+                this.selected = false;
+            } else {
+                var animation = entity.transform.gameObject.GetComponentInChildren<Animator>();
+                entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-Attack");
+                this.selected = true;
+            }
         }       
     }
 
-	public void setSprite(string cardFrontId, string cardBackId)
+	public void setSprite(string assetId, string cardType)
 	{
-        Sprite newSprite = Resources.Load("Art/Sprites/Deck/Card/{cardFace}/{cardId}", typeof(Sprite)) as Sprite;
+        Sprite newSprite = Resources.Load($"Art/Sprites/Deck/Card/{cardType}/{assetId}", typeof(Sprite)) as Sprite;
 		entity.gameObject.GetComponent<UnityEngine.UI.Image>().sprite = newSprite;
 	}
 
