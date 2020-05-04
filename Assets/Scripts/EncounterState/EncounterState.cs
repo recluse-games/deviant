@@ -38,7 +38,7 @@ public class EncounterState : MonoBehaviour
             using (var call = _client.StartEncounter())
             {
                 Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-                encounterRequest.PlayerId = "0001";
+                encounterRequest.PlayerId = "0000";
 
                 await call.RequestStream.WriteAsync(encounterRequest);
                 var responseReaderTask = Task.Run(async () =>

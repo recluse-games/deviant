@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using Deviant;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class IsometricGrid : MonoBehaviour
 {
+    public EncounterState encounterStateRef = default;
+
     // Movement speed in units per second.
     private float speed = 10.0F;
 
@@ -14,7 +17,12 @@ public class IsometricGrid : MonoBehaviour
     // Total distance between the markers.
     private float journeyLength;
 
-	public void Update() {
+    public void Start()
+    {
+        encounterStateRef = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
+    }
+
+    async public void Update() {
 		if (Input.GetMouseButtonDown(0))
         {
             GridLayout gridLayout = this.transform.GetComponent<GridLayout>();
@@ -29,9 +37,9 @@ public class IsometricGrid : MonoBehaviour
              {
                 foreach (Vector3Int location in entity.validTiles) {
                     if(position.Equals(location) == true) {
-                        Debug.Log(position);
-
                         Vector3 startingPos = entity.transform.parent.position;
+                        this.updatePlayerPosition(overlay.WorldToCell(startingPos).x, overlay.WorldToCell(startingPos).y, location.x, location.y);
+
                         startTime = Time.time;
                         
                         journeyLength = Vector3.Distance(entity.transform.parent.position, overlay.GetCellCenterWorld(position));
@@ -54,4 +62,22 @@ public class IsometricGrid : MonoBehaviour
              
         }
 	}
+
+    async public void updatePlayerPosition(int startx, int starty, int endx, int endy)
+    {
+        Deviant.EntityMoveAction entityMoveAction = new Deviant.EntityMoveAction();
+        entityMoveAction.StartXPosition = startx;
+        entityMoveAction.StartYPosition = starty;
+        entityMoveAction.FinalXPosition = endx;
+        entityMoveAction.FinalYPosition = endy;
+
+        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+        encounterRequest.PlayerId = "0000";
+        encounterRequest.Encounter = encounterStateRef.encounter;
+        encounterRequest.EntityActionName = Deviant.EntityActionNames.Move;
+        encounterRequest.EntityMoveAction = entityMoveAction;
+
+
+        await encounterStateRef.UpdateEncounterAsync(encounterRequest);
+    }
 }
