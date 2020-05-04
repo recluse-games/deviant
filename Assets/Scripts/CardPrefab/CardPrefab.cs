@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Deviant;
+using Google.Protobuf.WellKnownTypes;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -7,6 +9,7 @@ public class CardPrefab: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 {
 	[SerializeField]
 	Transform entity = default;
+
     private bool mouse_over = false;
     private bool selected = false;
     private bool visable = false;
@@ -159,9 +162,9 @@ public class CardPrefab: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         }       
     }
 
-	public void setSprite()
+	public void setSprite(string cardFrontId, string cardBackId)
 	{
-        Sprite newSprite = Resources.Load("Art/Sprites/Deck/Card/Back/back_0000", typeof(Sprite)) as Sprite;
+        Sprite newSprite = Resources.Load("Art/Sprites/Deck/Card/{cardFace}/{cardId}", typeof(Sprite)) as Sprite;
 		entity.gameObject.GetComponent<UnityEngine.UI.Image>().sprite = newSprite;
 	}
 
