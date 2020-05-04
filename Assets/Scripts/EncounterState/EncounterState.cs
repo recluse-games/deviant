@@ -27,11 +27,6 @@ public class EncounterState : MonoBehaviour
         await CreateEncounterAsync();
     }
 
-    void Update()
-    {
-        Debug.Log(encounter);
-    }
-
     public Encounter GetEncounter()
     {
         return this.encounter;

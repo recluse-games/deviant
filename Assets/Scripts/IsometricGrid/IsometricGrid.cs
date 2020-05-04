@@ -29,6 +29,8 @@ public class IsometricGrid : MonoBehaviour
              {
                 foreach (Vector3Int location in entity.validTiles) {
                     if(position.Equals(location) == true) {
+                        Debug.Log(position);
+
                         Vector3 startingPos = entity.transform.parent.position;
                         startTime = Time.time;
                         
