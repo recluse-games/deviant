@@ -8,7 +8,6 @@ public class CardPrefab: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 	[SerializeField]
 	Transform entity = default;
     private bool mouse_over = false;
-    
     private bool selected = false;
     private bool visable = false;
     public EncounterState encounterStateRef = default;
@@ -40,8 +39,8 @@ public class CardPrefab: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 		Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
 		Deviant.Board board = encounterState.Board;
         Deviant.Entity activeEntity = encounterState.ActiveEntity;
-
-        if(this.visable == true) {
+    
+        if (this.visable == true) {
             GameObject entity = GameObject.Find("entity_" + activeEntity.Id);;
         
             GameObject isometricGameGrid = GameObject.Find("IsometricGrid");
@@ -59,7 +58,7 @@ public class CardPrefab: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
             foreach (var card in activeEntity.Hand.Cards)
             {
-                if(card.Id ==  this.name) {
+                if(card.Id ==  gameObject.GetComponentInChildren<Card>().GetId()) {
                     foreach(var entry in card.Action.Pattern)
                     {
                         Vector3Int offsetVector = new Vector3Int(0, 0, 0);
@@ -165,4 +164,9 @@ public class CardPrefab: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         Sprite newSprite = Resources.Load("Art/Sprites/Deck/Card/Back/back_0000", typeof(Sprite)) as Sprite;
 		entity.gameObject.GetComponent<UnityEngine.UI.Image>().sprite = newSprite;
 	}
+
+    void Start()
+    {
+        encounterStateRef = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
+    }
 }

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using Deviant;
 using UnityEngine;
-using UnityEditor.PackageManager;
 using UnityAsync;
 
 public class EncounterState : MonoBehaviour
@@ -44,7 +43,7 @@ public class EncounterState : MonoBehaviour
             using (var call = _client.StartEncounter())
             {
                 Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-                encounterRequest.PlayerId = "0000";
+                encounterRequest.PlayerId = "0001";
 
                 await call.RequestStream.WriteAsync(encounterRequest);
                 var responseReaderTask = Task.Run(async () =>
