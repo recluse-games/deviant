@@ -24,10 +24,10 @@ namespace Deviant {
     static EntityActionNamesReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChdFbnRpdHlBY3Rpb25OYW1lcy5wcm90bxIHRGV2aWFudCpTChFFbnRpdHlB",
-            "Y3Rpb25OYW1lcxIICgRQTEFZEAASCAoERFJBVxABEgsKB0RJU0NBUkQQAhIL",
-            "CgdOT1RISU5HEAMSEAoMQ0hBTkdFX1BIQVNFEARCCVoHZGV2aWFudGIGcHJv",
-            "dG8z"));
+            "ChdFbnRpdHlBY3Rpb25OYW1lcy5wcm90bxIHRGV2aWFudCpdChFFbnRpdHlB",
+            "Y3Rpb25OYW1lcxIICgRQTEFZEAASCAoETU9WRRABEggKBERSQVcQAhILCgdE",
+            "SVNDQVJEEAMSCwoHTk9USElORxAEEhAKDENIQU5HRV9QSEFTRRAFQglaB2Rl",
+            "dmlhbnRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Deviant.EntityActionNames), }, null, null));
@@ -38,10 +38,11 @@ namespace Deviant {
   #region Enums
   public enum EntityActionNames {
     [pbr::OriginalName("PLAY")] Play = 0,
-    [pbr::OriginalName("DRAW")] Draw = 1,
-    [pbr::OriginalName("DISCARD")] Discard = 2,
-    [pbr::OriginalName("NOTHING")] Nothing = 3,
-    [pbr::OriginalName("CHANGE_PHASE")] ChangePhase = 4,
+    [pbr::OriginalName("MOVE")] Move = 1,
+    [pbr::OriginalName("DRAW")] Draw = 2,
+    [pbr::OriginalName("DISCARD")] Discard = 3,
+    [pbr::OriginalName("NOTHING")] Nothing = 4,
+    [pbr::OriginalName("CHANGE_PHASE")] ChangePhase = 5,
   }
 
   #endregion
