@@ -5,15 +5,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
-public class CardPrefab: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-	[SerializeField]
-	Transform entity = default;
+    [SerializeField]
+    Transform entity = default;
 
     private bool mouse_over = false;
     private bool selected = false;
     private bool visable = false;
     public EncounterState encounterStateRef = default;
+
+    private Dictionary<string, Dictionary<string, Vector3Int>> selectedPatternTilePositions = default;
 
     public void SetVisability(bool visability) {
         this.visable = visability;
@@ -33,6 +35,16 @@ public class CardPrefab: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
             this.gameObject.transform.localScale = new Vector3(1, 1, 1);
             mouse_over = false;
         }
+    }
+
+    public void ClearSelectedTiles()
+    {
+        this.selectedPatternTilePositions = null;
+    }
+
+    public void UpdatedSelectedTileDirection(string direction)
+    {
+
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -60,9 +72,10 @@ public class CardPrefab: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
             foreach (var card in activeEntity.Hand.Cards)
             {
-                if(card.InstanceId ==  gameObject.GetComponentInChildren<Card>().GetId()) {
+                if (card.InstanceId ==  gameObject.GetComponentInChildren<Card>().GetId()) {
                     foreach(var entry in card.Action.Pattern)
                     {
+
                         Vector3Int offsetVector = new Vector3Int(0, 0, 0);
                         
                         if(entry.Offset != null) {
