@@ -28,7 +28,7 @@ public class NextButton : MonoBehaviour
         Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
 
         Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-        encounterRequest.PlayerId = "0000";
+        encounterRequest.PlayerId = "0001";
         encounterRequest.Encounter = encounterState;
         encounterRequest.EntityActionName = Deviant.EntityActionNames.ChangePhase;
 

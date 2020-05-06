@@ -2,6 +2,7 @@
 using System.Linq;
 using Deviant;
 using System.Collections;
+using UnityEngine.Tilemaps;
 
 public class UI : MonoBehaviour
 {
@@ -14,7 +15,84 @@ public class UI : MonoBehaviour
     [SerializeField]
     CardPrefab cardPrefab = default;
 
+    private string previousRotation = "down";
 	private EncounterState encounterStateRef = default;
+    private GameObject activeEntityObject = default;
+    private Camera cam;
+
+    void UpdateThings()
+    {
+        if (activeEntityObject != default)
+        {
+            var activeEntityLocation = activeEntityObject.transform.position;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Vector3 mousePos = ray.GetPoint(-ray.origin.z / ray.direction.z);
+            Debug.Log("entity: " + activeEntityLocation);
+
+            //Vector3Int mousePos = battleFieldOverlayTilemap.WorldToCell(mouseWorldPos);
+            //Vector3Int activeEntityLocation = battleFieldOverlayTilemap.WorldToCell(activeEntityLocationWorld);
+
+            if ((mousePos.y / activeEntityLocation.y) * 1 > 0 && (mousePos.x / activeEntityLocation.x) * -1 < 0)
+            {
+                    var currentCards = GameObject.FindGameObjectsWithTag("hand");
+
+                    foreach (var currentCard in currentCards)
+                    {
+                        if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
+                        {
+                            currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("up", previousRotation);
+                            previousRotation = "up";
+                        }
+                    }
+                  
+            }
+
+            else if ((mousePos.y / activeEntityLocation.y) * -1 > 0 && (mousePos.x / activeEntityLocation.x) * -1 > 0)
+            {
+                var currentCards = GameObject.FindGameObjectsWithTag("hand");
+
+                    foreach (var currentCard in currentCards)
+                    {
+                        if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
+                        {
+                            currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("down", previousRotation);
+                            previousRotation = "down";
+                        }
+                    }
+
+                
+            }
+
+            else if ((mousePos.y / activeEntityLocation.y) * 1 > 0 && (mousePos.x / activeEntityLocation.x) * -1 > 0)
+            {
+                    var currentCards = GameObject.FindGameObjectsWithTag("hand");
+
+                    foreach (var currentCard in currentCards)
+                    {
+                        if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
+                        {
+                            currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("left", previousRotation);
+                            previousRotation = "left";
+                        }
+                    }
+                
+            }
+
+            else if ((mousePos.y / activeEntityLocation.y) * 1 < 0 && (mousePos.x / activeEntityLocation.x) * -1 < 0)
+            {
+                var currentCards = GameObject.FindGameObjectsWithTag("hand");
+
+                foreach (var currentCard in currentCards)
+                {
+                    if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
+                    {
+                        currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("right", previousRotation);
+                        previousRotation = "right";
+                    }
+                }
+            }
+        }
+    }
 
     private void CreateHand(Deviant.Entity activeEntity)
     {
@@ -77,20 +155,23 @@ public class UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        encounterStateRef = GameObject.Find("/EncounterState").GetComponent<EncounterState>();  
+        cam = Camera.main;
+        encounterStateRef = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
     }
 
     void Update()
     {
         // Retrieve the Current Encounter From Shared State.
 		Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
-        Deviant.Entity activeEntity = encounterState.ActiveEntity;
+        var activeEntity = encounterState.ActiveEntity;
+        activeEntityObject = GameObject.Find($"/entity_{encounterStateRef.GetEncounter().ActiveEntity.Id}");
 
         // 0000 should be replaced with the current players ID
-        if(activeEntity.OwnerId == "0000")
+        if (activeEntity.OwnerId == "0001")
         {
             CreateDeck(activeEntity);
             CreateHand(activeEntity);
         }
+        UpdateThings();
     }
 }

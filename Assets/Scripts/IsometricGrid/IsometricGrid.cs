@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityScript.Scripting.Pipeline;
 
 public class IsometricGrid : MonoBehaviour
 {
@@ -17,13 +18,19 @@ public class IsometricGrid : MonoBehaviour
     // Total distance between the markers.
     private float journeyLength;
 
+    private Vector3Int previousTransform = new Vector3Int(1, 1, 1);
+
+    private GameObject activeEntityObject = default;
+    
+    private string previousCursorLocation = default;
+
     public void Start()
     {
         encounterStateRef = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
     }
 
     async public void Update() {
-		if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             GridLayout gridLayout = this.transform.GetComponent<GridLayout>();
             Tilemap overlay = this.transform.Find("BattlefieldOverlay").GetComponent<Tilemap>();
@@ -59,7 +66,6 @@ public class IsometricGrid : MonoBehaviour
                     };
                 }
              }
-             
         }
 	}
 
@@ -72,7 +78,7 @@ public class IsometricGrid : MonoBehaviour
         entityMoveAction.FinalYPosition = endy;
 
         Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-        encounterRequest.PlayerId = "0000";
+        encounterRequest.PlayerId = "0001";
         encounterRequest.Encounter = encounterStateRef.encounter;
         encounterRequest.EntityActionName = Deviant.EntityActionNames.Move;
         encounterRequest.EntityMoveAction = entityMoveAction;
