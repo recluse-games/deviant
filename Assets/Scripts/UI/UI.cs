@@ -32,8 +32,10 @@ public class UI : MonoBehaviour
             //Vector3Int mousePos = battleFieldOverlayTilemap.WorldToCell(mouseWorldPos);
             //Vector3Int activeEntityLocation = battleFieldOverlayTilemap.WorldToCell(activeEntityLocationWorld);
 
-            if ((mousePos.y / activeEntityLocation.y) * 1 > 0 && (mousePos.x / activeEntityLocation.x) * -1 < 0)
+            if(previousRotation != "up")
             {
+                if ((mousePos.y / activeEntityLocation.y) * 1 > 0 && (mousePos.x / activeEntityLocation.x) * -1 < 0)
+                {
                     var currentCards = GameObject.FindGameObjectsWithTag("hand");
 
                     foreach (var currentCard in currentCards)
@@ -44,12 +46,14 @@ public class UI : MonoBehaviour
                             previousRotation = "up";
                         }
                     }
-                  
-            }
 
-            else if ((mousePos.y / activeEntityLocation.y) * -1 > 0 && (mousePos.x / activeEntityLocation.x) * -1 > 0)
+                }
+            }
+            if (previousRotation != "down")
             {
-                var currentCards = GameObject.FindGameObjectsWithTag("hand");
+                if ((mousePos.y / activeEntityLocation.y) * -1 > 0 && (mousePos.x / activeEntityLocation.x) * -1 > 0)
+                {
+                    var currentCards = GameObject.FindGameObjectsWithTag("hand");
 
                     foreach (var currentCard in currentCards)
                     {
@@ -60,34 +64,41 @@ public class UI : MonoBehaviour
                         }
                     }
 
-                
+
+                }
             }
 
-            else if ((mousePos.y / activeEntityLocation.y) * 1 > 0 && (mousePos.x / activeEntityLocation.x) * -1 > 0)
+            if (previousRotation != "left")
             {
+                if ((mousePos.y / activeEntityLocation.y) * 1 > 0 && (mousePos.x / activeEntityLocation.x) * -1 > 0)
+                    {
+                        var currentCards = GameObject.FindGameObjectsWithTag("hand");
+
+                        foreach (var currentCard in currentCards)
+                        {
+                            if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
+                            {
+                                currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("left", previousRotation);
+                                previousRotation = "left";
+                            }
+                        }
+
+                }
+            }
+
+            if (previousRotation != "right")
+            {
+            if ((mousePos.y / activeEntityLocation.y) * 1 < 0 && (mousePos.x / activeEntityLocation.x) * -1 < 0)
+                {
                     var currentCards = GameObject.FindGameObjectsWithTag("hand");
 
                     foreach (var currentCard in currentCards)
                     {
                         if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
                         {
-                            currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("left", previousRotation);
-                            previousRotation = "left";
+                            currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("right", previousRotation);
+                            previousRotation = "right";
                         }
-                    }
-                
-            }
-
-            else if ((mousePos.y / activeEntityLocation.y) * 1 < 0 && (mousePos.x / activeEntityLocation.x) * -1 < 0)
-            {
-                var currentCards = GameObject.FindGameObjectsWithTag("hand");
-
-                foreach (var currentCard in currentCards)
-                {
-                    if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
-                    {
-                        currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("right", previousRotation);
-                        previousRotation = "right";
                     }
                 }
             }
