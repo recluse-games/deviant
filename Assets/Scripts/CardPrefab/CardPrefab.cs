@@ -238,7 +238,7 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         switch (direction)
                         {
                             case "up":
-                                newLocation.x = System.Math.Abs(x) + entityTile.x;
+                                newLocation.x = entityTile.x + (entityTile.x - x);
                                 newLocation.y = y;
                                 break;
                             case "down":
@@ -275,8 +275,8 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
                                 break;
                             case "right":
-                                newLocation.x = System.Math.Abs(x);
-                                newLocation.y = System.Math.Abs(y);
+                                newLocation.x = x;
+                                newLocation.y = (System.Math.Abs(y) * (-1)) + (entityTile.y * 2);
 
                                 break;
                         }
@@ -295,8 +295,8 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
                                 break;
                             case "left":
-                                newLocation.x = System.Math.Abs(x);
-                                newLocation.y = System.Math.Abs(y);
+                                newLocation.x = x;
+                                newLocation.y = y * (-1) + (entityTile.y * 2);
 
                                 break;
                             case "right":
@@ -553,8 +553,18 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             if(this.selected == true) {
                 var animation = entity.transform.gameObject.GetComponentInChildren<Animator>();
                 entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-StopAttack");
-
                 this.selected = false;
+
+                foreach(var action in this.selectedPatternTilePositions)
+                {
+                    foreach(var pattern in this.selectedPatternTilePositions[action.Key])
+                    {
+                        foreach(var tileLocation in this.selectedPatternTilePositions[action.Key][pattern.Key])
+                        {
+                            battleFieldOverlayTilemap.SetTile(tileLocation, null);
+                        }
+                    }
+                }
             } else {
                 var animation = entity.transform.gameObject.GetComponentInChildren<Animator>();
                 entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-Attack");
