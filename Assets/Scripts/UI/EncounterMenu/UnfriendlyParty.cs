@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FriendlyParty : MonoBehaviour
+public class UnfriendlyParty : MonoBehaviour
 {
     [SerializeField]
     EntityPanel partyMenuEntryPrefab = default;
@@ -24,14 +24,14 @@ public class FriendlyParty : MonoBehaviour
         {
             foreach (var entity in row.Entities)
             {
-                if (entity.Alignment == Deviant.Alignment.Friendly)
+                if (entity.Alignment == Deviant.Alignment.Unfriendly)
                 {
-                    var entityPartyPanelComponent = GameObject.Find($"/UI/EncounterMenu/FriendlyParty/party_ui_entity_{entity.Id}");
+                    var entityPartyPanelComponent = GameObject.Find($"/UI/EncounterMenu/UnfriendlyParty/unfriendly_party_ui_entity_{entity.Id}");
 
-                    if(entityPartyPanelComponent == null && entity.Id != "0000")
+                    if(entityPartyPanelComponent == null)
                     {
                         EntityPanel turnOrderUnit = Instantiate(partyMenuEntryPrefab);
-                        turnOrderUnit.transform.gameObject.name = "party_ui_entity_" + entity.Id;
+                        turnOrderUnit.transform.gameObject.name = "unfriendly_party_ui_entity_" + entity.Id;
                         turnOrderUnit.transform.SetParent(this.GetComponent<VerticalLayoutGroup>().transform, false);
                         turnOrderUnit.SetEntity(entity);
                     }

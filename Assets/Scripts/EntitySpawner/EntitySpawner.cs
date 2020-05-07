@@ -46,6 +46,9 @@ public class EntitySpawner : MonoBehaviour
 					FlipEnemyOrientation(entity, entityAlignment);
 					TagEntity(entity, entityAlignment);
 
+					// Set the entityid
+					entity.SetId(entityId);
+
 					// Update Active Entities
 					this.activeEntities.Add(board.Entities.Entities_[y].Entities[x].Id);
 				}

@@ -1,16 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class Entity : MonoBehaviour
 {
+	GameObject selectionArrow;
+
 	public EncounterState encounterStateRef = default;
 
     public bool moveSelection = false;
 
 	public List<Vector3Int> validTiles = new List<Vector3Int>();
 
+	public string id = default;
 	private Vector3Int previousCell = default;
 
 	public void Start() {
@@ -79,6 +83,46 @@ public class Entity : MonoBehaviour
 			validTiles.Add(downThing);
 			validTiles.Add(leftThing);
 			validTiles.Add(rightThing);
+		}
+	}
+
+	public void Update()
+	{
+		// Retrieve the Current Encounter From Shared State.
+		Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
+
+		if (encounterState.ActiveEntity.Id == this.id && !this.selectionArrow)
+		{
+			Deviant.Entity activeEntity = encounterState.ActiveEntity;
+			Sprite selectionArrow = Resources.Load<Sprite>("Art/Sprites/Entity/Friendly/active_entity_arrow_0000");
+			var selectionArrowObj = new GameObject("SelectionArrow");
+			selectionArrowObj.transform.parent = this.transform;
+
+			var bounds = GetComponent<Entity>().GetComponent<SpriteRenderer>().bounds;
+
+			var topOfSprite = new Vector3(bounds.extents.x/2 - (float).1, bounds.extents.y * (float)2.3, 0.0f);
+			selectionArrowObj.transform.localPosition = topOfSprite;
+
+			SpriteRenderer rend = selectionArrowObj.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
+			rend.sprite = selectionArrow;
+			rend.sortingOrder = 1;
+			var newYellowColor = new Color(255f / 255f, 230f / 255f, 88f / 255f);
+			rend.color = newYellowColor;
+			selectionArrowObj.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+
+			this.selectionArrow = selectionArrowObj;
+		} else if (this.selectionArrow)
+		{
+			var bounds = GetComponent<Entity>().GetComponent<SpriteRenderer>().bounds;
+
+			var topOfSprite = new Vector3(bounds.extents.x/2 - (float).1, bounds.extents.y * (float)2.3, 0.0f);
+
+			this.selectionArrow.transform.localPosition = topOfSprite;
+		}
+
+		if (this.selectionArrow && encounterState.ActiveEntity.Id != this.id)
+		{
+			Destroy(this.selectionArrow);
 		}
 	}
 }
