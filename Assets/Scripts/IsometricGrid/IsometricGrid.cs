@@ -29,7 +29,8 @@ public class IsometricGrid : MonoBehaviour
         encounterStateRef = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
     }
 
-    async public void Update() {
+    public void Update()
+    {
         if (encounterStateRef.GetEncounter().ActiveEntity.OwnerId == "0001")
         {
             if (Input.GetMouseButtonDown(0))
@@ -71,8 +72,41 @@ public class IsometricGrid : MonoBehaviour
                     }
                 }
             }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                var activeEntity = encounterStateRef.GetEncounter().ActiveEntity;
+                activeEntityObject = GameObject.Find($"/entity_{activeEntity.Id}");
+
+                var animation = activeEntityObject.transform.gameObject.GetComponentInChildren<Animator>();
+                activeEntityObject.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-StopAttack");
+
+                var currentCards = GameObject.FindGameObjectsWithTag("hand");
+
+                foreach (var currentCard in currentCards)
+                {
+                    if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
+                    {
+                        currentCard.GetComponent<CardPrefab>().SetSelected(false);
+                        var selectedPatternTilePositions = currentCard.GetComponent<CardPrefab>().GetSelectedTilePositions();
+
+
+                        foreach (var action in selectedPatternTilePositions)
+                        {
+                            foreach (var pattern in selectedPatternTilePositions[action.Key])
+                            {
+                                foreach (var tileLocation in selectedPatternTilePositions[action.Key][pattern.Key])
+                                {
+                                    Tilemap test = GameObject.Find($"/IsometricGrid/BattlefieldOverlay").GetComponent<BattlefieldOverlay>().GetComponent<Tilemap>();
+                                    test.SetTile(tileLocation, null);
+                                }
+                            }
+                        }
+                    }
+                }
+                    
+            }
         }
-	}
+    }
 
     async public void updatePlayerPosition(int startx, int starty, int endx, int endy)
     {
