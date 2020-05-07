@@ -103,7 +103,9 @@ public class IsometricGrid : MonoBehaviour
                         }
                     }
                 }
-                    
+
+                GameObject.Find($"/UI").GetComponent<UI>().ResetRotation();
+
             }
         }
     }

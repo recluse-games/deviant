@@ -22,6 +22,11 @@ public class UI : MonoBehaviour
     private GameObject activeEntityObject = default;
     private Camera cam;
 
+    public void ResetRotation()
+    {
+        previousRotation = "down";
+    }
+
     void UpdateThings()
     {
         if (activeEntityObject != default)
