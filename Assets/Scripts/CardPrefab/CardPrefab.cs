@@ -185,7 +185,7 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         this.selectedPatternTilePositions = dictionary;
     }
 
-    public void UpdateSelectedTiles(string direction, string previousDirection)
+    public void UpdateSelectedTiles(string direction, string previousDirection, Vector3Int entityTile, Vector3Int previousEntityTile)
     {
         GameObject battleFieldOverlay = GameObject.Find("BattlefieldOverlay");
         Tilemap battleFieldOverlayTilemap = battleFieldOverlay.GetComponent<Tilemap>();
@@ -196,6 +196,9 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             foreach (var directionalPattern in this.selectedPatternTilePositions[action.Key])
             {
+                var newPatterns = new List<Vector3Int>();
+                var originalPatterns = new List<Vector3Int>();
+
                 for (var i = 0; i < this.selectedPatternTilePositions[action.Key][directionalPattern.Key].Count; i++)
                 {
                     var pattern = this.selectedPatternTilePositions[action.Key][directionalPattern.Key][i];
@@ -204,6 +207,8 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
                     int x = pattern.x;
                     int y = pattern.y;
+
+                    Debug.Log("Original Tile Rotation Locaiton" + pattern);
 
                     if (directionalPattern.Key == "up")
                     {
@@ -214,16 +219,16 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                                 newLocation.y = y;
                                 break;
                             case "down":
-                                newLocation.x = System.Math.Abs(x) * (-1);
+                                newLocation.x = entityTile.x - (System.Math.Abs(x) - entityTile.x);
                                 newLocation.y = y;
                                 break;
                             case "left":
-                                newLocation.x = y;
-                                newLocation.y = System.Math.Abs(x);
+                                newLocation.x = y + entityTile.x - entityTile.y;
+                                newLocation.y = (System.Math.Abs(x - entityTile.x) * (1)) + entityTile.y;
                                 break;
                             case "right":
-                                newLocation.x = y;
-                                newLocation.y = System.Math.Abs(x) * (-1);
+                                newLocation.x = y + entityTile.x - entityTile.y;
+                                newLocation.y = (System.Math.Abs(entityTile.x - x) * (-1)) + entityTile.y;
 
                                 break;
                         }
@@ -233,7 +238,7 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         switch (direction)
                         {
                             case "up":
-                                newLocation.x = System.Math.Abs(x);
+                                newLocation.x = System.Math.Abs(x) + entityTile.x;
                                 newLocation.y = y;
                                 break;
                             case "down":
@@ -241,13 +246,13 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                                 newLocation.y = y;
                                 break;
                             case "left":
-                                newLocation.x = y;
-                                newLocation.y = System.Math.Abs(x);
+                                newLocation.x = y + entityTile.x - entityTile.y;
+                                newLocation.y = (System.Math.Abs(entityTile.x - x) * (1)) + entityTile.y;
 
                                 break;
                             case "right":
-                                newLocation.x = y;
-                                newLocation.y = System.Math.Abs(x) * (-1);
+                                newLocation.x = y + entityTile.x - entityTile.y;
+                                newLocation.y = (System.Math.Abs(x - entityTile.x) * (-1)) + entityTile.y;
 
                                 break;
                         }
@@ -257,12 +262,12 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         switch (direction)
                         {
                             case "up":
-                                newLocation.x = System.Math.Abs(y);
-                                newLocation.y = x;
+                                newLocation.x = (System.Math.Abs(y - entityTile.y) * (1)) + entityTile.x;
+                                newLocation.y = (entityTile.x - x) + entityTile.y;
                                 break;
                             case "down":
-                                newLocation.x = System.Math.Abs(y) * (-1);
-                                newLocation.y = x;
+                                newLocation.x = (System.Math.Abs(y - entityTile.y) * (-1)) + entityTile.x;
+                                newLocation.y = (x - entityTile.x) + entityTile.y;
                                 break;
                             case "left":
                                 newLocation.x = x;
@@ -281,12 +286,13 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         switch (direction)
                         {
                             case "up":
-                                newLocation.x = System.Math.Abs(y);
-                                newLocation.y = x;
+                                newLocation.x = (System.Math.Abs(y - entityTile.y) * (1)) + entityTile.x;
+                                newLocation.y = (entityTile.x - x) + entityTile.y;
                                 break;
                             case "down":
-                                newLocation.x = System.Math.Abs(y) * (-1);
-                                newLocation.y = x;
+                                newLocation.x = (System.Math.Abs(y - entityTile.y) * (-1)) + entityTile.x;
+                                newLocation.y = (x - entityTile.x) + entityTile.y;
+
                                 break;
                             case "left":
                                 newLocation.x = System.Math.Abs(x);
@@ -301,12 +307,21 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         }
                     }
 
-                    if(pattern.x != newLocation.x && pattern.y != newLocation.y)
-                    {
-                        battleFieldOverlayTilemap.SetTile(pattern, null);
-                    }
+                    Debug.Log("New Tile Rotation Locaiton" + newLocation);
+
+                    originalPatterns.Add(new Vector3Int(pattern.x, pattern.y, pattern.z));
+                    newPatterns.Add(new Vector3Int(newLocation.x, newLocation.y, newLocation.z));
 
                     this.selectedPatternTilePositions[action.Key][directionalPattern.Key][i] = newLocation;
+                }
+
+                foreach(var pattern in newPatterns)
+                {
+                   var matched = originalPatterns.Where(oldPattern => oldPattern.x != pattern.x && oldPattern.y != pattern.y).ToList();
+                    foreach(var matchedPattern in matched)
+                    {
+                        battleFieldOverlayTilemap.SetTile(matchedPattern, null);
+                    }
                 }
             }
         }
@@ -408,6 +423,8 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             Vector3Int left = new Vector3Int(0, 1, 0);
             Vector3Int right = new Vector3Int(0, -1, 0);
 
+            this.selectedPatternTilePositions = new Dictionary<string, Dictionary<string, List<Vector3Int>>>();
+
             foreach (var card in activeEntity.Hand.Cards)
             {
                 if (card.InstanceId ==  gameObject.GetComponentInChildren<Card>().GetId()) {
@@ -469,52 +486,61 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                             }
                         }
 
-                        Vector3Int offsetStart = entityCellLocation += offsetVector;
+                        Vector3Int offsetStart = offsetVector;
 
-                        switch(entry.Direction) {
+                        switch (entry.Direction) {
                             case Deviant.Direction.Up:
                                 for (int i = 0; i < entry.Distance; i++)
                                 {
-                                    if(this.selected == true) {
-                                        battleFieldOverlayTilemap.SetTile(offsetStart += up, null);
-                                    } else {
-                                        selectedPatternTilePositions[card.Action.Id]["up"].Add(offsetStart + up);
+                                    offsetStart += up;
 
-                                        battleFieldOverlayTilemap.SetTile(offsetStart += up, selectedTile);
+                                    if (this.selected == true) {
+                                        battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, null);
+                                    } else {
+                                        battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, selectedTile);
+                                        selectedPatternTilePositions[card.Action.Id]["up"].Add(offsetStart + entityCellLocation);
                                     }
+
+                                    offsetStart += up;
                                 }
                                 break; 
                             case Deviant.Direction.Down:
                                 for (int i = 0; i < entry.Distance; i++)
                                 {
                                     if(this.selected == true) {
-                                        battleFieldOverlayTilemap.SetTile(offsetStart += down, null);
+                                        battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, null);
                                     } else {
-                                        selectedPatternTilePositions[card.Action.Id]["down"].Add(offsetStart + down);
-                                        battleFieldOverlayTilemap.SetTile(offsetStart += down, selectedTile);
+                                        battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, selectedTile);
+                                        selectedPatternTilePositions[card.Action.Id]["down"].Add(offsetStart + entityCellLocation);
                                     }
+
+                                    offsetStart += down;
                                 }
                                 break;
                             case Deviant.Direction.Left:
                                 for (int i = 0; i < entry.Distance; i++)
                                 {
-                                    if(this.selected == true) {
-                                        battleFieldOverlayTilemap.SetTile(offsetStart += left, null);
+                                    if (this.selected == true) {
+                                        battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, null);
                                     } else {
-                                        selectedPatternTilePositions[card.Action.Id]["left"].Add(offsetStart + left);
-                                        battleFieldOverlayTilemap.SetTile(offsetStart += left, selectedTile);
+                                        battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, selectedTile);
+                                        selectedPatternTilePositions[card.Action.Id]["left"].Add(offsetStart + entityCellLocation);
                                     }
+                                    offsetStart += left;
+
                                 }
                                 break;
                             case Deviant.Direction.Right:
                                 for (int i = 0; i < entry.Distance; i++)
                                 {
-                                    if(this.selected == true) {
-                                        battleFieldOverlayTilemap.SetTile(offsetStart += right, null);
+                                    if (this.selected == true) {
+                                        battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, null);
                                     } else {
-                                        selectedPatternTilePositions[card.Action.Id]["right"].Add(offsetStart + right);
-                                        battleFieldOverlayTilemap.SetTile(offsetStart += right, selectedTile);
+                                        battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, selectedTile);
+                                        selectedPatternTilePositions[card.Action.Id]["right"].Add(offsetStart + entityCellLocation);
                                     }
+
+                                    offsetStart += right;
                                 }
                                 break;
                             default:
@@ -527,10 +553,12 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             if(this.selected == true) {
                 var animation = entity.transform.gameObject.GetComponentInChildren<Animator>();
                 entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-StopAttack");
+
                 this.selected = false;
             } else {
                 var animation = entity.transform.gameObject.GetComponentInChildren<Animator>();
                 entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-Attack");
+
                 this.selected = true;
             }
         }       

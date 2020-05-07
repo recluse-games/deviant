@@ -49,7 +49,7 @@ public class IsometricGrid : MonoBehaviour
                         if (position.Equals(location) == true)
                         {
                             Vector3 startingPos = entity.transform.parent.position;
-                            this.updatePlayerPosition(overlay.WorldToCell(startingPos).x, overlay.WorldToCell(startingPos).y, location.x, location.y);
+                            this.updatePlayerPosition(overlay.WorldToCell(startingPos).y, overlay.WorldToCell(startingPos).x, position.x, position.y);
 
                             startTime = Time.time;
 

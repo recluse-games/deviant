@@ -3,6 +3,7 @@ using System.Linq;
 using Deviant;
 using System.Collections;
 using UnityEngine.Tilemaps;
+using System.Net;
 
 public class UI : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class UI : MonoBehaviour
     [SerializeField]
     CardPrefab cardPrefab = default;
 
+    private Vector3Int previousEntityLocation = default;
     private string previousRotation = "down";
 	private EncounterState encounterStateRef = default;
     private GameObject activeEntityObject = default;
@@ -24,26 +26,28 @@ public class UI : MonoBehaviour
     {
         if (activeEntityObject != default)
         {
-            var activeEntityLocation = activeEntityObject.transform.position;
+            var activeEntityLocationWorld = activeEntityObject.transform.position;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Vector3 mousePos = ray.GetPoint(-ray.origin.z / ray.direction.z);
-            Debug.Log("entity: " + activeEntityLocation);
+            Vector3 mousePosWorld = ray.GetPoint(-ray.origin.z / ray.direction.z);
+            GridLayout gridLayout = this.transform.GetComponent<GridLayout>();
+            Tilemap overlay = GameObject.Find("BattlefieldOverlay").GetComponent<Tilemap>();
+            Vector3Int mousePos = overlay.WorldToCell(mousePosWorld);
+            Vector3Int activeEntityLocation = overlay.WorldToCell(activeEntityLocationWorld);
 
-            //Vector3Int mousePos = battleFieldOverlayTilemap.WorldToCell(mouseWorldPos);
-            //Vector3Int activeEntityLocation = battleFieldOverlayTilemap.WorldToCell(activeEntityLocationWorld);
-
-            if(previousRotation != "up")
+            if (previousRotation != "up")
             {
-                if ((mousePos.y / activeEntityLocation.y) * 1 > 0 && (mousePos.x / activeEntityLocation.x) * -1 < 0)
+                if (mousePos.y > activeEntityLocation.y && mousePos.x > activeEntityLocation.x)
                 {
                     var currentCards = GameObject.FindGameObjectsWithTag("hand");
+                    Debug.Log("up");
 
                     foreach (var currentCard in currentCards)
                     {
                         if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
                         {
-                            currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("up", previousRotation);
+                            currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("up", previousRotation, activeEntityLocation, previousEntityLocation);
                             previousRotation = "up";
+                            previousEntityLocation = activeEntityLocation;
                         }
                     }
 
@@ -51,16 +55,19 @@ public class UI : MonoBehaviour
             }
             if (previousRotation != "down")
             {
-                if ((mousePos.y / activeEntityLocation.y) * -1 > 0 && (mousePos.x / activeEntityLocation.x) * -1 > 0)
+                if (mousePos.y < activeEntityLocation.y && mousePos.x < activeEntityLocation.x)
                 {
+                    Debug.Log("down");
+
                     var currentCards = GameObject.FindGameObjectsWithTag("hand");
 
                     foreach (var currentCard in currentCards)
                     {
                         if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
                         {
-                            currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("down", previousRotation);
+                            currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("down", previousRotation, activeEntityLocation, previousEntityLocation);
                             previousRotation = "down";
+                            previousEntityLocation = activeEntityLocation;
                         }
                     }
 
@@ -70,34 +77,40 @@ public class UI : MonoBehaviour
 
             if (previousRotation != "left")
             {
-                if ((mousePos.y / activeEntityLocation.y) * 1 > 0 && (mousePos.x / activeEntityLocation.x) * -1 > 0)
-                    {
-                        var currentCards = GameObject.FindGameObjectsWithTag("hand");
-
-                        foreach (var currentCard in currentCards)
-                        {
-                            if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
-                            {
-                                currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("left", previousRotation);
-                                previousRotation = "left";
-                            }
-                        }
-
-                }
-            }
-
-            if (previousRotation != "right")
-            {
-            if ((mousePos.y / activeEntityLocation.y) * 1 < 0 && (mousePos.x / activeEntityLocation.x) * -1 < 0)
+                if (mousePos.y > activeEntityLocation.y && mousePos.x < activeEntityLocation.x)
                 {
+                    Debug.Log("left");
+
                     var currentCards = GameObject.FindGameObjectsWithTag("hand");
 
                     foreach (var currentCard in currentCards)
                     {
                         if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
                         {
-                            currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("right", previousRotation);
+                            currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("left", previousRotation, activeEntityLocation, previousEntityLocation);
+                            previousRotation = "left";
+                            previousEntityLocation = activeEntityLocation;
+                        }
+                    }
+
+                }
+            }
+
+            if (previousRotation != "right")
+            {
+                if (mousePos.y < activeEntityLocation.y && mousePos.x > activeEntityLocation.x)
+                {
+                    Debug.Log("right");
+
+                    var currentCards = GameObject.FindGameObjectsWithTag("hand");
+
+                    foreach (var currentCard in currentCards)
+                    {
+                        if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
+                        {
+                            currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("right", previousRotation, activeEntityLocation, previousEntityLocation);
                             previousRotation = "right";
+                            previousEntityLocation = activeEntityLocation;
                         }
                     }
                 }
@@ -175,7 +188,7 @@ public class UI : MonoBehaviour
         // Retrieve the Current Encounter From Shared State.
 		Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
         var activeEntity = encounterState.ActiveEntity;
-        activeEntityObject = GameObject.Find($"/entity_{encounterStateRef.GetEncounter().ActiveEntity.Id}");
+        activeEntityObject = GameObject.Find($"/entity_{activeEntity.Id}");
 
         // 0000 should be replaced with the current players ID
         if (activeEntity.OwnerId == "0001")

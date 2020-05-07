@@ -8,6 +8,8 @@ TagManager:
   - hand
   - ui_ap
   - ui_turn_order_unit
+  - entity_friendly
+  - entity_unfriendly
   layers:
   - Default
   - TransparentFX

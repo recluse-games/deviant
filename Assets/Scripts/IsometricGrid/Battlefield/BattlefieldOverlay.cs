@@ -20,6 +20,7 @@ public class BattlefieldOverlay : MonoBehaviour
     {
         Tile currentTileAsset = Resources.Load<Tile>("Art/Tiles/select_0002");
         Tilemap tilemap = this.GetComponent<Tilemap>();
+        var entities = GameObject.FindGameObjectsWithTag("entity_friendly");
         Vector3Int tilemapOrigin = tilemap.origin;
         Vector3Int tilemapSize = tilemap.size;
 
@@ -31,9 +32,36 @@ public class BattlefieldOverlay : MonoBehaviour
                 {
                     if (tilemap.GetTile(new Vector3Int(x, y, 0)))
                     {
-                        Debug.Log("bars");
                         tilemap.SetTile(new Vector3Int(x, y, 0), currentTileAsset);
                         tilemap.RefreshTile(new Vector3Int(x, y, 0));
+                    }
+                }
+
+                // Need to support positive spells as well as attacks too.
+                foreach(var entity in entities)
+                {
+                    if(tilemap.WorldToCell(entity.transform.position).x == x && tilemap.WorldToCell(entity.transform.position).y == y)
+                    {
+                        if (tilemap.GetTile(new Vector3Int(x, y, 0)))
+                        {
+                            for (int rowTest = x; rowTest < tilemap.size.x; rowTest++)
+                            {
+                                if (tilemap.GetTile(new Vector3Int(rowTest, y, 0)))
+                                {
+                                    tilemap.SetTile(new Vector3Int(rowTest, y, 0), currentTileAsset);
+                                    tilemap.RefreshTile(new Vector3Int(rowTest, y, 0));
+                                }
+                            }
+
+                            for (int columnTest = y; columnTest < tilemap.size.y; columnTest++)
+                            {
+                                if (tilemap.GetTile(new Vector3Int(x, columnTest, 0)))
+                                {
+                                    tilemap.SetTile(new Vector3Int(x, columnTest, 0), currentTileAsset);
+                                    tilemap.RefreshTile(new Vector3Int(x, columnTest, 0));
+                                }
+                            }
+                        }
                     }
                 }
             }

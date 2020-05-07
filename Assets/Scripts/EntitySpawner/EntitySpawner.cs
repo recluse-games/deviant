@@ -30,7 +30,7 @@ public class EntitySpawner : MonoBehaviour
 			{
 				string entityId = board.Entities.Entities_[y].Entities[x].Id;
 				Deviant.Alignment entityAlignment = board.Entities.Entities_[y].Entities[x].Alignment;
-				Vector3Int currentTileLocation = new Vector3Int(x, y, 0);				
+				Vector3Int currentTileLocation = new Vector3Int(y, x, 0);				
 
 				// Validate that we haven't already spawned this unit in and that it's not an empty placeholder object.
 				if (this.activeEntities.Contains(entityId) == false && entityId != "") {
@@ -44,6 +44,7 @@ public class EntitySpawner : MonoBehaviour
 					Enable2DBoxCollider(entity);
 					EnableIdleAnimation(entity);
 					FlipEnemyOrientation(entity, entityAlignment);
+					TagEntity(entity, entityAlignment);
 
 					// Update Active Entities
 					this.activeEntities.Add(board.Entities.Entities_[y].Entities[x].Id);
@@ -67,7 +68,16 @@ public class EntitySpawner : MonoBehaviour
 		entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrrior-Idle");
 		entityAnimator.enabled = true;
 	}
-
+	private void TagEntity(EntityPrefab entity, Deviant.Alignment entityAlignment)
+	{
+		if (entityAlignment == Deviant.Alignment.Unfriendly)
+		{
+			entity.transform.gameObject.tag = "entity_unfriendly";
+		} else
+		{
+			entity.transform.gameObject.tag = "entity_friendly";
+		}
+	}
 	private void FlipEnemyOrientation(EntityPrefab entity, Deviant.Alignment entityAlignment) {
 		if (entityAlignment == Deviant.Alignment.Unfriendly)
 		{
