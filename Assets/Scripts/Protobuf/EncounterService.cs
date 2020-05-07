@@ -33,13 +33,14 @@ namespace Deviant {
             "dGl0eU1vdmVBY3Rpb24iTAoRRW5jb3VudGVyUmVzcG9uc2USEAoIcGxheWVy",
             "SWQYASABKAkSJQoJZW5jb3VudGVyGAIgASgLMhIuRGV2aWFudC5FbmNvdW50",
             "ZXIiKAoURmluZEVuY291bnRlclJlcXVlc3QSEAoIcGxheWVySUQYASABKAki",
-            "JwoVRmluZEVuY291bnRlclJlc3BvbnNlEg4KBnBvb2xJRBgBIAEoCTL9AQoQ",
-            "RW5jb3VudGVyU2VydmljZRJOCg1GaW5kRW5jb3VudGVyEh0uRGV2aWFudC5G",
+            "JwoVRmluZEVuY291bnRlclJlc3BvbnNlEg4KBnBvb2xJRBgBIAEoCTL/AQoQ",
+            "RW5jb3VudGVyU2VydmljZRJQCg1GaW5kRW5jb3VudGVyEh0uRGV2aWFudC5G",
             "aW5kRW5jb3VudGVyUmVxdWVzdBoeLkRldmlhbnQuRmluZEVuY291bnRlclJl",
-            "c3BvbnNlEksKDlN0YXJ0RW5jb3VudGVyEhkuRGV2aWFudC5FbmNvdW50ZXJS",
-            "ZXF1ZXN0GhouRGV2aWFudC5FbmNvdW50ZXJSZXNwb25zZSgBMAESTAoPVXBk",
-            "YXRlRW5jb3VudGVyEhkuRGV2aWFudC5FbmNvdW50ZXJSZXF1ZXN0GhouRGV2",
-            "aWFudC5FbmNvdW50ZXJSZXNwb25zZSgBMAFCCVoHZGV2aWFudGIGcHJvdG8z"));
+            "c3BvbnNlMAESSwoOU3RhcnRFbmNvdW50ZXISGS5EZXZpYW50LkVuY291bnRl",
+            "clJlcXVlc3QaGi5EZXZpYW50LkVuY291bnRlclJlc3BvbnNlKAEwARJMCg9V",
+            "cGRhdGVFbmNvdW50ZXISGS5EZXZpYW50LkVuY291bnRlclJlcXVlc3QaGi5E",
+            "ZXZpYW50LkVuY291bnRlclJlc3BvbnNlKAEwAUIJWgdkZXZpYW50YgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.EncounterReflection.Descriptor, global::Deviant.EntityActionNamesReflection.Descriptor, global::Deviant.EntityMoveActionReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
