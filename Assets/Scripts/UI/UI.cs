@@ -27,6 +27,11 @@ public class UI : MonoBehaviour
         previousRotation = "down";
     }
 
+    public string GetRotation()
+    {
+        return this.previousRotation;
+    }
+
     void UpdateThings()
     {
         if (activeEntityObject != default)
