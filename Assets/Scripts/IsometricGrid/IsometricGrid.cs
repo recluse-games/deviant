@@ -18,6 +18,8 @@ public class IsometricGrid : MonoBehaviour
     // Total distance between the markers.
     private float journeyLength;
 
+    private CardPrefab selectedCard = default;
+
     private Vector3Int previousTransform = new Vector3Int(1, 1, 1);
 
     private GameObject activeEntityObject = default;
@@ -31,10 +33,32 @@ public class IsometricGrid : MonoBehaviour
 
     public void Update()
     {
+        UpdateSelectedCard();
+
         if (encounterStateRef.GetEncounter().ActiveEntity.OwnerId == "0001")
         {
             if (Input.GetMouseButtonDown(0))
             {
+                if(selectedCard.GetSelectedTilePositions().Count > 0)
+                {
+                    Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+                    encounterRequest.PlayerId = "0001";
+                    encounterRequest.Encounter = encounterStateRef.encounter;
+                    encounterRequest.EntityActionName = Deviant.EntityActionNames.Move;
+
+                    foreach (var action in selectedCard.GetSelectedTilePositions())
+                    {
+                        foreach (var pattern in selectedCard.GetSelectedTilePositions()[action.Key])
+                        {
+                            foreach (var tileLocation in selectedCard.GetSelectedTilePositions()[action.Key][pattern.Key])
+                            {
+                                Tilemap test = GameObject.Find($"/IsometricGrid/BattlefieldOverlay").GetComponent<BattlefieldOverlay>().GetComponent<Tilemap>();
+                                test.SetTile(tileLocation, null);
+                            }
+                        }
+                    }
+                }
+
                 GridLayout gridLayout = this.transform.GetComponent<GridLayout>();
                 Tilemap overlay = this.transform.Find("BattlefieldOverlay").GetComponent<Tilemap>();
 
@@ -109,6 +133,26 @@ public class IsometricGrid : MonoBehaviour
             }
         }
     }
+
+    private void UpdateSelectedCard()
+    {
+        var activeEntity = encounterStateRef.GetEncounter().ActiveEntity;
+        activeEntityObject = GameObject.Find($"/entity_{activeEntity.Id}");
+
+        var animation = activeEntityObject.transform.gameObject.GetComponentInChildren<Animator>();
+        activeEntityObject.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-StopAttack");
+
+        var currentCards = GameObject.FindGameObjectsWithTag("hand");
+
+        foreach (var currentCard in currentCards)
+        {
+            if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
+            {
+                this.selectedCard = currentCard.GetComponent<CardPrefab>();
+            }
+        }
+    }
+
 
     async public void updatePlayerPosition(int startx, int starty, int endx, int endy)
     {
