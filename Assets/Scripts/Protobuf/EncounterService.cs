@@ -26,21 +26,23 @@ namespace Deviant {
           string.Concat(
             "ChZFbmNvdW50ZXJTZXJ2aWNlLnByb3RvEgdEZXZpYW50Gg9FbmNvdW50ZXIu",
             "cHJvdG8aF0VudGl0eUFjdGlvbk5hbWVzLnByb3RvGhZFbnRpdHlNb3ZlQWN0",
-            "aW9uLnByb3RvIrYBChBFbmNvdW50ZXJSZXF1ZXN0EhAKCHBsYXllcklkGAEg",
-            "ASgJEiUKCWVuY291bnRlchgCIAEoCzISLkRldmlhbnQuRW5jb3VudGVyEjQK",
-            "EGVudGl0eUFjdGlvbk5hbWUYAyABKA4yGi5EZXZpYW50LkVudGl0eUFjdGlv",
-            "bk5hbWVzEjMKEGVudGl0eU1vdmVBY3Rpb24YBCABKAsyGS5EZXZpYW50LkVu",
-            "dGl0eU1vdmVBY3Rpb24iTAoRRW5jb3VudGVyUmVzcG9uc2USEAoIcGxheWVy",
-            "SWQYASABKAkSJQoJZW5jb3VudGVyGAIgASgLMhIuRGV2aWFudC5FbmNvdW50",
-            "ZXIyrQEKEEVuY291bnRlclNlcnZpY2USSwoOU3RhcnRFbmNvdW50ZXISGS5E",
-            "ZXZpYW50LkVuY291bnRlclJlcXVlc3QaGi5EZXZpYW50LkVuY291bnRlclJl",
-            "c3BvbnNlKAEwARJMCg9VcGRhdGVFbmNvdW50ZXISGS5EZXZpYW50LkVuY291",
-            "bnRlclJlcXVlc3QaGi5EZXZpYW50LkVuY291bnRlclJlc3BvbnNlKAEwAUIJ",
-            "WgdkZXZpYW50YgZwcm90bzM="));
+            "aW9uLnByb3RvGhZFbnRpdHlQbGF5QWN0aW9uLnByb3RvIusBChBFbmNvdW50",
+            "ZXJSZXF1ZXN0EhAKCHBsYXllcklkGAEgASgJEiUKCWVuY291bnRlchgCIAEo",
+            "CzISLkRldmlhbnQuRW5jb3VudGVyEjQKEGVudGl0eUFjdGlvbk5hbWUYAyAB",
+            "KA4yGi5EZXZpYW50LkVudGl0eUFjdGlvbk5hbWVzEjMKEGVudGl0eU1vdmVB",
+            "Y3Rpb24YBCABKAsyGS5EZXZpYW50LkVudGl0eU1vdmVBY3Rpb24SMwoQZW50",
+            "aXR5UGxheUFjdGlvbhgFIAEoCzIZLkRldmlhbnQuRW50aXR5UGxheUFjdGlv",
+            "biJMChFFbmNvdW50ZXJSZXNwb25zZRIQCghwbGF5ZXJJZBgBIAEoCRIlCgll",
+            "bmNvdW50ZXIYAiABKAsyEi5EZXZpYW50LkVuY291bnRlcjKtAQoQRW5jb3Vu",
+            "dGVyU2VydmljZRJLCg5TdGFydEVuY291bnRlchIZLkRldmlhbnQuRW5jb3Vu",
+            "dGVyUmVxdWVzdBoaLkRldmlhbnQuRW5jb3VudGVyUmVzcG9uc2UoATABEkwK",
+            "D1VwZGF0ZUVuY291bnRlchIZLkRldmlhbnQuRW5jb3VudGVyUmVxdWVzdBoa",
+            "LkRldmlhbnQuRW5jb3VudGVyUmVzcG9uc2UoATABQglaB2RldmlhbnRiBnBy",
+            "b3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Deviant.EncounterReflection.Descriptor, global::Deviant.EntityActionNamesReflection.Descriptor, global::Deviant.EntityMoveActionReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::Deviant.EncounterReflection.Descriptor, global::Deviant.EntityActionNamesReflection.Descriptor, global::Deviant.EntityMoveActionReflection.Descriptor, global::Deviant.EntityPlayActionReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterRequest), global::Deviant.EncounterRequest.Parser, new[]{ "PlayerId", "Encounter", "EntityActionName", "EntityMoveAction" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterRequest), global::Deviant.EncounterRequest.Parser, new[]{ "PlayerId", "Encounter", "EntityActionName", "EntityMoveAction", "EntityPlayAction" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterResponse), global::Deviant.EncounterResponse.Parser, new[]{ "PlayerId", "Encounter" }, null, null, null, null)
           }));
     }
@@ -80,6 +82,7 @@ namespace Deviant {
       encounter_ = other.encounter_ != null ? other.encounter_.Clone() : null;
       entityActionName_ = other.entityActionName_;
       entityMoveAction_ = other.entityMoveAction_ != null ? other.entityMoveAction_.Clone() : null;
+      entityPlayAction_ = other.entityPlayAction_ != null ? other.entityPlayAction_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -132,6 +135,17 @@ namespace Deviant {
       }
     }
 
+    /// <summary>Field number for the "entityPlayAction" field.</summary>
+    public const int EntityPlayActionFieldNumber = 5;
+    private global::Deviant.EntityPlayAction entityPlayAction_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Deviant.EntityPlayAction EntityPlayAction {
+      get { return entityPlayAction_; }
+      set {
+        entityPlayAction_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as EncounterRequest);
@@ -149,6 +163,7 @@ namespace Deviant {
       if (!object.Equals(Encounter, other.Encounter)) return false;
       if (EntityActionName != other.EntityActionName) return false;
       if (!object.Equals(EntityMoveAction, other.EntityMoveAction)) return false;
+      if (!object.Equals(EntityPlayAction, other.EntityPlayAction)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -159,6 +174,7 @@ namespace Deviant {
       if (encounter_ != null) hash ^= Encounter.GetHashCode();
       if (EntityActionName != global::Deviant.EntityActionNames.Play) hash ^= EntityActionName.GetHashCode();
       if (entityMoveAction_ != null) hash ^= EntityMoveAction.GetHashCode();
+      if (entityPlayAction_ != null) hash ^= EntityPlayAction.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -188,6 +204,10 @@ namespace Deviant {
         output.WriteRawTag(34);
         output.WriteMessage(EntityMoveAction);
       }
+      if (entityPlayAction_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(EntityPlayAction);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -207,6 +227,9 @@ namespace Deviant {
       }
       if (entityMoveAction_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(EntityMoveAction);
+      }
+      if (entityPlayAction_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(EntityPlayAction);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -236,6 +259,12 @@ namespace Deviant {
           EntityMoveAction = new global::Deviant.EntityMoveAction();
         }
         EntityMoveAction.MergeFrom(other.EntityMoveAction);
+      }
+      if (other.entityPlayAction_ != null) {
+        if (entityPlayAction_ == null) {
+          EntityPlayAction = new global::Deviant.EntityPlayAction();
+        }
+        EntityPlayAction.MergeFrom(other.EntityPlayAction);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -268,6 +297,13 @@ namespace Deviant {
               EntityMoveAction = new global::Deviant.EntityMoveAction();
             }
             input.ReadMessage(EntityMoveAction);
+            break;
+          }
+          case 42: {
+            if (entityPlayAction_ == null) {
+              EntityPlayAction = new global::Deviant.EntityPlayAction();
+            }
+            input.ReadMessage(EntityPlayAction);
             break;
           }
         }

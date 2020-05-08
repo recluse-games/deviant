@@ -149,6 +149,7 @@ public class UI : MonoBehaviour
             newCard.transform.gameObject.tag = "hand";
             newCard.transform.gameObject.name = "hand_" + card.InstanceId;
             newCard.GetComponentInChildren<Card>().SetId(card.InstanceId);
+            newCard.SetId(card.Id);
             newCard.SetVisability(true);
             x += 70;
         }
@@ -181,6 +182,7 @@ public class UI : MonoBehaviour
                 newDeckCardGameObject.transform.SetParent(transform, false);
                 newDeckCardGameObject.transform.gameObject.tag = "deck";
                 newDeckCardGameObject.transform.gameObject.name = "deck_" + card.InstanceId;
+                newDeckCardGameObject.SetId(card.Id);
                 newDeckCardGameObject.GetComponentInChildren<Card>().SetId(card.InstanceId);
             }
         }

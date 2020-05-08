@@ -34,6 +34,9 @@ public class UnfriendlyParty : MonoBehaviour
                         turnOrderUnit.transform.gameObject.name = "unfriendly_party_ui_entity_" + entity.Id;
                         turnOrderUnit.transform.SetParent(this.GetComponent<VerticalLayoutGroup>().transform, false);
                         turnOrderUnit.SetEntity(entity);
+                    } else
+                    {
+                        entityPartyPanelComponent.GetComponent<EntityPanel>().SetEntity(entity);
                     }
                 }
             }

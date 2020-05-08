@@ -31,7 +31,7 @@ public class IsometricGrid : MonoBehaviour
         encounterStateRef = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
     }
 
-    public void Update()
+    async public void Update()
     {
         UpdateSelectedCard();
 
@@ -39,24 +39,46 @@ public class IsometricGrid : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if(selectedCard.GetSelectedTilePositions().Count > 0)
+                if (selectedCard.GetSelected())
                 {
-                    Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-                    encounterRequest.PlayerId = "0001";
-                    encounterRequest.Encounter = encounterStateRef.encounter;
-                    encounterRequest.EntityActionName = Deviant.EntityActionNames.Move;
-
-                    foreach (var action in selectedCard.GetSelectedTilePositions())
+                    if (selectedCard.GetSelectedTilePositions().Count > 0)
                     {
-                        foreach (var pattern in selectedCard.GetSelectedTilePositions()[action.Key])
+                        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+                        encounterRequest.PlayerId = "0001";
+                        encounterRequest.Encounter = encounterStateRef.encounter;
+                        encounterRequest.EntityActionName = Deviant.EntityActionNames.Play;
+                        encounterRequest.EntityPlayAction = new Deviant.EntityPlayAction();
+                        encounterRequest.EntityPlayAction.CardId = selectedCard.GetId();
+
+                        foreach (var action in selectedCard.GetSelectedTilePositions())
                         {
-                            foreach (var tileLocation in selectedCard.GetSelectedTilePositions()[action.Key][pattern.Key])
+                            foreach (var pattern in selectedCard.GetSelectedTilePositions()[action.Key])
                             {
-                                Tilemap test = GameObject.Find($"/IsometricGrid/BattlefieldOverlay").GetComponent<BattlefieldOverlay>().GetComponent<Tilemap>();
-                                test.SetTile(tileLocation, null);
+                                foreach (var tileLocation in selectedCard.GetSelectedTilePositions()[action.Key][pattern.Key])
+                                {
+                                    Tilemap test = GameObject.Find($"/IsometricGrid/BattlefieldOverlay").GetComponent<BattlefieldOverlay>().GetComponent<Tilemap>();
+
+                                    Deviant.Play newPlay = new Deviant.Play();
+                                    newPlay.X = tileLocation.x;
+                                    newPlay.Y = tileLocation.y;
+
+                                    encounterRequest.EntityPlayAction.Plays.Add(newPlay);
+                                    test.SetTile(tileLocation, null);
+                                }
                             }
                         }
+                        selectedCard.ClearSelectedTiles();
+                        GameObject.Find($"/UI").GetComponent<UI>().ResetRotation();
+                        this.selectedCard.SetSelected(false);
+                        await encounterStateRef.UpdateEncounterAsync(encounterRequest);
+
+                        var activeEntity = encounterStateRef.GetEncounter().ActiveEntity;
+                        activeEntityObject = GameObject.Find($"/entity_{activeEntity.Id}");
+
+                        var animation = activeEntityObject.transform.gameObject.GetComponentInChildren<Animator>();
+                        activeEntityObject.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-StopAttack");
                     }
+
                 }
 
                 GridLayout gridLayout = this.transform.GetComponent<GridLayout>();
@@ -74,7 +96,7 @@ public class IsometricGrid : MonoBehaviour
                         if (position.Equals(location) == true)
                         {
                             Vector3 startingPos = entity.transform.parent.position;
-                            this.updatePlayerPosition(overlay.WorldToCell(startingPos).y, overlay.WorldToCell(startingPos).x, position.x, position.y);
+                            this.updatePlayerPosition(overlay.WorldToCell(startingPos).x, overlay.WorldToCell(startingPos).y, position.x, position.y);
 
                             startTime = Time.time;
 
@@ -129,27 +151,17 @@ public class IsometricGrid : MonoBehaviour
                 }
 
                 GameObject.Find($"/UI").GetComponent<UI>().ResetRotation();
-
             }
         }
     }
 
     private void UpdateSelectedCard()
     {
-        var activeEntity = encounterStateRef.GetEncounter().ActiveEntity;
-        activeEntityObject = GameObject.Find($"/entity_{activeEntity.Id}");
-
-        var animation = activeEntityObject.transform.gameObject.GetComponentInChildren<Animator>();
-        activeEntityObject.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-StopAttack");
-
         var currentCards = GameObject.FindGameObjectsWithTag("hand");
 
         foreach (var currentCard in currentCards)
         {
-            if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
-            {
-                this.selectedCard = currentCard.GetComponent<CardPrefab>();
-            }
+            this.selectedCard = currentCard.GetComponent<CardPrefab>();
         }
     }
 

@@ -22,6 +22,7 @@ public class EntitySpawner : MonoBehaviour
 		// Retrieve the Current Encounter From Shared State.
 		Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
 		Deviant.Board board = encounterState.Board;
+		List<string> currentEntities = new List<string>();
 
 		// Iterate Over 2d Tile Grid of Entities and Populate Battlefield
 		for (int y = 0; y < board.Entities.Entities_.Count; y++)
@@ -30,7 +31,9 @@ public class EntitySpawner : MonoBehaviour
 			{
 				string entityId = board.Entities.Entities_[y].Entities[x].Id;
 				Deviant.Alignment entityAlignment = board.Entities.Entities_[y].Entities[x].Alignment;
-				Vector3Int currentTileLocation = new Vector3Int(y, x, 0);				
+				Vector3Int currentTileLocation = new Vector3Int(y, x, 0);
+
+				currentEntities.Add(board.Entities.Entities_[y].Entities[x].Id);
 
 				// Validate that we haven't already spawned this unit in and that it's not an empty placeholder object.
 				if (this.activeEntities.Contains(entityId) == false && entityId != "") {
@@ -52,6 +55,16 @@ public class EntitySpawner : MonoBehaviour
 					// Update Active Entities
 					this.activeEntities.Add(board.Entities.Entities_[y].Entities[x].Id);
 				}
+			}
+		}
+
+		foreach (var entityId in this.activeEntities)
+		{
+			if (currentEntities.Contains(entityId) == false)
+			{
+				Debug.Log("Removing: " + entityId);
+				GameObject existingDeadEntity = GameObject.Find("entity_" + entityId);
+				GameObject.Destroy(existingDeadEntity);
 			}
 		}
 	}
