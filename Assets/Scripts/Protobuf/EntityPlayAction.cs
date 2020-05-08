@@ -25,12 +25,13 @@ namespace Deviant {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChZFbnRpdHlQbGF5QWN0aW9uLnByb3RvEgdEZXZpYW50GgpQbGF5LnByb3Rv",
-            "IjwKEEVudGl0eVBsYXlBY3Rpb24SCgoCaWQYASABKAkSHAoFcGxheXMYAyAD",
-            "KAsyDS5EZXZpYW50LlBsYXlCCVoHZGV2aWFudGIGcHJvdG8z"));
+            "IkwKEEVudGl0eVBsYXlBY3Rpb24SCgoCaWQYASABKAkSDgoGY2FyZElkGAIg",
+            "ASgJEhwKBXBsYXlzGAMgAygLMg0uRGV2aWFudC5QbGF5QglaB2RldmlhbnRi",
+            "BnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.PlayReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EntityPlayAction), global::Deviant.EntityPlayAction.Parser, new[]{ "Id", "Plays" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EntityPlayAction), global::Deviant.EntityPlayAction.Parser, new[]{ "Id", "CardId", "Plays" }, null, null, null, null)
           }));
     }
     #endregion
@@ -63,6 +64,7 @@ namespace Deviant {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EntityPlayAction(EntityPlayAction other) : this() {
       id_ = other.id_;
+      cardId_ = other.cardId_;
       plays_ = other.plays_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -80,6 +82,17 @@ namespace Deviant {
       get { return id_; }
       set {
         id_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "cardId" field.</summary>
+    public const int CardIdFieldNumber = 2;
+    private string cardId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string CardId {
+      get { return cardId_; }
+      set {
+        cardId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
@@ -107,6 +120,7 @@ namespace Deviant {
         return true;
       }
       if (Id != other.Id) return false;
+      if (CardId != other.CardId) return false;
       if(!plays_.Equals(other.plays_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -115,6 +129,7 @@ namespace Deviant {
     public override int GetHashCode() {
       int hash = 1;
       if (Id.Length != 0) hash ^= Id.GetHashCode();
+      if (CardId.Length != 0) hash ^= CardId.GetHashCode();
       hash ^= plays_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -133,6 +148,10 @@ namespace Deviant {
         output.WriteRawTag(10);
         output.WriteString(Id);
       }
+      if (CardId.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(CardId);
+      }
       plays_.WriteTo(output, _repeated_plays_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -144,6 +163,9 @@ namespace Deviant {
       int size = 0;
       if (Id.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
+      }
+      if (CardId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(CardId);
       }
       size += plays_.CalculateSize(_repeated_plays_codec);
       if (_unknownFields != null) {
@@ -160,6 +182,9 @@ namespace Deviant {
       if (other.Id.Length != 0) {
         Id = other.Id;
       }
+      if (other.CardId.Length != 0) {
+        CardId = other.CardId;
+      }
       plays_.Add(other.plays_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -174,6 +199,10 @@ namespace Deviant {
             break;
           case 10: {
             Id = input.ReadString();
+            break;
+          }
+          case 18: {
+            CardId = input.ReadString();
             break;
           }
           case 26: {
