@@ -38,5 +38,18 @@ public class TurnOrder : MonoBehaviour
                 turnOrderUnit.transform.localPosition = new Vector3(0, 0, 0);
             }
         }
+
+        if (turnOrderUnits.Length > encounter.ActiveEntityOrder.Count)
+        {
+            foreach(var turnOrderUnit in turnOrderUnits)
+            {
+                string turnOrderId = turnOrderUnit.GetComponent<TurnOrderUnitPrefab>().GetId();
+
+                if (!encounter.ActiveEntityOrder.Contains(turnOrderId))
+                {
+                    Destroy(turnOrderUnit);
+                }
+            }
+        }
     }
 }
