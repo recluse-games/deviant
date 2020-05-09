@@ -71,7 +71,7 @@ public class EntitySpawner : MonoBehaviour
 
 	private void AlignSpriteToTile(EntityPrefab entity, Vector3Int currentCellPosition) {
 		entity.transform.position = battlefieldTilemapRef.CellToWorld(currentCellPosition);
-		entity.transform.position += new Vector3(0, .30f, 0);
+		//entity.transform.position += new Vector3(0, .30f, 0);
 	}
 
 	private void Enable2DBoxCollider(EntityPrefab entity) {
