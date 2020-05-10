@@ -19,6 +19,7 @@ public class UnfriendlyParty : MonoBehaviour
     void Update()
     {
         Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
+        var unfriendlyPartyUnits = GameObject.FindGameObjectsWithTag("ui_friendly_party");
 
         foreach (var row in encounterState.Board.Entities.Entities_)
         {
@@ -34,11 +35,23 @@ public class UnfriendlyParty : MonoBehaviour
                         turnOrderUnit.transform.gameObject.name = "unfriendly_party_ui_entity_" + entity.Id;
                         turnOrderUnit.transform.SetParent(this.GetComponent<VerticalLayoutGroup>().transform, false);
                         turnOrderUnit.SetEntity(entity);
-                    } else
+                        turnOrderUnit.transform.gameObject.tag = "ui_unfriendly_party";
+                    }
+                    else
                     {
                         entityPartyPanelComponent.GetComponent<EntityPanel>().SetEntity(entity);
                     }
                 }
+            }
+        }
+
+        foreach (var unfriendlyPartyUnit in unfriendlyPartyUnits)
+        {
+            string unfriendlyPartyUnitEntityId = unfriendlyPartyUnit.GetComponent<EntityPanel>().GetEntity().Id;
+
+            if (!encounterState.ActiveEntityOrder.Contains(unfriendlyPartyUnitEntityId))
+            {
+                Destroy(unfriendlyPartyUnit);
             }
         }
     }

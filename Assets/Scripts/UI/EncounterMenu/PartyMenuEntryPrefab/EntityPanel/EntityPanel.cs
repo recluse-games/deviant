@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Google.Protobuf;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,16 +15,22 @@ public class EntityPanel : MonoBehaviour
     public GameObject Ar;
 
     private Deviant.Entity entity = default;
-
     private void Update()
     {
         UpdateHP(entity.Hp);
         UpdateAP(entity.Ap);
     }
 
+    public Deviant.Entity GetEntity()
+    {
+        return this.entity;
+    }
+
     public void SetEntity(Deviant.Entity newEntity)
     {
         this.entity = newEntity;
+        UpdateHP(entity.Hp);
+        UpdateAP(entity.Ap);
     }
 
     void UpdateHP(int value)
