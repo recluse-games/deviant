@@ -12,7 +12,7 @@ public class NetLine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Sprite netLine = Resources.Load<Sprite>("Art/Sprites/IsometricGrid/NetLine/netline_0000");
+        Sprite netLine = Resources.Load<Sprite>("Art/Sprites/IsometricGrid/NetLine/netline_0003");
         encounterStateRef = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
         Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
 
@@ -31,8 +31,9 @@ public class NetLine : MonoBehaviour
                     netline.transform.parent = this.transform;
 
                     SpriteRenderer renderer = netline.AddComponent<SpriteRenderer>();
-                    renderer.material = material;
+                    renderer.material = new Material(material);
                     renderer.sprite = netLine;
+                    renderer.color = new Color(255 - 255, 255 - 0, 255 - 76);
 
                     Vector3 place = tilemap.GetCellCenterWorld(new Vector3Int(x, y, 0));
                     netline.transform.position = new Vector3(place.x, place.y, place.z);
