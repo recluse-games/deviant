@@ -21,6 +21,11 @@ public class Entity : MonoBehaviour
 		encounterStateRef = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
 	}
 
+	public string GetId()
+	{
+		return this.id;
+	}
+
 	public void cleanTiles() {
 		encounterStateRef = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
 
@@ -43,7 +48,7 @@ public class Entity : MonoBehaviour
 		// Retrieve the Current Encounter From Shared State.
 		Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
 
-		if(encounterState.ActiveEntity.OwnerId == "0001")
+		if(encounterState.ActiveEntity.OwnerId == "0001" && encounterState.ActiveEntity.Id == this.id)
 		{
 			Deviant.Board board = encounterState.Board;
 
