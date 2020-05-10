@@ -10,6 +10,8 @@ TagManager:
   - ui_turn_order_unit
   - entity_friendly
   - entity_unfriendly
+  - ui_friendly_party
+  - ui_unfriendly_party
   layers:
   - Default
   - TransparentFX
