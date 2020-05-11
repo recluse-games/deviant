@@ -23,28 +23,31 @@ public class ActionPoints : MonoBehaviour
     void Update()
     {
         Deviant.Entity activeEntity = encounterStateRef.encounter.ActiveEntity;
-        var actionPoints = GameObject.FindGameObjectsWithTag("ui_ap");
-        
-        if(actionPoints.Length < activeEntity.Ap)
+        if (encounterStateRef.GetPlayerId() == activeEntity.OwnerId)
         {
-            var numberOfApToAdd =  activeEntity.Ap - actionPoints.Length;
+            var actionPoints = GameObject.FindGameObjectsWithTag("ui_ap");
 
-            for (var i = 0; i < numberOfApToAdd; i++)
+            if (actionPoints.Length < activeEntity.Ap)
             {
-                APPrefab ap = Instantiate(APPrefab);
-                ap.transform.SetParent(transform, false);
-                ap.transform.gameObject.tag = "ui_ap";
-                ap.transform.SetParent(ap.GetComponentInParent<VerticalLayoutGroup>().transform, true);
-                ap.transform.localPosition = new Vector3(0, 0, 0);
+                var numberOfApToAdd = activeEntity.Ap - actionPoints.Length;
+
+                for (var i = 0; i < numberOfApToAdd; i++)
+                {
+                    APPrefab ap = Instantiate(APPrefab);
+                    ap.transform.SetParent(transform, false);
+                    ap.transform.gameObject.tag = "ui_ap";
+                    ap.transform.SetParent(ap.GetComponentInParent<VerticalLayoutGroup>().transform, true);
+                    ap.transform.localPosition = new Vector3(0, 0, 0);
+                }
             }
-        }
 
-        if (actionPoints.Length > activeEntity.Ap)
-        {
-            var numberOfApToRemove = actionPoints.Length - activeEntity.Ap;
-            for (var i = 0; i < numberOfApToRemove; i++)
+            if (actionPoints.Length > activeEntity.Ap)
             {
-                Destroy(actionPoints[i]);
+                var numberOfApToRemove = actionPoints.Length - activeEntity.Ap;
+                for (var i = 0; i < numberOfApToRemove; i++)
+                {
+                    Destroy(actionPoints[i]);
+                }
             }
         }
     }

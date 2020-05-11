@@ -49,7 +49,6 @@ public class UI : MonoBehaviour
                 if (mousePos.y > activeEntityLocation.y && mousePos.x > activeEntityLocation.x)
                 {
                     var currentCards = GameObject.FindGameObjectsWithTag("hand");
-                    Debug.Log("up");
 
                     foreach (var currentCard in currentCards)
                     {
@@ -67,8 +66,6 @@ public class UI : MonoBehaviour
             {
                 if (mousePos.y < activeEntityLocation.y && mousePos.x < activeEntityLocation.x)
                 {
-                    Debug.Log("down");
-
                     var currentCards = GameObject.FindGameObjectsWithTag("hand");
 
                     foreach (var currentCard in currentCards)
@@ -89,8 +86,6 @@ public class UI : MonoBehaviour
             {
                 if (mousePos.y > activeEntityLocation.y && mousePos.x < activeEntityLocation.x)
                 {
-                    Debug.Log("left");
-
                     var currentCards = GameObject.FindGameObjectsWithTag("hand");
 
                     foreach (var currentCard in currentCards)
@@ -110,8 +105,6 @@ public class UI : MonoBehaviour
             {
                 if (mousePos.y < activeEntityLocation.y && mousePos.x > activeEntityLocation.x)
                 {
-                    Debug.Log("right");
-
                     var currentCards = GameObject.FindGameObjectsWithTag("hand");
 
                     foreach (var currentCard in currentCards)
@@ -203,7 +196,7 @@ public class UI : MonoBehaviour
         activeEntityObject = GameObject.Find($"/entity_{activeEntity.Id}");
 
         // 0000 should be replaced with the current players ID
-        if (activeEntity.OwnerId == "0001")
+        if (encounterStateRef.GetPlayerId() == activeEntity.OwnerId)
         {
             CreateDeck(activeEntity);
             CreateHand(activeEntity);

@@ -139,7 +139,7 @@ public class IsometricGrid : MonoBehaviour
     private async Task<bool> ProcessAttack()
     {
         Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-        encounterRequest.PlayerId = "0001";
+        encounterRequest.PlayerId = encounterStateRef.GetPlayerId();
         encounterRequest.Encounter = encounterStateRef.encounter;
         encounterRequest.EntityActionName = Deviant.EntityActionNames.Play;
         encounterRequest.EntityPlayAction = new Deviant.EntityPlayAction();
@@ -180,7 +180,7 @@ public class IsometricGrid : MonoBehaviour
     {
         UpdateSelectedCard();
 
-        if (encounterStateRef.GetEncounter().ActiveEntity.OwnerId == "0001")
+        if (encounterStateRef.GetEncounter().ActiveEntity.OwnerId == encounterStateRef.GetPlayerId())
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -250,7 +250,7 @@ public class IsometricGrid : MonoBehaviour
         entityMoveAction.FinalYPosition = endy;
 
         Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-        encounterRequest.PlayerId = "0001";
+        encounterRequest.PlayerId = encounterStateRef.GetPlayerId();
         encounterRequest.Encounter = encounterStateRef.encounter;
         encounterRequest.EntityActionName = Deviant.EntityActionNames.Move;
         encounterRequest.EntityMoveAction = entityMoveAction;

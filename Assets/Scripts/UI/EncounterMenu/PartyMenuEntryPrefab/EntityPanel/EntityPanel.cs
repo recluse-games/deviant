@@ -17,8 +17,11 @@ public class EntityPanel : MonoBehaviour
     private Deviant.Entity entity = default;
     private void Update()
     {
-        UpdateHP(entity.Hp);
-        UpdateAP(entity.Ap);
+        if(entity != null)
+        {
+            UpdateHP(entity.Hp);
+            UpdateAP(entity.Ap);
+        }
     }
 
     public Deviant.Entity GetEntity()

@@ -429,188 +429,191 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         GameObject battleFieldOverlay = GameObject.Find("BattlefieldOverlay");
         Tilemap battleFieldOverlayTilemap = battleFieldOverlay.GetComponent<Tilemap>();
 
-        if (this.visable == true)
+        if (activeEntity.OwnerId == encounterStateRef.GetPlayerId())
         {
-            GameObject entity = GameObject.Find("entity_" + activeEntity.Id); ;
-
-            GameObject isometricGameGrid = GameObject.Find("IsometricGrid");
-            GridLayout isometricGameGridLayout = isometricGameGrid.transform.GetComponent<GridLayout>();
-            Vector3Int entityCellLocation = isometricGameGridLayout.WorldToCell(entity.transform.position);
-
-            UnityEngine.Tilemaps.Tile selectedTile = Resources.Load<UnityEngine.Tilemaps.Tile>("Art/Tiles/select_0000");
-
-            Vector3Int up = new Vector3Int(1, 0, 0);
-            Vector3Int down = new Vector3Int(-1, 0, 0);
-            Vector3Int left = new Vector3Int(0, 1, 0);
-            Vector3Int right = new Vector3Int(0, -1, 0);
-
-            this.selectedPatternTilePositions = new Dictionary<string, Dictionary<string, List<Vector3Int>>>();
-
-            foreach (var card in activeEntity.Hand.Cards)
+            if (this.visable == true)
             {
-                if (card.InstanceId == gameObject.GetComponentInChildren<Card>().GetId())
+                GameObject entity = GameObject.Find("entity_" + activeEntity.Id); ;
+
+                GameObject isometricGameGrid = GameObject.Find("IsometricGrid");
+                GridLayout isometricGameGridLayout = isometricGameGrid.transform.GetComponent<GridLayout>();
+                Vector3Int entityCellLocation = isometricGameGridLayout.WorldToCell(entity.transform.position);
+
+                UnityEngine.Tilemaps.Tile selectedTile = Resources.Load<UnityEngine.Tilemaps.Tile>("Art/Tiles/select_0000");
+
+                Vector3Int up = new Vector3Int(1, 0, 0);
+                Vector3Int down = new Vector3Int(-1, 0, 0);
+                Vector3Int left = new Vector3Int(0, 1, 0);
+                Vector3Int right = new Vector3Int(0, -1, 0);
+
+                this.selectedPatternTilePositions = new Dictionary<string, Dictionary<string, List<Vector3Int>>>();
+
+                foreach (var card in activeEntity.Hand.Cards)
                 {
-                    foreach (var entry in card.Action.Pattern)
+                    if (card.InstanceId == gameObject.GetComponentInChildren<Card>().GetId())
                     {
-                        if (!selectedPatternTilePositions.ContainsKey(card.Action.Id))
+                        foreach (var entry in card.Action.Pattern)
                         {
-                            selectedPatternTilePositions.Add(card.Action.Id, new Dictionary<string, List<Vector3Int>> { });
-                        }
-                        if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("up"))
-                        {
-                            selectedPatternTilePositions[card.Action.Id].Add("up", new List<Vector3Int>());
-                        }
-                        if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("down"))
-                        {
-                            selectedPatternTilePositions[card.Action.Id].Add("down", new List<Vector3Int>());
-                        }
-                        if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("left"))
-                        {
-                            selectedPatternTilePositions[card.Action.Id].Add("left", new List<Vector3Int>());
-                        }
-                        if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("right"))
-                        {
-                            selectedPatternTilePositions[card.Action.Id].Add("right", new List<Vector3Int>());
-                        }
-
-                        Vector3Int offsetVector = new Vector3Int(0, 0, 0);
-
-                        if (entry.Offset != null)
-                        {
-                            foreach (var offset in entry.Offset)
+                            if (!selectedPatternTilePositions.ContainsKey(card.Action.Id))
                             {
-                                switch (offset.Direction)
+                                selectedPatternTilePositions.Add(card.Action.Id, new Dictionary<string, List<Vector3Int>> { });
+                            }
+                            if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("up"))
+                            {
+                                selectedPatternTilePositions[card.Action.Id].Add("up", new List<Vector3Int>());
+                            }
+                            if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("down"))
+                            {
+                                selectedPatternTilePositions[card.Action.Id].Add("down", new List<Vector3Int>());
+                            }
+                            if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("left"))
+                            {
+                                selectedPatternTilePositions[card.Action.Id].Add("left", new List<Vector3Int>());
+                            }
+                            if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("right"))
+                            {
+                                selectedPatternTilePositions[card.Action.Id].Add("right", new List<Vector3Int>());
+                            }
+
+                            Vector3Int offsetVector = new Vector3Int(0, 0, 0);
+
+                            if (entry.Offset != null)
+                            {
+                                foreach (var offset in entry.Offset)
                                 {
-                                    case Deviant.Direction.Up:
-                                        for (int i = 0; i < offset.Distance; i++)
-                                        {
-                                            offsetVector = offsetVector + up;
-                                        }
-                                        break;
-                                    case Deviant.Direction.Down:
-                                        for (int i = 0; i < offset.Distance; i++)
-                                        {
-                                            offsetVector = offsetVector + down;
-                                        }
-                                        break;
-                                    case Deviant.Direction.Left:
-                                        for (int i = 0; i < offset.Distance; i++)
-                                        {
-                                            offsetVector = offsetVector + left;
-                                        }
-                                        break;
-                                    case Deviant.Direction.Right:
-                                        for (int i = 0; i < offset.Distance; i++)
-                                        {
-                                            offsetVector = offsetVector + right;
-                                        }
-                                        break;
-                                    default:
-                                        break;
+                                    switch (offset.Direction)
+                                    {
+                                        case Deviant.Direction.Up:
+                                            for (int i = 0; i < offset.Distance; i++)
+                                            {
+                                                offsetVector = offsetVector + up;
+                                            }
+                                            break;
+                                        case Deviant.Direction.Down:
+                                            for (int i = 0; i < offset.Distance; i++)
+                                            {
+                                                offsetVector = offsetVector + down;
+                                            }
+                                            break;
+                                        case Deviant.Direction.Left:
+                                            for (int i = 0; i < offset.Distance; i++)
+                                            {
+                                                offsetVector = offsetVector + left;
+                                            }
+                                            break;
+                                        case Deviant.Direction.Right:
+                                            for (int i = 0; i < offset.Distance; i++)
+                                            {
+                                                offsetVector = offsetVector + right;
+                                            }
+                                            break;
+                                        default:
+                                            break;
+                                    }
                                 }
                             }
-                        }
 
-                        Vector3Int offsetStart = offsetVector;
+                            Vector3Int offsetStart = offsetVector;
 
-                        switch (entry.Direction)
-                        {
-                            case Deviant.Direction.Up:
-                                for (int i = 0; i < entry.Distance; i++)
-                                {
-                                    offsetStart += up;
+                            switch (entry.Direction)
+                            {
+                                case Deviant.Direction.Up:
+                                    for (int i = 0; i < entry.Distance; i++)
+                                    {
+                                        offsetStart += up;
 
-                                    if (this.selected == true)
-                                    {
-                                        battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, null);
-                                    }
-                                    else
-                                    {
-                                        battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, selectedTile);
-                                        selectedPatternTilePositions[card.Action.Id]["up"].Add(offsetStart + entityCellLocation);
-                                    }
+                                        if (this.selected == true)
+                                        {
+                                            battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, null);
+                                        }
+                                        else
+                                        {
+                                            battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, selectedTile);
+                                            selectedPatternTilePositions[card.Action.Id]["up"].Add(offsetStart + entityCellLocation);
+                                        }
 
-                                    offsetStart += up;
-                                }
-                                break;
-                            case Deviant.Direction.Down:
-                                for (int i = 0; i < entry.Distance; i++)
-                                {
-                                    if (this.selected == true)
-                                    {
-                                        battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, null);
+                                        offsetStart += up;
                                     }
-                                    else
+                                    break;
+                                case Deviant.Direction.Down:
+                                    for (int i = 0; i < entry.Distance; i++)
                                     {
-                                        battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, selectedTile);
-                                        selectedPatternTilePositions[card.Action.Id]["down"].Add(offsetStart + entityCellLocation);
-                                    }
+                                        if (this.selected == true)
+                                        {
+                                            battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, null);
+                                        }
+                                        else
+                                        {
+                                            battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, selectedTile);
+                                            selectedPatternTilePositions[card.Action.Id]["down"].Add(offsetStart + entityCellLocation);
+                                        }
 
-                                    offsetStart += down;
-                                }
-                                break;
-                            case Deviant.Direction.Left:
-                                for (int i = 0; i < entry.Distance; i++)
-                                {
-                                    if (this.selected == true)
-                                    {
-                                        battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, null);
+                                        offsetStart += down;
                                     }
-                                    else
+                                    break;
+                                case Deviant.Direction.Left:
+                                    for (int i = 0; i < entry.Distance; i++)
                                     {
-                                        battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, selectedTile);
-                                        selectedPatternTilePositions[card.Action.Id]["left"].Add(offsetStart + entityCellLocation);
-                                    }
-                                    offsetStart += left;
+                                        if (this.selected == true)
+                                        {
+                                            battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, null);
+                                        }
+                                        else
+                                        {
+                                            battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, selectedTile);
+                                            selectedPatternTilePositions[card.Action.Id]["left"].Add(offsetStart + entityCellLocation);
+                                        }
+                                        offsetStart += left;
 
-                                }
-                                break;
-                            case Deviant.Direction.Right:
-                                for (int i = 0; i < entry.Distance; i++)
-                                {
-                                    if (this.selected == true)
-                                    {
-                                        battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, null);
                                     }
-                                    else
+                                    break;
+                                case Deviant.Direction.Right:
+                                    for (int i = 0; i < entry.Distance; i++)
                                     {
-                                        battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, selectedTile);
-                                        selectedPatternTilePositions[card.Action.Id]["right"].Add(offsetStart + entityCellLocation);
-                                    }
+                                        if (this.selected == true)
+                                        {
+                                            battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, null);
+                                        }
+                                        else
+                                        {
+                                            battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, selectedTile);
+                                            selectedPatternTilePositions[card.Action.Id]["right"].Add(offsetStart + entityCellLocation);
+                                        }
 
-                                    offsetStart += right;
-                                }
-                                break;
-                            default:
-                                break;
+                                        offsetStart += right;
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
                 }
-            }
 
-            if (this.selected == true)
-            {
-                var animation = entity.transform.gameObject.GetComponentInChildren<Animator>();
-                entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-StopAttack");
-                this.selected = false;
-
-                foreach (var action in this.selectedPatternTilePositions)
+                if (this.selected == true)
                 {
-                    foreach (var pattern in this.selectedPatternTilePositions[action.Key])
+                    var animation = entity.transform.gameObject.GetComponentInChildren<Animator>();
+                    entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-StopAttack");
+                    this.selected = false;
+
+                    foreach (var action in this.selectedPatternTilePositions)
                     {
-                        foreach (var tileLocation in this.selectedPatternTilePositions[action.Key][pattern.Key])
+                        foreach (var pattern in this.selectedPatternTilePositions[action.Key])
                         {
-                            battleFieldOverlayTilemap.SetTile(tileLocation, null);
+                            foreach (var tileLocation in this.selectedPatternTilePositions[action.Key][pattern.Key])
+                            {
+                                battleFieldOverlayTilemap.SetTile(tileLocation, null);
+                            }
                         }
                     }
                 }
-            }
-            else
-            {
-                var animation = entity.transform.gameObject.GetComponentInChildren<Animator>();
-                entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-Attack");
+                else
+                {
+                    var animation = entity.transform.gameObject.GetComponentInChildren<Animator>();
+                    entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-Attack");
 
-                this.selected = true;
+                    this.selected = true;
+                }
             }
         }
     }

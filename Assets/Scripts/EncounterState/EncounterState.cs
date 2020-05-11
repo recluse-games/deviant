@@ -12,19 +12,27 @@ public class EncounterState : MonoBehaviour
     public Deviant.Encounter encounter = default;
     private Deviant.EncounterService.EncounterServiceClient _client;
     private Channel _channel;
-    private string _server = "127.0.0.1:50051";
+    private string _player = default;
+    private string _server = default;
 
     private void DeviantClient()
     {
-        this._channel = new Channel(_server, ChannelCredentials.Insecure);
+        this._channel = new Channel(this._server, ChannelCredentials.Insecure);
         this._client = new Deviant.EncounterService.EncounterServiceClient(_channel);
     }
-
     // Start is called before the first frame update
     async void Start()
     {
+        this._server = PlayerPrefs.GetString("server");
+        this._player = PlayerPrefs.GetString("playerId");
+
         DeviantClient();
         await CreateEncounterAsync();
+    }
+
+    public string GetPlayerId()
+    {
+        return this._player;
     }
 
     public Encounter GetEncounter()
@@ -38,7 +46,7 @@ public class EncounterState : MonoBehaviour
             using (var call = _client.StartEncounter())
             {
                 Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-                encounterRequest.PlayerId = "0001";
+                encounterRequest.PlayerId = this._player;
 
                 await call.RequestStream.WriteAsync(encounterRequest);
                 var responseReaderTask = Task.Run(async () =>
