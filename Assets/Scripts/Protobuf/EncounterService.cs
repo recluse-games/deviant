@@ -34,16 +34,22 @@ namespace Deviant {
             "aXR5UGxheUFjdGlvbhgFIAEoCzIZLkRldmlhbnQuRW50aXR5UGxheUFjdGlv",
             "bhIZChFnZXRFbmNvdW50ZXJTdGF0ZRgGIAEoCCJMChFFbmNvdW50ZXJSZXNw",
             "b25zZRIQCghwbGF5ZXJJZBgBIAEoCRIlCgllbmNvdW50ZXIYAiABKAsyEi5E",
-            "ZXZpYW50LkVuY291bnRlcjKtAQoQRW5jb3VudGVyU2VydmljZRJLCg5TdGFy",
-            "dEVuY291bnRlchIZLkRldmlhbnQuRW5jb3VudGVyUmVxdWVzdBoaLkRldmlh",
-            "bnQuRW5jb3VudGVyUmVzcG9uc2UoATABEkwKD1VwZGF0ZUVuY291bnRlchIZ",
-            "LkRldmlhbnQuRW5jb3VudGVyUmVxdWVzdBoaLkRldmlhbnQuRW5jb3VudGVy",
-            "UmVzcG9uc2UoATABQglaB2RldmlhbnRiBnByb3RvMw=="));
+            "ZXZpYW50LkVuY291bnRlciIoChRGaW5kRW5jb3VudGVyUmVxdWVzdBIQCghw",
+            "bGF5ZXJJRBgBIAEoCSInChVGaW5kRW5jb3VudGVyUmVzcG9uc2USDgoGcG9v",
+            "bElEGAEgASgJMv8BChBFbmNvdW50ZXJTZXJ2aWNlElAKDUZpbmRFbmNvdW50",
+            "ZXISHS5EZXZpYW50LkZpbmRFbmNvdW50ZXJSZXF1ZXN0Gh4uRGV2aWFudC5G",
+            "aW5kRW5jb3VudGVyUmVzcG9uc2UwARJLCg5TdGFydEVuY291bnRlchIZLkRl",
+            "dmlhbnQuRW5jb3VudGVyUmVxdWVzdBoaLkRldmlhbnQuRW5jb3VudGVyUmVz",
+            "cG9uc2UoATABEkwKD1VwZGF0ZUVuY291bnRlchIZLkRldmlhbnQuRW5jb3Vu",
+            "dGVyUmVxdWVzdBoaLkRldmlhbnQuRW5jb3VudGVyUmVzcG9uc2UoATABQgla",
+            "B2RldmlhbnRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.EncounterReflection.Descriptor, global::Deviant.EntityActionNamesReflection.Descriptor, global::Deviant.EntityMoveActionReflection.Descriptor, global::Deviant.EntityPlayActionReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterRequest), global::Deviant.EncounterRequest.Parser, new[]{ "PlayerId", "Encounter", "EntityActionName", "EntityMoveAction", "EntityPlayAction", "GetEncounterState" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterResponse), global::Deviant.EncounterResponse.Parser, new[]{ "PlayerId", "Encounter" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterResponse), global::Deviant.EncounterResponse.Parser, new[]{ "PlayerId", "Encounter" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.FindEncounterRequest), global::Deviant.FindEncounterRequest.Parser, new[]{ "PlayerID" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.FindEncounterResponse), global::Deviant.FindEncounterResponse.Parser, new[]{ "PoolID" }, null, null, null, null)
           }));
     }
     #endregion
@@ -498,6 +504,264 @@ namespace Deviant {
               Encounter = new global::Deviant.Encounter();
             }
             input.ReadMessage(Encounter);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class FindEncounterRequest : pb::IMessage<FindEncounterRequest> {
+    private static readonly pb::MessageParser<FindEncounterRequest> _parser = new pb::MessageParser<FindEncounterRequest>(() => new FindEncounterRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<FindEncounterRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Deviant.EncounterServiceReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FindEncounterRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FindEncounterRequest(FindEncounterRequest other) : this() {
+      playerID_ = other.playerID_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FindEncounterRequest Clone() {
+      return new FindEncounterRequest(this);
+    }
+
+    /// <summary>Field number for the "playerID" field.</summary>
+    public const int PlayerIDFieldNumber = 1;
+    private string playerID_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string PlayerID {
+      get { return playerID_; }
+      set {
+        playerID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as FindEncounterRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(FindEncounterRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (PlayerID != other.PlayerID) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (PlayerID.Length != 0) hash ^= PlayerID.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (PlayerID.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(PlayerID);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (PlayerID.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(PlayerID);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(FindEncounterRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.PlayerID.Length != 0) {
+        PlayerID = other.PlayerID;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            PlayerID = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class FindEncounterResponse : pb::IMessage<FindEncounterResponse> {
+    private static readonly pb::MessageParser<FindEncounterResponse> _parser = new pb::MessageParser<FindEncounterResponse>(() => new FindEncounterResponse());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<FindEncounterResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Deviant.EncounterServiceReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FindEncounterResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FindEncounterResponse(FindEncounterResponse other) : this() {
+      poolID_ = other.poolID_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public FindEncounterResponse Clone() {
+      return new FindEncounterResponse(this);
+    }
+
+    /// <summary>Field number for the "poolID" field.</summary>
+    public const int PoolIDFieldNumber = 1;
+    private string poolID_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string PoolID {
+      get { return poolID_; }
+      set {
+        poolID_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as FindEncounterResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(FindEncounterResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (PoolID != other.PoolID) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (PoolID.Length != 0) hash ^= PoolID.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (PoolID.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(PoolID);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (PoolID.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(PoolID);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(FindEncounterResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.PoolID.Length != 0) {
+        PoolID = other.PoolID;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            PoolID = input.ReadString();
             break;
           }
         }
