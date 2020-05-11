@@ -6,6 +6,7 @@ using Grpc.Core;
 using Deviant;
 using UnityEngine;
 using UnityAsync;
+using UnityEngine.PlayerLoop;
 
 public class EncounterState : MonoBehaviour
 {
@@ -96,6 +97,15 @@ public class EncounterState : MonoBehaviour
         }
     }
 
+
+    async void Update()
+    {
+        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+        encounterRequest.PlayerId = _player;
+        encounterRequest.Encounter = encounter;
+ 
+        await UpdateEncounterAsync(encounterRequest);
+    }
     public void OnDestroyed()
     {
         _channel.ShutdownAsync().Wait();
