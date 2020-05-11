@@ -23,6 +23,7 @@ public class EntitySpawner : MonoBehaviour
 		Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
 		Deviant.Board board = encounterState.Board;
 		List<string> currentEntities = new List<string>();
+		Tilemap overlay = GameObject.Find("BattlefieldOverlay").GetComponent<Tilemap>();
 
 		// Iterate Over 2d Tile Grid of Entities and Populate Battlefield
 		for (int y = 0; y < board.Entities.Entities_.Count; y++)
@@ -54,6 +55,20 @@ public class EntitySpawner : MonoBehaviour
 
 					// Update Active Entities
 					this.activeEntities.Add(board.Entities.Entities_[y].Entities[x].Id);
+				}
+
+				if(entityId != null)
+				{
+					GameObject existingEntity = GameObject.Find("entity_" + entityId);
+					if(existingEntity != null)
+					{
+						Vector3Int existingEntityLocation = overlay.WorldToCell(existingEntity.transform.position);
+						if (existingEntityLocation.x != y || existingEntityLocation.y != x)
+						{
+							Debug.Log("MOVE ENTITY");
+							existingEntity.transform.position = overlay.CellToWorld(new Vector3Int(y, x, 0));
+						}
+					}
 				}
 			}
 		}
