@@ -103,6 +103,7 @@ public class EncounterState : MonoBehaviour
         Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
         encounterRequest.PlayerId = _player;
         encounterRequest.Encounter = encounter;
+        encounterRequest.GetEncounterState = true;
  
         await UpdateEncounterAsync(encounterRequest);
     }
