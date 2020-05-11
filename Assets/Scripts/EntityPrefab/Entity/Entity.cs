@@ -48,7 +48,7 @@ public class Entity : MonoBehaviour
 		// Retrieve the Current Encounter From Shared State.
 		Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
 
-		if(encounterState.ActiveEntity.OwnerId == "0001" && encounterState.ActiveEntity.Id == this.id)
+		if(encounterState.ActiveEntity.OwnerId == "0001" && encounterState.ActiveEntity.Id == this.id && encounterState.ActiveEntity.Ap > 0)
 		{
 			Deviant.Board board = encounterState.Board;
 
