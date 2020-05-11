@@ -26,23 +26,23 @@ namespace Deviant {
           string.Concat(
             "ChZFbmNvdW50ZXJTZXJ2aWNlLnByb3RvEgdEZXZpYW50Gg9FbmNvdW50ZXIu",
             "cHJvdG8aF0VudGl0eUFjdGlvbk5hbWVzLnByb3RvGhZFbnRpdHlNb3ZlQWN0",
-            "aW9uLnByb3RvGhZFbnRpdHlQbGF5QWN0aW9uLnByb3RvIusBChBFbmNvdW50",
+            "aW9uLnByb3RvGhZFbnRpdHlQbGF5QWN0aW9uLnByb3RvIoYCChBFbmNvdW50",
             "ZXJSZXF1ZXN0EhAKCHBsYXllcklkGAEgASgJEiUKCWVuY291bnRlchgCIAEo",
             "CzISLkRldmlhbnQuRW5jb3VudGVyEjQKEGVudGl0eUFjdGlvbk5hbWUYAyAB",
             "KA4yGi5EZXZpYW50LkVudGl0eUFjdGlvbk5hbWVzEjMKEGVudGl0eU1vdmVB",
             "Y3Rpb24YBCABKAsyGS5EZXZpYW50LkVudGl0eU1vdmVBY3Rpb24SMwoQZW50",
             "aXR5UGxheUFjdGlvbhgFIAEoCzIZLkRldmlhbnQuRW50aXR5UGxheUFjdGlv",
-            "biJMChFFbmNvdW50ZXJSZXNwb25zZRIQCghwbGF5ZXJJZBgBIAEoCRIlCgll",
-            "bmNvdW50ZXIYAiABKAsyEi5EZXZpYW50LkVuY291bnRlcjKtAQoQRW5jb3Vu",
-            "dGVyU2VydmljZRJLCg5TdGFydEVuY291bnRlchIZLkRldmlhbnQuRW5jb3Vu",
-            "dGVyUmVxdWVzdBoaLkRldmlhbnQuRW5jb3VudGVyUmVzcG9uc2UoATABEkwK",
-            "D1VwZGF0ZUVuY291bnRlchIZLkRldmlhbnQuRW5jb3VudGVyUmVxdWVzdBoa",
-            "LkRldmlhbnQuRW5jb3VudGVyUmVzcG9uc2UoATABQglaB2RldmlhbnRiBnBy",
-            "b3RvMw=="));
+            "bhIZChFnZXRFbmNvdW50ZXJTdGF0ZRgGIAEoCCJMChFFbmNvdW50ZXJSZXNw",
+            "b25zZRIQCghwbGF5ZXJJZBgBIAEoCRIlCgllbmNvdW50ZXIYAiABKAsyEi5E",
+            "ZXZpYW50LkVuY291bnRlcjKtAQoQRW5jb3VudGVyU2VydmljZRJLCg5TdGFy",
+            "dEVuY291bnRlchIZLkRldmlhbnQuRW5jb3VudGVyUmVxdWVzdBoaLkRldmlh",
+            "bnQuRW5jb3VudGVyUmVzcG9uc2UoATABEkwKD1VwZGF0ZUVuY291bnRlchIZ",
+            "LkRldmlhbnQuRW5jb3VudGVyUmVxdWVzdBoaLkRldmlhbnQuRW5jb3VudGVy",
+            "UmVzcG9uc2UoATABQglaB2RldmlhbnRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.EncounterReflection.Descriptor, global::Deviant.EntityActionNamesReflection.Descriptor, global::Deviant.EntityMoveActionReflection.Descriptor, global::Deviant.EntityPlayActionReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterRequest), global::Deviant.EncounterRequest.Parser, new[]{ "PlayerId", "Encounter", "EntityActionName", "EntityMoveAction", "EntityPlayAction" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterRequest), global::Deviant.EncounterRequest.Parser, new[]{ "PlayerId", "Encounter", "EntityActionName", "EntityMoveAction", "EntityPlayAction", "GetEncounterState" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterResponse), global::Deviant.EncounterResponse.Parser, new[]{ "PlayerId", "Encounter" }, null, null, null, null)
           }));
     }
@@ -83,6 +83,7 @@ namespace Deviant {
       entityActionName_ = other.entityActionName_;
       entityMoveAction_ = other.entityMoveAction_ != null ? other.entityMoveAction_.Clone() : null;
       entityPlayAction_ = other.entityPlayAction_ != null ? other.entityPlayAction_.Clone() : null;
+      getEncounterState_ = other.getEncounterState_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -146,6 +147,17 @@ namespace Deviant {
       }
     }
 
+    /// <summary>Field number for the "getEncounterState" field.</summary>
+    public const int GetEncounterStateFieldNumber = 6;
+    private bool getEncounterState_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool GetEncounterState {
+      get { return getEncounterState_; }
+      set {
+        getEncounterState_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as EncounterRequest);
@@ -164,6 +176,7 @@ namespace Deviant {
       if (EntityActionName != other.EntityActionName) return false;
       if (!object.Equals(EntityMoveAction, other.EntityMoveAction)) return false;
       if (!object.Equals(EntityPlayAction, other.EntityPlayAction)) return false;
+      if (GetEncounterState != other.GetEncounterState) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -175,6 +188,7 @@ namespace Deviant {
       if (EntityActionName != global::Deviant.EntityActionNames.Play) hash ^= EntityActionName.GetHashCode();
       if (entityMoveAction_ != null) hash ^= EntityMoveAction.GetHashCode();
       if (entityPlayAction_ != null) hash ^= EntityPlayAction.GetHashCode();
+      if (GetEncounterState != false) hash ^= GetEncounterState.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -208,6 +222,10 @@ namespace Deviant {
         output.WriteRawTag(42);
         output.WriteMessage(EntityPlayAction);
       }
+      if (GetEncounterState != false) {
+        output.WriteRawTag(48);
+        output.WriteBool(GetEncounterState);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -230,6 +248,9 @@ namespace Deviant {
       }
       if (entityPlayAction_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(EntityPlayAction);
+      }
+      if (GetEncounterState != false) {
+        size += 1 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -265,6 +286,9 @@ namespace Deviant {
           EntityPlayAction = new global::Deviant.EntityPlayAction();
         }
         EntityPlayAction.MergeFrom(other.EntityPlayAction);
+      }
+      if (other.GetEncounterState != false) {
+        GetEncounterState = other.GetEncounterState;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -304,6 +328,10 @@ namespace Deviant {
               EntityPlayAction = new global::Deviant.EntityPlayAction();
             }
             input.ReadMessage(EntityPlayAction);
+            break;
+          }
+          case 48: {
+            GetEncounterState = input.ReadBool();
             break;
           }
         }
