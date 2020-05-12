@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Deviant;
 using UnityEngine;
-using UnityAsync;
-using UnityEngine.PlayerLoop;
 
 public class EncounterState : MonoBehaviour
 {
@@ -40,6 +36,7 @@ public class EncounterState : MonoBehaviour
     {
         return this.encounter;
     }
+
     public async Task<bool> CreateEncounterAsync()
     {
         try
@@ -97,7 +94,6 @@ public class EncounterState : MonoBehaviour
         }
     }
 
-
     async void Update()
     {
         Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
@@ -107,6 +103,7 @@ public class EncounterState : MonoBehaviour
  
         await UpdateEncounterAsync(encounterRequest);
     }
+
     public void OnDestroyed()
     {
         _channel.ShutdownAsync().Wait();

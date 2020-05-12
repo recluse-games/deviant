@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Data.Common;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -8,17 +6,16 @@ public class Entity : MonoBehaviour
 {
 	GameObject selectionArrow;
 
-	public EncounterState encounterStateRef = default;
-
-    public bool moveSelection = false;
+	public string id = default;
+	public bool moveSelection = false;
 
 	public List<Vector3Int> validTiles = new List<Vector3Int>();
 
-	public string id = default;
-	private Vector3Int previousCell = default;
+	private Vector3Int _previousEntityCellLocation = default;
+	private EncounterState _encounterStateComponentReference = default;
 
 	public void Start() {
-		encounterStateRef = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
+		_encounterStateComponentReference = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
 	}
 
 	public string GetId()
@@ -27,8 +24,6 @@ public class Entity : MonoBehaviour
 	}
 
 	public void cleanTiles() {
-		encounterStateRef = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
-
 		GameObject tilemapGameObject = GameObject.Find("BattlefieldOverlay");
 		Tilemap tilemap = tilemapGameObject.GetComponent<Tilemap>();
 
@@ -36,7 +31,7 @@ public class Entity : MonoBehaviour
 			tilemap.SetTile(location, null);
 		}
 
-		tilemap.SetTile(previousCell, null);
+		tilemap.SetTile(_previousEntityCellLocation, null);
 
 		this.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-Idle");
 
@@ -46,9 +41,9 @@ public class Entity : MonoBehaviour
   	public void OnMouseDown()
     {
 		// Retrieve the Current Encounter From Shared State.
-		Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
+		Deviant.Encounter encounterState = _encounterStateComponentReference.GetEncounter();
 
-		if(encounterState.ActiveEntity.OwnerId == encounterStateRef.GetPlayerId() && encounterState.ActiveEntity.Id == this.id && encounterState.ActiveEntity.Ap > 0)
+		if(encounterState.ActiveEntity.OwnerId == _encounterStateComponentReference.GetPlayerId() && encounterState.ActiveEntity.Id == this.id && encounterState.ActiveEntity.Ap > 0)
 		{
 			Deviant.Board board = encounterState.Board;
 
@@ -83,7 +78,7 @@ public class Entity : MonoBehaviour
 			Vector3Int rightThing = cellLocation + right;
 
 			// Load All Tiles Into Entity State for Future Cleaning
-			previousCell = cellLocation;
+			_previousEntityCellLocation = cellLocation;
 			validTiles.Add(upThing);
 			validTiles.Add(downThing);
 			validTiles.Add(leftThing);
@@ -94,7 +89,7 @@ public class Entity : MonoBehaviour
 	public void Update()
 	{
 		// Retrieve the Current Encounter From Shared State.
-		Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
+		Deviant.Encounter encounterState = _encounterStateComponentReference.GetEncounter();
 
 		if (encounterState.ActiveEntity.Id == this.id && !this.selectionArrow)
 		{

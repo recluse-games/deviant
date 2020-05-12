@@ -1,26 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
-using Google.Protobuf.WellKnownTypes;
 
 public class EntitySpawner : MonoBehaviour
 {
 	[SerializeField]
 	EntityPrefab entityPrefab = default;
 
-	public EncounterState encounterStateRef = default;
+	private EncounterState _encounterStateComponentReference = default;
 	public Tilemap battlefieldTilemapRef = default;
 	public List<string> activeEntities = default;
 
 	public void Start() {
 		// Find Operations Are Expensive So the Less We Do The Better.
 		battlefieldTilemapRef = GameObject.Find("/IsometricGrid/Battlefield").GetComponent<Tilemap>();
-		encounterStateRef = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
+		_encounterStateComponentReference = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
 	}
 
 	public void Update() {
 		// Retrieve the Current Encounter From Shared State.
-		Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
+		Deviant.Encounter encounterState = _encounterStateComponentReference.GetEncounter();
 		Deviant.Board board = encounterState.Board;
 		List<string> currentEntities = new List<string>();
 		Tilemap overlay = GameObject.Find("BattlefieldOverlay").GetComponent<Tilemap>();
@@ -86,7 +85,6 @@ public class EntitySpawner : MonoBehaviour
 
 	private void AlignSpriteToTile(EntityPrefab entity, Vector3Int currentCellPosition) {
 		entity.transform.position = battlefieldTilemapRef.CellToWorld(currentCellPosition);
-		//entity.transform.position += new Vector3(0, .30f, 0);
 	}
 
 	private void Enable2DBoxCollider(EntityPrefab entity) {
@@ -99,6 +97,7 @@ public class EntitySpawner : MonoBehaviour
 		entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrrior-Idle");
 		entityAnimator.enabled = true;
 	}
+
 	private void TagEntity(EntityPrefab entity, Deviant.Alignment entityAlignment)
 	{
 		if (entityAlignment == Deviant.Alignment.Unfriendly)
@@ -109,6 +108,7 @@ public class EntitySpawner : MonoBehaviour
 			entity.transform.gameObject.tag = "entity_friendly";
 		}
 	}
+
 	private void FlipEnemyOrientation(EntityPrefab entity, Deviant.Alignment entityAlignment) {
 		if (entityAlignment == Deviant.Alignment.Unfriendly)
 		{
