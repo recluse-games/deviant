@@ -77,6 +77,7 @@ public class BattlefieldOverlay : MonoBehaviour
 
         Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
         encounterRequest.EntityTargetAction = new EntityTargetAction();
+        encounterRequest.EntityTargetAction.Id = "1234";
         encounterRequest.EntityTargetAction.Tiles = updatedOverlayTiles;
 
         await encounterStateRef.UpdateEncounterAsync(encounterRequest);
