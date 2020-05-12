@@ -25,13 +25,14 @@ namespace Deviant {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CgtCb2FyZC5wcm90bxIHRGV2aWFudBoLVGlsZXMucHJvdG8aDkVudGl0aWVz",
-            "LnByb3RvIksKBUJvYXJkEh0KBXRpbGVzGAEgASgLMg4uRGV2aWFudC5UaWxl",
-            "cxIjCghlbnRpdGllcxgCIAEoCzIRLkRldmlhbnQuRW50aXRpZXNCCVoHZGV2",
-            "aWFudGIGcHJvdG8z"));
+            "LnByb3RvInEKBUJvYXJkEh0KBXRpbGVzGAEgASgLMg4uRGV2aWFudC5UaWxl",
+            "cxIjCghlbnRpdGllcxgCIAEoCzIRLkRldmlhbnQuRW50aXRpZXMSJAoMb3Zl",
+            "cmxheVRpbGVzGAMgASgLMg4uRGV2aWFudC5UaWxlc0IJWgdkZXZpYW50YgZw",
+            "cm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.TilesReflection.Descriptor, global::Deviant.EntitiesReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Board), global::Deviant.Board.Parser, new[]{ "Tiles", "Entities" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Board), global::Deviant.Board.Parser, new[]{ "Tiles", "Entities", "OverlayTiles" }, null, null, null, null)
           }));
     }
     #endregion
@@ -65,6 +66,7 @@ namespace Deviant {
     public Board(Board other) : this() {
       tiles_ = other.tiles_ != null ? other.tiles_.Clone() : null;
       entities_ = other.entities_ != null ? other.entities_.Clone() : null;
+      overlayTiles_ = other.overlayTiles_ != null ? other.overlayTiles_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -95,6 +97,17 @@ namespace Deviant {
       }
     }
 
+    /// <summary>Field number for the "overlayTiles" field.</summary>
+    public const int OverlayTilesFieldNumber = 3;
+    private global::Deviant.Tiles overlayTiles_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Deviant.Tiles OverlayTiles {
+      get { return overlayTiles_; }
+      set {
+        overlayTiles_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as Board);
@@ -110,6 +123,7 @@ namespace Deviant {
       }
       if (!object.Equals(Tiles, other.Tiles)) return false;
       if (!object.Equals(Entities, other.Entities)) return false;
+      if (!object.Equals(OverlayTiles, other.OverlayTiles)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -118,6 +132,7 @@ namespace Deviant {
       int hash = 1;
       if (tiles_ != null) hash ^= Tiles.GetHashCode();
       if (entities_ != null) hash ^= Entities.GetHashCode();
+      if (overlayTiles_ != null) hash ^= OverlayTiles.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -139,6 +154,10 @@ namespace Deviant {
         output.WriteRawTag(18);
         output.WriteMessage(Entities);
       }
+      if (overlayTiles_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(OverlayTiles);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -152,6 +171,9 @@ namespace Deviant {
       }
       if (entities_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Entities);
+      }
+      if (overlayTiles_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(OverlayTiles);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -176,6 +198,12 @@ namespace Deviant {
         }
         Entities.MergeFrom(other.Entities);
       }
+      if (other.overlayTiles_ != null) {
+        if (overlayTiles_ == null) {
+          OverlayTiles = new global::Deviant.Tiles();
+        }
+        OverlayTiles.MergeFrom(other.OverlayTiles);
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -199,6 +227,13 @@ namespace Deviant {
               Entities = new global::Deviant.Entities();
             }
             input.ReadMessage(Entities);
+            break;
+          }
+          case 26: {
+            if (overlayTiles_ == null) {
+              OverlayTiles = new global::Deviant.Tiles();
+            }
+            input.ReadMessage(OverlayTiles);
             break;
           }
         }
