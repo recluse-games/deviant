@@ -25,15 +25,12 @@ public class BattlefieldOverlay : MonoBehaviour
 
         var newTiles = encounterStateRef.GetEncounter().Board.OverlayTiles;
 
-        for (int y = 0; y < newTiles.Tiles_.Count; y++)
+        foreach(var tile in newTiles.Tiles_)
         {
-            for (int x = 0; x < newTiles.Tiles_[y].Tiles.Count; x++)
-            {
-                UnityEngine.Tilemaps.Tile newTileAsset = Resources.Load<UnityEngine.Tilemaps.Tile>($"Art/Tiles/{newTiles.Tiles_[y].Tiles[x].Id}");
-                Debug.Log("X/Y: " + x + y + "tile: " + newTiles.Tiles_[y].Tiles[x].Id);
-                tilemap.SetTile(new Vector3Int(x, y, 0), newTileAsset);
-                tilemap.RefreshTile(new Vector3Int(x, y, 0));
-            }
+            UnityEngine.Tilemaps.Tile newTileAsset = Resources.Load<UnityEngine.Tilemaps.Tile>($"Art/Tiles/{newTiles.Tiles_[y].Tiles[x].Id}");
+            Debug.Log("X/Y: " + x + y + "tile: " + newTiles.Tiles_[tile.y].Tiles[tile.x].Id);
+            tilemap.SetTile(new Vector3Int(x, y, 0), newTileAsset);
+            tilemap.RefreshTile(new Vector3Int(x, y, 0));
         }
 
         for (int x = tilemap.origin.x; x < tilemap.size.x; x++)

@@ -407,7 +407,8 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             }
         }
 
-        List<Deviant.Tile> updatedOverlayTiles = new List<Deviant.Tile>();
+        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+        encounterRequest.EntityTargetAction = new EntityTargetAction();
 
         // Draw New Tiles
         foreach (var actionKey in newSelectedTilePositions)
@@ -421,17 +422,12 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
                     if (vector.y > 0 && vector.x > 0 && vector.y < 8 && vector.x < 8)
                     {
-                        updatedOverlayTiles.Add(newTile);
+                        encounterRequest.EntityTargetAction.Tiles.Add(newTile);
                     }
                     //battleFieldOverlayTilemap.SetTile(vector, selectedTile);
                 }
             }
         }
-
-        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-
-        encounterRequest.EntityTargetAction = new EntityTargetAction();
-        encounterRequest.EntityTargetAction.Tiles = updatedOverlayTiles;
 
         await encounterStateRef.UpdateEncounterAsync(encounterRequest);
     }
