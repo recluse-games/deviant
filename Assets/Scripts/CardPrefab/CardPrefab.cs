@@ -205,7 +205,7 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         this.selectedPatternTilePositions = dictionary;
     }
 
-    public void UpdateSelectedTiles(string direction, string previousDirection, Vector3Int entityTile, Vector3Int previousEntityTile)
+    async public void UpdateSelectedTiles(string direction, string previousDirection, Vector3Int entityTile, Vector3Int previousEntityTile)
     {
         GameObject battleFieldOverlay = GameObject.Find("BattlefieldOverlay");
         Tilemap battleFieldOverlayTilemap = battleFieldOverlay.GetComponent<Tilemap>();
@@ -335,10 +335,10 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                     this.selectedPatternTilePositions[action.Key][directionalPattern.Key][i] = newLocation;
                 }
 
-                foreach(var pattern in newPatterns)
+                foreach (var pattern in newPatterns)
                 {
-                   var matched = originalPatterns.Where(oldPattern => oldPattern.x != pattern.x && oldPattern.y != pattern.y).ToList();
-                    foreach(var matchedPattern in matched)
+                    var matched = originalPatterns.Where(oldPattern => oldPattern.x != pattern.x && oldPattern.y != pattern.y).ToList();
+                    foreach (var matchedPattern in matched)
                     {
                         battleFieldOverlayTilemap.SetTile(matchedPattern, null);
                     }
@@ -407,6 +407,8 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             }
         }
 
+        List<Deviant.Tile> updatedOverlayTiles = new List<Deviant.Tile>();
+
         // Draw New Tiles
         foreach (var actionKey in newSelectedTilePositions)
         {
@@ -414,10 +416,24 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             {
                 foreach (var vector in newSelectedTilePositions[actionKey.Key][directionKey.Key])
                 {
-                    battleFieldOverlayTilemap.SetTile(vector, selectedTile);
+                    Deviant.Tile newTile = new Deviant.Tile();
+                    newTile.Id = "select_0002";
+
+                    if (vector.y > 0 && vector.x > 0 && vector.y < 8 && vector.x < 8)
+                    {
+                        updatedOverlayTiles.Add(newTile);
+                    }
+                    //battleFieldOverlayTilemap.SetTile(vector, selectedTile);
                 }
             }
         }
+
+        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+
+        encounterRequest.EntityTargetAction = new EntityTargetAction();
+        encounterRequest.EntityTargetAction.Tiles = updatedOverlayTiles;
+
+        await encounterStateRef.UpdateEncounterAsync(encounterRequest);
     }
 
     public void OnPointerClick(PointerEventData eventData)

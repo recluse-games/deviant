@@ -16,7 +16,6 @@ public class BattlefieldOverlay : MonoBehaviour
     // Update is called once per frame
     async void Update()
     {
-        Deviant.Tiles updatedOverlayTiles = new Deviant.Tiles();
 
         UnityEngine.Tilemaps.Tile currentTileAsset = Resources.Load<UnityEngine.Tilemaps.Tile>("Art/Tiles/select_0002");
         Tilemap tilemap = this.GetComponent<Tilemap>();
@@ -24,14 +23,23 @@ public class BattlefieldOverlay : MonoBehaviour
         Vector3Int tilemapOrigin = tilemap.origin;
         Vector3Int tilemapSize = tilemap.size;
 
+        var newTiles = encounterStateRef.GetEncounter().Board.OverlayTiles;
+
+        for (int y = 0; y < newTiles.Tiles_.Count; y++)
+        {
+            for (int x = 0; x < newTiles.Tiles_[y].Tiles.Count; x++)
+            {
+                UnityEngine.Tilemaps.Tile newTileAsset = Resources.Load<UnityEngine.Tilemaps.Tile>($"Art/Tiles/{newTiles.Tiles_[y].Tiles[x].Id}");
+                Debug.Log("X/Y: " + x + y + "tile: " + newTiles.Tiles_[y].Tiles[x].Id);
+                tilemap.SetTile(new Vector3Int(x, y, 0), newTileAsset);
+                tilemap.RefreshTile(new Vector3Int(x, y, 0));
+            }
+        }
+
         for (int x = tilemap.origin.x; x < tilemap.size.x; x++)
         {
-            Deviant.TilesRow newTilesRow = new Deviant.TilesRow();
-
             for (int y = tilemap.origin.y; y < tilemap.size.y; y++)
             {
-                Deviant.Tile newTile = new Deviant.Tile();
-
                 if (x < 0 || x > 8 || y < 0 || y > 8)
                 {
                     if (tilemap.GetTile(new Vector3Int(x, y, 0)))
@@ -54,7 +62,6 @@ public class BattlefieldOverlay : MonoBehaviour
                                 {
                                     tilemap.SetTile(new Vector3Int(rowTest, y, 0), currentTileAsset);
                                     tilemap.RefreshTile(new Vector3Int(rowTest, y, 0));
-                                    newTile.Id = "select_0002";
                                 }
                             }
 
@@ -64,22 +71,12 @@ public class BattlefieldOverlay : MonoBehaviour
                                 {
                                     tilemap.SetTile(new Vector3Int(x, columnTest, 0), currentTileAsset);
                                     tilemap.RefreshTile(new Vector3Int(x, columnTest, 0));
-                                    newTile.Id = "select_0002";
                                 }
                             }
                         }
                     }
                 }
-
-                newTilesRow.Tiles.Add(newTile);
             }
         }
-
-        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-        encounterRequest.EntityTargetAction = new EntityTargetAction();
-        encounterRequest.EntityTargetAction.Id = "1234";
-        encounterRequest.EntityTargetAction.Tiles = updatedOverlayTiles;
-
-        await encounterStateRef.UpdateEncounterAsync(encounterRequest);
     }
 };
