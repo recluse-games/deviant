@@ -46,7 +46,7 @@ public class EntitySpawner : MonoBehaviour
 
 					AlignSpriteToTile(entity, currentTileLocation);
 					Enable2DBoxCollider(entity);
-					SetAnimation(entity.GetComponent<Entity>(), board.Entities.Entities_[y].Entities[x].State);
+					SetAnimation(entity.transform.gameObject.GetComponentInChildren<Animator>(), board.Entities.Entities_[y].Entities[x].State);
 					FlipEnemyOrientation(entity, entityAlignment);
 					TagEntity(entity, entityAlignment);
 
@@ -64,7 +64,6 @@ public class EntitySpawner : MonoBehaviour
 					if (existingEntity != null)
 					{
 						Vector3Int existingEntityLocation = overlay.WorldToCell(existingEntity.transform.position);
-						SetAnimation(existingEntity.GetComponent<Entity>(), board.Entities.Entities_[y].Entities[x].State);
 
 						if (existingEntityLocation.x != y || existingEntityLocation.y != x)
 						{
@@ -91,12 +90,9 @@ public class EntitySpawner : MonoBehaviour
 		entity.transform.position = battlefieldTilemapRef.CellToWorld(currentCellPosition);
 	}
 
-	private void SetAnimation(Entity entity, Deviant.EntityStateNames state)
+	private void SetAnimation(Animator entityAnimator, Deviant.EntityStateNames state)
 	{
-		Animator entityAnimator = entity.transform.gameObject.GetComponent<Animator>();
-		int stateTriggerHash = Animator.StringToHash(state.ToString());
-
-		entityAnimator.SetTrigger(stateTriggerHash);
+		entityAnimator.SetTrigger(state.ToString());
 	}
 
 	private void Enable2DBoxCollider(EntityPrefab entity) {
