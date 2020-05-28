@@ -226,6 +226,10 @@ public class IsometricGrid : MonoBehaviour
                     }
                 }
 
+                Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+                encounterRequest.EntityTargetAction = new EntityTargetAction();
+                await encounterStateRef.UpdateEncounterAsync(encounterRequest);
+
                 GameObject.Find($"/UI").GetComponent<UI>().ResetRotation();
             }
         }

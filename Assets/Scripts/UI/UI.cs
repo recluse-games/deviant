@@ -11,14 +11,14 @@ public class UI : MonoBehaviour
     float deckX, deckY, deckZ;
 
     [SerializeField]
-	string playerId = default;
+    string playerId = default;
 
     [SerializeField]
     CardPrefab cardPrefab = default;
 
     private Vector3Int previousEntityLocation = default;
     private string previousRotation = "down";
-	private EncounterState encounterStateRef = default;
+    private EncounterState encounterStateRef = default;
     private GameObject activeEntityObject = default;
     private Camera cam;
 
@@ -32,7 +32,7 @@ public class UI : MonoBehaviour
         return this.previousRotation;
     }
 
-    void UpdateThings()
+    async void UpdateThings()
     {
         if (activeEntityObject != default)
         {
@@ -54,7 +54,7 @@ public class UI : MonoBehaviour
                     {
                         if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
                         {
-                            currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("up", previousRotation, activeEntityLocation, previousEntityLocation);
+                            await currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("up", previousRotation, activeEntityLocation, previousEntityLocation);
                             previousRotation = "up";
                             previousEntityLocation = activeEntityLocation;
                         }
@@ -72,7 +72,7 @@ public class UI : MonoBehaviour
                     {
                         if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
                         {
-                            currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("down", previousRotation, activeEntityLocation, previousEntityLocation);
+                            await currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("down", previousRotation, activeEntityLocation, previousEntityLocation);
                             previousRotation = "down";
                             previousEntityLocation = activeEntityLocation;
                         }
@@ -92,7 +92,7 @@ public class UI : MonoBehaviour
                     {
                         if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
                         {
-                            currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("left", previousRotation, activeEntityLocation, previousEntityLocation);
+                            await currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("left", previousRotation, activeEntityLocation, previousEntityLocation);
                             previousRotation = "left";
                             previousEntityLocation = activeEntityLocation;
                         }
@@ -111,7 +111,7 @@ public class UI : MonoBehaviour
                     {
                         if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
                         {
-                            currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("right", previousRotation, activeEntityLocation, previousEntityLocation);
+                            await currentCard.GetComponent<CardPrefab>().UpdateSelectedTiles("right", previousRotation, activeEntityLocation, previousEntityLocation);
                             previousRotation = "right";
                             previousEntityLocation = activeEntityLocation;
                         }
@@ -130,7 +130,8 @@ public class UI : MonoBehaviour
         {
             GameObject existingHandCardGameObject = GameObject.Find("hand_" + card.InstanceId);
 
-            if(existingHandCardGameObject != null) {
+            if (existingHandCardGameObject != null)
+            {
                 x += 70;
                 continue;
             }
@@ -168,7 +169,8 @@ public class UI : MonoBehaviour
         {
             GameObject existingDeckCardGameObject = GameObject.Find("deck_" + card.InstanceId);
 
-            if(existingDeckCardGameObject == null) {
+            if (existingDeckCardGameObject == null)
+            {
                 CardPrefab newDeckCardGameObject = Instantiate(cardPrefab);
                 newDeckCardGameObject.setSprite(card.BackId, "Back");
                 newDeckCardGameObject.transform.localPosition = new Vector3Int(deckx, decky, 0);
@@ -180,7 +182,7 @@ public class UI : MonoBehaviour
             }
         }
     }
-     
+
     // Start is called before the first frame update
     void Start()
     {
@@ -191,7 +193,7 @@ public class UI : MonoBehaviour
     void Update()
     {
         // Retrieve the Current Encounter From Shared State.
-		Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
+        Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
         var activeEntity = encounterState.ActiveEntity;
         activeEntityObject = GameObject.Find($"/entity_{activeEntity.Id}");
 
@@ -201,6 +203,10 @@ public class UI : MonoBehaviour
             CreateDeck(activeEntity);
             CreateHand(activeEntity);
         }
-        UpdateThings();
+
+        if (encounterStateRef.GetEncounter().Board.OverlayTiles != null)
+        {
+            UpdateThings();
+        }
     }
 }

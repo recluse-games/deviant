@@ -94,16 +94,6 @@ public class EncounterState : MonoBehaviour
         }
     }
 
-    async void Update()
-    {
-        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-        encounterRequest.PlayerId = _player;
-        encounterRequest.Encounter = encounter;
-        encounterRequest.GetEncounterState = true;
- 
-        await UpdateEncounterAsync(encounterRequest);
-    }
-
     public void OnDestroyed()
     {
         _channel.ShutdownAsync().Wait();

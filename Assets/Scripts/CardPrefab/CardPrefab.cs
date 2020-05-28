@@ -11,6 +11,8 @@ using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
+using System.Threading.Tasks;
+
 
 public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -136,9 +138,6 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 break;
         }
 
-        Debug.Log(direction);
-        Debug.Log("down" + selectedPatternTilePositions[actionKey]["down"].Count());
-        Debug.Log("right" + selectedPatternTilePositions[actionKey]["right"].Count());
         this.selectedPatternTilePositions = dictionary;
 
     }
@@ -205,7 +204,7 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         this.selectedPatternTilePositions = dictionary;
     }
 
-    async public void UpdateSelectedTiles(string direction, string previousDirection, Vector3Int entityTile, Vector3Int previousEntityTile)
+    public async Task<bool> UpdateSelectedTiles(string direction, string previousDirection, Vector3Int entityTile, Vector3Int previousEntityTile)
     {
         GameObject battleFieldOverlay = GameObject.Find("BattlefieldOverlay");
         Tilemap battleFieldOverlayTilemap = battleFieldOverlay.GetComponent<Tilemap>();
@@ -227,8 +226,6 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
                     int x = pattern.x;
                     int y = pattern.y;
-
-                    Debug.Log("Original Tile Rotation Locaiton" + pattern);
 
                     if (directionalPattern.Key == "up")
                     {
@@ -327,8 +324,6 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                         }
                     }
 
-                    Debug.Log("New Tile Rotation Locaiton" + newLocation);
-
                     originalPatterns.Add(new Vector3Int(pattern.x, pattern.y, pattern.z));
                     newPatterns.Add(new Vector3Int(newLocation.x, newLocation.y, newLocation.z));
 
@@ -341,6 +336,7 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                     foreach (var matchedPattern in matched)
                     {
                         battleFieldOverlayTilemap.SetTile(matchedPattern, null);
+                        battleFieldOverlayTilemap.RefreshTile(matchedPattern);
                     }
                 }
             }
@@ -418,21 +414,22 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 foreach (var vector in newSelectedTilePositions[actionKey.Key][directionKey.Key])
                 {
                     Deviant.Tile newTile = new Deviant.Tile();
-                    newTile.Id = "select_0002";
+                    newTile.Id = "select_0000";
+                    newTile.X = vector.x;
+                    newTile.Y = vector.y;
 
-                    if (vector.y > 0 && vector.x > 0 && vector.y < 8 && vector.x < 8)
-                    {
-                        encounterRequest.EntityTargetAction.Tiles.Add(newTile);
-                    }
-                    //battleFieldOverlayTilemap.SetTile(vector, selectedTile);
+                    encounterRequest.EntityTargetAction.Tiles.Add(newTile);
                 }
             }
         }
 
+        Debug.Log("New Tiles: " + encounterRequest.EntityTargetAction.Tiles);
         await encounterStateRef.UpdateEncounterAsync(encounterRequest);
+
+        return true;
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public async void OnPointerClick(PointerEventData eventData)
     {
         // Retrieve the Current Encounter From Shared State.
         Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
@@ -608,21 +605,36 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                     entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-StopAttack");
                     this.selected = false;
 
+                    Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+                    encounterRequest.EntityTargetAction = new EntityTargetAction();
+
                     foreach (var action in this.selectedPatternTilePositions)
                     {
                         foreach (var pattern in this.selectedPatternTilePositions[action.Key])
                         {
                             foreach (var tileLocation in this.selectedPatternTilePositions[action.Key][pattern.Key])
                             {
-                                battleFieldOverlayTilemap.SetTile(tileLocation, null);
+                                Deviant.Tile newTile = new Deviant.Tile();
+                                newTile.Id = "select_0002";
+                                newTile.X = tileLocation.x;
+                                newTile.Y = tileLocation.y;
+
+                                encounterRequest.EntityTargetAction.Tiles.Add(newTile);
+                                battleFieldOverlayTilemap.RefreshTile(tileLocation);
                             }
                         }
                     }
+
+                    await encounterStateRef.UpdateEncounterAsync(encounterRequest);
                 }
                 else
                 {
                     var animation = entity.transform.gameObject.GetComponentInChildren<Animator>();
                     entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-Attack");
+
+                    Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+                    encounterRequest.EntityTargetAction = new EntityTargetAction();
+                    await encounterStateRef.UpdateEncounterAsync(encounterRequest);
 
                     this.selected = true;
                 }

@@ -17,62 +17,25 @@ public class BattlefieldOverlay : MonoBehaviour
     async void Update()
     {
 
+        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+        encounterRequest.PlayerId = encounterStateRef.GetPlayerId();
+        encounterRequest.GetEncounterState = true;
+
+        await encounterStateRef.UpdateEncounterAsync(encounterRequest);
+
         UnityEngine.Tilemaps.Tile currentTileAsset = Resources.Load<UnityEngine.Tilemaps.Tile>("Art/Tiles/select_0002");
         Tilemap tilemap = this.GetComponent<Tilemap>();
-        var entities = GameObject.FindGameObjectsWithTag("entity_friendly");
-        Vector3Int tilemapOrigin = tilemap.origin;
-        Vector3Int tilemapSize = tilemap.size;
 
-        var newTiles = encounterStateRef.GetEncounter().Board.OverlayTiles;
-
-        foreach(var tile in newTiles.Tiles_)
+        if (encounterStateRef.GetEncounter().Board.OverlayTiles != null)
         {
-            UnityEngine.Tilemaps.Tile newTileAsset = Resources.Load<UnityEngine.Tilemaps.Tile>($"Art/Tiles/{newTiles.Tiles_[y].Tiles[x].Id}");
-            Debug.Log("X/Y: " + x + y + "tile: " + newTiles.Tiles_[tile.y].Tiles[tile.x].Id);
-            tilemap.SetTile(new Vector3Int(x, y, 0), newTileAsset);
-            tilemap.RefreshTile(new Vector3Int(x, y, 0));
-        }
+            var newTiles = encounterStateRef.GetEncounter().Board.OverlayTiles;
+            tilemap.ClearAllTiles();
 
-        for (int x = tilemap.origin.x; x < tilemap.size.x; x++)
-        {
-            for (int y = tilemap.origin.y; y < tilemap.size.y; y++)
+            foreach (var tile in newTiles)
             {
-                if (x < 0 || x > 8 || y < 0 || y > 8)
-                {
-                    if (tilemap.GetTile(new Vector3Int(x, y, 0)))
-                    {
-                        tilemap.SetTile(new Vector3Int(x, y, 0), currentTileAsset);
-                        tilemap.RefreshTile(new Vector3Int(x, y, 0));
-                    }
-                }
-
-                // Need to support positive spells as well as attacks too.
-                foreach(var entity in entities)
-                {
-                    if(tilemap.WorldToCell(entity.transform.position).x == x && tilemap.WorldToCell(entity.transform.position).y == y)
-                    {
-                        if (tilemap.GetTile(new Vector3Int(x, y, 0)))
-                        {
-                            for (int rowTest = x; rowTest < tilemap.size.x; rowTest++)
-                            {
-                                if (tilemap.GetTile(new Vector3Int(rowTest, y, 0)))
-                                {
-                                    tilemap.SetTile(new Vector3Int(rowTest, y, 0), currentTileAsset);
-                                    tilemap.RefreshTile(new Vector3Int(rowTest, y, 0));
-                                }
-                            }
-
-                            for (int columnTest = y; columnTest < tilemap.size.y; columnTest++)
-                            {
-                                if (tilemap.GetTile(new Vector3Int(x, columnTest, 0)))
-                                {
-                                    tilemap.SetTile(new Vector3Int(x, columnTest, 0), currentTileAsset);
-                                    tilemap.RefreshTile(new Vector3Int(x, columnTest, 0));
-                                }
-                            }
-                        }
-                    }
-                }
+                UnityEngine.Tilemaps.Tile newTileAsset = Resources.Load<UnityEngine.Tilemaps.Tile>($"Art/Tiles/{tile.Id}");
+                tilemap.SetTile(new Vector3Int(tile.X, tile.Y, 0), currentTileAsset);
+                tilemap.RefreshTile(new Vector3Int(tile.X, tile.Y, 0));
             }
         }
     }
