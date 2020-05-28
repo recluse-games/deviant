@@ -26,19 +26,21 @@ namespace Deviant {
           string.Concat(
             "CgxFbnRpdHkucHJvdG8SB0RldmlhbnQaD0FsaWdubWVudC5wcm90bxoQQXR0",
             "YWNobWVudC5wcm90bxoNQ2xhc3Nlcy5wcm90bxoQQ29uZGl0aW9ucy5wcm90",
-            "bxoKSGFuZC5wcm90bxoKRGVjay5wcm90bxoNRGlzY2FyZC5wcm90byLJAgoG",
-            "RW50aXR5EgoKAmlkGAEgASgJEgoKAmhwGAIgASgFEgoKAmFwGAMgASgFEiUK",
-            "CWFsaWdubWVudBgEIAEoDjISLkRldmlhbnQuQWxpZ25tZW50Eh8KBWNsYXNz",
-            "GAUgASgOMhAuRGV2aWFudC5DbGFzc2VzEicKCmNvbmRpdGlvbnMYBiADKA4y",
-            "Ey5EZXZpYW50LkNvbmRpdGlvbnMSKAoLYXR0YWNobWVudHMYByADKA4yEy5E",
-            "ZXZpYW50LkF0dGFjaG1lbnQSGwoEaGFuZBgIIAEoCzINLkRldmlhbnQuSGFu",
-            "ZBIbCgRkZWNrGAkgASgLMg0uRGV2aWFudC5EZWNrEiEKB2Rpc2NhcmQYCiAB",
-            "KAsyEC5EZXZpYW50LkRpc2NhcmQSEgoKaW5pdGlhdGl2ZRgLIAEoBRIPCgdv",
-            "d25lcklkGAwgASgJQglaB2RldmlhbnRiBnByb3RvMw=="));
+            "bxoKSGFuZC5wcm90bxoKRGVjay5wcm90bxoNRGlzY2FyZC5wcm90bxoWRW50",
+            "aXR5U3RhdGVOYW1lcy5wcm90byLzAgoGRW50aXR5EgoKAmlkGAEgASgJEgoK",
+            "AmhwGAIgASgFEgoKAmFwGAMgASgFEigKBXN0YXRlGAQgASgOMhkuRGV2aWFu",
+            "dC5FbnRpdHlTdGF0ZU5hbWVzEiUKCWFsaWdubWVudBgFIAEoDjISLkRldmlh",
+            "bnQuQWxpZ25tZW50Eh8KBWNsYXNzGAYgASgOMhAuRGV2aWFudC5DbGFzc2Vz",
+            "EicKCmNvbmRpdGlvbnMYByADKA4yEy5EZXZpYW50LkNvbmRpdGlvbnMSKAoL",
+            "YXR0YWNobWVudHMYCCADKA4yEy5EZXZpYW50LkF0dGFjaG1lbnQSGwoEaGFu",
+            "ZBgJIAEoCzINLkRldmlhbnQuSGFuZBIbCgRkZWNrGAogASgLMg0uRGV2aWFu",
+            "dC5EZWNrEiEKB2Rpc2NhcmQYCyABKAsyEC5EZXZpYW50LkRpc2NhcmQSEgoK",
+            "aW5pdGlhdGl2ZRgMIAEoBRIPCgdvd25lcklkGA0gASgJQglaB2RldmlhbnRi",
+            "BnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Deviant.AlignmentReflection.Descriptor, global::Deviant.AttachmentReflection.Descriptor, global::Deviant.ClassesReflection.Descriptor, global::Deviant.ConditionsReflection.Descriptor, global::Deviant.HandReflection.Descriptor, global::Deviant.DeckReflection.Descriptor, global::Deviant.DiscardReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::Deviant.AlignmentReflection.Descriptor, global::Deviant.AttachmentReflection.Descriptor, global::Deviant.ClassesReflection.Descriptor, global::Deviant.ConditionsReflection.Descriptor, global::Deviant.HandReflection.Descriptor, global::Deviant.DeckReflection.Descriptor, global::Deviant.DiscardReflection.Descriptor, global::Deviant.EntityStateNamesReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Entity), global::Deviant.Entity.Parser, new[]{ "Id", "Hp", "Ap", "Alignment", "Class", "Conditions", "Attachments", "Hand", "Deck", "Discard", "Initiative", "OwnerId" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Entity), global::Deviant.Entity.Parser, new[]{ "Id", "Hp", "Ap", "State", "Alignment", "Class", "Conditions", "Attachments", "Hand", "Deck", "Discard", "Initiative", "OwnerId" }, null, null, null, null)
           }));
     }
     #endregion
@@ -73,6 +75,7 @@ namespace Deviant {
       id_ = other.id_;
       hp_ = other.hp_;
       ap_ = other.ap_;
+      state_ = other.state_;
       alignment_ = other.alignment_;
       class_ = other.class_;
       conditions_ = other.conditions_.Clone();
@@ -123,8 +126,19 @@ namespace Deviant {
       }
     }
 
+    /// <summary>Field number for the "state" field.</summary>
+    public const int StateFieldNumber = 4;
+    private global::Deviant.EntityStateNames state_ = global::Deviant.EntityStateNames.Idle;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Deviant.EntityStateNames State {
+      get { return state_; }
+      set {
+        state_ = value;
+      }
+    }
+
     /// <summary>Field number for the "alignment" field.</summary>
-    public const int AlignmentFieldNumber = 4;
+    public const int AlignmentFieldNumber = 5;
     private global::Deviant.Alignment alignment_ = global::Deviant.Alignment.Friendly;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Deviant.Alignment Alignment {
@@ -135,7 +149,7 @@ namespace Deviant {
     }
 
     /// <summary>Field number for the "class" field.</summary>
-    public const int ClassFieldNumber = 5;
+    public const int ClassFieldNumber = 6;
     private global::Deviant.Classes class_ = global::Deviant.Classes.Warrior;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Deviant.Classes Class {
@@ -146,9 +160,9 @@ namespace Deviant {
     }
 
     /// <summary>Field number for the "conditions" field.</summary>
-    public const int ConditionsFieldNumber = 6;
+    public const int ConditionsFieldNumber = 7;
     private static readonly pb::FieldCodec<global::Deviant.Conditions> _repeated_conditions_codec
-        = pb::FieldCodec.ForEnum(50, x => (int) x, x => (global::Deviant.Conditions) x);
+        = pb::FieldCodec.ForEnum(58, x => (int) x, x => (global::Deviant.Conditions) x);
     private readonly pbc::RepeatedField<global::Deviant.Conditions> conditions_ = new pbc::RepeatedField<global::Deviant.Conditions>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::Deviant.Conditions> Conditions {
@@ -156,9 +170,9 @@ namespace Deviant {
     }
 
     /// <summary>Field number for the "attachments" field.</summary>
-    public const int AttachmentsFieldNumber = 7;
+    public const int AttachmentsFieldNumber = 8;
     private static readonly pb::FieldCodec<global::Deviant.Attachment> _repeated_attachments_codec
-        = pb::FieldCodec.ForEnum(58, x => (int) x, x => (global::Deviant.Attachment) x);
+        = pb::FieldCodec.ForEnum(66, x => (int) x, x => (global::Deviant.Attachment) x);
     private readonly pbc::RepeatedField<global::Deviant.Attachment> attachments_ = new pbc::RepeatedField<global::Deviant.Attachment>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::Deviant.Attachment> Attachments {
@@ -166,7 +180,7 @@ namespace Deviant {
     }
 
     /// <summary>Field number for the "hand" field.</summary>
-    public const int HandFieldNumber = 8;
+    public const int HandFieldNumber = 9;
     private global::Deviant.Hand hand_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Deviant.Hand Hand {
@@ -177,7 +191,7 @@ namespace Deviant {
     }
 
     /// <summary>Field number for the "deck" field.</summary>
-    public const int DeckFieldNumber = 9;
+    public const int DeckFieldNumber = 10;
     private global::Deviant.Deck deck_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Deviant.Deck Deck {
@@ -188,7 +202,7 @@ namespace Deviant {
     }
 
     /// <summary>Field number for the "discard" field.</summary>
-    public const int DiscardFieldNumber = 10;
+    public const int DiscardFieldNumber = 11;
     private global::Deviant.Discard discard_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Deviant.Discard Discard {
@@ -199,7 +213,7 @@ namespace Deviant {
     }
 
     /// <summary>Field number for the "initiative" field.</summary>
-    public const int InitiativeFieldNumber = 11;
+    public const int InitiativeFieldNumber = 12;
     private int initiative_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int Initiative {
@@ -210,7 +224,7 @@ namespace Deviant {
     }
 
     /// <summary>Field number for the "ownerId" field.</summary>
-    public const int OwnerIdFieldNumber = 12;
+    public const int OwnerIdFieldNumber = 13;
     private string ownerId_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string OwnerId {
@@ -236,6 +250,7 @@ namespace Deviant {
       if (Id != other.Id) return false;
       if (Hp != other.Hp) return false;
       if (Ap != other.Ap) return false;
+      if (State != other.State) return false;
       if (Alignment != other.Alignment) return false;
       if (Class != other.Class) return false;
       if(!conditions_.Equals(other.conditions_)) return false;
@@ -254,6 +269,7 @@ namespace Deviant {
       if (Id.Length != 0) hash ^= Id.GetHashCode();
       if (Hp != 0) hash ^= Hp.GetHashCode();
       if (Ap != 0) hash ^= Ap.GetHashCode();
+      if (State != global::Deviant.EntityStateNames.Idle) hash ^= State.GetHashCode();
       if (Alignment != global::Deviant.Alignment.Friendly) hash ^= Alignment.GetHashCode();
       if (Class != global::Deviant.Classes.Warrior) hash ^= Class.GetHashCode();
       hash ^= conditions_.GetHashCode();
@@ -288,34 +304,38 @@ namespace Deviant {
         output.WriteRawTag(24);
         output.WriteInt32(Ap);
       }
-      if (Alignment != global::Deviant.Alignment.Friendly) {
+      if (State != global::Deviant.EntityStateNames.Idle) {
         output.WriteRawTag(32);
+        output.WriteEnum((int) State);
+      }
+      if (Alignment != global::Deviant.Alignment.Friendly) {
+        output.WriteRawTag(40);
         output.WriteEnum((int) Alignment);
       }
       if (Class != global::Deviant.Classes.Warrior) {
-        output.WriteRawTag(40);
+        output.WriteRawTag(48);
         output.WriteEnum((int) Class);
       }
       conditions_.WriteTo(output, _repeated_conditions_codec);
       attachments_.WriteTo(output, _repeated_attachments_codec);
       if (hand_ != null) {
-        output.WriteRawTag(66);
+        output.WriteRawTag(74);
         output.WriteMessage(Hand);
       }
       if (deck_ != null) {
-        output.WriteRawTag(74);
+        output.WriteRawTag(82);
         output.WriteMessage(Deck);
       }
       if (discard_ != null) {
-        output.WriteRawTag(82);
+        output.WriteRawTag(90);
         output.WriteMessage(Discard);
       }
       if (Initiative != 0) {
-        output.WriteRawTag(88);
+        output.WriteRawTag(96);
         output.WriteInt32(Initiative);
       }
       if (OwnerId.Length != 0) {
-        output.WriteRawTag(98);
+        output.WriteRawTag(106);
         output.WriteString(OwnerId);
       }
       if (_unknownFields != null) {
@@ -334,6 +354,9 @@ namespace Deviant {
       }
       if (Ap != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Ap);
+      }
+      if (State != global::Deviant.EntityStateNames.Idle) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) State);
       }
       if (Alignment != global::Deviant.Alignment.Friendly) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Alignment);
@@ -377,6 +400,9 @@ namespace Deviant {
       }
       if (other.Ap != 0) {
         Ap = other.Ap;
+      }
+      if (other.State != global::Deviant.EntityStateNames.Idle) {
+        State = other.State;
       }
       if (other.Alignment != global::Deviant.Alignment.Friendly) {
         Alignment = other.Alignment;
@@ -434,49 +460,53 @@ namespace Deviant {
             break;
           }
           case 32: {
-            Alignment = (global::Deviant.Alignment) input.ReadEnum();
+            State = (global::Deviant.EntityStateNames) input.ReadEnum();
             break;
           }
           case 40: {
-            Class = (global::Deviant.Classes) input.ReadEnum();
+            Alignment = (global::Deviant.Alignment) input.ReadEnum();
             break;
           }
-          case 50:
           case 48: {
-            conditions_.AddEntriesFrom(input, _repeated_conditions_codec);
+            Class = (global::Deviant.Classes) input.ReadEnum();
             break;
           }
           case 58:
           case 56: {
+            conditions_.AddEntriesFrom(input, _repeated_conditions_codec);
+            break;
+          }
+          case 66:
+          case 64: {
             attachments_.AddEntriesFrom(input, _repeated_attachments_codec);
             break;
           }
-          case 66: {
+          case 74: {
             if (hand_ == null) {
               Hand = new global::Deviant.Hand();
             }
             input.ReadMessage(Hand);
             break;
           }
-          case 74: {
+          case 82: {
             if (deck_ == null) {
               Deck = new global::Deviant.Deck();
             }
             input.ReadMessage(Deck);
             break;
           }
-          case 82: {
+          case 90: {
             if (discard_ == null) {
               Discard = new global::Deviant.Discard();
             }
             input.ReadMessage(Discard);
             break;
           }
-          case 88: {
+          case 96: {
             Initiative = input.ReadInt32();
             break;
           }
-          case 98: {
+          case 106: {
             OwnerId = input.ReadString();
             break;
           }
