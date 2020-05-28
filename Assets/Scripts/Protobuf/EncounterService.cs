@@ -27,24 +27,26 @@ namespace Deviant {
             "ChZFbmNvdW50ZXJTZXJ2aWNlLnByb3RvEgdEZXZpYW50Gg9FbmNvdW50ZXIu",
             "cHJvdG8aF0VudGl0eUFjdGlvbk5hbWVzLnByb3RvGhZFbnRpdHlNb3ZlQWN0",
             "aW9uLnByb3RvGhZFbnRpdHlQbGF5QWN0aW9uLnByb3RvGhhFbnRpdHlUYXJn",
-            "ZXRBY3Rpb24ucHJvdG8ivwIKEEVuY291bnRlclJlcXVlc3QSEAoIcGxheWVy",
-            "SWQYASABKAkSJQoJZW5jb3VudGVyGAIgASgLMhIuRGV2aWFudC5FbmNvdW50",
-            "ZXISNAoQZW50aXR5QWN0aW9uTmFtZRgDIAEoDjIaLkRldmlhbnQuRW50aXR5",
-            "QWN0aW9uTmFtZXMSMwoQZW50aXR5TW92ZUFjdGlvbhgEIAEoCzIZLkRldmlh",
-            "bnQuRW50aXR5TW92ZUFjdGlvbhIzChBlbnRpdHlQbGF5QWN0aW9uGAUgASgL",
-            "MhkuRGV2aWFudC5FbnRpdHlQbGF5QWN0aW9uEjcKEmVudGl0eVRhcmdldEFj",
-            "dGlvbhgGIAEoCzIbLkRldmlhbnQuRW50aXR5VGFyZ2V0QWN0aW9uEhkKEWdl",
-            "dEVuY291bnRlclN0YXRlGAcgASgIIkwKEUVuY291bnRlclJlc3BvbnNlEhAK",
-            "CHBsYXllcklkGAEgASgJEiUKCWVuY291bnRlchgCIAEoCzISLkRldmlhbnQu",
-            "RW5jb3VudGVyMq0BChBFbmNvdW50ZXJTZXJ2aWNlEksKDlN0YXJ0RW5jb3Vu",
-            "dGVyEhkuRGV2aWFudC5FbmNvdW50ZXJSZXF1ZXN0GhouRGV2aWFudC5FbmNv",
-            "dW50ZXJSZXNwb25zZSgBMAESTAoPVXBkYXRlRW5jb3VudGVyEhkuRGV2aWFu",
-            "dC5FbmNvdW50ZXJSZXF1ZXN0GhouRGV2aWFudC5FbmNvdW50ZXJSZXNwb25z",
-            "ZSgBMAFCCVoHZGV2aWFudGIGcHJvdG8z"));
+            "ZXRBY3Rpb24ucHJvdG8aF0VudGl0eVN0YXRlQWN0aW9uLnByb3RvIvYCChBF",
+            "bmNvdW50ZXJSZXF1ZXN0EhAKCHBsYXllcklkGAEgASgJEiUKCWVuY291bnRl",
+            "chgCIAEoCzISLkRldmlhbnQuRW5jb3VudGVyEjQKEGVudGl0eUFjdGlvbk5h",
+            "bWUYAyABKA4yGi5EZXZpYW50LkVudGl0eUFjdGlvbk5hbWVzEjMKEGVudGl0",
+            "eU1vdmVBY3Rpb24YBCABKAsyGS5EZXZpYW50LkVudGl0eU1vdmVBY3Rpb24S",
+            "MwoQZW50aXR5UGxheUFjdGlvbhgFIAEoCzIZLkRldmlhbnQuRW50aXR5UGxh",
+            "eUFjdGlvbhI3ChJlbnRpdHlUYXJnZXRBY3Rpb24YBiABKAsyGy5EZXZpYW50",
+            "LkVudGl0eVRhcmdldEFjdGlvbhI1ChFlbnRpdHlTdGF0ZUFjdGlvbhgHIAEo",
+            "CzIaLkRldmlhbnQuRW50aXR5U3RhdGVBY3Rpb24SGQoRZ2V0RW5jb3VudGVy",
+            "U3RhdGUYCCABKAgiTAoRRW5jb3VudGVyUmVzcG9uc2USEAoIcGxheWVySWQY",
+            "ASABKAkSJQoJZW5jb3VudGVyGAIgASgLMhIuRGV2aWFudC5FbmNvdW50ZXIy",
+            "rQEKEEVuY291bnRlclNlcnZpY2USSwoOU3RhcnRFbmNvdW50ZXISGS5EZXZp",
+            "YW50LkVuY291bnRlclJlcXVlc3QaGi5EZXZpYW50LkVuY291bnRlclJlc3Bv",
+            "bnNlKAEwARJMCg9VcGRhdGVFbmNvdW50ZXISGS5EZXZpYW50LkVuY291bnRl",
+            "clJlcXVlc3QaGi5EZXZpYW50LkVuY291bnRlclJlc3BvbnNlKAEwAUIJWgdk",
+            "ZXZpYW50YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Deviant.EncounterReflection.Descriptor, global::Deviant.EntityActionNamesReflection.Descriptor, global::Deviant.EntityMoveActionReflection.Descriptor, global::Deviant.EntityPlayActionReflection.Descriptor, global::Deviant.EntityTargetActionReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::Deviant.EncounterReflection.Descriptor, global::Deviant.EntityActionNamesReflection.Descriptor, global::Deviant.EntityMoveActionReflection.Descriptor, global::Deviant.EntityPlayActionReflection.Descriptor, global::Deviant.EntityTargetActionReflection.Descriptor, global::Deviant.EntityStateActionReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterRequest), global::Deviant.EncounterRequest.Parser, new[]{ "PlayerId", "Encounter", "EntityActionName", "EntityMoveAction", "EntityPlayAction", "EntityTargetAction", "GetEncounterState" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterRequest), global::Deviant.EncounterRequest.Parser, new[]{ "PlayerId", "Encounter", "EntityActionName", "EntityMoveAction", "EntityPlayAction", "EntityTargetAction", "EntityStateAction", "GetEncounterState" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterResponse), global::Deviant.EncounterResponse.Parser, new[]{ "PlayerId", "Encounter" }, null, null, null, null)
           }));
     }
@@ -86,6 +88,7 @@ namespace Deviant {
       entityMoveAction_ = other.entityMoveAction_ != null ? other.entityMoveAction_.Clone() : null;
       entityPlayAction_ = other.entityPlayAction_ != null ? other.entityPlayAction_.Clone() : null;
       entityTargetAction_ = other.entityTargetAction_ != null ? other.entityTargetAction_.Clone() : null;
+      entityStateAction_ = other.entityStateAction_ != null ? other.entityStateAction_.Clone() : null;
       getEncounterState_ = other.getEncounterState_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -161,8 +164,19 @@ namespace Deviant {
       }
     }
 
+    /// <summary>Field number for the "entityStateAction" field.</summary>
+    public const int EntityStateActionFieldNumber = 7;
+    private global::Deviant.EntityStateAction entityStateAction_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Deviant.EntityStateAction EntityStateAction {
+      get { return entityStateAction_; }
+      set {
+        entityStateAction_ = value;
+      }
+    }
+
     /// <summary>Field number for the "getEncounterState" field.</summary>
-    public const int GetEncounterStateFieldNumber = 7;
+    public const int GetEncounterStateFieldNumber = 8;
     private bool getEncounterState_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool GetEncounterState {
@@ -191,6 +205,7 @@ namespace Deviant {
       if (!object.Equals(EntityMoveAction, other.EntityMoveAction)) return false;
       if (!object.Equals(EntityPlayAction, other.EntityPlayAction)) return false;
       if (!object.Equals(EntityTargetAction, other.EntityTargetAction)) return false;
+      if (!object.Equals(EntityStateAction, other.EntityStateAction)) return false;
       if (GetEncounterState != other.GetEncounterState) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -204,6 +219,7 @@ namespace Deviant {
       if (entityMoveAction_ != null) hash ^= EntityMoveAction.GetHashCode();
       if (entityPlayAction_ != null) hash ^= EntityPlayAction.GetHashCode();
       if (entityTargetAction_ != null) hash ^= EntityTargetAction.GetHashCode();
+      if (entityStateAction_ != null) hash ^= EntityStateAction.GetHashCode();
       if (GetEncounterState != false) hash ^= GetEncounterState.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -242,8 +258,12 @@ namespace Deviant {
         output.WriteRawTag(50);
         output.WriteMessage(EntityTargetAction);
       }
+      if (entityStateAction_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(EntityStateAction);
+      }
       if (GetEncounterState != false) {
-        output.WriteRawTag(56);
+        output.WriteRawTag(64);
         output.WriteBool(GetEncounterState);
       }
       if (_unknownFields != null) {
@@ -271,6 +291,9 @@ namespace Deviant {
       }
       if (entityTargetAction_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(EntityTargetAction);
+      }
+      if (entityStateAction_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(EntityStateAction);
       }
       if (GetEncounterState != false) {
         size += 1 + 1;
@@ -315,6 +338,12 @@ namespace Deviant {
           EntityTargetAction = new global::Deviant.EntityTargetAction();
         }
         EntityTargetAction.MergeFrom(other.EntityTargetAction);
+      }
+      if (other.entityStateAction_ != null) {
+        if (entityStateAction_ == null) {
+          EntityStateAction = new global::Deviant.EntityStateAction();
+        }
+        EntityStateAction.MergeFrom(other.EntityStateAction);
       }
       if (other.GetEncounterState != false) {
         GetEncounterState = other.GetEncounterState;
@@ -366,7 +395,14 @@ namespace Deviant {
             input.ReadMessage(EntityTargetAction);
             break;
           }
-          case 56: {
+          case 58: {
+            if (entityStateAction_ == null) {
+              EntityStateAction = new global::Deviant.EntityStateAction();
+            }
+            input.ReadMessage(EntityStateAction);
+            break;
+          }
+          case 64: {
             GetEncounterState = input.ReadBool();
             break;
           }
