@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Deviant;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityAsync;
+
 
 public class Entity : MonoBehaviour
 {
@@ -23,7 +27,7 @@ public class Entity : MonoBehaviour
 		return this.id;
 	}
 
-	public void cleanTiles() {
+	async public Task<bool> cleanTiles() {
 		GameObject tilemapGameObject = GameObject.Find("BattlefieldOverlay");
 		Tilemap tilemap = tilemapGameObject.GetComponent<Tilemap>();
 
@@ -33,12 +37,36 @@ public class Entity : MonoBehaviour
 
 		tilemap.SetTile(_previousEntityCellLocation, null);
 
-		this.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-Idle");
+		// Update the Server With New Entity Animation State
+		Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+		encounterRequest.EntityStateAction = new Deviant.EntityStateAction();
+		encounterRequest.EntityStateAction.Id = this.id;
+		encounterRequest.EntityStateAction.State = Deviant.EntityStateNames.Idle;
+		await _encounterStateComponentReference.UpdateEncounterAsync(encounterRequest);
 
 		this.validTiles = new List<Vector3Int>();
+		return true;
 	}
 
-  	public void OnMouseDown()
+	public void UpdateAnimation(Deviant.Encounter encounter)
+	{
+		for (int y = 0; y < encounter.Board.Entities.Entities_.Count; y++)
+		{
+			for (int x = 0; x < encounter.Board.Entities.Entities_[y].Entities.Count; x++)
+			{
+				//If the box is close to the ground
+				if (this.id == encounter.Board.Entities.Entities_[y].Entities[x].Id)
+				{
+					var currentState = encounter.Board.Entities.Entities_[y].Entities[x].State;
+
+					// Update Animation State Machine Triggers
+					GetComponent<Animator>().SetTrigger(currentState.ToString().ToUpper());
+				}
+			}
+		}
+	}
+
+	async public void OnMouseDown()
     {
 		// Retrieve the Current Encounter From Shared State.
 		Deviant.Encounter encounterState = _encounterStateComponentReference.GetEncounter();
@@ -50,14 +78,19 @@ public class Entity : MonoBehaviour
 			this.moveSelection = true;
 			Deviant.Entity activeEntity = encounterState.ActiveEntity;
 
-			this.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-Walk");
+			// Update the Server With New Entity Animation State
+			Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+			encounterRequest.EntityStateAction = new Deviant.EntityStateAction();
+			encounterRequest.EntityStateAction.Id = this.id;
+			encounterRequest.EntityStateAction.State = Deviant.EntityStateNames.Moving;
+			await _encounterStateComponentReference.UpdateEncounterAsync(encounterRequest);
 
 			GameObject overLayGrid = GameObject.Find("IsometricGrid");
 			GridLayout gridLayout = overLayGrid.transform.GetComponent<GridLayout>();
 
 			Vector3Int cellLocation = gridLayout.WorldToCell(this.transform.position);
 
-			Tile myTile = Resources.Load<Tile>("Art/Tiles/select_0001");
+			UnityEngine.Tilemaps.Tile myTile = Resources.Load<UnityEngine.Tilemaps.Tile>("Art/Tiles/select_0001");
 			GameObject tilemapGameObject = GameObject.Find("BattlefieldOverlay");
 			Tilemap tilemap = tilemapGameObject.GetComponent<Tilemap>();
 

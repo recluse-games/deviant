@@ -37,7 +37,7 @@ public class EntitySpawner : MonoBehaviour
 				currentEntities.Add(board.Entities.Entities_[y].Entities[x].Id);
 
 				// Validate that we haven't already spawned this unit in and that it's not an empty placeholder object.
-				if (this.activeEntities.Contains(entityId) == false && entityId != "") {
+				if (this.activeEntities.Contains(entityId) == false && entityId != "" && entityId != null) {
 					EntityPrefab entity = Instantiate(entityPrefab);
 					
 					// Set the Sprite Based off the entity class + alignment
@@ -46,12 +46,14 @@ public class EntitySpawner : MonoBehaviour
 
 					AlignSpriteToTile(entity, currentTileLocation);
 					Enable2DBoxCollider(entity);
-					SetAnimation(entity.transform.gameObject.GetComponentInChildren<Animator>(), board.Entities.Entities_[y].Entities[x].State);
 					FlipEnemyOrientation(entity, entityAlignment);
 					TagEntity(entity, entityAlignment);
 
 					// Set the entityid
 					entity.SetId(entityId);
+
+					// Add the new state observer to the entity
+					_encounterStateComponentReference.AddEntityObserver(GameObject.Find("entity_" + entityId));
 
 					// Update Active Entities
 					this.activeEntities.Add(board.Entities.Entities_[y].Entities[x].Id);
@@ -88,11 +90,6 @@ public class EntitySpawner : MonoBehaviour
 
 	private void AlignSpriteToTile(EntityPrefab entity, Vector3Int currentCellPosition) {
 		entity.transform.position = battlefieldTilemapRef.CellToWorld(currentCellPosition);
-	}
-
-	private void SetAnimation(Animator entityAnimator, Deviant.EntityStateNames state)
-	{
-		entityAnimator.SetTrigger(state.ToString());
 	}
 
 	private void Enable2DBoxCollider(EntityPrefab entity) {

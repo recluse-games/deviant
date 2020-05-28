@@ -24,6 +24,11 @@ public class EntityPrefab: MonoBehaviour
 		entity.gameObject.GetComponent<Entity>().id = id;
 	}
 
+	public GameObject GetEntity()
+	{
+		return entity.gameObject;
+	}
+
 	public void setXFlip()
 	{
 		Vector3 newScale = entity.gameObject.transform.localScale;

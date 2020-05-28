@@ -14,15 +14,8 @@ public class BattlefieldOverlay : MonoBehaviour
     }
 
     // Update is called once per frame
-    async void Update()
+    void Update()
     {
-
-        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-        encounterRequest.PlayerId = encounterStateRef.GetPlayerId();
-        encounterRequest.GetEncounterState = true;
-
-        await encounterStateRef.UpdateEncounterAsync(encounterRequest);
-
         UnityEngine.Tilemaps.Tile currentTileAsset = Resources.Load<UnityEngine.Tilemaps.Tile>("Art/Tiles/select_0002");
         Tilemap tilemap = this.GetComponent<Tilemap>();
 

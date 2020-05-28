@@ -111,23 +111,9 @@ public class IsometricGrid : MonoBehaviour
                 if (position.Equals(location) == true && validateMovementLocation(position, activeEntity.Alignment) && validateMovementLocationEmpty(position, entityObjects) && validateEntityActive(entity, activeEntity))
                 {
                     Vector3 startingPos = entity.transform.parent.position;
-                    this.updatePlayerPosition(overlay.WorldToCell(startingPos).x, overlay.WorldToCell(startingPos).y, position.x, position.y);
+                    await this.updatePlayerPosition(overlay.WorldToCell(startingPos).x, overlay.WorldToCell(startingPos).y, position.x, position.y);
 
-                    startTime = Time.time;
-
-                    journeyLength = Vector3.Distance(entity.transform.parent.position, overlay.GetCellCenterWorld(position));
-
-                    // Distance moved equals elapsed time times speed..
-                    float distCovered = (Time.time - startTime) * speed;
-
-                    // Fraction of journey completed equals current distance divided by total distance.
-                    float fractionOfJourney = distCovered / journeyLength;
-
-                    startTime += Time.deltaTime * 100f;
-                    // Set our position as a fraction of the distance between the markers.
-                    entity.transform.parent.position = Vector3.Lerp(startingPos, overlay.GetCellCenterWorld(position), startTime);
-
-                    entity.cleanTiles();
+                    await entity.cleanTiles();
                     break;
                 };
             }
@@ -245,7 +231,7 @@ public class IsometricGrid : MonoBehaviour
         }
     }
 
-    async public void updatePlayerPosition(int startx, int starty, int endx, int endy)
+    async public Task<bool> updatePlayerPosition(int startx, int starty, int endx, int endy)
     {
         Deviant.EntityMoveAction entityMoveAction = new Deviant.EntityMoveAction();
         entityMoveAction.StartXPosition = startx;
@@ -261,5 +247,7 @@ public class IsometricGrid : MonoBehaviour
 
 
         await encounterStateRef.UpdateEncounterAsync(encounterRequest);
+
+        return true;
     }
 }
