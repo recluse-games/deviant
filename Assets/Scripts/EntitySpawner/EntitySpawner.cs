@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
+using System.Collections;
 
 public class EntitySpawner : MonoBehaviour
 {
@@ -45,7 +46,7 @@ public class EntitySpawner : MonoBehaviour
 
 					AlignSpriteToTile(entity, currentTileLocation);
 					Enable2DBoxCollider(entity);
-					EnableIdleAnimation(entity);
+					SetAnimation(entity.GetComponent<Entity>(), board.Entities.Entities_[y].Entities[x].State);
 					FlipEnemyOrientation(entity, entityAlignment);
 					TagEntity(entity, entityAlignment);
 
@@ -59,9 +60,12 @@ public class EntitySpawner : MonoBehaviour
 				if(entityId != null)
 				{
 					GameObject existingEntity = GameObject.Find("entity_" + entityId);
-					if(existingEntity != null)
+
+					if (existingEntity != null)
 					{
 						Vector3Int existingEntityLocation = overlay.WorldToCell(existingEntity.transform.position);
+						SetAnimation(existingEntity.GetComponent<Entity>(), board.Entities.Entities_[y].Entities[x].State);
+
 						if (existingEntityLocation.x != y || existingEntityLocation.y != x)
 						{
 							Debug.Log("MOVE ENTITY");
@@ -87,15 +91,16 @@ public class EntitySpawner : MonoBehaviour
 		entity.transform.position = battlefieldTilemapRef.CellToWorld(currentCellPosition);
 	}
 
-	private void Enable2DBoxCollider(EntityPrefab entity) {
-		entity.transform.gameObject.GetComponentInChildren<BoxCollider2D>().enabled = true;
+	private void SetAnimation(Entity entity, Deviant.EntityStateNames state)
+	{
+		Animator entityAnimator = entity.transform.gameObject.GetComponent<Animator>();
+		int stateTriggerHash = Animator.StringToHash(state.ToString());
+
+		entityAnimator.SetTrigger(stateTriggerHash);
 	}
 
-	private void EnableIdleAnimation(EntityPrefab entity) {
-		Animator entityAnimator = entity.transform.gameObject.GetComponentInChildren<Animator>();
-
-		entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrrior-Idle");
-		entityAnimator.enabled = true;
+	private void Enable2DBoxCollider(EntityPrefab entity) {
+		entity.transform.gameObject.GetComponentInChildren<BoxCollider2D>().enabled = true;
 	}
 
 	private void TagEntity(EntityPrefab entity, Deviant.Alignment entityAlignment)
