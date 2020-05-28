@@ -134,6 +134,43 @@ public class EncounterState : MonoBehaviour
         }
     }
 
+    public async Task<bool> GetUpdatedEncounter()
+    {
+        Deviant.Encounter updatedEncounter = this.encounter;
+        GameObject subject = this.subject;
+
+
+
+        try
+        {
+            using (var call = _client.UpdateEncounter())
+            {
+                await call.RequestStream.WriteAsync(encounterRequest);
+                var responseReaderTask = Task.Run(async () =>
+                {
+                    while (await call.ResponseStream.MoveNext())
+                    {
+                        Encounter encounterResponseData = call.ResponseStream.Current.Encounter;
+                        updatedEncounter = encounterResponseData;
+                    }
+                });
+
+                await call.RequestStream.CompleteAsync();
+            }
+
+            encounter = updatedEncounter;
+            Debug.Log(encounter);
+            this.subject.GetComponent<Subject>().Notify(encounter);
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError(ex);
+            throw ex;
+        }
+    }
+
     public void OnDestroyed()
     {
         _channel.ShutdownAsync().Wait();
