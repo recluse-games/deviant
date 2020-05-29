@@ -22,7 +22,7 @@ public class BattlefieldOverlay : MonoBehaviour
         if (encounterStateRef.GetEncounter().Board.OverlayTiles != null)
         {
             var newTiles = encounterStateRef.GetEncounter().Board.OverlayTiles;
-            tilemap.ClearAllTiles();
+            //tilemap.ClearAllTiles();
 
             foreach (var tile in newTiles)
             {

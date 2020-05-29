@@ -9,6 +9,7 @@ using UnityAsync;
 public class EncounterState : MonoBehaviour
 {
     public Deviant.Encounter encounter = default;
+
     private Deviant.EncounterService.EncounterServiceClient _client;
     private Channel _channel;
     private string _player = default;
@@ -30,6 +31,8 @@ public class EncounterState : MonoBehaviour
         
         DeviantClient();
         SetupSubject();
+
+        await GetUpdatedEncounter();
         await CreateEncounterAsync();
     }
 
@@ -42,6 +45,7 @@ public class EncounterState : MonoBehaviour
     {
         return this.encounter;
     }
+
 
     public void SetupSubject()
     {
@@ -63,32 +67,16 @@ public class EncounterState : MonoBehaviour
 
     public async Task<bool> CreateEncounterAsync()
     {
-        Deviant.Encounter updatedEncounter = this.encounter;
-        GameObject subject = this.subject;
+        await Await.BackgroundSyncContext();
+
+        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+        encounterRequest.PlayerId = this._player;
 
         try
         {
-            using (var call = _client.StartEncounter())
-            {
-                Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-                encounterRequest.PlayerId = this._player;
+            var call = _client.StartEncounter();
+            await call.RequestStream.WriteAsync(encounterRequest);
 
-                await call.RequestStream.WriteAsync(encounterRequest);
-                var responseReaderTask = Task.Run(async () =>
-                {
-                    while (await call.ResponseStream.MoveNext())
-                    {
-                        Encounter encounterResponseData = call.ResponseStream.Current.Encounter;
-                        updatedEncounter = encounterResponseData;
-                    }
-                });
-
-                await call.RequestStream.CompleteAsync();
-            }
-
-            Debug.Log(updatedEncounter);
-            encounter = updatedEncounter;
-            this.subject.GetComponent<Subject>().Notify(this.encounter);
             return true;
         }
         catch (Exception ex)
@@ -100,30 +88,12 @@ public class EncounterState : MonoBehaviour
 
     public async Task<bool> UpdateEncounterAsync(Deviant.EncounterRequest encounterRequest)
     {
-        Deviant.Encounter updatedEncounter = this.encounter;
-        GameObject subject = this.subject;
-        encounterRequest.PlayerId = this._player;
+        await Await.BackgroundSyncContext();
 
         try
         {
-            using (var call = _client.UpdateEncounter())
-            {
-                await call.RequestStream.WriteAsync(encounterRequest);
-                var responseReaderTask = Task.Run(async () =>
-                {
-                    while (await call.ResponseStream.MoveNext())
-                    {
-                        Encounter encounterResponseData = call.ResponseStream.Current.Encounter;
-                        updatedEncounter = encounterResponseData;
-                    }
-                });
-
-                await call.RequestStream.CompleteAsync();
-            }
-
-            encounter = updatedEncounter;
-            Debug.Log(encounter);
-            this.subject.GetComponent<Subject>().Notify(encounter);
+            var call = _client.UpdateEncounter();
+            await call.RequestStream.WriteAsync(encounterRequest);
 
             return true;
         }
@@ -134,33 +104,37 @@ public class EncounterState : MonoBehaviour
         }
     }
 
+    public async Task<bool> ProcessStreamResponse(AsyncDuplexStreamingCall<EncounterRequest, EncounterResponse> call)
+    {
+        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+        encounterRequest.EntityGetAction = new Deviant.EntityGetAction();
+        encounterRequest.PlayerId = this._player;
+
+        await call.RequestStream.WriteAsync(encounterRequest);
+
+        while (true)
+        {
+            if (await call.ResponseStream.MoveNext())
+            {
+                Encounter encounterResponseData = call.ResponseStream.Current.Encounter;
+                encounter = encounterResponseData;
+                Debug.Log(encounter);
+            }
+            else
+            {
+                Debug.Log("empty");
+                continue;
+            }
+        }
+    }
+
     public async Task<bool> GetUpdatedEncounter()
     {
-        Deviant.Encounter updatedEncounter = this.encounter;
-        GameObject subject = this.subject;
-
-
-
         try
         {
-            using (var call = _client.UpdateEncounter())
-            {
-                await call.RequestStream.WriteAsync(encounterRequest);
-                var responseReaderTask = Task.Run(async () =>
-                {
-                    while (await call.ResponseStream.MoveNext())
-                    {
-                        Encounter encounterResponseData = call.ResponseStream.Current.Encounter;
-                        updatedEncounter = encounterResponseData;
-                    }
-                });
+            var call = _client.UpdateEncounter();
 
-                await call.RequestStream.CompleteAsync();
-            }
-
-            encounter = updatedEncounter;
-            Debug.Log(encounter);
-            this.subject.GetComponent<Subject>().Notify(encounter);
+            await ProcessStreamResponse(call);
 
             return true;
         }
@@ -169,6 +143,11 @@ public class EncounterState : MonoBehaviour
             Debug.LogError(ex);
             throw ex;
         }
+    }
+
+    public void Update()
+    {
+        this.subject.GetComponent<Subject>().Notify(encounter);
     }
 
     public void OnDestroyed()

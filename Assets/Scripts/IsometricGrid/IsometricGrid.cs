@@ -1,34 +1,18 @@
 ﻿using Deviant;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
-using UnityScript.Scripting.Pipeline;
+using UnityAsync;
 
 public class IsometricGrid : MonoBehaviour
 {
     public EncounterState encounterStateRef = default;
 
-    // Movement speed in units per second.
-    private float speed = 10.0F;
-
-    // Time when the movement started.
-    private float startTime;
-
-    // Total distance between the markers.
-    private float journeyLength;
-
     private CardPrefab selectedCard = default;
-
-    private Vector3Int previousTransform = new Vector3Int(1, 1, 1);
 
     private GameObject activeEntityObject = default;
     
-    private string previousCursorLocation = default;
-
     public void Start()
     {
         encounterStateRef = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
@@ -166,57 +150,60 @@ public class IsometricGrid : MonoBehaviour
     {
         UpdateSelectedCard();
 
-        if (encounterStateRef.GetEncounter().ActiveEntity.OwnerId == encounterStateRef.GetPlayerId())
+        if (encounterStateRef.GetEncounter() != null)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (encounterStateRef.GetEncounter().ActiveEntity.OwnerId == encounterStateRef.GetPlayerId())
             {
-                if (selectedCard.GetSelected())
+                if (Input.GetMouseButtonDown(0))
                 {
-                    if (selectedCard.GetSelectedTilePositions().Count > 0)
+                    if (selectedCard.GetSelected())
                     {
-                        await ProcessAttack();
-                    }
-                }
-
-                await ProcessMove();
-            }
-            else if (Input.GetMouseButtonDown(1))
-            {
-                var activeEntity = encounterStateRef.GetEncounter().ActiveEntity;
-                activeEntityObject = GameObject.Find($"/entity_{activeEntity.Id}");
-
-                var animation = activeEntityObject.transform.gameObject.GetComponentInChildren<Animator>();
-                activeEntityObject.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-StopAttack");
-
-                var currentCards = GameObject.FindGameObjectsWithTag("hand");
-
-                foreach (var currentCard in currentCards)
-                {
-                    if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
-                    {
-                        currentCard.GetComponent<CardPrefab>().SetSelected(false);
-                        var selectedPatternTilePositions = currentCard.GetComponent<CardPrefab>().GetSelectedTilePositions();
-
-
-                        foreach (var action in selectedPatternTilePositions)
+                        if (selectedCard.GetSelectedTilePositions().Count > 0)
                         {
-                            foreach (var pattern in selectedPatternTilePositions[action.Key])
+                            await ProcessAttack();
+                        }
+                    }
+
+                    await ProcessMove();
+                }
+                else if (Input.GetMouseButtonDown(1))
+                {
+                    var activeEntity = encounterStateRef.GetEncounter().ActiveEntity;
+                    activeEntityObject = GameObject.Find($"/entity_{activeEntity.Id}");
+
+                    var animation = activeEntityObject.transform.gameObject.GetComponentInChildren<Animator>();
+                    activeEntityObject.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-StopAttack");
+
+                    var currentCards = GameObject.FindGameObjectsWithTag("hand");
+
+                    foreach (var currentCard in currentCards)
+                    {
+                        if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
+                        {
+                            currentCard.GetComponent<CardPrefab>().SetSelected(false);
+                            var selectedPatternTilePositions = currentCard.GetComponent<CardPrefab>().GetSelectedTilePositions();
+
+
+                            foreach (var action in selectedPatternTilePositions)
                             {
-                                foreach (var tileLocation in selectedPatternTilePositions[action.Key][pattern.Key])
+                                foreach (var pattern in selectedPatternTilePositions[action.Key])
                                 {
-                                    Tilemap test = GameObject.Find($"/IsometricGrid/BattlefieldOverlay").GetComponent<BattlefieldOverlay>().GetComponent<Tilemap>();
-                                    test.SetTile(tileLocation, null);
+                                    foreach (var tileLocation in selectedPatternTilePositions[action.Key][pattern.Key])
+                                    {
+                                        Tilemap test = GameObject.Find($"/IsometricGrid/BattlefieldOverlay").GetComponent<BattlefieldOverlay>().GetComponent<Tilemap>();
+                                        test.SetTile(tileLocation, null);
+                                    }
                                 }
                             }
                         }
                     }
+
+                    Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+                    encounterRequest.EntityTargetAction = new EntityTargetAction();
+
+                    await encounterStateRef.UpdateEncounterAsync(encounterRequest);
+                    GameObject.Find($"/UI").GetComponent<UI>().ResetRotation();
                 }
-
-                Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-                encounterRequest.EntityTargetAction = new EntityTargetAction();
-                await encounterStateRef.UpdateEncounterAsync(encounterRequest);
-
-                GameObject.Find($"/UI").GetComponent<UI>().ResetRotation();
             }
         }
     }
