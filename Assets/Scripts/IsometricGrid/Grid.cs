@@ -17,11 +17,12 @@ public class Grid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
-	public void Update() {
-		if (Input.GetMouseButtonDown(0))
+    public void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
             GridLayout gridLayout = this.transform.GetComponent<GridLayout>();
             Tilemap overlay = this.transform.Find("Overlay").GetComponent<Tilemap>();
@@ -31,31 +32,25 @@ public class Grid : MonoBehaviour
             Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
             Vector3Int position = gridLayout.WorldToCell(worldPoint);
 
-             foreach (Entity entity in entityObjects)
-             {
-                foreach (Vector3Int location in entity.validTiles) {
-                    if(position.Equals(location) == true) {
-                        Vector3 startingPos = entity.transform.parent.position;
-                        startTime = Time.time;
-                        
-                        journeyLength = Vector3.Distance(entity.transform.parent.position, overlay.GetCellCenterWorld(position));
+            foreach (Entity entity in entityObjects)
+            {
+                Vector3 startingPos = entity.transform.parent.position;
+                startTime = Time.time;
 
-                        // Distance moved equals elapsed time times speed..
-                        float distCovered = (Time.time - startTime) * speed;
+                journeyLength = Vector3.Distance(entity.transform.parent.position, overlay.GetCellCenterWorld(position));
 
-                        // Fraction of journey completed equals current distance divided by total distance.
-                        float fractionOfJourney = distCovered / journeyLength;
+                // Distance moved equals elapsed time times speed..
+                float distCovered = (Time.time - startTime) * speed;
 
-                        startTime += Time.deltaTime*100f;
-                        // Set our position as a fraction of the distance between the markers.
-                        entity.transform.parent.position = Vector3.Lerp(startingPos, overlay.GetCellCenterWorld(position), startTime);
+                // Fraction of journey completed equals current distance divided by total distance.
+                float fractionOfJourney = distCovered / journeyLength;
 
-                        entity.cleanTiles();
-                        break;
-                    };
-                }
-             }
-             
+                startTime += Time.deltaTime * 100f;
+                // Set our position as a fraction of the distance between the markers.
+                entity.transform.parent.position = Vector3.Lerp(startingPos, overlay.GetCellCenterWorld(position), startTime);
+
+                break;
+            };
         }
-	}
+    }
 }

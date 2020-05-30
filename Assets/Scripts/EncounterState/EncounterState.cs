@@ -67,15 +67,24 @@ public class EncounterState : MonoBehaviour
 
     public async Task<bool> CreateEncounterAsync()
     {
-        await Await.BackgroundSyncContext();
-
         Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+        encounterRequest.EncounterPlay
         encounterRequest.PlayerId = this._player;
 
         try
         {
             var call = _client.StartEncounter();
             await call.RequestStream.WriteAsync(encounterRequest);
+
+            var readTask = Task.Run(async () =>
+            {
+                while (await call.ResponseStream.MoveNext())
+                {
+                    Debug.Log("Processing");
+                }
+            });
+
+            await call.RequestStream.CompleteAsync();
 
             return true;
         }
@@ -88,12 +97,21 @@ public class EncounterState : MonoBehaviour
 
     public async Task<bool> UpdateEncounterAsync(Deviant.EncounterRequest encounterRequest)
     {
-        await Await.BackgroundSyncContext();
-
         try
         {
             var call = _client.UpdateEncounter();
             await call.RequestStream.WriteAsync(encounterRequest);
+
+            var readTask = Task.Run(async () =>
+            {
+                while (await call.ResponseStream.MoveNext())
+                {
+                    Debug.Log("Processing");
+                }
+            });
+
+            await call.RequestStream.CompleteAsync();
+            Debug.Log("Completed");
 
             return true;
         }
@@ -114,17 +132,21 @@ public class EncounterState : MonoBehaviour
 
         while (true)
         {
-            if (await call.ResponseStream.MoveNext())
+            await Task.Delay(TimeSpan.FromMilliseconds(25));
+
+            var readTask = Task.Run(async () =>
             {
-                Encounter encounterResponseData = call.ResponseStream.Current.Encounter;
-                encounter = encounterResponseData;
-                Debug.Log(encounter);
-            }
-            else
-            {
-                Debug.Log("empty");
-                continue;
-            }
+                while (await call.ResponseStream.MoveNext())
+                {
+                    Encounter encounterResponseData = call.ResponseStream.Current.Encounter;
+                    encounter = encounterResponseData;
+                    Debug.Log("Processing");
+                }
+            });
+
+            Debug.Log("Completed");
+
+            continue;
         }
     }
 

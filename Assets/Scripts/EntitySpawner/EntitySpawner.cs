@@ -69,7 +69,6 @@ public class EntitySpawner : MonoBehaviour
 
 						if (existingEntityLocation.x != y || existingEntityLocation.y != x)
 						{
-							Debug.Log("MOVE ENTITY");
 							existingEntity.transform.position = overlay.CellToWorld(new Vector3Int(y, x, 0));
 						}
 					}

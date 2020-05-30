@@ -19,10 +19,11 @@ public class BattlefieldOverlay : MonoBehaviour
         UnityEngine.Tilemaps.Tile currentTileAsset = Resources.Load<UnityEngine.Tilemaps.Tile>("Art/Tiles/select_0002");
         Tilemap tilemap = this.GetComponent<Tilemap>();
 
+        tilemap.ClearAllTiles();
+
         if (encounterStateRef.GetEncounter().Board.OverlayTiles != null)
         {
             var newTiles = encounterStateRef.GetEncounter().Board.OverlayTiles;
-            //tilemap.ClearAllTiles();
 
             foreach (var tile in newTiles)
             {

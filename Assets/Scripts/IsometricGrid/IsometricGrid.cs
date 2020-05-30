@@ -90,17 +90,14 @@ public class IsometricGrid : MonoBehaviour
 
         foreach (Entity entity in entityObjects)
         {
-            foreach (Vector3Int location in entity.validTiles)
+            if (validateEntityActive(entity, activeEntity))
             {
-                if (position.Equals(location) == true && validateMovementLocation(position, activeEntity.Alignment) && validateMovementLocationEmpty(position, entityObjects) && validateEntityActive(entity, activeEntity))
-                {
-                    Vector3 startingPos = entity.transform.parent.position;
-                    await this.updatePlayerPosition(overlay.WorldToCell(startingPos).x, overlay.WorldToCell(startingPos).y, position.x, position.y);
+                Vector3 startingPos = entity.transform.parent.position;
+                await updatePlayerPosition(overlay.WorldToCell(startingPos).x, overlay.WorldToCell(startingPos).y, position.x, position.y);
 
-                    await entity.cleanTiles();
-                    break;
-                };
-            }
+                await entity.SetIdle();
+                break;
+            };
         }
 
         return true;

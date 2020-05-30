@@ -27,8 +27,6 @@ namespace ObserverPattern
         //The box will always jump in this case
         public void UpdateEntityData(Deviant.Encounter encounter)
         {
-            Debug.Log("Notified Object");
-
             entityObj.GetComponentInChildren<Entity>().UpdateAnimation(encounter);
         }
     }

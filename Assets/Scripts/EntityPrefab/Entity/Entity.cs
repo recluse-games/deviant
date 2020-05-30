@@ -8,14 +8,8 @@ using UnityAsync;
 
 public class Entity : MonoBehaviour
 {
-	GameObject selectionArrow;
-
 	public string id = default;
-	public bool moveSelection = false;
-
-	public List<Vector3Int> validTiles = new List<Vector3Int>();
-
-	private Vector3Int _previousEntityCellLocation = default;
+	GameObject selectionArrow;
 	private EncounterState _encounterStateComponentReference = default;
 
 	public void Start() {
@@ -27,16 +21,7 @@ public class Entity : MonoBehaviour
 		return this.id;
 	}
 
-	async public Task<bool> cleanTiles() {
-		GameObject tilemapGameObject = GameObject.Find("BattlefieldOverlay");
-		Tilemap tilemap = tilemapGameObject.GetComponent<Tilemap>();
-
-		foreach(Vector3Int location in this.validTiles) {
-			tilemap.SetTile(location, null);
-		}
-
-		tilemap.SetTile(_previousEntityCellLocation, null);
-
+	async public Task<bool> SetIdle() {
 		// Update the Server With New Entity Animation State
 		Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
 		encounterRequest.EntityStateAction = new Deviant.EntityStateAction();
@@ -44,7 +29,13 @@ public class Entity : MonoBehaviour
 		encounterRequest.EntityStateAction.State = Deviant.EntityStateNames.Idle;
 		await _encounterStateComponentReference.UpdateEncounterAsync(encounterRequest);
 
-		this.validTiles = new List<Vector3Int>();
+		// Remove all highlighted tiles.
+		Deviant.EncounterRequest encounterOverlayTilesRequest = new Deviant.EncounterRequest();
+		encounterOverlayTilesRequest.EntityTargetAction = new Deviant.EntityTargetAction();
+		encounterOverlayTilesRequest.EntityTargetAction.Id = this.id;
+		encounterOverlayTilesRequest.EntityTargetAction.Tiles.Clear();
+		await _encounterStateComponentReference.UpdateEncounterAsync(encounterOverlayTilesRequest);
+
 		return true;
 	}
 
@@ -59,6 +50,7 @@ public class Entity : MonoBehaviour
 				{
 					var currentState = encounter.Board.Entities.Entities_[y].Entities[x].State;
 
+					Debug.Log("Current state is: " + currentState);
 					// Update Animation State Machine Triggers
 					GetComponent<Animator>().SetTrigger(currentState.ToString().ToUpper());
 				}
@@ -73,49 +65,69 @@ public class Entity : MonoBehaviour
 
 		if(encounterState.ActiveEntity.OwnerId == _encounterStateComponentReference.GetPlayerId() && encounterState.ActiveEntity.Id == this.id && encounterState.ActiveEntity.Ap > 0)
 		{
-			Deviant.Board board = encounterState.Board;
-
-			this.moveSelection = true;
-			Deviant.Entity activeEntity = encounterState.ActiveEntity;
-
 			// Update the Server With New Entity Animation State
-			Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-			encounterRequest.EntityStateAction = new Deviant.EntityStateAction();
-			encounterRequest.EntityStateAction.Id = this.id;
-			encounterRequest.EntityStateAction.State = Deviant.EntityStateNames.Moving;
-			await _encounterStateComponentReference.UpdateEncounterAsync(encounterRequest);
+			Deviant.EncounterRequest encounterEntityStateRequest = new Deviant.EncounterRequest();
+			encounterEntityStateRequest.EntityStateAction = new Deviant.EntityStateAction();
+			encounterEntityStateRequest.EntityStateAction.Id = this.id;
+			encounterEntityStateRequest.EntityStateAction.State = Deviant.EntityStateNames.Moving;
+			await _encounterStateComponentReference.UpdateEncounterAsync(encounterEntityStateRequest);
 
 			GameObject overLayGrid = GameObject.Find("IsometricGrid");
 			GridLayout gridLayout = overLayGrid.transform.GetComponent<GridLayout>();
 
 			Vector3Int cellLocation = gridLayout.WorldToCell(this.transform.position);
 
-			UnityEngine.Tilemaps.Tile myTile = Resources.Load<UnityEngine.Tilemaps.Tile>("Art/Tiles/select_0001");
-			GameObject tilemapGameObject = GameObject.Find("BattlefieldOverlay");
-			Tilemap tilemap = tilemapGameObject.GetComponent<Tilemap>();
+			List<Deviant.Tile> moveTargetTiles = new List<Deviant.Tile>();
 
-			Vector3Int up = new Vector3Int(1, 0, 0);
-			Vector3Int down = new Vector3Int(-1, 0, 0);
-			Vector3Int left = new Vector3Int(0, 1, 0);
-			Vector3Int right = new Vector3Int(0, -1, 0);
+			Vector3Int upOffset = new Vector3Int(1, 0, 0);
+			Vector3Int downOffset = new Vector3Int(-1, 0, 0);
+			Vector3Int leftOffset = new Vector3Int(0, 1, 0);
+			Vector3Int rightOffset = new Vector3Int(0, -1, 0);
 
-			tilemap.SetTile(cellLocation, myTile);
-			tilemap.SetTile(cellLocation + up, myTile);
-			tilemap.SetTile(cellLocation + down, myTile);
-			tilemap.SetTile(cellLocation + left, myTile);
-			tilemap.SetTile(cellLocation + right, myTile);
+			Vector3Int tileMapUp = cellLocation + upOffset;
+			Vector3Int tileMapDown = cellLocation + downOffset;
+			Vector3Int tileMapLeft = cellLocation + leftOffset;
+			Vector3Int tileMapRight = cellLocation + rightOffset;
 
-			Vector3Int upThing = cellLocation + up;
-			Vector3Int downThing = cellLocation + down;
-			Vector3Int leftThing = cellLocation + left;
-			Vector3Int rightThing = cellLocation + right;
+			Deviant.Tile up = new Deviant.Tile();
+			Deviant.Tile down = new Deviant.Tile();
+			Deviant.Tile left = new Deviant.Tile();
+			Deviant.Tile right = new Deviant.Tile();
 
-			// Load All Tiles Into Entity State for Future Cleaning
-			_previousEntityCellLocation = cellLocation;
-			validTiles.Add(upThing);
-			validTiles.Add(downThing);
-			validTiles.Add(leftThing);
-			validTiles.Add(rightThing);
+			up.X = tileMapUp.x;
+			up.Y = tileMapUp.y;
+
+			down.X = tileMapDown.x;
+			down.Y = tileMapDown.y;
+
+			left.X = tileMapLeft.x;
+			left.Y = tileMapLeft.y;
+
+			right.X = tileMapRight.x;
+			right.Y = tileMapRight.y;
+
+			up.Id = "select_0001";
+			down.Id = "select_0001";
+			left.Id = "select_0001";
+			right.Id = "select_0001";
+
+
+			moveTargetTiles.Add(up);
+			moveTargetTiles.Add(up);
+			moveTargetTiles.Add(up);
+			moveTargetTiles.Add(up);
+
+
+			// Update the Server With Newly Highlighted Overlay Tiles
+			Deviant.EncounterRequest encounterOverlayTilesRequest = new Deviant.EncounterRequest();
+			encounterOverlayTilesRequest.EntityTargetAction = new Deviant.EntityTargetAction();
+			encounterOverlayTilesRequest.EntityTargetAction.Id = this.id;
+			encounterOverlayTilesRequest.EntityTargetAction.Tiles.Add(up);
+			encounterOverlayTilesRequest.EntityTargetAction.Tiles.Add(down);
+			encounterOverlayTilesRequest.EntityTargetAction.Tiles.Add(left);
+			encounterOverlayTilesRequest.EntityTargetAction.Tiles.Add(right);
+
+			await _encounterStateComponentReference.UpdateEncounterAsync(encounterOverlayTilesRequest);
 		}
 	}
 
