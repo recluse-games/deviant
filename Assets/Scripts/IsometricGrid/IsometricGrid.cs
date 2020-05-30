@@ -95,7 +95,7 @@ public class IsometricGrid : MonoBehaviour
                 Vector3 startingPos = entity.transform.parent.position;
                 await updatePlayerPosition(overlay.WorldToCell(startingPos).x, overlay.WorldToCell(startingPos).y, position.x, position.y);
 
-                await entity.SetIdle();
+                //await entity.SetIdle();
                 break;
             };
         }

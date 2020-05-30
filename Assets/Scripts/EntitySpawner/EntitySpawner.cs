@@ -18,7 +18,7 @@ public class EntitySpawner : MonoBehaviour
 		_encounterStateComponentReference = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
 	}
 
-	public void Update() {
+	async public void Update() {
 		// Retrieve the Current Encounter From Shared State.
 		Deviant.Encounter encounterState = _encounterStateComponentReference.GetEncounter();
 		Deviant.Board board = encounterState.Board;
@@ -70,6 +70,8 @@ public class EntitySpawner : MonoBehaviour
 						if (existingEntityLocation.x != y || existingEntityLocation.y != x)
 						{
 							existingEntity.transform.position = overlay.CellToWorld(new Vector3Int(y, x, 0));
+							Entity existingEntityInstance = existingEntity.GetComponentInChildren<Entity>();
+							await existingEntityInstance.SetIdle();
 						}
 					}
 				}

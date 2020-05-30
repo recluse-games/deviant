@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Deviant;
@@ -14,6 +15,9 @@ public class EncounterState : MonoBehaviour
     private Channel _channel;
     private string _player = default;
     private string _server = default;
+    private AsyncDuplexStreamingCall<EncounterRequest, EncounterResponse> _call = default;
+    private SemaphoreSlim _writeLock = new SemaphoreSlim(1, 1);
+    private SemaphoreSlim _readLock = new SemaphoreSlim(1, 1);
 
     //Will send notifications that something has happened to whoever is interested
     public GameObject subject = default;
@@ -22,7 +26,9 @@ public class EncounterState : MonoBehaviour
     {
         this._channel = new Channel(this._server, ChannelCredentials.Insecure);
         this._client = new Deviant.EncounterService.EncounterServiceClient(_channel);
+        this._call = _client.UpdateEncounter();
     }
+
     // Start is called before the first frame update
     async void Start()
     {
@@ -32,8 +38,8 @@ public class EncounterState : MonoBehaviour
         DeviantClient();
         SetupSubject();
 
-        await GetUpdatedEncounter();
         await CreateEncounterAsync();
+        await GetUpdatedEncounter();
     }
 
     public string GetPlayerId()
@@ -68,23 +74,15 @@ public class EncounterState : MonoBehaviour
     public async Task<bool> CreateEncounterAsync()
     {
         Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-        encounterRequest.EncounterPlay
+        encounterRequest.EncounterCreateAction = new Deviant.EncounterCreateAction();
+        encounterRequest.EncounterCreateAction.PlayerId = this._player;
         encounterRequest.PlayerId = this._player;
 
         try
         {
-            var call = _client.StartEncounter();
-            await call.RequestStream.WriteAsync(encounterRequest);
-
-            var readTask = Task.Run(async () =>
-            {
-                while (await call.ResponseStream.MoveNext())
-                {
-                    Debug.Log("Processing");
-                }
-            });
-
-            await call.RequestStream.CompleteAsync();
+            await _writeLock.WaitAsync();
+            await _call.RequestStream.WriteAsync(encounterRequest);
+            _writeLock.Release();
 
             return true;
         }
@@ -99,19 +97,11 @@ public class EncounterState : MonoBehaviour
     {
         try
         {
-            var call = _client.UpdateEncounter();
-            await call.RequestStream.WriteAsync(encounterRequest);
+            await _writeLock.WaitAsync();
+            Debug.Log("UpdateEncounterAsync");
 
-            var readTask = Task.Run(async () =>
-            {
-                while (await call.ResponseStream.MoveNext())
-                {
-                    Debug.Log("Processing");
-                }
-            });
-
-            await call.RequestStream.CompleteAsync();
-            Debug.Log("Completed");
+            await _call.RequestStream.WriteAsync(encounterRequest);
+            _writeLock.Release();
 
             return true;
         }
@@ -122,43 +112,30 @@ public class EncounterState : MonoBehaviour
         }
     }
 
-    public async Task<bool> ProcessStreamResponse(AsyncDuplexStreamingCall<EncounterRequest, EncounterResponse> call)
+    public async Task<bool> ProcessStreamResponse()
     {
-        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-        encounterRequest.EntityGetAction = new Deviant.EntityGetAction();
-        encounterRequest.PlayerId = this._player;
-
-        await call.RequestStream.WriteAsync(encounterRequest);
-
-        while (true)
+        while (await _call.ResponseStream.MoveNext())
         {
-            await Task.Delay(TimeSpan.FromMilliseconds(25));
-
-            var readTask = Task.Run(async () =>
-            {
-                while (await call.ResponseStream.MoveNext())
-                {
-                    Encounter encounterResponseData = call.ResponseStream.Current.Encounter;
-                    encounter = encounterResponseData;
-                    Debug.Log("Processing");
-                }
-            });
-
-            Debug.Log("Completed");
-
-            continue;
+            Encounter encounterResponseData = _call.ResponseStream.Current.Encounter;
+            encounter = encounterResponseData;
+            Debug.Log(encounter);
         }
+
+        Debug.Log("Completed");
+
+        return true;
     }
 
-    public async Task<bool> GetUpdatedEncounter()
+    public async Task GetUpdatedEncounter()
     {
         try
         {
-            var call = _client.UpdateEncounter();
-
-            await ProcessStreamResponse(call);
-
-            return true;
+            while (true)
+            {
+                await _readLock.WaitAsync();
+                await ProcessStreamResponse();
+                _readLock.Release();
+            }
         }
         catch (Exception ex)
         {
