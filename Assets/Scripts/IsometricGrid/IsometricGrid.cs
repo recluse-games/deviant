@@ -90,12 +90,10 @@ public class IsometricGrid : MonoBehaviour
 
         foreach (Entity entity in entityObjects)
         {
-            if (validateEntityActive(entity, activeEntity))
+            if (validateEntityActive(entity, activeEntity) && validateMovementLocation(position, activeEntity.Alignment))
             {
                 Vector3 startingPos = entity.transform.parent.position;
                 await updatePlayerPosition(overlay.WorldToCell(startingPos).x, overlay.WorldToCell(startingPos).y, position.x, position.y);
-
-                //await entity.SetIdle();
                 break;
             };
         }
@@ -179,7 +177,6 @@ public class IsometricGrid : MonoBehaviour
                         {
                             currentCard.GetComponent<CardPrefab>().SetSelected(false);
                             var selectedPatternTilePositions = currentCard.GetComponent<CardPrefab>().GetSelectedTilePositions();
-
 
                             foreach (var action in selectedPatternTilePositions)
                             {

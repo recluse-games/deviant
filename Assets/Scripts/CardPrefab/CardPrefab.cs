@@ -23,6 +23,7 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private bool selected = false;
     private bool visable = false;
     public string id = default;
+    public string instanceId = default;
     public EncounterState encounterStateRef = default;
 
     private Dictionary<string, Dictionary<string, List<Vector3Int>>> selectedPatternTilePositions = new Dictionary<string, Dictionary< string, List<Vector3Int>>>();
@@ -40,6 +41,16 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         return this.id;
     }
+
+    public void SetInstanceId(string id)
+    {
+        this.instanceId = id;
+    }
+    public string GetInstanceId()
+    {
+        return this.instanceId;
+    }
+
 
     public void SetVisability(bool visability) {
         this.visable = visability;

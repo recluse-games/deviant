@@ -95,6 +95,8 @@ public class EncounterState : MonoBehaviour
 
     public async Task<bool> UpdateEncounterAsync(Deviant.EncounterRequest encounterRequest)
     {
+        encounterRequest.PlayerId = this._player;
+
         try
         {
             await _writeLock.WaitAsync();

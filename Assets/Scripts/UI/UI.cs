@@ -2,6 +2,7 @@
 using System.Linq;
 using Deviant;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Tilemaps;
 using System.Net;
 
@@ -144,6 +145,7 @@ public class UI : MonoBehaviour
             newCard.transform.gameObject.name = "hand_" + card.InstanceId;
             newCard.GetComponentInChildren<Card>().SetId(card.InstanceId);
             newCard.SetId(card.Id);
+            newCard.SetInstanceId(card.InstanceId);
             newCard.SetVisability(true);
             x += 70;
         }
@@ -157,6 +159,19 @@ public class UI : MonoBehaviour
                     Destroy(deckCardObject);
                 }
             }
+        }
+
+        // Clean up any removed cards
+        var allExistingCards = GameObject.FindObjectsOfType<CardPrefab>();
+        List<string> convertCardsToIds = activeEntity.Hand.Cards.Select(card => card.InstanceId).ToList();
+        List<string> convertGameObjectsToIds = allExistingCards.Select(cardPrefab => cardPrefab.GetInstanceId()).ToList();
+        var cardsIdsToDestroy = convertGameObjectsToIds.Except(convertCardsToIds);
+
+        foreach (var id in cardsIdsToDestroy)
+        {
+            Debug.Log("Time to destory: " + "hand_" + id);
+            GameObject existingDeckCardGameObject = GameObject.Find("hand_" + id);
+            Destroy(existingDeckCardGameObject);
         }
     }
 
@@ -178,8 +193,21 @@ public class UI : MonoBehaviour
                 newDeckCardGameObject.transform.gameObject.tag = "deck";
                 newDeckCardGameObject.transform.gameObject.name = "deck_" + card.InstanceId;
                 newDeckCardGameObject.SetId(card.Id);
+                newDeckCardGameObject.SetInstanceId(card.InstanceId);
                 newDeckCardGameObject.GetComponentInChildren<Card>().SetId(card.InstanceId);
             }
+        }
+
+        // Clean up any removed cards
+        var allExistingCards = GameObject.FindObjectsOfType<CardPrefab>();
+        List<string> convertCardsToIds = activeEntity.Deck.Cards.Select(card => card.InstanceId).ToList();
+        List<string> convertGameObjectsToIds = allExistingCards.Select(cardPrefab => cardPrefab.GetInstanceId()).ToList();
+        var cardsIdsToDestroy = convertGameObjectsToIds.Except(convertCardsToIds);
+
+        foreach (var id in cardsIdsToDestroy)
+        {
+            GameObject existingDeckCardGameObject = GameObject.Find("deck_" + id);
+            Destroy(existingDeckCardGameObject);
         }
     }
 
