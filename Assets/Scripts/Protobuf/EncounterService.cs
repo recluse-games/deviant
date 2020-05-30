@@ -28,26 +28,26 @@ namespace Deviant {
             "cHJvdG8aF0VudGl0eUFjdGlvbk5hbWVzLnByb3RvGhZFbnRpdHlNb3ZlQWN0",
             "aW9uLnByb3RvGhZFbnRpdHlQbGF5QWN0aW9uLnByb3RvGhhFbnRpdHlUYXJn",
             "ZXRBY3Rpb24ucHJvdG8aF0VudGl0eVN0YXRlQWN0aW9uLnByb3RvGhVFbnRp",
-            "dHlHZXRBY3Rpb24ucHJvdG8ijgMKEEVuY291bnRlclJlcXVlc3QSEAoIcGxh",
-            "eWVySWQYASABKAkSJQoJZW5jb3VudGVyGAIgASgLMhIuRGV2aWFudC5FbmNv",
-            "dW50ZXISNAoQZW50aXR5QWN0aW9uTmFtZRgDIAEoDjIaLkRldmlhbnQuRW50",
-            "aXR5QWN0aW9uTmFtZXMSMwoQZW50aXR5TW92ZUFjdGlvbhgEIAEoCzIZLkRl",
-            "dmlhbnQuRW50aXR5TW92ZUFjdGlvbhIzChBlbnRpdHlQbGF5QWN0aW9uGAUg",
-            "ASgLMhkuRGV2aWFudC5FbnRpdHlQbGF5QWN0aW9uEjcKEmVudGl0eVRhcmdl",
-            "dEFjdGlvbhgGIAEoCzIbLkRldmlhbnQuRW50aXR5VGFyZ2V0QWN0aW9uEjUK",
-            "EWVudGl0eVN0YXRlQWN0aW9uGAcgASgLMhouRGV2aWFudC5FbnRpdHlTdGF0",
-            "ZUFjdGlvbhIxCg9lbnRpdHlHZXRBY3Rpb24YCCABKAsyGC5EZXZpYW50LkVu",
-            "dGl0eUdldEFjdGlvbiJMChFFbmNvdW50ZXJSZXNwb25zZRIQCghwbGF5ZXJJ",
-            "ZBgBIAEoCRIlCgllbmNvdW50ZXIYAiABKAsyEi5EZXZpYW50LkVuY291bnRl",
-            "cjKtAQoQRW5jb3VudGVyU2VydmljZRJLCg5TdGFydEVuY291bnRlchIZLkRl",
-            "dmlhbnQuRW5jb3VudGVyUmVxdWVzdBoaLkRldmlhbnQuRW5jb3VudGVyUmVz",
-            "cG9uc2UoATABEkwKD1VwZGF0ZUVuY291bnRlchIZLkRldmlhbnQuRW5jb3Vu",
-            "dGVyUmVxdWVzdBoaLkRldmlhbnQuRW5jb3VudGVyUmVzcG9uc2UoATABQgla",
-            "B2RldmlhbnRiBnByb3RvMw=="));
+            "dHlHZXRBY3Rpb24ucHJvdG8aG0VuY291bnRlckNyZWF0ZUFjdGlvbi5wcm90",
+            "byLNAwoQRW5jb3VudGVyUmVxdWVzdBIQCghwbGF5ZXJJZBgBIAEoCRIlCgll",
+            "bmNvdW50ZXIYAiABKAsyEi5EZXZpYW50LkVuY291bnRlchI0ChBlbnRpdHlB",
+            "Y3Rpb25OYW1lGAMgASgOMhouRGV2aWFudC5FbnRpdHlBY3Rpb25OYW1lcxIz",
+            "ChBlbnRpdHlNb3ZlQWN0aW9uGAQgASgLMhkuRGV2aWFudC5FbnRpdHlNb3Zl",
+            "QWN0aW9uEjMKEGVudGl0eVBsYXlBY3Rpb24YBSABKAsyGS5EZXZpYW50LkVu",
+            "dGl0eVBsYXlBY3Rpb24SNwoSZW50aXR5VGFyZ2V0QWN0aW9uGAYgASgLMhsu",
+            "RGV2aWFudC5FbnRpdHlUYXJnZXRBY3Rpb24SNQoRZW50aXR5U3RhdGVBY3Rp",
+            "b24YByABKAsyGi5EZXZpYW50LkVudGl0eVN0YXRlQWN0aW9uEjEKD2VudGl0",
+            "eUdldEFjdGlvbhgIIAEoCzIYLkRldmlhbnQuRW50aXR5R2V0QWN0aW9uEj0K",
+            "FWVuY291bnRlckNyZWF0ZUFjdGlvbhgJIAEoCzIeLkRldmlhbnQuRW5jb3Vu",
+            "dGVyQ3JlYXRlQWN0aW9uIkwKEUVuY291bnRlclJlc3BvbnNlEhAKCHBsYXll",
+            "cklkGAEgASgJEiUKCWVuY291bnRlchgCIAEoCzISLkRldmlhbnQuRW5jb3Vu",
+            "dGVyMmAKEEVuY291bnRlclNlcnZpY2USTAoPVXBkYXRlRW5jb3VudGVyEhku",
+            "RGV2aWFudC5FbmNvdW50ZXJSZXF1ZXN0GhouRGV2aWFudC5FbmNvdW50ZXJS",
+            "ZXNwb25zZSgBMAFCCVoHZGV2aWFudGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Deviant.EncounterReflection.Descriptor, global::Deviant.EntityActionNamesReflection.Descriptor, global::Deviant.EntityMoveActionReflection.Descriptor, global::Deviant.EntityPlayActionReflection.Descriptor, global::Deviant.EntityTargetActionReflection.Descriptor, global::Deviant.EntityStateActionReflection.Descriptor, global::Deviant.EntityGetActionReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::Deviant.EncounterReflection.Descriptor, global::Deviant.EntityActionNamesReflection.Descriptor, global::Deviant.EntityMoveActionReflection.Descriptor, global::Deviant.EntityPlayActionReflection.Descriptor, global::Deviant.EntityTargetActionReflection.Descriptor, global::Deviant.EntityStateActionReflection.Descriptor, global::Deviant.EntityGetActionReflection.Descriptor, global::Deviant.EncounterCreateActionReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterRequest), global::Deviant.EncounterRequest.Parser, new[]{ "PlayerId", "Encounter", "EntityActionName", "EntityMoveAction", "EntityPlayAction", "EntityTargetAction", "EntityStateAction", "EntityGetAction" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterRequest), global::Deviant.EncounterRequest.Parser, new[]{ "PlayerId", "Encounter", "EntityActionName", "EntityMoveAction", "EntityPlayAction", "EntityTargetAction", "EntityStateAction", "EntityGetAction", "EncounterCreateAction" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EncounterResponse), global::Deviant.EncounterResponse.Parser, new[]{ "PlayerId", "Encounter" }, null, null, null, null)
           }));
     }
@@ -91,6 +91,7 @@ namespace Deviant {
       entityTargetAction_ = other.entityTargetAction_ != null ? other.entityTargetAction_.Clone() : null;
       entityStateAction_ = other.entityStateAction_ != null ? other.entityStateAction_.Clone() : null;
       entityGetAction_ = other.entityGetAction_ != null ? other.entityGetAction_.Clone() : null;
+      encounterCreateAction_ = other.encounterCreateAction_ != null ? other.encounterCreateAction_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -187,6 +188,17 @@ namespace Deviant {
       }
     }
 
+    /// <summary>Field number for the "encounterCreateAction" field.</summary>
+    public const int EncounterCreateActionFieldNumber = 9;
+    private global::Deviant.EncounterCreateAction encounterCreateAction_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Deviant.EncounterCreateAction EncounterCreateAction {
+      get { return encounterCreateAction_; }
+      set {
+        encounterCreateAction_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as EncounterRequest);
@@ -208,6 +220,7 @@ namespace Deviant {
       if (!object.Equals(EntityTargetAction, other.EntityTargetAction)) return false;
       if (!object.Equals(EntityStateAction, other.EntityStateAction)) return false;
       if (!object.Equals(EntityGetAction, other.EntityGetAction)) return false;
+      if (!object.Equals(EncounterCreateAction, other.EncounterCreateAction)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -222,6 +235,7 @@ namespace Deviant {
       if (entityTargetAction_ != null) hash ^= EntityTargetAction.GetHashCode();
       if (entityStateAction_ != null) hash ^= EntityStateAction.GetHashCode();
       if (entityGetAction_ != null) hash ^= EntityGetAction.GetHashCode();
+      if (encounterCreateAction_ != null) hash ^= EncounterCreateAction.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -267,6 +281,10 @@ namespace Deviant {
         output.WriteRawTag(66);
         output.WriteMessage(EntityGetAction);
       }
+      if (encounterCreateAction_ != null) {
+        output.WriteRawTag(74);
+        output.WriteMessage(EncounterCreateAction);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -298,6 +316,9 @@ namespace Deviant {
       }
       if (entityGetAction_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(EntityGetAction);
+      }
+      if (encounterCreateAction_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(EncounterCreateAction);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -351,6 +372,12 @@ namespace Deviant {
           EntityGetAction = new global::Deviant.EntityGetAction();
         }
         EntityGetAction.MergeFrom(other.EntityGetAction);
+      }
+      if (other.encounterCreateAction_ != null) {
+        if (encounterCreateAction_ == null) {
+          EncounterCreateAction = new global::Deviant.EncounterCreateAction();
+        }
+        EncounterCreateAction.MergeFrom(other.EncounterCreateAction);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -411,6 +438,13 @@ namespace Deviant {
               EntityGetAction = new global::Deviant.EntityGetAction();
             }
             input.ReadMessage(EntityGetAction);
+            break;
+          }
+          case 74: {
+            if (encounterCreateAction_ == null) {
+              EncounterCreateAction = new global::Deviant.EncounterCreateAction();
+            }
+            input.ReadMessage(EncounterCreateAction);
             break;
           }
         }
