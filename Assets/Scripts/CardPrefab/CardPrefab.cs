@@ -444,7 +444,6 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         // Retrieve the Current Encounter From Shared State.
         Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
-        Deviant.Board board = encounterState.Board;
         Deviant.Entity activeEntity = encounterState.ActiveEntity;
         GameObject battleFieldOverlay = GameObject.Find("BattlefieldOverlay");
         Tilemap battleFieldOverlayTilemap = battleFieldOverlay.GetComponent<Tilemap>();
@@ -612,10 +611,6 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
                 if (this.selected == true)
                 {
-                    var animation = entity.transform.gameObject.GetComponentInChildren<Animator>();
-                    entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-StopAttack");
-                    this.selected = false;
-
                     Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
                     encounterRequest.EntityTargetAction = new EntityTargetAction();
 
@@ -637,14 +632,17 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                     }
 
                     await encounterStateRef.UpdateEncounterAsync(encounterRequest);
+
+                    selected = false;
                 }
                 else
                 {
                     Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
                     encounterRequest.EntityTargetAction = new EntityTargetAction();
+                    encounterRequest.EntityTargetAction.Tiles.Clear();
                     await encounterStateRef.UpdateEncounterAsync(encounterRequest);
 
-                    this.selected = true;
+                    selected = true;
                 }
             }
         }

@@ -9,6 +9,8 @@ using UnityAsync;
 public class Entity : MonoBehaviour
 {
 	public string id = default;
+	public string state = default;
+
 	GameObject selectionArrow;
 	private EncounterState _encounterStateComponentReference = default;
 

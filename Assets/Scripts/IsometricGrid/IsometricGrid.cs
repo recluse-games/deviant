@@ -90,7 +90,7 @@ public class IsometricGrid : MonoBehaviour
 
         foreach (Entity entity in entityObjects)
         {
-            if (validateEntityActive(entity, activeEntity) && validateMovementLocation(position, activeEntity.Alignment))
+            if (validateEntityActive(entity, activeEntity) && validateMovementLocation(position, activeEntity.Alignment) && activeEntity.State == Deviant.EntityStateNames.Moving)
             {
                 Vector3 startingPos = entity.transform.parent.position;
                 await updatePlayerPosition(overlay.WorldToCell(startingPos).x, overlay.WorldToCell(startingPos).y, position.x, position.y);
@@ -136,6 +136,7 @@ public class IsometricGrid : MonoBehaviour
         var activeEntity = encounterStateRef.GetEncounter().ActiveEntity;
         activeEntityObject = GameObject.Find($"/entity_{activeEntity.Id}");
 
+        selectedCard = null;
         return true;
     }
 
@@ -159,39 +160,38 @@ public class IsometricGrid : MonoBehaviour
                             }
                         }
                     }
-
-                    await ProcessMove();
-                }
-                else if (Input.GetMouseButtonDown(1))
+                    else
+                    {
+                        await ProcessMove();
+                    }
+                } else if (Input.GetMouseButtonDown(1))
                 {
                     var activeEntity = encounterStateRef.GetEncounter().ActiveEntity;
                     activeEntityObject = GameObject.Find($"/entity_{activeEntity.Id}");
 
-                    var currentCards = GameObject.FindGameObjectsWithTag("hand");
-
-                    foreach (var currentCard in currentCards)
+                    if (selectedCard)
                     {
-                        if (currentCard.GetComponent<CardPrefab>().GetSelected() == true)
-                        {
-                            currentCard.GetComponent<CardPrefab>().SetSelected(false);
-                            var selectedPatternTilePositions = currentCard.GetComponent<CardPrefab>().GetSelectedTilePositions();
+                        selectedCard.SetSelected(false);
+                        var selectedPatternTilePositions = selectedCard.GetSelectedTilePositions();
 
-                            foreach (var action in selectedPatternTilePositions)
+                        foreach (var action in selectedPatternTilePositions)
+                        {
+                            foreach (var pattern in selectedPatternTilePositions[action.Key])
                             {
-                                foreach (var pattern in selectedPatternTilePositions[action.Key])
+                                foreach (var tileLocation in selectedPatternTilePositions[action.Key][pattern.Key])
                                 {
-                                    foreach (var tileLocation in selectedPatternTilePositions[action.Key][pattern.Key])
-                                    {
-                                        Tilemap test = GameObject.Find($"/IsometricGrid/BattlefieldOverlay").GetComponent<BattlefieldOverlay>().GetComponent<Tilemap>();
-                                        test.SetTile(tileLocation, null);
-                                    }
+                                    Tilemap test = GameObject.Find($"/IsometricGrid/BattlefieldOverlay").GetComponent<BattlefieldOverlay>().GetComponent<Tilemap>();
+                                    test.SetTile(tileLocation, null);
                                 }
                             }
                         }
+
+                        selectedCard = null;
                     }
 
                     Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
                     encounterRequest.EntityTargetAction = new EntityTargetAction();
+                    encounterRequest.EntityTargetAction.Tiles.Clear();
 
                     await encounterStateRef.UpdateEncounterAsync(encounterRequest);
                     GameObject.Find($"/UI").GetComponent<UI>().ResetRotation();
