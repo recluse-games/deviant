@@ -640,9 +640,6 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 }
                 else
                 {
-                    var animation = entity.transform.gameObject.GetComponentInChildren<Animator>();
-                    entity.transform.gameObject.GetComponentInChildren<Animator>().Play("Warrior-Attack");
-
                     Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
                     encounterRequest.EntityTargetAction = new EntityTargetAction();
                     await encounterStateRef.UpdateEncounterAsync(encounterRequest);

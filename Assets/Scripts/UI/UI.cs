@@ -154,7 +154,7 @@ public class UI : MonoBehaviour
         {
             foreach (var handCardObject in GameObject.FindGameObjectsWithTag("hand"))
             {
-                if (deckCardObject.GetComponentInChildren<Card>().GetId() == handCardObject.GetComponentInChildren<Card>().GetId())
+                if (deckCardObject.GetComponent<CardPrefab>().GetInstanceId() == handCardObject.GetComponent<CardPrefab>().GetInstanceId())
                 {
                     Destroy(deckCardObject);
                 }

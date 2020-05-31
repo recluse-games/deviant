@@ -151,8 +151,15 @@ public class EncounterState : MonoBehaviour
         this.subject.GetComponent<Subject>().Notify(encounter);
     }
 
+    public void OnApplicationQuit()
+    {
+        _call.RequestStream.CompleteAsync();
+        _channel.ShutdownAsync().Wait();
+    }
+
     public void OnDestroyed()
     {
+        _call.RequestStream.CompleteAsync();
         _channel.ShutdownAsync().Wait();
     }
 }
