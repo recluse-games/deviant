@@ -16,7 +16,6 @@ public class BattlefieldOverlay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UnityEngine.Tilemaps.Tile currentTileAsset = Resources.Load<UnityEngine.Tilemaps.Tile>("Art/Tiles/select_0002");
         Tilemap tilemap = this.GetComponent<Tilemap>();
 
         tilemap.ClearAllTiles();
@@ -28,7 +27,7 @@ public class BattlefieldOverlay : MonoBehaviour
             foreach (var tile in newTiles)
             {
                 UnityEngine.Tilemaps.Tile newTileAsset = Resources.Load<UnityEngine.Tilemaps.Tile>($"Art/Tiles/{tile.Id}");
-                tilemap.SetTile(new Vector3Int(tile.X, tile.Y, 0), currentTileAsset);
+                tilemap.SetTile(new Vector3Int(tile.X, tile.Y, 0), newTileAsset);
                 tilemap.RefreshTile(new Vector3Int(tile.X, tile.Y, 0));
             }
         }
