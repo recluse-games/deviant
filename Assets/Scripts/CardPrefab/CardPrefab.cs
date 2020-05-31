@@ -14,7 +14,7 @@ using UnityEngine.Tilemaps;
 using System.Threading.Tasks;
 
 
-public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField]
     Transform entity = default;
@@ -24,9 +24,24 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private bool visable = false;
     public string id = default;
     public string instanceId = default;
+    private Deviant.CardType cardType = default;
     public EncounterState encounterStateRef = default;
 
     private Dictionary<string, Dictionary<string, List<Vector3Int>>> selectedPatternTilePositions = new Dictionary<string, Dictionary< string, List<Vector3Int>>>();
+
+    public string getTileTypeFromCardType(Deviant.CardType type)
+    {
+        switch (type)
+        {
+            case Deviant.CardType.Attack:
+                return "select_0002";
+            case Deviant.CardType.Heal:
+                return "select_0001";
+            default:
+                Debug.Log("Error specified card type does not have assigned tile type.");
+                return "select_0000";
+        }
+    }
 
     public void SetSelected(bool selected)
     {
@@ -425,7 +440,7 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 foreach (var vector in newSelectedTilePositions[actionKey.Key][directionKey.Key])
                 {
                     Deviant.Tile newTile = new Deviant.Tile();
-                    newTile.Id = "select_0000";
+                    newTile.Id = getTileTypeFromCardType(this.cardType);
                     newTile.X = vector.x;
                     newTile.Y = vector.y;
 
@@ -471,6 +486,8 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 {
                     if (card.InstanceId == gameObject.GetComponentInChildren<Card>().GetId())
                     {
+                        this.cardType = card.Type;
+
                         foreach (var entry in card.Action.Pattern)
                         {
                             if (!selectedPatternTilePositions.ContainsKey(card.Action.Id))
@@ -621,7 +638,7 @@ public class CardPrefab  : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                             foreach (var tileLocation in this.selectedPatternTilePositions[action.Key][pattern.Key])
                             {
                                 Deviant.Tile newTile = new Deviant.Tile();
-                                newTile.Id = "select_0002";
+                                newTile.Id = getTileTypeFromCardType(this.cardType);
                                 newTile.X = tileLocation.x;
                                 newTile.Y = tileLocation.y;
 
