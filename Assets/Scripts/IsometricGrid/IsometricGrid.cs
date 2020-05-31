@@ -10,8 +10,6 @@ public class IsometricGrid : MonoBehaviour
     public EncounterState encounterStateRef = default;
 
     private CardPrefab selectedCard = default;
-
-    private GameObject activeEntityObject = default;
     
     public void Start()
     {
@@ -42,28 +40,6 @@ public class IsometricGrid : MonoBehaviour
         }
 
         return false;
-    }
-
-
-    private bool validateMovementLocationEmpty(Vector3Int newLocation, Entity[] entityGameObjectList)
-    {
-        GridLayout gridLayout = this.transform.GetComponent<GridLayout>();
-
-        List<Vector3Int> filledPositions = new List<Vector3Int>();
-
-        foreach (Entity entity in entityGameObjectList)
-        {
-            Vector3Int position = gridLayout.WorldToCell(entity.transform.position);
-            filledPositions.Add(position);
-        }
-
-        if(filledPositions.Contains(newLocation) == true)
-        {
-            return false;
-        } else
-        {
-            return true;
-        }
     }
 
     private bool validateEntityActive(Entity selectedEntity, Deviant.Entity activeEntity)
@@ -131,7 +107,6 @@ public class IsometricGrid : MonoBehaviour
         await encounterStateRef.UpdateEncounterAsync(encounterRequest);
 
         var activeEntity = encounterStateRef.GetEncounter().ActiveEntity;
-        activeEntityObject = GameObject.Find($"/entity_{activeEntity.Id}");
 
         // Remove all highlighted tiles.
         Deviant.EncounterRequest encounterOverlayTilesRequest = new Deviant.EncounterRequest();
@@ -171,7 +146,6 @@ public class IsometricGrid : MonoBehaviour
                 } else if (Input.GetMouseButtonDown(1))
                 {
                     var activeEntity = encounterStateRef.GetEncounter().ActiveEntity;
-                    activeEntityObject = GameObject.Find($"/entity_{activeEntity.Id}");
 
                     if (selectedCard)
                     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AP: MonoBehaviour
+public class AP : MonoBehaviour
 {
     private string value = default;
 
