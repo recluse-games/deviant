@@ -27,7 +27,7 @@ namespace Deviant {
             "CgxFbnRpdHkucHJvdG8SB0RldmlhbnQaD0FsaWdubWVudC5wcm90bxoQQXR0",
             "YWNobWVudC5wcm90bxoNQ2xhc3Nlcy5wcm90bxoQQ29uZGl0aW9ucy5wcm90",
             "bxoKSGFuZC5wcm90bxoKRGVjay5wcm90bxoNRGlzY2FyZC5wcm90bxoWRW50",
-            "aXR5U3RhdGVOYW1lcy5wcm90byLzAgoGRW50aXR5EgoKAmlkGAEgASgJEgoK",
+            "aXR5U3RhdGVOYW1lcy5wcm90byKCAwoGRW50aXR5EgoKAmlkGAEgASgJEgoK",
             "AmhwGAIgASgFEgoKAmFwGAMgASgFEigKBXN0YXRlGAQgASgOMhkuRGV2aWFu",
             "dC5FbnRpdHlTdGF0ZU5hbWVzEiUKCWFsaWdubWVudBgFIAEoDjISLkRldmlh",
             "bnQuQWxpZ25tZW50Eh8KBWNsYXNzGAYgASgOMhAuRGV2aWFudC5DbGFzc2Vz",
@@ -35,12 +35,12 @@ namespace Deviant {
             "YXR0YWNobWVudHMYCCADKA4yEy5EZXZpYW50LkF0dGFjaG1lbnQSGwoEaGFu",
             "ZBgJIAEoCzINLkRldmlhbnQuSGFuZBIbCgRkZWNrGAogASgLMg0uRGV2aWFu",
             "dC5EZWNrEiEKB2Rpc2NhcmQYCyABKAsyEC5EZXZpYW50LkRpc2NhcmQSEgoK",
-            "aW5pdGlhdGl2ZRgMIAEoBRIPCgdvd25lcklkGA0gASgJQglaB2RldmlhbnRi",
-            "BnByb3RvMw=="));
+            "aW5pdGlhdGl2ZRgMIAEoBRIPCgdvd25lcklkGA0gASgJEg0KBW1heEhwGA4g",
+            "ASgFQglaB2RldmlhbnRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.AlignmentReflection.Descriptor, global::Deviant.AttachmentReflection.Descriptor, global::Deviant.ClassesReflection.Descriptor, global::Deviant.ConditionsReflection.Descriptor, global::Deviant.HandReflection.Descriptor, global::Deviant.DeckReflection.Descriptor, global::Deviant.DiscardReflection.Descriptor, global::Deviant.EntityStateNamesReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Entity), global::Deviant.Entity.Parser, new[]{ "Id", "Hp", "Ap", "State", "Alignment", "Class", "Conditions", "Attachments", "Hand", "Deck", "Discard", "Initiative", "OwnerId" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Entity), global::Deviant.Entity.Parser, new[]{ "Id", "Hp", "Ap", "State", "Alignment", "Class", "Conditions", "Attachments", "Hand", "Deck", "Discard", "Initiative", "OwnerId", "MaxHp" }, null, null, null, null)
           }));
     }
     #endregion
@@ -85,6 +85,7 @@ namespace Deviant {
       discard_ = other.discard_ != null ? other.discard_.Clone() : null;
       initiative_ = other.initiative_;
       ownerId_ = other.ownerId_;
+      maxHp_ = other.maxHp_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -234,6 +235,17 @@ namespace Deviant {
       }
     }
 
+    /// <summary>Field number for the "maxHp" field.</summary>
+    public const int MaxHpFieldNumber = 14;
+    private int maxHp_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int MaxHp {
+      get { return maxHp_; }
+      set {
+        maxHp_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as Entity);
@@ -260,6 +272,7 @@ namespace Deviant {
       if (!object.Equals(Discard, other.Discard)) return false;
       if (Initiative != other.Initiative) return false;
       if (OwnerId != other.OwnerId) return false;
+      if (MaxHp != other.MaxHp) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -279,6 +292,7 @@ namespace Deviant {
       if (discard_ != null) hash ^= Discard.GetHashCode();
       if (Initiative != 0) hash ^= Initiative.GetHashCode();
       if (OwnerId.Length != 0) hash ^= OwnerId.GetHashCode();
+      if (MaxHp != 0) hash ^= MaxHp.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -338,6 +352,10 @@ namespace Deviant {
         output.WriteRawTag(106);
         output.WriteString(OwnerId);
       }
+      if (MaxHp != 0) {
+        output.WriteRawTag(112);
+        output.WriteInt32(MaxHp);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -380,6 +398,9 @@ namespace Deviant {
       }
       if (OwnerId.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(OwnerId);
+      }
+      if (MaxHp != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxHp);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -435,6 +456,9 @@ namespace Deviant {
       }
       if (other.OwnerId.Length != 0) {
         OwnerId = other.OwnerId;
+      }
+      if (other.MaxHp != 0) {
+        MaxHp = other.MaxHp;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -508,6 +532,10 @@ namespace Deviant {
           }
           case 106: {
             OwnerId = input.ReadString();
+            break;
+          }
+          case 112: {
+            MaxHp = input.ReadInt32();
             break;
           }
         }
