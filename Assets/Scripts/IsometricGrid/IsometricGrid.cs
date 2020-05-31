@@ -136,6 +136,13 @@ public class IsometricGrid : MonoBehaviour
         var activeEntity = encounterStateRef.GetEncounter().ActiveEntity;
         activeEntityObject = GameObject.Find($"/entity_{activeEntity.Id}");
 
+        // Remove all highlighted tiles.
+        Deviant.EncounterRequest encounterOverlayTilesRequest = new Deviant.EncounterRequest();
+        encounterOverlayTilesRequest.EntityTargetAction = new Deviant.EntityTargetAction();
+        encounterOverlayTilesRequest.EntityTargetAction.Id = activeEntity.Id;
+        encounterOverlayTilesRequest.EntityTargetAction.Tiles.Clear();
+        await encounterStateRef.UpdateEncounterAsync(encounterOverlayTilesRequest);
+
         selectedCard = null;
         return true;
     }
@@ -195,6 +202,13 @@ public class IsometricGrid : MonoBehaviour
 
                     await encounterStateRef.UpdateEncounterAsync(encounterRequest);
                     GameObject.Find($"/UI").GetComponent<UI>().ResetRotation();
+
+                    // Remove all highlighted tiles.
+                    Deviant.EncounterRequest encounterOverlayTilesRequest = new Deviant.EncounterRequest();
+                    encounterOverlayTilesRequest.EntityTargetAction = new Deviant.EntityTargetAction();
+                    encounterOverlayTilesRequest.EntityTargetAction.Id = activeEntity.Id;
+                    encounterOverlayTilesRequest.EntityTargetAction.Tiles.Clear();
+                    await encounterStateRef.UpdateEncounterAsync(encounterOverlayTilesRequest);
                 }
             }
         }
