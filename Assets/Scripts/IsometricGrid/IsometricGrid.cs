@@ -108,8 +108,6 @@ public class IsometricGrid : MonoBehaviour
         encounterRequest.EntityPlayAction = new Deviant.EntityPlayAction();
         encounterRequest.EntityPlayAction.CardId = selectedCard.GetInstanceId();
 
-        Debug.Log("ringer");
-
         foreach (var action in selectedCard.GetSelectedTilePositions())
         {
             foreach (var pattern in selectedCard.GetSelectedTilePositions()[action.Key])
@@ -123,7 +121,6 @@ public class IsometricGrid : MonoBehaviour
                     newPlay.Y = tileLocation.y;
 
                     encounterRequest.EntityPlayAction.Plays.Add(newPlay);
-                    test.SetTile(tileLocation, null);
                 }
             }
         }
