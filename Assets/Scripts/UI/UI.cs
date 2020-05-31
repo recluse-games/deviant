@@ -122,59 +122,6 @@ public class UI : MonoBehaviour
         }
     }
 
-    private void CreateHand(Deviant.Entity activeEntity)
-    {
-        int x = -250;
-        int y = -170;
-
-        foreach (var card in activeEntity.Hand.Cards)
-        {
-            GameObject existingHandCardGameObject = GameObject.Find("hand_" + card.InstanceId);
-
-            if (existingHandCardGameObject != null)
-            {
-                x += 70;
-                continue;
-            }
-
-            CardPrefab newCard = Instantiate(cardPrefab);
-            newCard.transform.localPosition = new Vector3Int(x, y, 0);
-            newCard.transform.SetParent(transform, false);
-            newCard.setSprite(card.Id, "Front");
-            newCard.transform.gameObject.tag = "hand";
-            newCard.transform.gameObject.name = "hand_" + card.InstanceId;
-            newCard.GetComponentInChildren<Card>().SetId(card.InstanceId);
-            newCard.SetId(card.Id);
-            newCard.SetInstanceId(card.InstanceId);
-            newCard.SetVisability(true);
-            x += 70;
-        }
-
-        foreach (var deckCardObject in GameObject.FindGameObjectsWithTag("deck"))
-        {
-            foreach (var handCardObject in GameObject.FindGameObjectsWithTag("hand"))
-            {
-                if (deckCardObject.GetComponent<CardPrefab>().GetInstanceId() == handCardObject.GetComponent<CardPrefab>().GetInstanceId())
-                {
-                    Destroy(deckCardObject);
-                }
-            }
-        }
-
-        // Clean up any removed cards
-        var allExistingCards = GameObject.FindObjectsOfType<CardPrefab>();
-        List<string> convertCardsToIds = activeEntity.Hand.Cards.Select(card => card.InstanceId).ToList();
-        List<string> convertGameObjectsToIds = allExistingCards.Select(cardPrefab => cardPrefab.GetInstanceId()).ToList();
-        var cardsIdsToDestroy = convertGameObjectsToIds.Except(convertCardsToIds);
-
-        foreach (var id in cardsIdsToDestroy)
-        {
-            Debug.Log("Time to destory: " + "hand_" + id);
-            GameObject existingDeckCardGameObject = GameObject.Find("hand_" + id);
-            Destroy(existingDeckCardGameObject);
-        }
-    }
-
     private void CreateDeck(Deviant.Entity activeEntity)
     {
         int deckx = -350;
@@ -229,7 +176,6 @@ public class UI : MonoBehaviour
         if (encounterStateRef.GetPlayerId() == activeEntity.OwnerId)
         {
             CreateDeck(activeEntity);
-            CreateHand(activeEntity);
         }
 
         if (encounterStateRef.GetEncounter().Board.OverlayTiles != null)
