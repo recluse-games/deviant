@@ -1,4 +1,5 @@
 ﻿using Deviant;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -90,8 +91,54 @@ public class Entity : MonoBehaviour
         }
     }
 
+    public List<Deviant.Tile> GeneratePermissableMoves(int avaliableAp, Deviant.Entities entitiesBoard)
+    {
+        // Get the current cell location of this entity on the tilemap.
+        GameObject overLayGrid = GameObject.Find("IsometricGrid");
+        GridLayout gridLayout = overLayGrid.transform.GetComponent<GridLayout>();
+        Vector3Int cellLocation = gridLayout.WorldToCell(this.transform.position);
+
+        List<Deviant.Tile> moveTargetTiles = new List<Deviant.Tile>();
+        var rows = entitiesBoard.Entities_[0].Entities.Count;
+        var cols = entitiesBoard.Entities_.Count;
+
+        var rMax = Math.Min(cellLocation.y + avaliableAp + 1, rows);
+
+        // Initialize Empty Increments and Maxes
+        int cMax, yOff, r, c;
+
+        // Start at the first row with a permissible move
+        for (r = Math.Max(cellLocation.y - avaliableAp, 0); r < rMax; r++)
+        {
+            yOff = Math.Abs(r - cellLocation.y);
+
+            // Work out where we should stop looping for this row
+            cMax = Math.Min(cellLocation.x + avaliableAp - yOff + 1, cols);
+
+            // Start at the first column with a permissible move
+            for (c = Math.Max(cellLocation.x - avaliableAp + yOff, 0); c < cMax; c++)
+            {
+                // If it's not the current position, add it to the result
+                if (cellLocation.x != c || cellLocation.y != r) {
+                    Deviant.Tile newTile = new Deviant.Tile();
+                    newTile.X = c;
+                    newTile.Y = r;
+                    newTile.Id = "select_0001";
+
+                    moveTargetTiles.Add(newTile);
+                }
+            }
+        }
+
+        Debug.Log("Targetting Tiles: " + moveTargetTiles);
+
+        return moveTargetTiles;
+    }
+
     async public void OnMouseDown()
     {
+        Deviant.Encounter encounter = _encounterStateComponentReference.GetEncounter();
+
         // Retrieve the Current Encounter From Shared State.
         Deviant.Encounter encounterState = _encounterStateComponentReference.GetEncounter();
 
@@ -104,60 +151,27 @@ public class Entity : MonoBehaviour
             encounterEntityStateRequest.EntityStateAction.State = Deviant.EntityStateNames.Moving;
             await _encounterStateComponentReference.UpdateEncounterAsync(encounterEntityStateRequest);
 
-            GameObject overLayGrid = GameObject.Find("IsometricGrid");
-            GridLayout gridLayout = overLayGrid.transform.GetComponent<GridLayout>();
-
-            Vector3Int cellLocation = gridLayout.WorldToCell(this.transform.position);
-
-            List<Deviant.Tile> moveTargetTiles = new List<Deviant.Tile>();
-
-            Vector3Int upOffset = new Vector3Int(1, 0, 0);
-            Vector3Int downOffset = new Vector3Int(-1, 0, 0);
-            Vector3Int leftOffset = new Vector3Int(0, 1, 0);
-            Vector3Int rightOffset = new Vector3Int(0, -1, 0);
-
-            Vector3Int tileMapUp = cellLocation + upOffset;
-            Vector3Int tileMapDown = cellLocation + downOffset;
-            Vector3Int tileMapLeft = cellLocation + leftOffset;
-            Vector3Int tileMapRight = cellLocation + rightOffset;
-
-            Deviant.Tile up = new Deviant.Tile();
-            Deviant.Tile down = new Deviant.Tile();
-            Deviant.Tile left = new Deviant.Tile();
-            Deviant.Tile right = new Deviant.Tile();
-
-            up.X = tileMapUp.x;
-            up.Y = tileMapUp.y;
-
-            down.X = tileMapDown.x;
-            down.Y = tileMapDown.y;
-
-            left.X = tileMapLeft.x;
-            left.Y = tileMapLeft.y;
-
-            right.X = tileMapRight.x;
-            right.Y = tileMapRight.y;
-
-            up.Id = "select_0001";
-            down.Id = "select_0001";
-            left.Id = "select_0001";
-            right.Id = "select_0001";
-
-
-            moveTargetTiles.Add(up);
-            moveTargetTiles.Add(up);
-            moveTargetTiles.Add(up);
-            moveTargetTiles.Add(up);
-
-
             // Update the Server With Newly Highlighted Overlay Tiles
             Deviant.EncounterRequest encounterOverlayTilesRequest = new Deviant.EncounterRequest();
             encounterOverlayTilesRequest.EntityTargetAction = new Deviant.EntityTargetAction();
             encounterOverlayTilesRequest.EntityTargetAction.Id = this.id;
-            encounterOverlayTilesRequest.EntityTargetAction.Tiles.Add(up);
-            encounterOverlayTilesRequest.EntityTargetAction.Tiles.Add(down);
-            encounterOverlayTilesRequest.EntityTargetAction.Tiles.Add(left);
-            encounterOverlayTilesRequest.EntityTargetAction.Tiles.Add(right);
+
+            List<Deviant.Tile> selectedTiles;
+
+            for (int y = 0; y < encounter.Board.Entities.Entities_.Count; y++)
+            {
+                for (int x = 0; x < encounter.Board.Entities.Entities_[y].Entities.Count; x++)
+                {
+                    if (this.id == encounter.Board.Entities.Entities_[y].Entities[x].Id)
+                    {
+                        selectedTiles = GeneratePermissableMoves(encounter.Board.Entities.Entities_[y].Entities[x].Ap, encounter.Board.Entities);
+                        foreach (var tile in selectedTiles)
+                        {
+                            encounterOverlayTilesRequest.EntityTargetAction.Tiles.Add(tile);
+                        }
+                    }
+                }
+            }
 
             await _encounterStateComponentReference.UpdateEncounterAsync(encounterOverlayTilesRequest);
         }
