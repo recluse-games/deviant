@@ -51,7 +51,7 @@ public class EntitySpawner : MonoBehaviour
 
 					// Set the entityid
 					entity.SetId(entityId);
-
+					
 					// Add the new state observer to the entity
 					_encounterStateComponentReference.AddEntityObserver(GameObject.Find("entity_" + entityId));
 
