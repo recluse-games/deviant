@@ -21,7 +21,7 @@ public class IsometricGrid : MonoBehaviour
     {
         switch (entityAlignment) {
             case Deviant.Alignment.Friendly:
-                if(newLocation.x <= 3 && newLocation.x >= 0 && newLocation.y <= 7 && newLocation.y >= 0)
+                if(newLocation.x <= 3 && newLocation.x >= 0 && newLocation.y <= 8 && newLocation.y >= 0)
                 {
                     return true;
                 } else
@@ -29,7 +29,7 @@ public class IsometricGrid : MonoBehaviour
                     return false;
                 }
             case Deviant.Alignment.Unfriendly:
-                if (newLocation.x <= 7 && newLocation.x >= 4 && newLocation.y <= 7 && newLocation.y >= 0)
+                if (newLocation.x <= 8 && newLocation.x >= 4 && newLocation.y <= 8 && newLocation.y >= 0)
                 {
                     return true;
                 }
@@ -56,7 +56,7 @@ public class IsometricGrid : MonoBehaviour
     private async Task<bool> ProcessMove()
     {
         GridLayout gridLayout = this.transform.GetComponent<GridLayout>();
-        Tilemap overlay = this.transform.Find("BattlefieldOverlay").GetComponent<Tilemap>();
+        Tilemap battlefield = this.transform.Find("Battlefield").GetComponent<Tilemap>();
         Deviant.Entity activeEntity = encounterStateRef.encounter.ActiveEntity;
 
         var entityObjects = FindObjectsOfType<Entity>();
@@ -69,7 +69,7 @@ public class IsometricGrid : MonoBehaviour
             if (validateEntityActive(entity, activeEntity) && validateMovementLocation(position, activeEntity.Alignment) && activeEntity.State == Deviant.EntityStateNames.Moving)
             {
                 Vector3 startingPos = entity.transform.parent.position;
-                await updatePlayerPosition(overlay.WorldToCell(startingPos).x, overlay.WorldToCell(startingPos).y, position.x, position.y);
+                await updatePlayerPosition(battlefield.WorldToCell(startingPos).x, battlefield.WorldToCell(startingPos).y, position.x, position.y);
                 break;
             };
         }
@@ -208,6 +208,8 @@ public class IsometricGrid : MonoBehaviour
             }
         }
     }
+
+
 
     async public Task<bool> updatePlayerPosition(int startx, int starty, int endx, int endy)
     {
