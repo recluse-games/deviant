@@ -24,8 +24,9 @@ namespace Deviant {
     static ClassesReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cg1DbGFzc2VzLnByb3RvEgdEZXZpYW50KiwKB0NsYXNzZXMSCwoHV0FSUklP",
-            "UhAAEggKBE1BR0UQARIKCgZQUklFU1QQAkIJWgdkZXZpYW50YgZwcm90bzM="));
+            "Cg1DbGFzc2VzLnByb3RvEgdEZXZpYW50KjYKB0NsYXNzZXMSCwoHV0FSUklP",
+            "UhAAEggKBE1BR0UQARIKCgZQUklFU1QQAhIICgRXQUxMEANCCVoHZGV2aWFu",
+            "dGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Deviant.Classes), }, null, null));
@@ -38,6 +39,7 @@ namespace Deviant {
     [pbr::OriginalName("WARRIOR")] Warrior = 0,
     [pbr::OriginalName("MAGE")] Mage = 1,
     [pbr::OriginalName("PRIEST")] Priest = 2,
+    [pbr::OriginalName("WALL")] Wall = 3,
   }
 
   #endregion
