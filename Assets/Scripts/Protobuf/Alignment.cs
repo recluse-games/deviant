@@ -24,8 +24,9 @@ namespace Deviant {
     static AlignmentReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cg9BbGlnbm1lbnQucHJvdG8SB0RldmlhbnQqKQoJQWxpZ25tZW50EgwKCEZS",
-            "SUVORExZEAASDgoKVU5GUklFTkRMWRABQglaB2RldmlhbnRiBnByb3RvMw=="));
+            "Cg9BbGlnbm1lbnQucHJvdG8SB0RldmlhbnQqNgoJQWxpZ25tZW50EgwKCEZS",
+            "SUVORExZEAASDgoKVU5GUklFTkRMWRABEgsKB05FVVRSQUwQAkIJWgdkZXZp",
+            "YW50YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Deviant.Alignment), }, null, null));
@@ -37,6 +38,7 @@ namespace Deviant {
   public enum Alignment {
     [pbr::OriginalName("FRIENDLY")] Friendly = 0,
     [pbr::OriginalName("UNFRIENDLY")] Unfriendly = 1,
+    [pbr::OriginalName("NEUTRAL")] Neutral = 2,
   }
 
   #endregion
