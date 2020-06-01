@@ -206,7 +206,8 @@ public class Entity : MonoBehaviour
 
     void OnMouseOver()
     {
-        var mouseOverPanel = GameObject.FindGameObjectWithTag("ui_selected");
+        Deviant.Encounter encounter = _encounterStateComponentReference.GetEncounter();
+        var mouseOverPanel = GameObject.FindWithTag("ui_selected");
 
         for (int y = 0; y < encounter.Board.Entities.Entities_.Count; y++)
         {
@@ -214,8 +215,8 @@ public class Entity : MonoBehaviour
             {
                 if (this.id == encounter.Board.Entities.Entities_[y].Entities[x].Id)
                 {
-                    mouseOverPanel.GetComponentInChildren<Name>().UpdateValue( encounter.Board.Entities.Entities_[y].Entities[x].Title);
-                    mouseOverPanel.GetComponentInChildren<Hp>().UpdateValue("");
+                    mouseOverPanel.GetComponentInChildren<Selected.Name>().UpdateValue(encounter.Board.Entities.Entities_[y].Entities[x].Name);
+                    mouseOverPanel.GetComponentInChildren<Selected.Hp>().UpdateValue(encounter.Board.Entities.Entities_[y].Entities[x].Hp.ToString());
                 }
             }
         }
@@ -226,6 +227,11 @@ public class Entity : MonoBehaviour
 
     void OnMouseExit()
     {
+        Deviant.Encounter encounter = _encounterStateComponentReference.GetEncounter();
+        var mouseOverPanel = GameObject.FindGameObjectWithTag("ui_selected");
+        mouseOverPanel.GetComponentInChildren<Selected.Name>().UpdateValue("");
+        mouseOverPanel.GetComponentInChildren<Selected.Hp>().UpdateValue("");
+
         //The mouse is no longer hovering over the GameObject so output this message each frame
         Debug.Log("Mouse is no longer on GameObject.");
     }

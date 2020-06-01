@@ -12,6 +12,7 @@ TagManager:
   - entity_unfriendly
   - ui_friendly_party
   - ui_unfriendly_party
+  - ui_selected
   layers:
   - Default
   - TransparentFX
