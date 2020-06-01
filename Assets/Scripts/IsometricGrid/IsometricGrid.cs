@@ -165,6 +165,17 @@ public class IsometricGrid : MonoBehaviour
                         }
 
                         selectedCard = null;
+                    } else {
+                        var entityObjects = FindObjectsOfType<Entity>();
+
+                        foreach (Entity entity in entityObjects)
+                        {
+                            if (validateEntityActive(entity, activeEntity))
+                            {
+                                entity.SetIdle();
+                                break;
+                            };
+                        }
                     }
 
                     Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
