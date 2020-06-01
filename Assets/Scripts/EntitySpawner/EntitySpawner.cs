@@ -72,8 +72,9 @@ public class EntitySpawner : MonoBehaviour
 
                         if (existingEntityLocation.x != y || existingEntityLocation.y != x)
                         {
-                            existingEntity.transform.position = overlay.CellToWorld(new Vector3Int(y, x, 0));
                             Entity existingEntityInstance = existingEntity.GetComponentInChildren<Entity>();
+                            existingEntity.transform.position = overlay.CellToWorld(new Vector3Int(y, x, 0));
+
                             await existingEntityInstance.SetIdle();
                         }
                     }
@@ -95,6 +96,14 @@ public class EntitySpawner : MonoBehaviour
     private void AlignSpriteToTile(EntityPrefab entity, Vector3Int currentCellPosition)
     {
         entity.transform.position = battlefieldTilemapRef.CellToWorld(currentCellPosition);
+        
+        // HACK: We're using halfslabs if we remove half slabs we need to remove this logic.
+        Vector3 cellSize = battlefieldTilemapRef.cellSize;
+        float yOffset = cellSize.y / 4.0f;
+        Vector3 newPosition = new Vector3(0, yOffset, 0);
+
+        Entity existingEntityInstance = entity.GetComponentInChildren<Entity>();
+        existingEntityInstance.transform.localPosition = newPosition;
     }
 
     private void Enable2DBoxCollider(EntityPrefab entity)
