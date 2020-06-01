@@ -24,16 +24,18 @@ namespace Deviant {
     static EncounterReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cg9FbmNvdW50ZXIucHJvdG8SB0RldmlhbnQaC0JvYXJkLnByb3RvGgxFbnRp",
-            "dHkucHJvdG8aClR1cm4ucHJvdG8iqAEKCUVuY291bnRlchIKCgJpZBgBIAEo",
-            "CRIRCgljb21wbGV0ZWQYAiABKAgSHQoFYm9hcmQYAyABKAsyDi5EZXZpYW50",
-            "LkJvYXJkEhsKBHR1cm4YBCABKAsyDS5EZXZpYW50LlR1cm4SGQoRYWN0aXZl",
-            "RW50aXR5T3JkZXIYBSADKAkSJQoMYWN0aXZlRW50aXR5GAYgASgLMg8uRGV2",
-            "aWFudC5FbnRpdHlCCVoHZGV2aWFudGIGcHJvdG8z"));
+            "Cg9FbmNvdW50ZXIucHJvdG8SB0RldmlhbnQaD0FsaWdubWVudC5wcm90bxoL",
+            "Qm9hcmQucHJvdG8aDEVudGl0eS5wcm90bxoKVHVybi5wcm90byLWAQoJRW5j",
+            "b3VudGVyEgoKAmlkGAEgASgJEhEKCWNvbXBsZXRlZBgCIAEoCBIdCgVib2Fy",
+            "ZBgDIAEoCzIOLkRldmlhbnQuQm9hcmQSGwoEdHVybhgEIAEoCzINLkRldmlh",
+            "bnQuVHVybhIZChFhY3RpdmVFbnRpdHlPcmRlchgFIAMoCRIlCgxhY3RpdmVF",
+            "bnRpdHkYBiABKAsyDy5EZXZpYW50LkVudGl0eRIsChB3aW5uaW5nQWxpZ25t",
+            "ZW50GAcgASgOMhIuRGV2aWFudC5BbGlnbm1lbnRCCVoHZGV2aWFudGIGcHJv",
+            "dG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Deviant.BoardReflection.Descriptor, global::Deviant.EntityReflection.Descriptor, global::Deviant.TurnReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::Deviant.AlignmentReflection.Descriptor, global::Deviant.BoardReflection.Descriptor, global::Deviant.EntityReflection.Descriptor, global::Deviant.TurnReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Encounter), global::Deviant.Encounter.Parser, new[]{ "Id", "Completed", "Board", "Turn", "ActiveEntityOrder", "ActiveEntity" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Encounter), global::Deviant.Encounter.Parser, new[]{ "Id", "Completed", "Board", "Turn", "ActiveEntityOrder", "ActiveEntity", "WinningAlignment" }, null, null, null, null)
           }));
     }
     #endregion
@@ -71,6 +73,7 @@ namespace Deviant {
       turn_ = other.turn_ != null ? other.turn_.Clone() : null;
       activeEntityOrder_ = other.activeEntityOrder_.Clone();
       activeEntity_ = other.activeEntity_ != null ? other.activeEntity_.Clone() : null;
+      winningAlignment_ = other.winningAlignment_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -144,6 +147,17 @@ namespace Deviant {
       }
     }
 
+    /// <summary>Field number for the "winningAlignment" field.</summary>
+    public const int WinningAlignmentFieldNumber = 7;
+    private global::Deviant.Alignment winningAlignment_ = global::Deviant.Alignment.Friendly;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Deviant.Alignment WinningAlignment {
+      get { return winningAlignment_; }
+      set {
+        winningAlignment_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as Encounter);
@@ -163,6 +177,7 @@ namespace Deviant {
       if (!object.Equals(Turn, other.Turn)) return false;
       if(!activeEntityOrder_.Equals(other.activeEntityOrder_)) return false;
       if (!object.Equals(ActiveEntity, other.ActiveEntity)) return false;
+      if (WinningAlignment != other.WinningAlignment) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -175,6 +190,7 @@ namespace Deviant {
       if (turn_ != null) hash ^= Turn.GetHashCode();
       hash ^= activeEntityOrder_.GetHashCode();
       if (activeEntity_ != null) hash ^= ActiveEntity.GetHashCode();
+      if (WinningAlignment != global::Deviant.Alignment.Friendly) hash ^= WinningAlignment.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -209,6 +225,10 @@ namespace Deviant {
         output.WriteRawTag(50);
         output.WriteMessage(ActiveEntity);
       }
+      if (WinningAlignment != global::Deviant.Alignment.Friendly) {
+        output.WriteRawTag(56);
+        output.WriteEnum((int) WinningAlignment);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -232,6 +252,9 @@ namespace Deviant {
       size += activeEntityOrder_.CalculateSize(_repeated_activeEntityOrder_codec);
       if (activeEntity_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(ActiveEntity);
+      }
+      if (WinningAlignment != global::Deviant.Alignment.Friendly) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) WinningAlignment);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -268,6 +291,9 @@ namespace Deviant {
           ActiveEntity = new global::Deviant.Entity();
         }
         ActiveEntity.MergeFrom(other.ActiveEntity);
+      }
+      if (other.WinningAlignment != global::Deviant.Alignment.Friendly) {
+        WinningAlignment = other.WinningAlignment;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -311,6 +337,10 @@ namespace Deviant {
               ActiveEntity = new global::Deviant.Entity();
             }
             input.ReadMessage(ActiveEntity);
+            break;
+          }
+          case 56: {
+            WinningAlignment = (global::Deviant.Alignment) input.ReadEnum();
             break;
           }
         }
