@@ -79,8 +79,12 @@ public class Entity : MonoBehaviour
                         alignment = Deviant.Alignment.Friendly;
 
                     }
-                    // Update Animation Controller
-                    GetComponent<Animator>().runtimeAnimatorController = Resources.Load($"Art/Animations/Entity/{alignment.ToString()}/{entityClass.ToString()}/{entityClass.ToString()}") as RuntimeAnimatorController;
+
+                    if (GetComponent<Animator>().runtimeAnimatorController.ToString() != entityClass.ToString())
+                    {
+                        GetComponent<Animator>().runtimeAnimatorController = Resources.Load($"Art/Animations/Entity/{alignment.ToString()}/{entityClass.ToString()}/{entityClass.ToString()}") as RuntimeAnimatorController;
+
+                    }
                 }
             }
         }
