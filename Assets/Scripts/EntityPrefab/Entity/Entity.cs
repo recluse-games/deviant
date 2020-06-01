@@ -203,4 +203,30 @@ public class Entity : MonoBehaviour
             Destroy(this.selectionArrow);
         }
     }
+
+    void OnMouseOver()
+    {
+        var mouseOverPanel = GameObject.FindGameObjectWithTag("ui_selected");
+
+        for (int y = 0; y < encounter.Board.Entities.Entities_.Count; y++)
+        {
+            for (int x = 0; x < encounter.Board.Entities.Entities_[y].Entities.Count; x++)
+            {
+                if (this.id == encounter.Board.Entities.Entities_[y].Entities[x].Id)
+                {
+                    mouseOverPanel.GetComponentInChildren<Name>().UpdateValue( encounter.Board.Entities.Entities_[y].Entities[x].Title);
+                    mouseOverPanel.GetComponentInChildren<Hp>().UpdateValue("");
+                }
+            }
+        }
+
+        //If your mouse hovers over the GameObject with the script attached, output this message
+        Debug.Log("Mouse is over GameObject.");
+    }
+
+    void OnMouseExit()
+    {
+        //The mouse is no longer hovering over the GameObject so output this message each frame
+        Debug.Log("Mouse is no longer on GameObject.");
+    }
 }
