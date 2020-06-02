@@ -66,7 +66,7 @@ public class IsometricGrid : MonoBehaviour
 
         foreach (Entity entity in entityObjects)
         {
-            if (validateEntityActive(entity, activeEntity) && validateMovementLocation(position, activeEntity.Alignment) && activeEntity.State == Deviant.EntityStateNames.Moving)
+            if (validateEntityActive(entity, activeEntity) && activeEntity.State == Deviant.EntityStateNames.Moving)
             {
                 Vector3 startingPos = entity.transform.parent.position;
                 await updatePlayerPosition(battlefield.WorldToCell(startingPos).x, battlefield.WorldToCell(startingPos).y, position.x, position.y);
