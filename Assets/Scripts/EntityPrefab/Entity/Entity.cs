@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityAsync;
-
+using UnityEngine.XR.WSA;
+using System.Linq;
 
 public class Entity : MonoBehaviour
 {
@@ -91,6 +92,63 @@ public class Entity : MonoBehaviour
         }
     }
 
+    // Function for 4 connected Pixels 
+    public void boundaryFill4(int startx, int starty, bool firstIteration, int x, int y, string filledId, string blockedId, int limit, List<List<Deviant.Tile>> tiles)
+    {
+        if (tiles[x][y].Id != blockedId &&
+            tiles[x][y].Id != filledId)
+        {
+            int apCostX;
+            int apCostY;
+
+            if (startx > x )
+            {
+                apCostX = startx - x;
+            } else if (startx < x) {
+                apCostX = x - startx;
+            } else
+            {
+                apCostX = 0;
+            }
+
+            if (starty > y)
+            {
+                apCostY = starty - y;
+            } else if (starty < y)
+            {
+                apCostY = y - starty;
+            } else
+            {
+                apCostY = 0;
+            }
+
+            tiles[x][y].Id = filledId;
+
+            if(limit - apCostX - apCostY > 0)
+            {
+                if (x + 1 <= 8)
+                {
+                    boundaryFill4(startx, starty, false, x + 1, y, filledId, blockedId, limit, tiles);
+                }
+
+                if (y + 1 <= 7)
+                {
+                    boundaryFill4(startx, starty, false, x, y + 1, filledId, blockedId, limit, tiles);
+                }
+
+                if (x - 1 >= 0)
+                {
+                    boundaryFill4(startx, starty, false, x - 1, y, filledId, blockedId, limit, tiles);
+                }
+
+                if (y - 1 >= 0)
+                {
+                    boundaryFill4(startx, starty, false, x, y - 1, filledId, blockedId, limit, tiles);
+                }
+            }
+        }
+    }
+
     public List<Deviant.Tile> GeneratePermissableMoves(int avaliableAp, Deviant.Entities entitiesBoard)
     {
         // Get the current cell location of this entity on the tilemap.
@@ -98,41 +156,40 @@ public class Entity : MonoBehaviour
         GridLayout gridLayout = overLayGrid.transform.GetComponent<GridLayout>();
         Vector3Int cellLocation = gridLayout.WorldToCell(this.transform.position);
 
-        List<Deviant.Tile> moveTargetTiles = new List<Deviant.Tile>();
-        var rows = entitiesBoard.Entities_[0].Entities.Count;
-        var cols = entitiesBoard.Entities_.Count;
+        List<List<Deviant.Tile>> moveTargetTiles = new List<List<Deviant.Tile>>();
 
-        var rMax = Math.Min(cellLocation.y + avaliableAp + 1, rows);
-
-        // Initialize Empty Increments and Maxes
-        int cMax, yOff, r, c;
-
-        // Start at the first row with a permissible move
-        for (r = Math.Max(cellLocation.y - avaliableAp, 0); r < rMax; r++)
+        for (int y = 0; y < entitiesBoard.Entities_.Count; y++)
         {
-            yOff = Math.Abs(r - cellLocation.y);
+            List<Deviant.Tile> newRow = new List<Deviant.Tile>();
 
-            // Work out where we should stop looping for this row
-            cMax = Math.Min(cellLocation.x + avaliableAp - yOff + 1, cols);
-
-            // Start at the first column with a permissible move
-            for (c = Math.Max(cellLocation.x - avaliableAp + yOff, 0); c < cMax; c++)
+            for(int x = 0; x < entitiesBoard.Entities_[y].Entities.Count; x++)
             {
-                // If it's not the current position, add it to the result
-                if (cellLocation.x != c || cellLocation.y != r) {
-                    Deviant.Tile newTile = new Deviant.Tile();
-                    newTile.X = c;
-                    newTile.Y = r;
-                    newTile.Id = "select_0001";
+                Deviant.Tile newTile = new Deviant.Tile();
+                newTile.X = y;
+                newTile.Y = x;
 
-                    moveTargetTiles.Add(newTile);
+                if (entitiesBoard.Entities_[y].Entities[x].Id != "")
+                {
+                    if(y != cellLocation.x || x != cellLocation.y)
+                    {
+                        newTile.Id = "select_0002";
+                    }
                 }
+
+                newRow.Add(newTile);
             }
+
+            moveTargetTiles.Add(newRow);
         }
+
+        this.boundaryFill4(cellLocation.x, cellLocation.y, true, cellLocation.x, cellLocation.y, "select_0000", "select_0002", avaliableAp, moveTargetTiles);
 
         Debug.Log("Targetting Tiles: " + moveTargetTiles);
 
-        return moveTargetTiles;
+        var result = moveTargetTiles.SelectMany(i => i).ToList();
+        List<Deviant.Tile> filteredResult = result.Where(tile => tile.Id != "select_0002").ToList();
+
+        return filteredResult;
     }
 
     async public void OnMouseDown()
