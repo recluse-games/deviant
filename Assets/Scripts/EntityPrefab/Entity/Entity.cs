@@ -253,6 +253,7 @@ public class Entity : MonoBehaviour
             var newYellowColor = new Color(255f / 255f, 230f / 255f, 88f / 255f);
             rend.color = newYellowColor;
             selectionArrowObj.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+            selectionArrowObj.transform.position += new Vector3(0, 0, 10);
 
             this.selectionArrow = selectionArrowObj;
         }

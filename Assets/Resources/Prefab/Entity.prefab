@@ -140,7 +140,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0000001043081, y: 0.4535013}
@@ -180,7 +180,7 @@ Animator:
   m_GameObject: {fileID: 923812439514537075}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b05d53a093fd0984b9bb03f883b380fe, type: 2}
+  m_Controller: {fileID: 9100000, guid: 755382d732d23f940b08ca81059286e7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
