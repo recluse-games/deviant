@@ -7,13 +7,11 @@ public class BattlefieldOverlay : MonoBehaviour
     private EncounterState encounterStateRef = default;
     private Deviant.Tiles overlayTiles = default;
 
-    // Start is called before the first frame update
     void Start()
     {
         encounterStateRef = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Tilemap tilemap = this.GetComponent<Tilemap>();

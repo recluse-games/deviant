@@ -8,38 +8,10 @@ using UnityAsync;
 public class IsometricGrid : MonoBehaviour
 {
     public EncounterState encounterStateRef = default;
-
-    private CardPrefab selectedCard = default;
     
     public void Start()
     {
         encounterStateRef = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
-    }
-
-
-    private bool validateMovementLocation(Vector3Int newLocation, Deviant.Alignment entityAlignment)
-    {
-        switch (entityAlignment) {
-            case Deviant.Alignment.Friendly:
-                if(newLocation.x <= 3 && newLocation.x >= 0 && newLocation.y <= 8 && newLocation.y >= 0)
-                {
-                    return true;
-                } else
-                {
-                    return false;
-                }
-            case Deviant.Alignment.Unfriendly:
-                if (newLocation.x <= 8 && newLocation.x >= 4 && newLocation.y <= 8 && newLocation.y >= 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-        }
-
-        return false;
     }
 
     private bool validateEntityActive(Entity selectedEntity, Deviant.Entity activeEntity)
@@ -58,8 +30,8 @@ public class IsometricGrid : MonoBehaviour
         GridLayout gridLayout = this.transform.GetComponent<GridLayout>();
         Tilemap battlefield = this.transform.Find("Battlefield").GetComponent<Tilemap>();
         Deviant.Entity activeEntity = encounterStateRef.encounter.ActiveEntity;
-
-        var entityObjects = FindObjectsOfType<Entity>();
+        Entity[] entityObjects = FindObjectsOfType<Entity>();
+        
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
         Vector3Int position = gridLayout.WorldToCell(worldPoint);
@@ -77,7 +49,7 @@ public class IsometricGrid : MonoBehaviour
         return true;
     }
 
-    private async Task<bool> ProcessAttack()
+    private async Task<bool> ProcessAttack(CardPrefab selectedCard)
     {
         Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
         encounterRequest.EntityActionName = Deviant.EntityActionNames.Play;
@@ -90,8 +62,6 @@ public class IsometricGrid : MonoBehaviour
             {
                 foreach (var tileLocation in selectedCard.GetSelectedTilePositions()[action.Key][pattern.Key])
                 {
-                    Tilemap test = GameObject.Find($"/IsometricGrid/BattlefieldOverlay").GetComponent<BattlefieldOverlay>().GetComponent<Tilemap>();
-
                     Deviant.Play newPlay = new Deviant.Play();
                     newPlay.X = tileLocation.x;
                     newPlay.Y = tileLocation.y;
@@ -101,9 +71,7 @@ public class IsometricGrid : MonoBehaviour
             }
         }
 
-        selectedCard.ClearSelectedTiles();
-        GameObject.Find($"/UI").GetComponent<UI>().ResetRotation();
-        this.selectedCard.SetSelected(false);
+        selectedCard.SetSelected(false);
         await encounterStateRef.UpdateEncounterAsync(encounterRequest);
 
         var activeEntity = encounterStateRef.GetEncounter().ActiveEntity;
@@ -115,27 +83,26 @@ public class IsometricGrid : MonoBehaviour
         encounterOverlayTilesRequest.EntityTargetAction.Tiles.Clear();
         await encounterStateRef.UpdateEncounterAsync(encounterOverlayTilesRequest);
 
-        selectedCard = null;
         return true;
     }
 
     async public void Update()
     {
-        UpdateSelectedCard();
-
         if (encounterStateRef.GetEncounter() != null)
         {
             if (encounterStateRef.GetEncounter().ActiveEntity.OwnerId == encounterStateRef.GetPlayerId())
             {
                 if (Input.GetMouseButtonDown(0))
                 {
+                    CardPrefab selectedCard = UpdateSelectedCard();
+
                     if (selectedCard)
                     {
                         if (selectedCard.GetSelected())
                         {
                             if (selectedCard.GetSelectedTilePositions().Count > 0)
                             {
-                                await ProcessAttack();
+                                await ProcessAttack(selectedCard);
                             }
                         }
                     }
@@ -145,37 +112,18 @@ public class IsometricGrid : MonoBehaviour
                     }
                 } else if (Input.GetMouseButtonDown(1))
                 {
+                    CardPrefab selectedCard = UpdateSelectedCard();
+
                     var activeEntity = encounterStateRef.GetEncounter().ActiveEntity;
+                    var entityObjects = FindObjectsOfType<Entity>();
 
-                    if (selectedCard)
+                    foreach (Entity entity in entityObjects)
                     {
-                        selectedCard.SetSelected(false);
-                        var selectedPatternTilePositions = selectedCard.GetSelectedTilePositions();
-
-                        foreach (var action in selectedPatternTilePositions)
+                        if (validateEntityActive(entity, activeEntity))
                         {
-                            foreach (var pattern in selectedPatternTilePositions[action.Key])
-                            {
-                                foreach (var tileLocation in selectedPatternTilePositions[action.Key][pattern.Key])
-                                {
-                                    Tilemap test = GameObject.Find($"/IsometricGrid/BattlefieldOverlay").GetComponent<BattlefieldOverlay>().GetComponent<Tilemap>();
-                                    test.SetTile(tileLocation, null);
-                                }
-                            }
-                        }
-
-                        selectedCard = null;
-                    } else {
-                        var entityObjects = FindObjectsOfType<Entity>();
-
-                        foreach (Entity entity in entityObjects)
-                        {
-                            if (validateEntityActive(entity, activeEntity))
-                            {
-                                entity.SetIdle();
-                                break;
-                            };
-                        }
+                            entity.SetIdle();
+                            break;
+                        };
                     }
 
                     Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
@@ -183,7 +131,6 @@ public class IsometricGrid : MonoBehaviour
                     encounterRequest.EntityTargetAction.Tiles.Clear();
 
                     await encounterStateRef.UpdateEncounterAsync(encounterRequest);
-                    GameObject.Find($"/UI").GetComponent<UI>().ResetRotation();
 
                     // Remove all highlighted tiles.
                     Deviant.EncounterRequest encounterOverlayTilesRequest = new Deviant.EncounterRequest();
@@ -196,17 +143,21 @@ public class IsometricGrid : MonoBehaviour
         }
     }
 
-    private void UpdateSelectedCard()
+    private CardPrefab UpdateSelectedCard()
     {
+        CardPrefab selectedCard = null;
+
         var currentCards = GameObject.FindGameObjectsWithTag("hand");
 
         foreach (var currentCard in currentCards)
         {
             if (currentCard.GetComponent<CardPrefab>().GetSelected())
             {
-                this.selectedCard = currentCard.GetComponent<CardPrefab>();
+                return currentCard.GetComponent<CardPrefab>();
             }
         }
+
+        return selectedCard;
     }
 
 

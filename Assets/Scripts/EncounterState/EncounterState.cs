@@ -62,13 +62,13 @@ public class EncounterState : MonoBehaviour
 
     public void AddEntityObserver(GameObject entityObj)
     {
-        GameObject newGameObject = new GameObject();
+        GameObject newEntityObserver = new GameObject();
+        newEntityObserver.transform.name = "observer_entity_" + entityObj.GetComponentInChildren<Entity>().GetId();
+        newEntityObserver.AddComponent<EntityObserver>();
+        newEntityObserver.GetComponent<EntityObserver>().SetEntity(entityObj);
+        newEntityObserver.GetComponent<EntityObserver>().SetEncounterEvents(new GetEncounter());
 
-        newGameObject.AddComponent<EntityObserver>();
-        newGameObject.GetComponent<EntityObserver>().SetEntity(entityObj);
-        newGameObject.GetComponent<EntityObserver>().SetEncounterEvents(new GetEncounter());
-
-        subject.GetComponent<Subject>().AddObserver(newGameObject);
+        subject.GetComponent<Subject>().AddObserver(newEntityObserver);
     }
 
     public async Task<bool> CreateEncounterAsync()
