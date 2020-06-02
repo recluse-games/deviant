@@ -82,11 +82,7 @@ public class Entity : MonoBehaviour
 
                     }
 
-                    if (GetComponent<Animator>().runtimeAnimatorController.ToString() != entityClass.ToString())
-                    {
-                        GetComponent<Animator>().runtimeAnimatorController = Resources.Load($"Art/Animations/Entity/{alignment.ToString()}/{entityClass.ToString()}/{entityClass.ToString()}") as RuntimeAnimatorController;
-
-                    }
+                    GetComponent<Animator>().runtimeAnimatorController = Resources.Load($"Art/Animations/Entity/{alignment.ToString()}/{entityClass.ToString()}/{entityClass.ToString()}") as RuntimeAnimatorController;
                 }
             }
         }
