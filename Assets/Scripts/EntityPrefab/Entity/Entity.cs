@@ -178,7 +178,7 @@ public class Entity : MonoBehaviour
             moveTargetTiles.Add(newRow);
         }
 
-        this.boundaryFill4(cellLocation.x, cellLocation.y, true, cellLocation.x, cellLocation.y, "select_0000", "select_0002", avaliableAp, moveTargetTiles);
+        this.boundaryFill4(cellLocation.x, cellLocation.y, true, cellLocation.x, cellLocation.y, "select_0001", "select_0002", avaliableAp, moveTargetTiles);
 
         Debug.Log("Targetting Tiles: " + moveTargetTiles);
 
