@@ -24,9 +24,10 @@ namespace Deviant {
     static CardTypeReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cg5DYXJkVHlwZS5wcm90bxIHRGV2aWFudCpQCghDYXJkVHlwZRIKCgZBVFRB",
+            "Cg5DYXJkVHlwZS5wcm90bxIHRGV2aWFudCpbCghDYXJkVHlwZRIKCgZBVFRB",
             "Q0sQABIICgRCVUZGEAESCgoGREVCVUZGEAISCgoGU1VNTU9OEAMSDAoITU9W",
-            "RU1FTlQQBBIICgRIRUFMEAVCCVoHZGV2aWFudGIGcHJvdG8z"));
+            "RU1FTlQQBBIICgRIRUFMEAUSCQoFQkxPQ0sQBkIJWgdkZXZpYW50YgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Deviant.CardType), }, null, null));
@@ -42,6 +43,7 @@ namespace Deviant {
     [pbr::OriginalName("SUMMON")] Summon = 3,
     [pbr::OriginalName("MOVEMENT")] Movement = 4,
     [pbr::OriginalName("HEAL")] Heal = 5,
+    [pbr::OriginalName("BLOCK")] Block = 6,
   }
 
   #endregion
