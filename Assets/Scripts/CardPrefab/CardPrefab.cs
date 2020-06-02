@@ -52,6 +52,7 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         this.id = id;
     }
+
     public string GetId()
     {
         return this.id;
@@ -61,11 +62,11 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         this.instanceId = id;
     }
+    
     public string GetInstanceId()
     {
         return this.instanceId;
     }
-
 
     public void SetVisability(bool visability) {
         this.visable = visability;
@@ -97,371 +98,20 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
-    public void ClearSelectedTiles()
-    {
-        this.selectedPatternTilePositions = null;
-    }
-
-    public void switchUp(Dictionary<string, Dictionary<string, List<Vector3Int>>> dictionary, string actionKey, string direction, List<Vector3Int> up, List<Vector3Int> down, List<Vector3Int> left, List<Vector3Int> right)
-    {
-        switch (direction)
-        {
-            case "up":
-                dictionary[actionKey]["up"] = up;
-                dictionary[actionKey]["down"] = down;
-                dictionary[actionKey]["left"] = left;
-                dictionary[actionKey]["right"] = right;
-                break;
-            case "down":
-                dictionary[actionKey]["down"] = up;
-                dictionary[actionKey]["up"] = down;
-                dictionary[actionKey]["left"] = left;
-                dictionary[actionKey]["right"] = right;
-                break;
-            case "left":
-                dictionary[actionKey]["up"] = right;
-                dictionary[actionKey]["left"] = up;
-                dictionary[actionKey]["down"] = left;
-                dictionary[actionKey]["right"] = down;
-                break;
-            case "right":
-                dictionary[actionKey]["up"] = left;
-                dictionary[actionKey]["left"] = down;
-                dictionary[actionKey]["down"] = right;
-                dictionary[actionKey]["right"] = up;
-                break;
-        }
-
-        this.selectedPatternTilePositions = dictionary;
-    }
-    public void switchDown(Dictionary<string, Dictionary<string, List<Vector3Int>>> dictionary, string actionKey, string direction, List<Vector3Int> up, List<Vector3Int> down, List<Vector3Int> left, List<Vector3Int> right)
-    {
-        switch (direction)
-        {
-            case "up":
-                dictionary[actionKey]["up"] = down;
-                dictionary[actionKey]["down"] = up;
-                dictionary[actionKey]["left"] = left;
-                dictionary[actionKey]["right"] = right;
-                break;
-            case "down":
-                dictionary[actionKey]["up"] = up;
-                dictionary[actionKey]["left"] = left;
-                dictionary[actionKey]["right"] = right;
-                dictionary[actionKey]["down"] = down;
-                break;
-            case "left":
-                dictionary[actionKey]["up"] = left;
-                dictionary[actionKey]["left"] = down;
-                dictionary[actionKey]["down"] = right;
-                dictionary[actionKey]["right"] = up;
-                break;
-            case "right":
-                dictionary[actionKey]["up"] = right;
-                dictionary[actionKey]["left"] = up;
-                dictionary[actionKey]["down"] = left;
-                dictionary[actionKey]["right"] = down;
-                break;
-        }
-
-        this.selectedPatternTilePositions = dictionary;
-
-    }
-
-    public void switchLeft(Dictionary<string, Dictionary<string, List<Vector3Int>>> dictionary, string actionKey, string direction, List<Vector3Int> up, List<Vector3Int> down, List<Vector3Int> left, List<Vector3Int> right)
-    {
-        switch (direction)
-        {
-            case "up":
-                dictionary[actionKey]["up"] = left;
-                dictionary[actionKey]["left"] = down;
-                dictionary[actionKey]["down"] = right;
-                dictionary[actionKey]["right"] = up;
-                break;
-            case "down":
-                dictionary[actionKey]["up"] = right;
-                dictionary[actionKey]["left"] = up;
-                dictionary[actionKey]["down"] = left;
-                dictionary[actionKey]["right"] = down;
-                break;
-            case "left":
-                dictionary[actionKey]["up"] = up;
-                dictionary[actionKey]["left"] = left;
-                dictionary[actionKey]["right"] = right;
-                dictionary[actionKey]["down"] = down;
-                break;
-            case "right":
-                dictionary[actionKey]["left"] = right;
-                dictionary[actionKey]["right"] = left;
-                break;
-        }
-
-        this.selectedPatternTilePositions = dictionary;
-
-    }
-    public void switchRight(Dictionary<string, Dictionary<string, List<Vector3Int>>> dictionary, string actionKey, string direction, List<Vector3Int> up, List<Vector3Int> down, List<Vector3Int> left, List<Vector3Int> right)
-    {
-        switch (direction)
-        {
-            case "up":
-                dictionary[actionKey]["up"] = right;
-                dictionary[actionKey]["left"] = up;
-                dictionary[actionKey]["down"] = left;
-                dictionary[actionKey]["right"] = down;
-                break;
-            case "down":
-                dictionary[actionKey]["up"] = left;
-                dictionary[actionKey]["left"] = down;
-                dictionary[actionKey]["down"] = right;
-                dictionary[actionKey]["right"] = up;
-                break;
-            case "left":
-                dictionary[actionKey]["left"] = right;
-                dictionary[actionKey]["right"] = left;
-                break;
-            case "right":
-                dictionary[actionKey]["up"] = up;
-                dictionary[actionKey]["left"] = left;
-                dictionary[actionKey]["right"] = right;
-                dictionary[actionKey]["down"] = down;
-                break;
-        }
-
-        this.selectedPatternTilePositions = dictionary;
-    }
-
-    public async Task<bool> UpdateSelectedTiles(string direction, string previousDirection, Vector3Int entityTile, Vector3Int previousEntityTile)
-    {
-        GameObject battleFieldOverlay = GameObject.Find("BattlefieldOverlay");
-        Tilemap battleFieldOverlayTilemap = battleFieldOverlay.GetComponent<Tilemap>();
-        UnityEngine.Tilemaps.Tile selectedTile = Resources.Load<UnityEngine.Tilemaps.Tile>("Art/Tiles/select_0000");
-
-        // Delete Old Tiles + Update Location 
-        foreach (var action in this.selectedPatternTilePositions)
-        {
-            foreach (var directionalPattern in this.selectedPatternTilePositions[action.Key])
-            {
-                var newPatterns = new List<Vector3Int>();
-                var originalPatterns = new List<Vector3Int>();
-
-                for (var i = 0; i < this.selectedPatternTilePositions[action.Key][directionalPattern.Key].Count; i++)
-                {
-                    var pattern = this.selectedPatternTilePositions[action.Key][directionalPattern.Key][i];
-
-                    Vector3Int newLocation = default;
-
-                    int x = pattern.x;
-                    int y = pattern.y;
-
-                    if (directionalPattern.Key == "up")
-                    {
-                        switch (direction)
-                        {
-                            case "up":
-                                newLocation.x = x;
-                                newLocation.y = y;
-                                break;
-                            case "down":
-                                newLocation.x = entityTile.x - (System.Math.Abs(x) - entityTile.x);
-                                newLocation.y = y;
-                                break;
-                            case "left":
-                                newLocation.x = y + entityTile.x - entityTile.y;
-                                newLocation.y = (System.Math.Abs(x - entityTile.x) * (1)) + entityTile.y;
-                                break;
-                            case "right":
-                                newLocation.x = y + entityTile.x - entityTile.y;
-                                newLocation.y = (System.Math.Abs(entityTile.x - x) * (-1)) + entityTile.y;
-
-                                break;
-                        }
-                    }
-                    else if (directionalPattern.Key == "down")
-                    {
-                        switch (direction)
-                        {
-                            case "up":
-                                newLocation.x = entityTile.x + (entityTile.x - x);
-                                newLocation.y = y;
-                                break;
-                            case "down":
-                                newLocation.x = x;
-                                newLocation.y = y;
-                                break;
-                            case "left":
-                                newLocation.x = y + entityTile.x - entityTile.y;
-                                newLocation.y = (System.Math.Abs(entityTile.x - x) * (1)) + entityTile.y;
-
-                                break;
-                            case "right":
-                                newLocation.x = y + entityTile.x - entityTile.y;
-                                newLocation.y = (System.Math.Abs(x - entityTile.x) * (-1)) + entityTile.y;
-
-                                break;
-                        }
-                    }
-                    else if (directionalPattern.Key == "left")
-                    {
-                        switch (direction)
-                        {
-                            case "up":
-                                newLocation.x = (System.Math.Abs(y - entityTile.y) * (1)) + entityTile.x;
-                                newLocation.y = (entityTile.x - x) + entityTile.y;
-                                break;
-                            case "down":
-                                newLocation.x = (System.Math.Abs(y - entityTile.y) * (-1)) + entityTile.x;
-                                newLocation.y = (x - entityTile.x) + entityTile.y;
-                                break;
-                            case "left":
-                                newLocation.x = x;
-                                newLocation.y = y;
-
-                                break;
-                            case "right":
-                                newLocation.x = x;
-                                newLocation.y = (System.Math.Abs(y) * (-1)) + (entityTile.y * 2);
-
-                                break;
-                        }
-                    }
-                    else if (directionalPattern.Key == "right")
-                    {
-                        switch (direction)
-                        {
-                            case "up":
-                                newLocation.x = (System.Math.Abs(y - entityTile.y) * (1)) + entityTile.x;
-                                newLocation.y = (entityTile.x - x) + entityTile.y;
-                                break;
-                            case "down":
-                                newLocation.x = (System.Math.Abs(y - entityTile.y) * (-1)) + entityTile.x;
-                                newLocation.y = (x - entityTile.x) + entityTile.y;
-
-                                break;
-                            case "left":
-                                newLocation.x = x;
-                                newLocation.y = y * (-1) + (entityTile.y * 2);
-
-                                break;
-                            case "right":
-                                newLocation.x = x;
-                                newLocation.y = y;
-
-                                break;
-                        }
-                    }
-
-                    originalPatterns.Add(new Vector3Int(pattern.x, pattern.y, pattern.z));
-                    newPatterns.Add(new Vector3Int(newLocation.x, newLocation.y, newLocation.z));
-
-                    this.selectedPatternTilePositions[action.Key][directionalPattern.Key][i] = newLocation;
-                }
-
-                foreach (var pattern in newPatterns)
-                {
-                    var matched = originalPatterns.Where(oldPattern => oldPattern.x != pattern.x && oldPattern.y != pattern.y).ToList();
-                    foreach (var matchedPattern in matched)
-                    {
-                        battleFieldOverlayTilemap.SetTile(matchedPattern, null);
-                        battleFieldOverlayTilemap.RefreshTile(matchedPattern);
-                    }
-                }
-            }
-        }
-
-        // Create a new empty dictionary 
-        Dictionary<string, Dictionary<string, List<Vector3Int>>> newSelectedTilePositions = new Dictionary<string, Dictionary<string, List<Vector3Int>>>();
-        List<string> actionKeys = new List<string>(this.selectedPatternTilePositions.Keys);
-
-        foreach (var actionKey in actionKeys)
-        {
-            newSelectedTilePositions.Add(actionKey, new Dictionary<string, List<Vector3Int>> { });
-            newSelectedTilePositions[actionKey].Add("up", new List<Vector3Int>());
-            newSelectedTilePositions[actionKey].Add("down", new List<Vector3Int>());
-            newSelectedTilePositions[actionKey].Add("left", new List<Vector3Int>());
-            newSelectedTilePositions[actionKey].Add("right", new List<Vector3Int>());
-
-            List<Vector3Int> up = new List<Vector3Int>();
-            List<Vector3Int> down = new List<Vector3Int>();
-            List<Vector3Int> left = new List<Vector3Int>();
-            List<Vector3Int> right = new List<Vector3Int>();
-
-            foreach(var vector in this.selectedPatternTilePositions[actionKey]["up"])
-            {
-                Vector3Int newVector = new Vector3Int(vector.x, vector.y, vector.z);
-                up.Add(newVector);
-            }
-
-            foreach (var vector in this.selectedPatternTilePositions[actionKey]["down"])
-            {
-                Vector3Int newVector = new Vector3Int(vector.x, vector.y, vector.z);
-                down.Add(newVector);
-
-            }
-
-            foreach (var vector in this.selectedPatternTilePositions[actionKey]["left"])
-            {
-                Vector3Int newVector = new Vector3Int(vector.x, vector.y, vector.z);
-                left.Add(newVector);
-
-            }
-
-            foreach (var vector in this.selectedPatternTilePositions[actionKey]["right"])
-            {
-                Vector3Int newVector = new Vector3Int(vector.x, vector.y, vector.z);
-                right.Add(newVector);
-
-            }
-
-            switch (previousDirection)
-            {
-                case "up":
-                    switchUp(newSelectedTilePositions, actionKey, direction, up, down, left, right);
-                    break;
-                case "down":
-                    switchDown(newSelectedTilePositions, actionKey, direction, up, down, left, right);
-                    break;
-                case "left":
-                    switchLeft(newSelectedTilePositions, actionKey, direction, up, down, left, right);
-                    break;
-                case "right":
-                    switchRight(newSelectedTilePositions, actionKey, direction, up, down, left, right);
-                    break;
-            }
-        }
-
-        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-        encounterRequest.EntityTargetAction = new EntityTargetAction();
-
-        // Draw New Tiles
-        foreach (var actionKey in newSelectedTilePositions)
-        {
-            foreach (var directionKey in newSelectedTilePositions[actionKey.Key])
-            {
-                foreach (var vector in newSelectedTilePositions[actionKey.Key][directionKey.Key])
-                {
-                    Deviant.Tile newTile = new Deviant.Tile();
-                    newTile.Id = getTileTypeFromCardType(this.cardType);
-                    newTile.X = vector.x;
-                    newTile.Y = vector.y;
-
-                    encounterRequest.EntityTargetAction.Tiles.Add(newTile);
-                }
-            }
-        }
-
-        Debug.Log("New Tiles: " + encounterRequest.EntityTargetAction.Tiles);
-        await encounterStateRef.UpdateEncounterAsync(encounterRequest);
-
-        return true;
-    }
-
     public async void OnPointerClick(PointerEventData eventData)
     {
+        if(this.selected == true) {
+            this.selected = false;
+        } else {
+            this.selected = true;
+        }
+
         // Retrieve the Current Encounter From Shared State.
         Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
         Deviant.Entity activeEntity = encounterState.ActiveEntity;
         GameObject battleFieldOverlay = GameObject.Find("BattlefieldOverlay");
         Tilemap battleFieldOverlayTilemap = battleFieldOverlay.GetComponent<Tilemap>();
+
 
         if (activeEntity.OwnerId == encounterStateRef.GetPlayerId())
         {
@@ -556,17 +206,7 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                                 case Deviant.Direction.Up:
                                     for (int i = 0; i < entry.Distance; i++)
                                     {
-                                        offsetStart += up;
-
-                                        if (this.selected == true)
-                                        {
-                                            battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, null);
-                                        }
-                                        else
-                                        {
-                                            battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, selectedTile);
-                                            selectedPatternTilePositions[card.Action.Id]["up"].Add(offsetStart + entityCellLocation);
-                                        }
+                                        selectedPatternTilePositions[card.Action.Id]["up"].Add(offsetStart + entityCellLocation);
 
                                         offsetStart += up;
                                     }
@@ -574,15 +214,8 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                                 case Deviant.Direction.Down:
                                     for (int i = 0; i < entry.Distance; i++)
                                     {
-                                        if (this.selected == true)
-                                        {
-                                            battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, null);
-                                        }
-                                        else
-                                        {
-                                            battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, selectedTile);
-                                            selectedPatternTilePositions[card.Action.Id]["down"].Add(offsetStart + entityCellLocation);
-                                        }
+
+                                        selectedPatternTilePositions[card.Action.Id]["down"].Add(offsetStart + entityCellLocation);
 
                                         offsetStart += down;
                                     }
@@ -590,32 +223,14 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                                 case Deviant.Direction.Left:
                                     for (int i = 0; i < entry.Distance; i++)
                                     {
-                                        if (this.selected == true)
-                                        {
-                                            battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, null);
-                                        }
-                                        else
-                                        {
-                                            battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, selectedTile);
-                                            selectedPatternTilePositions[card.Action.Id]["left"].Add(offsetStart + entityCellLocation);
-                                        }
+                                        selectedPatternTilePositions[card.Action.Id]["left"].Add(offsetStart + entityCellLocation);
                                         offsetStart += left;
-
                                     }
                                     break;
                                 case Deviant.Direction.Right:
                                     for (int i = 0; i < entry.Distance; i++)
                                     {
-                                        if (this.selected == true)
-                                        {
-                                            battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, null);
-                                        }
-                                        else
-                                        {
-                                            battleFieldOverlayTilemap.SetTile(offsetStart + entityCellLocation, selectedTile);
-                                            selectedPatternTilePositions[card.Action.Id]["right"].Add(offsetStart + entityCellLocation);
-                                        }
-
+                                        selectedPatternTilePositions[card.Action.Id]["right"].Add(offsetStart + entityCellLocation);
                                         offsetStart += right;
                                     }
                                     break;
@@ -643,14 +258,11 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                                 newTile.Y = tileLocation.y;
 
                                 encounterRequest.EntityTargetAction.Tiles.Add(newTile);
-                                battleFieldOverlayTilemap.RefreshTile(tileLocation);
                             }
                         }
                     }
 
                     await encounterStateRef.UpdateEncounterAsync(encounterRequest);
-
-                    selected = false;
                 }
                 else
                 {
