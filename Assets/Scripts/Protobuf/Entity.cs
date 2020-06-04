@@ -27,21 +27,22 @@ namespace Deviant {
             "CgxFbnRpdHkucHJvdG8SB0RldmlhbnQaD0FsaWdubWVudC5wcm90bxoQQXR0",
             "YWNobWVudC5wcm90bxoNQ2xhc3Nlcy5wcm90bxoQQ29uZGl0aW9ucy5wcm90",
             "bxoKSGFuZC5wcm90bxoKRGVjay5wcm90bxoNRGlzY2FyZC5wcm90bxoWRW50",
-            "aXR5U3RhdGVOYW1lcy5wcm90byKfAwoGRW50aXR5EgoKAmlkGAEgASgJEgoK",
-            "AmhwGAIgASgFEgoKAmFwGAMgASgFEigKBXN0YXRlGAQgASgOMhkuRGV2aWFu",
-            "dC5FbnRpdHlTdGF0ZU5hbWVzEiUKCWFsaWdubWVudBgFIAEoDjISLkRldmlh",
-            "bnQuQWxpZ25tZW50Eh8KBWNsYXNzGAYgASgOMhAuRGV2aWFudC5DbGFzc2Vz",
-            "EicKCmNvbmRpdGlvbnMYByADKA4yEy5EZXZpYW50LkNvbmRpdGlvbnMSKAoL",
-            "YXR0YWNobWVudHMYCCADKA4yEy5EZXZpYW50LkF0dGFjaG1lbnQSGwoEaGFu",
-            "ZBgJIAEoCzINLkRldmlhbnQuSGFuZBIbCgRkZWNrGAogASgLMg0uRGV2aWFu",
-            "dC5EZWNrEiEKB2Rpc2NhcmQYCyABKAsyEC5EZXZpYW50LkRpc2NhcmQSEgoK",
-            "aW5pdGlhdGl2ZRgMIAEoBRIPCgdvd25lcklkGA0gASgJEg0KBW1heEhwGA4g",
-            "ASgFEg0KBW1heEFwGA8gASgFEgwKBG5hbWUYECABKAlCCVoHZGV2aWFudGIG",
-            "cHJvdG8z"));
+            "aXR5U3RhdGVOYW1lcy5wcm90bxoZRW50aXR5Um90YXRpb25OYW1lcy5wcm90",
+            "byLPAwoGRW50aXR5EgoKAmlkGAEgASgJEgoKAmhwGAIgASgFEgoKAmFwGAMg",
+            "ASgFEigKBXN0YXRlGAQgASgOMhkuRGV2aWFudC5FbnRpdHlTdGF0ZU5hbWVz",
+            "EiUKCWFsaWdubWVudBgFIAEoDjISLkRldmlhbnQuQWxpZ25tZW50Eh8KBWNs",
+            "YXNzGAYgASgOMhAuRGV2aWFudC5DbGFzc2VzEicKCmNvbmRpdGlvbnMYByAD",
+            "KA4yEy5EZXZpYW50LkNvbmRpdGlvbnMSKAoLYXR0YWNobWVudHMYCCADKA4y",
+            "Ey5EZXZpYW50LkF0dGFjaG1lbnQSGwoEaGFuZBgJIAEoCzINLkRldmlhbnQu",
+            "SGFuZBIbCgRkZWNrGAogASgLMg0uRGV2aWFudC5EZWNrEiEKB2Rpc2NhcmQY",
+            "CyABKAsyEC5EZXZpYW50LkRpc2NhcmQSEgoKaW5pdGlhdGl2ZRgMIAEoBRIP",
+            "Cgdvd25lcklkGA0gASgJEg0KBW1heEhwGA4gASgFEg0KBW1heEFwGA8gASgF",
+            "EgwKBG5hbWUYECABKAkSLgoIcm90YXRpb24YESABKA4yHC5EZXZpYW50LkVu",
+            "dGl0eVJvdGF0aW9uTmFtZXNCCVoHZGV2aWFudGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Deviant.AlignmentReflection.Descriptor, global::Deviant.AttachmentReflection.Descriptor, global::Deviant.ClassesReflection.Descriptor, global::Deviant.ConditionsReflection.Descriptor, global::Deviant.HandReflection.Descriptor, global::Deviant.DeckReflection.Descriptor, global::Deviant.DiscardReflection.Descriptor, global::Deviant.EntityStateNamesReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::Deviant.AlignmentReflection.Descriptor, global::Deviant.AttachmentReflection.Descriptor, global::Deviant.ClassesReflection.Descriptor, global::Deviant.ConditionsReflection.Descriptor, global::Deviant.HandReflection.Descriptor, global::Deviant.DeckReflection.Descriptor, global::Deviant.DiscardReflection.Descriptor, global::Deviant.EntityStateNamesReflection.Descriptor, global::Deviant.EntityRotationNamesReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Entity), global::Deviant.Entity.Parser, new[]{ "Id", "Hp", "Ap", "State", "Alignment", "Class", "Conditions", "Attachments", "Hand", "Deck", "Discard", "Initiative", "OwnerId", "MaxHp", "MaxAp", "Name" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Entity), global::Deviant.Entity.Parser, new[]{ "Id", "Hp", "Ap", "State", "Alignment", "Class", "Conditions", "Attachments", "Hand", "Deck", "Discard", "Initiative", "OwnerId", "MaxHp", "MaxAp", "Name", "Rotation" }, null, null, null, null)
           }));
     }
     #endregion
@@ -89,6 +90,7 @@ namespace Deviant {
       maxHp_ = other.maxHp_;
       maxAp_ = other.maxAp_;
       name_ = other.name_;
+      rotation_ = other.rotation_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -271,6 +273,17 @@ namespace Deviant {
       }
     }
 
+    /// <summary>Field number for the "rotation" field.</summary>
+    public const int RotationFieldNumber = 17;
+    private global::Deviant.EntityRotationNames rotation_ = global::Deviant.EntityRotationNames.North;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Deviant.EntityRotationNames Rotation {
+      get { return rotation_; }
+      set {
+        rotation_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as Entity);
@@ -300,6 +313,7 @@ namespace Deviant {
       if (MaxHp != other.MaxHp) return false;
       if (MaxAp != other.MaxAp) return false;
       if (Name != other.Name) return false;
+      if (Rotation != other.Rotation) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -322,6 +336,7 @@ namespace Deviant {
       if (MaxHp != 0) hash ^= MaxHp.GetHashCode();
       if (MaxAp != 0) hash ^= MaxAp.GetHashCode();
       if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (Rotation != global::Deviant.EntityRotationNames.North) hash ^= Rotation.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -393,6 +408,10 @@ namespace Deviant {
         output.WriteRawTag(130, 1);
         output.WriteString(Name);
       }
+      if (Rotation != global::Deviant.EntityRotationNames.North) {
+        output.WriteRawTag(136, 1);
+        output.WriteEnum((int) Rotation);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -444,6 +463,9 @@ namespace Deviant {
       }
       if (Name.Length != 0) {
         size += 2 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (Rotation != global::Deviant.EntityRotationNames.North) {
+        size += 2 + pb::CodedOutputStream.ComputeEnumSize((int) Rotation);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -508,6 +530,9 @@ namespace Deviant {
       }
       if (other.Name.Length != 0) {
         Name = other.Name;
+      }
+      if (other.Rotation != global::Deviant.EntityRotationNames.North) {
+        Rotation = other.Rotation;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -593,6 +618,10 @@ namespace Deviant {
           }
           case 130: {
             Name = input.ReadString();
+            break;
+          }
+          case 136: {
+            Rotation = (global::Deviant.EntityRotationNames) input.ReadEnum();
             break;
           }
         }
