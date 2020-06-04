@@ -680,6 +680,684 @@ TextureImporter:
   - first:
       213: -3222751614280864942
     second: adventurer-v1.5-Sheet_112
+  - first:
+      213: 4902704327389249024
+    second: warrior_sheet_0
+  - first:
+      213: 8921878098465640943
+    second: warrior_sheet_1
+  - first:
+      213: 650993733719359505
+    second: warrior_sheet_2
+  - first:
+      213: -864609946468509987
+    second: warrior_sheet_3
+  - first:
+      213: 5602103633423635675
+    second: warrior_sheet_4
+  - first:
+      213: -7850586140707534468
+    second: warrior_sheet_5
+  - first:
+      213: -3817907449012733634
+    second: warrior_sheet_6
+  - first:
+      213: 4109934229029047168
+    second: warrior_sheet_7
+  - first:
+      213: -7203710131554163018
+    second: warrior_sheet_8
+  - first:
+      213: -8809683150880421764
+    second: warrior_sheet_9
+  - first:
+      213: 4960089472681467215
+    second: warrior_sheet_10
+  - first:
+      213: -174372842214490360
+    second: warrior_sheet_11
+  - first:
+      213: -3070069263382139360
+    second: warrior_sheet_12
+  - first:
+      213: 3722508941304735404
+    second: warrior_sheet_13
+  - first:
+      213: 1958735927532664578
+    second: warrior_sheet_14
+  - first:
+      213: 6354317178438619607
+    second: warrior_sheet_15
+  - first:
+      213: 4809442143599796164
+    second: warrior_sheet_16
+  - first:
+      213: -7316983522989388630
+    second: warrior_sheet_17
+  - first:
+      213: -6526890762498276797
+    second: warrior_sheet_18
+  - first:
+      213: -7511639891201367396
+    second: warrior_sheet_19
+  - first:
+      213: -2171160298721206689
+    second: warrior_sheet_20
+  - first:
+      213: -3917948310316816928
+    second: warrior_sheet_21
+  - first:
+      213: -1826767722463859317
+    second: warrior_sheet_22
+  - first:
+      213: 6962871707264977883
+    second: warrior_sheet_23
+  - first:
+      213: -4024474257926567772
+    second: warrior_sheet_24
+  - first:
+      213: -6884425228580917171
+    second: warrior_sheet_25
+  - first:
+      213: 1408247814883897151
+    second: warrior_sheet_26
+  - first:
+      213: 2922043221157360551
+    second: warrior_sheet_27
+  - first:
+      213: 6969452631718726256
+    second: warrior_sheet_28
+  - first:
+      213: -6367446062177822538
+    second: warrior_sheet_29
+  - first:
+      213: -6076819811371480509
+    second: warrior_sheet_30
+  - first:
+      213: 2830635254673394253
+    second: warrior_sheet_31
+  - first:
+      213: -5720322134601985719
+    second: warrior_sheet_32
+  - first:
+      213: 5689103433743479471
+    second: warrior_sheet_33
+  - first:
+      213: -369408961658707212
+    second: warrior_sheet_34
+  - first:
+      213: -3553798361112429458
+    second: warrior_sheet_35
+  - first:
+      213: -7483726960686529094
+    second: warrior_sheet_36
+  - first:
+      213: 7194543722169065805
+    second: warrior_sheet_37
+  - first:
+      213: -7673552687751936027
+    second: warrior_sheet_38
+  - first:
+      213: 2793047681561350341
+    second: warrior_sheet_39
+  - first:
+      213: 2123379919237814049
+    second: warrior_sheet_40
+  - first:
+      213: 5643953545793412222
+    second: warrior_sheet_41
+  - first:
+      213: -8054882068327794327
+    second: warrior_sheet_42
+  - first:
+      213: -1991790242826077647
+    second: warrior_sheet_43
+  - first:
+      213: -1483652430104481318
+    second: warrior_sheet_44
+  - first:
+      213: 3241585643689067202
+    second: warrior_sheet_45
+  - first:
+      213: -6197028360898555061
+    second: warrior_sheet_46
+  - first:
+      213: -2706412978260992734
+    second: warrior_sheet_47
+  - first:
+      213: -18425701486239828
+    second: warrior_sheet_48
+  - first:
+      213: 31653334378423979
+    second: warrior_sheet_49
+  - first:
+      213: -4646964549913746067
+    second: warrior_sheet_50
+  - first:
+      213: -1594720464528670785
+    second: warrior_sheet_51
+  - first:
+      213: 48038510357844327
+    second: warrior_sheet_52
+  - first:
+      213: -5596377872761347703
+    second: warrior_sheet_53
+  - first:
+      213: 5720189342092968681
+    second: warrior_sheet_54
+  - first:
+      213: -7250414912756995008
+    second: warrior_sheet_55
+  - first:
+      213: -776980349342446974
+    second: warrior_sheet_56
+  - first:
+      213: -8637949021901998434
+    second: warrior_sheet_57
+  - first:
+      213: 3666420583285130018
+    second: warrior_sheet_58
+  - first:
+      213: -3343828934713736310
+    second: warrior_sheet_59
+  - first:
+      213: 2099883086020812006
+    second: warrior_sheet_60
+  - first:
+      213: 4723867351942216886
+    second: warrior_sheet_61
+  - first:
+      213: 618066028559357838
+    second: warrior_sheet_62
+  - first:
+      213: 2236161730470791019
+    second: warrior_sheet_63
+  - first:
+      213: -8239421239449455388
+    second: warrior_sheet_64
+  - first:
+      213: 2209508490522702790
+    second: warrior_sheet_65
+  - first:
+      213: -4142704344330127028
+    second: warrior_sheet_66
+  - first:
+      213: 4401258250334856583
+    second: warrior_sheet_67
+  - first:
+      213: 904124582254414226
+    second: warrior_sheet_68
+  - first:
+      213: 2220054889105596694
+    second: warrior_sheet_69
+  - first:
+      213: 421704881400621620
+    second: warrior_sheet_70
+  - first:
+      213: -7088546444394142932
+    second: warrior_sheet_71
+  - first:
+      213: 576828168152335281
+    second: warrior_sheet_72
+  - first:
+      213: 851422859777863448
+    second: warrior_sheet_73
+  - first:
+      213: -5641152178394977481
+    second: warrior_sheet_74
+  - first:
+      213: 423255089084007223
+    second: warrior_sheet_75
+  - first:
+      213: -5527328539738464454
+    second: warrior_sheet_76
+  - first:
+      213: 5118810085685882573
+    second: warrior_sheet_77
+  - first:
+      213: 8047704984581114263
+    second: warrior_sheet_78
+  - first:
+      213: 4739123529622034929
+    second: warrior_sheet_79
+  - first:
+      213: -662934501135964917
+    second: warrior_sheet_80
+  - first:
+      213: 639734833456326064
+    second: warrior_sheet_81
+  - first:
+      213: -6542738237006540076
+    second: warrior_sheet_82
+  - first:
+      213: 1970334021738107737
+    second: warrior_sheet_83
+  - first:
+      213: 3161892013529761892
+    second: warrior_sheet_84
+  - first:
+      213: -6754924428338970291
+    second: warrior_sheet_85
+  - first:
+      213: 2563431019219942843
+    second: warrior_sheet_86
+  - first:
+      213: -6823657391179517259
+    second: warrior_sheet_87
+  - first:
+      213: -8849735698210083006
+    second: warrior_sheet_88
+  - first:
+      213: -15395357954547814
+    second: warrior_sheet_89
+  - first:
+      213: -1830989881561937471
+    second: warrior_sheet_90
+  - first:
+      213: 2666974510047454613
+    second: warrior_sheet_91
+  - first:
+      213: -5495201418536336999
+    second: warrior_sheet_92
+  - first:
+      213: -1304872975147385697
+    second: warrior_sheet_93
+  - first:
+      213: -4195229852701324286
+    second: warrior_sheet_94
+  - first:
+      213: -8922741908001125167
+    second: warrior_sheet_95
+  - first:
+      213: 6904581591775319330
+    second: warrior_sheet_96
+  - first:
+      213: -6109522598000232618
+    second: warrior_sheet_97
+  - first:
+      213: 7122972241732688661
+    second: warrior_sheet_98
+  - first:
+      213: -4877441457486952932
+    second: warrior_sheet_99
+  - first:
+      213: -3084373640182798676
+    second: warrior_sheet_100
+  - first:
+      213: -3017121536357153194
+    second: warrior_sheet_101
+  - first:
+      213: 6011074147271056072
+    second: warrior_sheet_102
+  - first:
+      213: -5728456506882237461
+    second: warrior_sheet_103
+  - first:
+      213: 133649430898428696
+    second: warrior_sheet_104
+  - first:
+      213: 6104782283198337642
+    second: warrior_sheet_105
+  - first:
+      213: -792938192316671220
+    second: warrior_sheet_106
+  - first:
+      213: -8577706824320402964
+    second: warrior_sheet_107
+  - first:
+      213: -1855887171764980007
+    second: warrior_sheet_108
+  - first:
+      213: 2237075591055968291
+    second: warrior_sheet_109
+  - first:
+      213: -3319006539810473095
+    second: warrior_sheet_110
+  - first:
+      213: 2562849694019361174
+    second: warrior_sheet_111
+  - first:
+      213: 993603688065013613
+    second: warrior_sheet_112
+  - first:
+      213: -3043501391566666404
+    second: warrior_sheet_0
+  - first:
+      213: -8313642600428832902
+    second: warrior_sheet_1
+  - first:
+      213: 7872755711654102740
+    second: warrior_sheet_2
+  - first:
+      213: 522891438338469107
+    second: warrior_sheet_3
+  - first:
+      213: 149956977578274674
+    second: warrior_sheet_4
+  - first:
+      213: -6590029185409230917
+    second: warrior_sheet_5
+  - first:
+      213: 5300634105723668995
+    second: warrior_sheet_6
+  - first:
+      213: -4525942415519688445
+    second: warrior_sheet_7
+  - first:
+      213: 4502258629883898313
+    second: warrior_sheet_8
+  - first:
+      213: 8150304839550896386
+    second: warrior_sheet_9
+  - first:
+      213: -5915986917634914979
+    second: warrior_sheet_10
+  - first:
+      213: 4740241248946396144
+    second: warrior_sheet_11
+  - first:
+      213: 4396551472046298893
+    second: warrior_sheet_12
+  - first:
+      213: 4024289191653828923
+    second: warrior_sheet_13
+  - first:
+      213: -4063394465578979725
+    second: warrior_sheet_14
+  - first:
+      213: -6704988474314973047
+    second: warrior_sheet_15
+  - first:
+      213: -5852034142191629431
+    second: warrior_sheet_16
+  - first:
+      213: -4834590042798604700
+    second: warrior_sheet_17
+  - first:
+      213: -5688090992370144939
+    second: warrior_sheet_18
+  - first:
+      213: -5743928458382879756
+    second: warrior_sheet_19
+  - first:
+      213: 3148051554664654905
+    second: warrior_sheet_20
+  - first:
+      213: -4185421316166698794
+    second: warrior_sheet_21
+  - first:
+      213: 1888929852397926871
+    second: warrior_sheet_22
+  - first:
+      213: 3908154656350708207
+    second: warrior_sheet_23
+  - first:
+      213: 293529578252375207
+    second: warrior_sheet_24
+  - first:
+      213: 1977478311196310629
+    second: warrior_sheet_25
+  - first:
+      213: -2835115987465567882
+    second: warrior_sheet_26
+  - first:
+      213: -6094841517599116877
+    second: warrior_sheet_27
+  - first:
+      213: -435127635183477860
+    second: warrior_sheet_28
+  - first:
+      213: -331977649774123162
+    second: warrior_sheet_29
+  - first:
+      213: -7666978808072563710
+    second: warrior_sheet_30
+  - first:
+      213: -2429598610658396057
+    second: warrior_sheet_31
+  - first:
+      213: 903846835846695522
+    second: warrior_sheet_32
+  - first:
+      213: -2741077775782536889
+    second: warrior_sheet_33
+  - first:
+      213: -410094564312824285
+    second: warrior_sheet_34
+  - first:
+      213: -4225676381570582533
+    second: warrior_sheet_35
+  - first:
+      213: 4601958946982455826
+    second: warrior_sheet_36
+  - first:
+      213: 8569661822396079860
+    second: warrior_sheet_37
+  - first:
+      213: -8430763484253735752
+    second: warrior_sheet_38
+  - first:
+      213: 6050217597596538072
+    second: warrior_sheet_39
+  - first:
+      213: 3872655686770415430
+    second: warrior_sheet_40
+  - first:
+      213: -3165313933835395341
+    second: warrior_sheet_41
+  - first:
+      213: 1776442439354189776
+    second: warrior_sheet_42
+  - first:
+      213: -1106955709656272913
+    second: warrior_sheet_43
+  - first:
+      213: -5708333706150313016
+    second: warrior_sheet_44
+  - first:
+      213: 8984020893851680913
+    second: warrior_sheet_45
+  - first:
+      213: -5891778620137614232
+    second: warrior_sheet_46
+  - first:
+      213: -4055123939082225479
+    second: warrior_sheet_47
+  - first:
+      213: 148920303367991243
+    second: warrior_sheet_48
+  - first:
+      213: 4899271814140467805
+    second: warrior_sheet_49
+  - first:
+      213: 401495598250469247
+    second: warrior_sheet_50
+  - first:
+      213: 8472083935779218381
+    second: warrior_sheet_51
+  - first:
+      213: 1885438410372188328
+    second: warrior_sheet_52
+  - first:
+      213: -648036229733552002
+    second: warrior_sheet_53
+  - first:
+      213: -6454478212030799337
+    second: warrior_sheet_54
+  - first:
+      213: 4013828767474471562
+    second: warrior_sheet_55
+  - first:
+      213: 6647166855434732144
+    second: warrior_sheet_56
+  - first:
+      213: -6682629800867281563
+    second: warrior_sheet_57
+  - first:
+      213: 899636797761593161
+    second: warrior_sheet_58
+  - first:
+      213: -5212504579574295370
+    second: warrior_sheet_59
+  - first:
+      213: -7604077310227501421
+    second: warrior_sheet_60
+  - first:
+      213: 1627422648483851938
+    second: warrior_sheet_61
+  - first:
+      213: -5907032523629663825
+    second: warrior_sheet_62
+  - first:
+      213: 772361054515698225
+    second: warrior_sheet_63
+  - first:
+      213: 3957341528922183843
+    second: warrior_sheet_64
+  - first:
+      213: 6039112925810947667
+    second: warrior_sheet_65
+  - first:
+      213: 1305815097416588634
+    second: warrior_sheet_66
+  - first:
+      213: 3617605691749743530
+    second: warrior_sheet_67
+  - first:
+      213: -1442725570572310195
+    second: warrior_sheet_68
+  - first:
+      213: -1042981425573924136
+    second: warrior_sheet_69
+  - first:
+      213: -3557895844218162979
+    second: warrior_sheet_70
+  - first:
+      213: -4789381283121835759
+    second: warrior_sheet_71
+  - first:
+      213: -6514796892295487083
+    second: warrior_sheet_72
+  - first:
+      213: -8114977023732393687
+    second: warrior_sheet_73
+  - first:
+      213: 148623381027335759
+    second: warrior_sheet_74
+  - first:
+      213: -8524201051205309745
+    second: warrior_sheet_75
+  - first:
+      213: -9031893476049702895
+    second: warrior_sheet_76
+  - first:
+      213: 7526700798746926727
+    second: warrior_sheet_77
+  - first:
+      213: -7970751488827923855
+    second: warrior_sheet_78
+  - first:
+      213: 3839457502290549255
+    second: warrior_sheet_79
+  - first:
+      213: -2117815113877263810
+    second: warrior_sheet_80
+  - first:
+      213: -1328649951291375213
+    second: warrior_sheet_81
+  - first:
+      213: -6055659017332030485
+    second: warrior_sheet_82
+  - first:
+      213: -5943997942201144825
+    second: warrior_sheet_83
+  - first:
+      213: 4160643634913064586
+    second: warrior_sheet_84
+  - first:
+      213: 7523190996566002480
+    second: warrior_sheet_85
+  - first:
+      213: -1653008260912928157
+    second: warrior_sheet_86
+  - first:
+      213: 7994232932525452088
+    second: warrior_sheet_87
+  - first:
+      213: 7415616005967482464
+    second: warrior_sheet_88
+  - first:
+      213: -3020722098333627765
+    second: warrior_sheet_89
+  - first:
+      213: 3200050471567167382
+    second: warrior_sheet_90
+  - first:
+      213: -7405368343951396029
+    second: warrior_sheet_91
+  - first:
+      213: 7449978521675501409
+    second: warrior_sheet_92
+  - first:
+      213: -2739749288573714446
+    second: warrior_sheet_93
+  - first:
+      213: -8644122426118854079
+    second: warrior_sheet_94
+  - first:
+      213: 8136677637429764498
+    second: warrior_sheet_95
+  - first:
+      213: 3427562274900922179
+    second: warrior_sheet_96
+  - first:
+      213: -4716600361194995678
+    second: warrior_sheet_97
+  - first:
+      213: 602100909487708787
+    second: warrior_sheet_98
+  - first:
+      213: -1401542420706060617
+    second: warrior_sheet_99
+  - first:
+      213: -2646344627790597361
+    second: warrior_sheet_100
+  - first:
+      213: -3226992772790882500
+    second: warrior_sheet_101
+  - first:
+      213: 7009702208827645037
+    second: warrior_sheet_102
+  - first:
+      213: 8478975500689366515
+    second: warrior_sheet_103
+  - first:
+      213: 965058983318720496
+    second: warrior_sheet_104
+  - first:
+      213: -3199224359874480009
+    second: warrior_sheet_105
+  - first:
+      213: 5622845343318157245
+    second: warrior_sheet_106
+  - first:
+      213: -8822543732333460100
+    second: warrior_sheet_107
+  - first:
+      213: -5686585770420386369
+    second: warrior_sheet_108
+  - first:
+      213: 5925460623876572569
+    second: warrior_sheet_109
+  - first:
+      213: -7091069521283007861
+    second: warrior_sheet_110
+  - first:
+      213: 830926200178116615
+    second: warrior_sheet_111
+  - first:
+      213: -7424318379571208102
+    second: warrior_sheet_112
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -720,12 +1398,12 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -765,13 +1443,34 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_0
+      name: warrior_sheet_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 556
+        x: 13
+        y: 555
+        width: 21
+        height: 31
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c55034a0c9f43c5d0800000000000000
+      internalID: -3043501391566666404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: warrior_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 555
         width: 19
-        height: 29
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -779,20 +1478,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fac8beaccacfa920800000000000000
-      internalID: 3003842456932895473
+      spriteID: a7772eb3a1200ac80800000000000000
+      internalID: -8313642600428832902
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_1
+      name: warrior_sheet_2
       rect:
         serializedVersion: 2
-        x: 66
-        y: 556
-        width: 17
-        height: 30
+        x: 114
+        y: 555
+        width: 21
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -800,20 +1499,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00bb9687d56c09720800000000000000
-      internalID: 2850996668879977216
+      spriteID: 4d6029cab95a14d60800000000000000
+      internalID: 7872755711654102740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_2
+      name: warrior_sheet_3
       rect:
         serializedVersion: 2
-        x: 115
-        y: 556
-        width: 19
-        height: 30
+        x: 162
+        y: 555
+        width: 22
+        height: 31
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -821,35 +1520,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 729f0de5bd93369c0800000000000000
-      internalID: -3935238035040306905
+      spriteID: 3fce1462efea14700800000000000000
+      internalID: 522891438338469107
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 163
-        y: 556
-        width: 20
-        height: 29
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 064bd2719ee153f70800000000000000
-      internalID: 9166266603047597152
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_4
+      name: warrior_sheet_4
       rect:
         serializedVersion: 2
         x: 216
@@ -863,14 +1541,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c49cdecdc4c07c5f0800000000000000
-      internalID: -736606489788167860
+      spriteID: 27fe42c9311c41200800000000000000
+      internalID: 149956977578274674
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_5
+      name: warrior_sheet_5
       rect:
         serializedVersion: 2
         x: 265
@@ -884,14 +1562,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43332e20b8ae516a0800000000000000
-      internalID: -6479014606132858060
+      spriteID: bb7d9301f538b84a0800000000000000
+      internalID: -6590029185409230917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_6
+      name: warrior_sheet_6
       rect:
         serializedVersion: 2
         x: 315
@@ -905,14 +1583,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3c6765dedb7137f0800000000000000
-      internalID: -634589875489248194
+      spriteID: 30acafb92a2af8940800000000000000
+      internalID: 5300634105723668995
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_7
+      name: warrior_sheet_7
       rect:
         serializedVersion: 2
         x: 17
@@ -926,14 +1604,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48ab12fcb8c64a720800000000000000
-      internalID: 2856527411391085188
+      spriteID: 30953114a5f9031c0800000000000000
+      internalID: -4525942415519688445
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_8
+      name: warrior_sheet_8
       rect:
         serializedVersion: 2
         x: 67
@@ -947,14 +1625,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2df3dee370a569ca0800000000000000
-      internalID: -6010517665512341550
+      spriteID: 9c9aa21be5c3b7e30800000000000000
+      internalID: 4502258629883898313
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_9
+      name: warrior_sheet_9
       rect:
         serializedVersion: 2
         x: 116
@@ -968,14 +1646,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7bb692689536a040800000000000000
-      internalID: 4658469793166703483
+      spriteID: 2090494c113bb1170800000000000000
+      internalID: 8150304839550896386
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_10
+      name: warrior_sheet_10
       rect:
         serializedVersion: 2
         x: 166
@@ -989,14 +1667,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc0cdfd4d9080abb0800000000000000
-      internalID: -4926796579236626227
+      spriteID: d55438e1e3136eda0800000000000000
+      internalID: -5915986917634914979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_11
+      name: warrior_sheet_11
       rect:
         serializedVersion: 2
         x: 217
@@ -1010,14 +1688,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53794ba5975be2cf0800000000000000
-      internalID: -275082994405566667
+      spriteID: 0fb9a111d48b8c140800000000000000
+      internalID: 4740241248946396144
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_12
+      name: warrior_sheet_12
       rect:
         serializedVersion: 2
         x: 266
@@ -1031,14 +1709,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0eb2686691a45a950800000000000000
-      internalID: 6459650713487551456
+      spriteID: d075a081540b30d30800000000000000
+      internalID: 4396551472046298893
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_13
+      name: warrior_sheet_13
       rect:
         serializedVersion: 2
         x: 316
@@ -1052,14 +1730,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fbff1e4ac6511280800000000000000
-      internalID: -9074376347280737291
+      spriteID: b3968fdb2b529d730800000000000000
+      internalID: 4024289191653828923
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_14
+      name: warrior_sheet_14
       rect:
         serializedVersion: 2
         x: 15
@@ -1073,14 +1751,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edc79375ddb9fb8d0800000000000000
-      internalID: -2828370666011919138
+      spriteID: 37e60e8234ceb97c0800000000000000
+      internalID: -4063394465578979725
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_15
+      name: warrior_sheet_15
       rect:
         serializedVersion: 2
         x: 65
@@ -1094,14 +1772,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 29541bd4d88f4f620800000000000000
-      internalID: 2807141753536202130
+      spriteID: 9802e55d18813f2a0800000000000000
+      internalID: -6704988474314973047
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_16
+      name: warrior_sheet_16
       rect:
         serializedVersion: 2
         x: 117
@@ -1115,14 +1793,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4092d5c6146c4c670800000000000000
-      internalID: 8558183176204003588
+      spriteID: 98bc53df3f569cea0800000000000000
+      internalID: -5852034142191629431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_17
+      name: warrior_sheet_17
       rect:
         serializedVersion: 2
         x: 164
@@ -1136,14 +1814,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e717a5cb719a8390800000000000000
-      internalID: -7815274242565007388
+      spriteID: 46e395888f518ecb0800000000000000
+      internalID: -4834590042798604700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_18
+      name: warrior_sheet_18
       rect:
         serializedVersion: 2
         x: 218
@@ -1157,14 +1835,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3867715b2671d9f00800000000000000
-      internalID: 1125081194624939651
+      spriteID: 559ada51167df01b0800000000000000
+      internalID: -5688090992370144939
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_19
+      name: warrior_sheet_19
       rect:
         serializedVersion: 2
         x: 264
@@ -1178,14 +1856,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f2458b8aec4580570800000000000000
-      internalID: 8433083548821902383
+      spriteID: 4f3d4deef777940b0800000000000000
+      internalID: -5743928458382879756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_20
+      name: warrior_sheet_20
       rect:
         serializedVersion: 2
         x: 320
@@ -1199,14 +1877,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ffc1d832b6c7b9f0800000000000000
-      internalID: -452674768767692816
+      spriteID: 938276ab53020bb20800000000000000
+      internalID: 3148051554664654905
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_21
+      name: warrior_sheet_21
       rect:
         serializedVersion: 2
         x: 11
@@ -1220,14 +1898,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08c2831e25bbae5c0800000000000000
-      internalID: -4185326939047187328
+      spriteID: 6d8398efc756ae5c0800000000000000
+      internalID: -4185421316166698794
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_22
+      name: warrior_sheet_22
       rect:
         serializedVersion: 2
         x: 68
@@ -1241,14 +1919,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e802391f2a1d96e0800000000000000
-      internalID: -1829277084054058779
+      spriteID: 7d93fc951b3d63a10800000000000000
+      internalID: 1888929852397926871
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_23
+      name: warrior_sheet_23
       rect:
         serializedVersion: 2
         x: 118
@@ -1262,14 +1940,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72476b77d13e14d30800000000000000
-      internalID: 4414058825501799463
+      spriteID: fe1a21324fd8c3630800000000000000
+      internalID: 3908154656350708207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_24
+      name: warrior_sheet_24
       rect:
         serializedVersion: 2
         x: 155
@@ -1283,14 +1961,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 856ecbb94913c9cb0800000000000000
-      internalID: -4855951783874468264
+      spriteID: 7a49dc2a893d21400800000000000000
+      internalID: 293529578252375207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_25
+      name: warrior_sheet_25
       rect:
         serializedVersion: 2
         x: 205
@@ -1304,14 +1982,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d06346b38a9072ee0800000000000000
-      internalID: -1286048550435408371
+      spriteID: 56c35e10c0a617b10800000000000000
+      internalID: 1977478311196310629
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_26
+      name: warrior_sheet_26
       rect:
         serializedVersion: 2
         x: 255
@@ -1325,14 +2003,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 250986fc10aeb2180800000000000000
-      internalID: -9138953725322686382
+      spriteID: 671851ec705a7a8d0800000000000000
+      internalID: -2835115987465567882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_27
+      name: warrior_sheet_27
       rect:
         serializedVersion: 2
         x: 309
@@ -1346,14 +2024,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2dbbabc70949dfab0800000000000000
-      internalID: -4972655065258345518
+      spriteID: 3b1b33d7ee5ca6ba0800000000000000
+      internalID: -6094841517599116877
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_28
+      name: warrior_sheet_28
       rect:
         serializedVersion: 2
         x: 15
@@ -1367,14 +2045,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4a0c2d108e8ba760800000000000000
-      internalID: 7470221087820483149
+      spriteID: c9bdee0a8bd16f9f0800000000000000
+      internalID: -435127635183477860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_29
+      name: warrior_sheet_29
       rect:
         serializedVersion: 2
         x: 71
@@ -1388,14 +2066,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f266739e8914db8b0800000000000000
-      internalID: -5134875875128941009
+      spriteID: 66728df1614946bf0800000000000000
+      internalID: -331977649774123162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_30
+      name: warrior_sheet_30
       rect:
         serializedVersion: 2
         x: 121
@@ -1409,14 +2087,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f78b3a0df319f3a0800000000000000
-      internalID: -6631246998807017482
+      spriteID: 204136c356b699590800000000000000
+      internalID: -7666978808072563710
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_31
+      name: warrior_sheet_31
       rect:
         serializedVersion: 2
         x: 170
@@ -1430,14 +2108,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ac09fd32c6d17120800000000000000
-      internalID: 2409943405371657381
+      spriteID: 7687ce8afe4584ed0800000000000000
+      internalID: -2429598610658396057
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_32
+      name: warrior_sheet_32
       rect:
         serializedVersion: 2
         x: 221
@@ -1451,14 +2129,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de73d7f30adc137e0800000000000000
-      internalID: -1787421488945743891
+      spriteID: 26ac00e88eb1b8c00800000000000000
+      internalID: 903846835846695522
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_33
+      name: warrior_sheet_33
       rect:
         serializedVersion: 2
         x: 271
@@ -1472,14 +2150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99bb5673b597b7f70800000000000000
-      internalID: 9186069297630657433
+      spriteID: 74993c8294cb5f9d0800000000000000
+      internalID: -2741077775782536889
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_34
+      name: warrior_sheet_34
       rect:
         serializedVersion: 2
         x: 321
@@ -1493,14 +2171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d4ad575166134930800000000000000
-      internalID: 4126166290934899929
+      spriteID: 326c0d1aa2d0f4af0800000000000000
+      internalID: -410094564312824285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_35
+      name: warrior_sheet_35
       rect:
         serializedVersion: 2
         x: 20
@@ -1514,14 +2192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59fb513b2a3680720800000000000000
-      internalID: 2812607517733273493
+      spriteID: bf73ab438b16b55c0800000000000000
+      internalID: -4225676381570582533
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_36
+      name: warrior_sheet_36
       rect:
         serializedVersion: 2
         x: 71
@@ -1535,14 +2213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfe4744c60f0af040800000000000000
-      internalID: 4682071284342279933
+      spriteID: 21ae1d1b7417ddf30800000000000000
+      internalID: 4601958946982455826
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_37
+      name: warrior_sheet_37
       rect:
         serializedVersion: 2
         x: 121
@@ -1556,14 +2234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a60fb494fe6e6ea90800000000000000
-      internalID: -7284881431823912854
+      spriteID: 4fe1521060e8de670800000000000000
+      internalID: 8569661822396079860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_38
+      name: warrior_sheet_38
       rect:
         serializedVersion: 2
         x: 160
@@ -1577,14 +2255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c845a3cb66406b3c0800000000000000
-      internalID: -4344279951261150068
+      spriteID: 8b4b8b77749effa80800000000000000
+      internalID: -8430763484253735752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_39
+      name: warrior_sheet_39
       rect:
         serializedVersion: 2
         x: 210
@@ -1598,14 +2276,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f10af63c2281dc0f0800000000000000
-      internalID: -1095192596794335201
+      spriteID: 8d41f8e79d0b6f350800000000000000
+      internalID: 6050217597596538072
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_40
+      name: warrior_sheet_40
       rect:
         serializedVersion: 2
         x: 259
@@ -1619,14 +2297,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fd6dbb0ed8d30120800000000000000
-      internalID: 2378983476373057016
+      spriteID: 647d85334df6eb530800000000000000
+      internalID: 3872655686770415430
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_41
+      name: warrior_sheet_41
       rect:
         serializedVersion: 2
         x: 309
@@ -1640,14 +2318,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2800df6ea4931ebc0800000000000000
-      internalID: -3755657620384579454
+      spriteID: 3fe952b6fbb8214d0800000000000000
+      internalID: -3165313933835395341
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_42
+      name: warrior_sheet_42
       rect:
         serializedVersion: 2
         x: 7
@@ -1661,14 +2339,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca58b894ffec4fe60800000000000000
-      internalID: 7995242834335335852
+      spriteID: 0d782a19cf037a810800000000000000
+      internalID: 1776442439354189776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_43
+      name: warrior_sheet_43
       rect:
         serializedVersion: 2
         x: 58
@@ -1682,14 +2360,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b252792a29cfda6b0800000000000000
-      internalID: -5283289081112484565
+      spriteID: fefe8df95ad43a0f0800000000000000
+      internalID: -1106955709656272913
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_44
+      name: warrior_sheet_44
       rect:
         serializedVersion: 2
         x: 115
@@ -1703,14 +2381,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44b189b7da5d8c820800000000000000
-      internalID: 2938833697938873156
+      spriteID: 8c385810dbce7c0b0800000000000000
+      internalID: -5708333706150313016
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_45
+      name: warrior_sheet_45
       rect:
         serializedVersion: 2
         x: 165
@@ -1724,14 +2402,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a8ae88068df258a0800000000000000
-      internalID: -6317708575136372573
+      spriteID: 19087b05767adac70800000000000000
+      internalID: 8984020893851680913
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_46
+      name: warrior_sheet_46
       rect:
         serializedVersion: 2
         x: 215
@@ -1745,14 +2423,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 533d772fcdff82120800000000000000
-      internalID: 2389440926745875253
+      spriteID: 864d47b9f823c3ea0800000000000000
+      internalID: -5891778620137614232
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_47
+      name: warrior_sheet_47
       rect:
         serializedVersion: 2
         x: 265
@@ -1766,14 +2444,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1f20a0d1ef70ba30800000000000000
-      internalID: 4229020657945423642
+      spriteID: 9b832da234e49b7c0800000000000000
+      internalID: -4055123939082225479
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_48
+      name: warrior_sheet_48
       rect:
         serializedVersion: 2
         x: 315
@@ -1787,14 +2465,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26b5e3811f86a4010800000000000000
-      internalID: 1173866037586582370
+      spriteID: bcfa7161a32111200800000000000000
+      internalID: 148920303367991243
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_49
+      name: warrior_sheet_49
       rect:
         serializedVersion: 2
         x: 13
@@ -1808,14 +2486,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: acd055fb534bf5030800000000000000
-      internalID: 3485702779544341962
+      spriteID: d5a1debe1c5bdf340800000000000000
+      internalID: 4899271814140467805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_50
+      name: warrior_sheet_50
       rect:
         serializedVersion: 2
         x: 60
@@ -1829,14 +2507,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27558e9e9ceff3570800000000000000
-      internalID: 8448751569136538994
+      spriteID: f772a909e16629500800000000000000
+      internalID: 401495598250469247
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_51
+      name: warrior_sheet_51
       rect:
         serializedVersion: 2
         x: 102
@@ -1850,14 +2528,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81532cfd7b5e76c10800000000000000
-      internalID: 2046857133559002392
+      spriteID: dc3e96bd373e29570800000000000000
+      internalID: 8472083935779218381
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_52
+      name: warrior_sheet_52
       rect:
         serializedVersion: 2
         x: 152
@@ -1871,14 +2549,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e996822e1575f580800000000000000
-      internalID: -8793993925082310168
+      spriteID: 8a88c18ae3c6a2a10800000000000000
+      internalID: 1885438410372188328
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_53
+      name: warrior_sheet_53
       rect:
         serializedVersion: 2
         x: 219
@@ -1892,14 +2570,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e836b310a2da973e0800000000000000
-      internalID: -2055421358997019762
+      spriteID: e70f5258b76b107f0800000000000000
+      internalID: -648036229733552002
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_54
+      name: warrior_sheet_54
       rect:
         serializedVersion: 2
         x: 270
@@ -1913,14 +2591,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51e9a730d13b7ea50800000000000000
-      internalID: 6550401120227466773
+      spriteID: 712e76173461d66a0800000000000000
+      internalID: -6454478212030799337
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_55
+      name: warrior_sheet_55
       rect:
         serializedVersion: 2
         x: 302
@@ -1934,14 +2612,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 029c212811184a230800000000000000
-      internalID: 3649183510273640736
+      spriteID: a825f827ffbf3b730800000000000000
+      internalID: 4013828767474471562
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_56
+      name: warrior_sheet_56
       rect:
         serializedVersion: 2
         x: 3
@@ -1955,14 +2633,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 110b39c79ea8976b0800000000000000
-      internalID: -5298050751202611183
+      spriteID: 07200fc690b7f3c50800000000000000
+      internalID: 6647166855434732144
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_57
+      name: warrior_sheet_57
       rect:
         serializedVersion: 2
         x: 50
@@ -1976,14 +2654,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e56e5a1e01bb9560800000000000000
-      internalID: 7321640293350925797
+      spriteID: 565cdd92a978243a0800000000000000
+      internalID: -6682629800867281563
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_58
+      name: warrior_sheet_58
       rect:
         serializedVersion: 2
         x: 100
@@ -1997,14 +2675,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fc8a16dac6c95810800000000000000
-      internalID: 1754652104315276528
+      spriteID: 94f137da6e62c7c00800000000000000
+      internalID: 899636797761593161
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_59
+      name: warrior_sheet_59
       rect:
         serializedVersion: 2
         x: 166
@@ -2018,14 +2696,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f61bde90ee3bb1a00800000000000000
-      internalID: 728373599700627823
+      spriteID: 6b49060b3b679a7b0800000000000000
+      internalID: -5212504579574295370
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_60
+      name: warrior_sheet_60
       rect:
         serializedVersion: 2
         x: 217
@@ -2039,14 +2717,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c6bdcc4d5dc99f10800000000000000
-      internalID: 2277076887216699075
+      spriteID: 39e284779f3e87690800000000000000
+      internalID: -7604077310227501421
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_61
+      name: warrior_sheet_61
       rect:
         serializedVersion: 2
         x: 265
@@ -2060,14 +2738,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 859ddb45b0d946130800000000000000
-      internalID: 3559142277521463640
+      spriteID: 2ae2e4eb644c59610800000000000000
+      internalID: 1627422648483851938
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_62
+      name: warrior_sheet_62
       rect:
         serializedVersion: 2
         x: 316
@@ -2081,14 +2759,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ef069f774ea13480800000000000000
-      internalID: -8921157764737789984
+      spriteID: fa9ef507731060ea0800000000000000
+      internalID: -5907032523629663825
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_63
+      name: warrior_sheet_63
       rect:
         serializedVersion: 2
         x: 17
@@ -2102,14 +2780,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ff54a00d7ed8e650800000000000000
-      internalID: 6262499910321725426
+      spriteID: 13a11c4794af7ba00800000000000000
+      internalID: 772361054515698225
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_64
+      name: warrior_sheet_64
       rect:
         serializedVersion: 2
         x: 65
@@ -2123,14 +2801,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf830c88b6cc555d0800000000000000
-      internalID: -3074326408382629637
+      spriteID: 3a8de46572d4be630800000000000000
+      internalID: 3957341528922183843
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_65
+      name: warrior_sheet_65
       rect:
         serializedVersion: 2
         x: 116
@@ -2144,14 +2822,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d9b49d2c7f44b070800000000000000
-      internalID: 8121203422815107540
+      spriteID: 3567e6d953d3fc350800000000000000
+      internalID: 6039112925810947667
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_66
+      name: warrior_sheet_66
       rect:
         serializedVersion: 2
         x: 168
@@ -2165,14 +2843,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 309dbb4ba47d88280800000000000000
-      internalID: -9040739536086509309
+      spriteID: a5d9bdf99ef2f1210800000000000000
+      internalID: 1305815097416588634
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_67
+      name: warrior_sheet_67
       rect:
         serializedVersion: 2
         x: 221
@@ -2186,14 +2864,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2ff70ea1d4020cb0800000000000000
-      internalID: -4899348146011242710
+      spriteID: aabbc22b531543230800000000000000
+      internalID: 3617605691749743530
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_68
+      name: warrior_sheet_68
       rect:
         serializedVersion: 2
         x: 268
@@ -2207,14 +2885,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ad8fb15ab55473f0800000000000000
-      internalID: -904003366470840928
+      spriteID: d492aa9ccb86afbe0800000000000000
+      internalID: -1442725570572310195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_69
+      name: warrior_sheet_69
       rect:
         serializedVersion: 2
         x: 315
@@ -2228,14 +2906,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 291e27b028e2b8e80800000000000000
-      internalID: -8175389562488299118
+      spriteID: 8d2f55d5be59681f0800000000000000
+      internalID: -1042981425573924136
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_70
+      name: warrior_sheet_70
       rect:
         serializedVersion: 2
         x: 15
@@ -2249,14 +2927,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3836c03f1aa932de0800000000000000
-      internalID: -1359072642177670269
+      spriteID: dd0b9898490df9ec0800000000000000
+      internalID: -3557895844218162979
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_71
+      name: warrior_sheet_71
       rect:
         serializedVersion: 2
         x: 63
@@ -2270,14 +2948,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b5e0c659aaeaaa70800000000000000
-      internalID: 8839135231693874615
+      spriteID: 1115e952913b88db0800000000000000
+      internalID: -4789381283121835759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_72
+      name: warrior_sheet_72
       rect:
         serializedVersion: 2
         x: 108
@@ -2291,14 +2969,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70a512370f7be3ff0800000000000000
-      internalID: -54403902130267641
+      spriteID: 591a8ea4ebac695a0800000000000000
+      internalID: -6514796892295487083
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_73
+      name: warrior_sheet_73
       rect:
         serializedVersion: 2
         x: 158
@@ -2312,14 +2990,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b715d7e40884752d0800000000000000
-      internalID: -3290081286861008517
+      spriteID: 92959f3546fc16f80800000000000000
+      internalID: -8114977023732393687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_74
+      name: warrior_sheet_74
       rect:
         serializedVersion: 2
         x: 213
@@ -2333,14 +3011,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea30a1198de34a110800000000000000
-      internalID: 1271210094693581742
+      spriteID: f4ea3777d24001200800000000000000
+      internalID: 148623381027335759
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_75
+      name: warrior_sheet_75
       rect:
         serializedVersion: 2
         x: 263
@@ -2354,14 +3032,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 841b5a6cb1ef36110800000000000000
-      internalID: 1253124516589449544
+      spriteID: fca65ec9e44f3b980800000000000000
+      internalID: -8524201051205309745
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_76
+      name: warrior_sheet_76
       rect:
         serializedVersion: 2
         x: 316
@@ -2375,14 +3053,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 190238a5dd59d0ac0800000000000000
-      internalID: -3887286125412015983
+      spriteID: 110b3ee8cb448a280800000000000000
+      internalID: -9031893476049702895
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_77
+      name: warrior_sheet_77
       rect:
         serializedVersion: 2
         x: 17
@@ -2396,14 +3074,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2587da219bb4c7920800000000000000
-      internalID: 2989347510921558098
+      spriteID: 78e95ff8f76347860800000000000000
+      internalID: 7526700798746926727
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_78
+      name: warrior_sheet_78
       rect:
         serializedVersion: 2
         x: 68
@@ -2417,14 +3095,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b81435b61fe3f9ef0800000000000000
-      internalID: -99291460170202741
+      spriteID: 172ee7370c3326190800000000000000
+      internalID: -7970751488827923855
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_79
+      name: warrior_sheet_79
       rect:
         serializedVersion: 2
         x: 116
@@ -2438,14 +3116,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0659c1aea7672d2a0800000000000000
-      internalID: -6714173824170158752
+      spriteID: 70a9c3a814e784530800000000000000
+      internalID: 3839457502290549255
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_80
+      name: warrior_sheet_80
       rect:
         serializedVersion: 2
         x: 166
@@ -2459,14 +3137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38c414e2bdab4eae0800000000000000
-      internalID: -1520885323607749501
+      spriteID: e3a6465ef520c92e0800000000000000
+      internalID: -2117815113877263810
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_81
+      name: warrior_sheet_81
       rect:
         serializedVersion: 2
         x: 219
@@ -2480,14 +3158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10faf6f655878c5e0800000000000000
-      internalID: -1889127735344779519
+      spriteID: 3910076a8efaf8de0800000000000000
+      internalID: -1328649951291375213
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_82
+      name: warrior_sheet_82
       rect:
         serializedVersion: 2
         x: 269
@@ -2501,14 +3179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dcf006da40476f9b0800000000000000
-      internalID: -5046718768984617011
+      spriteID: be3880f353af5fba0800000000000000
+      internalID: -6055659017332030485
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_83
+      name: warrior_sheet_83
       rect:
         serializedVersion: 2
         x: 319
@@ -2522,14 +3200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 801fdffb2f6cc8b80800000000000000
-      internalID: -8391113259792600824
+      spriteID: 70aa27d3d5da28da0800000000000000
+      internalID: -5943997942201144825
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_84
+      name: warrior_sheet_84
       rect:
         serializedVersion: 2
         x: 19
@@ -2543,14 +3221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef1c4c113d4587590800000000000000
-      internalID: -7676292299340070402
+      spriteID: a86bbf787539db930800000000000000
+      internalID: 4160643634913064586
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_85
+      name: warrior_sheet_85
       rect:
         serializedVersion: 2
         x: 65
@@ -2564,14 +3242,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60320271a0238b540800000000000000
-      internalID: 5023820403250832134
+      spriteID: 03bcbbf0a5eb76860800000000000000
+      internalID: 7523190996566002480
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_86
+      name: warrior_sheet_86
       rect:
         serializedVersion: 2
         x: 115
@@ -2585,14 +3263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f69c2f57c11d5cd0800000000000000
-      internalID: -2567876664538392848
+      spriteID: 36aaf75aeb55f09e0800000000000000
+      internalID: -1653008260912928157
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_87
+      name: warrior_sheet_87
       rect:
         serializedVersion: 2
         x: 166
@@ -2606,14 +3284,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8844f2865b0804b20800000000000000
-      internalID: 3116632458765747336
+      spriteID: 83ba8e23f7831fe60800000000000000
+      internalID: 7994232932525452088
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_88
+      name: warrior_sheet_88
       rect:
         serializedVersion: 2
         x: 215
@@ -2627,14 +3305,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99c124a0706a90300800000000000000
-      internalID: 218888606071266457
+      spriteID: 06e8462c77f89e660800000000000000
+      internalID: 7415616005967482464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_89
+      name: warrior_sheet_89
       rect:
         serializedVersion: 2
         x: 265
@@ -2648,14 +3326,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 104d21181d0fe5a50800000000000000
-      internalID: 6511906893828641793
+      spriteID: b8ac6ab814d3416d0800000000000000
+      internalID: -3020722098333627765
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_90
+      name: warrior_sheet_90
       rect:
         serializedVersion: 2
         x: 313
@@ -2669,14 +3347,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 894cbb57f9f99b9d0800000000000000
-      internalID: -2757997789563861864
+      spriteID: 69f051503fcd86c20800000000000000
+      internalID: 3200050471567167382
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_91
+      name: warrior_sheet_91
       rect:
         serializedVersion: 2
         x: 15
@@ -2690,14 +3368,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c67ea74120ca0680800000000000000
-      internalID: -8788000473691031872
+      spriteID: 343badbf9b8da3990800000000000000
+      internalID: -7405368343951396029
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_92
+      name: warrior_sheet_92
       rect:
         serializedVersion: 2
         x: 63
@@ -2711,14 +3389,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c843960a8a0966250800000000000000
-      internalID: 5937592212654732428
+      spriteID: 16f02c86ef3a36760800000000000000
+      internalID: 7449978521675501409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_93
+      name: warrior_sheet_93
       rect:
         serializedVersion: 2
         x: 117
@@ -2732,14 +3410,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c285863eccb0aa70800000000000000
-      internalID: 8836270062764917441
+      spriteID: 2ff3fe0b9847af9d0800000000000000
+      internalID: -2739749288573714446
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_94
+      name: warrior_sheet_94
       rect:
         serializedVersion: 2
         x: 166
@@ -2753,14 +3431,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4812fd4a0b08ee740800000000000000
-      internalID: 5183221717318705540
+      spriteID: 14aa234b378e90880800000000000000
+      internalID: -8644122426118854079
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_95
+      name: warrior_sheet_95
       rect:
         serializedVersion: 2
         x: 215
@@ -2774,14 +3452,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78c78032e78bea820800000000000000
-      internalID: 2931483259357920391
+      spriteID: 291add683394be070800000000000000
+      internalID: 8136677637429764498
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_96
+      name: warrior_sheet_96
       rect:
         serializedVersion: 2
         x: 265
@@ -2795,14 +3473,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23b44f61f8cca1960800000000000000
-      internalID: 7573590638314408754
+      spriteID: 34fcff0aab5219f20800000000000000
+      internalID: 3427562274900922179
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_97
+      name: warrior_sheet_97
       rect:
         serializedVersion: 2
         x: 302
@@ -2816,14 +3494,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8334c2b261f598fd0800000000000000
-      internalID: -2339233982624021704
+      spriteID: 2204e7b06f44b8eb0800000000000000
+      internalID: -4716600361194995678
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_98
+      name: warrior_sheet_98
       rect:
         serializedVersion: 2
         x: 6
@@ -2837,14 +3515,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 185289ab553515ed0800000000000000
-      internalID: -2427067096508127871
+      spriteID: 37a54fc46971b5800800000000000000
+      internalID: 602100909487708787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_99
+      name: warrior_sheet_99
       rect:
         serializedVersion: 2
         x: 55
@@ -2858,14 +3536,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e46bde2b9371e3b0800000000000000
-      internalID: -5484975760817298204
+      spriteID: 7b69c241898bc8ce0800000000000000
+      internalID: -1401542420706060617
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_100
+      name: warrior_sheet_100
       rect:
         serializedVersion: 2
         x: 115
@@ -2879,14 +3557,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c03adfe1095d1c40800000000000000
-      internalID: 5484637786061025480
+      spriteID: f03374bf49b464bd0800000000000000
+      internalID: -2646344627790597361
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_101
+      name: warrior_sheet_101
       rect:
         serializedVersion: 2
         x: 166
@@ -2900,14 +3578,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f08c47b9af0419c0800000000000000
-      internalID: -3957520950952689416
+      spriteID: c3feb05ab2b6733d0800000000000000
+      internalID: -3226992772790882500
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_102
+      name: warrior_sheet_102
       rect:
         serializedVersion: 2
         x: 215
@@ -2921,14 +3599,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aea657013402064f0800000000000000
-      internalID: -837634058279884054
+      spriteID: d6c517a1507774160800000000000000
+      internalID: 7009702208827645037
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_103
+      name: warrior_sheet_103
       rect:
         serializedVersion: 2
         x: 258
@@ -2942,14 +3620,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5018107202f7cdfd0800000000000000
-      internalID: -2315836332305186555
+      spriteID: 3fd54d95b4f5ba570800000000000000
+      internalID: 8478975500689366515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_104
+      name: warrior_sheet_104
       rect:
         serializedVersion: 2
         x: 308
@@ -2963,14 +3641,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e4c8ff7b0eb15da0800000000000000
-      internalID: -5957771875433528088
+      spriteID: 0ff03004804946d00800000000000000
+      internalID: 965058983318720496
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_105
+      name: warrior_sheet_105
       rect:
         serializedVersion: 2
         x: 8
@@ -2984,14 +3662,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03377930260850ad0800000000000000
-      internalID: -2736640040102300880
+      spriteID: 778b7e815621a93d0800000000000000
+      internalID: -3199224359874480009
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_106
+      name: warrior_sheet_106
       rect:
         serializedVersion: 2
         x: 51
@@ -3005,14 +3683,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5668670d905a9ff80800000000000000
-      internalID: -8072239395514186139
+      spriteID: db720737c0c580e40800000000000000
+      internalID: 5622845343318157245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_107
+      name: warrior_sheet_107
       rect:
         serializedVersion: 2
         x: 54
@@ -3026,14 +3704,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e162b2d2b5031130800000000000000
-      internalID: 3536176398013194721
+      spriteID: c754ae22837009580800000000000000
+      internalID: -8822543732333460100
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_108
+      name: warrior_sheet_108
       rect:
         serializedVersion: 2
         x: 87
@@ -3047,14 +3725,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7d7242e3783c7810800000000000000
-      internalID: 1764347224390794623
+      spriteID: fb54d41ee503511b0800000000000000
+      internalID: -5686585770420386369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_109
+      name: warrior_sheet_109
       rect:
         serializedVersion: 2
         x: 103
@@ -3068,14 +3746,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b1047996862d5af0800000000000000
-      internalID: -406126031851486793
+      spriteID: 9954ab00b077b3250800000000000000
+      internalID: 5925460623876572569
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_110
+      name: warrior_sheet_110
       rect:
         serializedVersion: 2
         x: 104
@@ -3089,14 +3767,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 440ced48d22546500800000000000000
-      internalID: 388525823316901956
+      spriteID: b8ab35a27d5779d90800000000000000
+      internalID: -7091069521283007861
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_111
+      name: warrior_sheet_111
       rect:
         serializedVersion: 2
         x: 142
@@ -3110,14 +3788,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb05a37c7b2163b70800000000000000
-      internalID: 8878304295938314430
+      spriteID: 7088e240afa088b00800000000000000
+      internalID: 830926200178116615
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_112
+      name: warrior_sheet_112
       rect:
         serializedVersion: 2
         x: 152
@@ -3131,8 +3809,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25be87f4b7c7643d0800000000000000
-      internalID: -3222751614280864942
+      spriteID: a50214ef4c587f890800000000000000
+      internalID: -7424318379571208102
       vertices: []
       indices: 
       edges: []

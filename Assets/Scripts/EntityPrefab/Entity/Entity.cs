@@ -18,6 +18,10 @@ public class Entity : MonoBehaviour
 
     public void Start()
     {
+        Material material = new Material(Shader.Find("Shader Graphs/PixelOutline"));
+        material.SetColor("Color_C6F9B478", Color.blue); // CHANGE  Color_C6F9B478 with your Color prop ID
+        gameObject.GetComponent<Renderer>().material = material;
+
         _encounterStateComponentReference = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
     }
 
@@ -83,6 +87,36 @@ public class Entity : MonoBehaviour
                     }
 
                     GetComponent<Animator>().runtimeAnimatorController = Resources.Load($"Art/Animations/Entity/{alignment.ToString()}/{entityClass.ToString()}/{entityClass.ToString()}") as RuntimeAnimatorController;
+                }
+            }
+        }
+    }
+
+    public void UpdateOutline(Deviant.Encounter encounter)
+    {
+        var material = GetComponent<Renderer>().material;
+
+        for (int y = 0; y < encounter.Board.Entities.Entities_.Count; y++)
+        {
+            for (int x = 0; x < encounter.Board.Entities.Entities_[y].Entities.Count; x++)
+            {
+                //If the box is close to the ground
+                if (this.id == encounter.Board.Entities.Entities_[y].Entities[x].Id)
+                {
+                    var alignment = encounter.Board.Entities.Entities_[y].Entities[x].Alignment;
+
+                    if (alignment == Deviant.Alignment.Friendly)
+                    {
+                        material.SetColor("_OutlineColor", Color.blue);
+                    }
+                    else if (alignment == Deviant.Alignment.Unfriendly)
+                    {
+                        material.SetColor("_OutlineColor", Color.red);
+                    } else
+                    {
+                        Material newMaterial = new Material(Shader.Find("Universal Render Pipeline/2D/Sprite-Lit-Default"));
+                        gameObject.GetComponent<Renderer>().material = newMaterial;
+                    }
                 }
             }
         }

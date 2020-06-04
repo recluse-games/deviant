@@ -29,6 +29,7 @@ namespace ObserverPattern
         {
             entityObj.GetComponentInChildren<Entity>().UpdateAnimationController(encounter);
             entityObj.GetComponentInChildren<Entity>().UpdateAnimation(encounter);
+            entityObj.GetComponentInChildren<Entity>().UpdateOutline(encounter);
         }
     }
 }

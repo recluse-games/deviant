@@ -3,7 +3,13 @@ guid: b355fab2b941f5a4e84f0762eeeae26c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - EntityPanel: {instanceID: 0}
+  - ParentPanel: {instanceID: 0}
+  - Ap: {instanceID: 0}
+  - Hp: {instanceID: 0}
+  - Ar: {instanceID: 0}
+  - Name: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
