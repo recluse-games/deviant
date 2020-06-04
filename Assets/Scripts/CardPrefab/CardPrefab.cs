@@ -98,6 +98,132 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
+    public void processTilePatterns(Deviant.Entity activeEntity) {
+        GameObject entity = GameObject.Find("entity_" + activeEntity.Id); ;
+
+        GameObject isometricGameGrid = GameObject.Find("IsometricGrid");
+        GridLayout isometricGameGridLayout = isometricGameGrid.transform.GetComponent<GridLayout>();
+        Vector3Int entityCellLocation = isometricGameGridLayout.WorldToCell(entity.transform.position);
+
+        UnityEngine.Tilemaps.Tile selectedTile = Resources.Load<UnityEngine.Tilemaps.Tile>("Art/Tiles/select_0000");
+
+        Vector3Int up = new Vector3Int(1, 0, 0);
+        Vector3Int down = new Vector3Int(-1, 0, 0);
+        Vector3Int left = new Vector3Int(0, 1, 0);
+        Vector3Int right = new Vector3Int(0, -1, 0);
+
+        this.selectedPatternTilePositions = new Dictionary<string, Dictionary<string, List<Vector3Int>>>();
+
+        foreach (var card in activeEntity.Hand.Cards)
+        {
+            if (card.InstanceId == gameObject.GetComponentInChildren<Card>().GetId())
+            {
+                this.cardType = card.Type;
+
+                foreach (var entry in card.Action.Pattern)
+                {
+                    if (!selectedPatternTilePositions.ContainsKey(card.Action.Id))
+                    {
+                        selectedPatternTilePositions.Add(card.Action.Id, new Dictionary<string, List<Vector3Int>> { });
+                    }
+                    if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("up"))
+                    {
+                        selectedPatternTilePositions[card.Action.Id].Add("up", new List<Vector3Int>());
+                    }
+                    if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("down"))
+                    {
+                        selectedPatternTilePositions[card.Action.Id].Add("down", new List<Vector3Int>());
+                    }
+                    if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("left"))
+                    {
+                        selectedPatternTilePositions[card.Action.Id].Add("left", new List<Vector3Int>());
+                    }
+                    if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("right"))
+                    {
+                        selectedPatternTilePositions[card.Action.Id].Add("right", new List<Vector3Int>());
+                    }
+
+                    Vector3Int offsetVector = new Vector3Int(0, 0, 0);
+
+                    if (entry.Offset != null)
+                    {
+                        foreach (var offset in entry.Offset)
+                        {
+                            switch (offset.Direction)
+                            {
+                                case Deviant.Direction.Up:
+                                    for (int i = 0; i < offset.Distance; i++)
+                                    {
+                                        offsetVector = offsetVector + up;
+                                    }
+                                    break;
+                                case Deviant.Direction.Down:
+                                    for (int i = 0; i < offset.Distance; i++)
+                                    {
+                                        offsetVector = offsetVector + down;
+                                    }
+                                    break;
+                                case Deviant.Direction.Left:
+                                    for (int i = 0; i < offset.Distance; i++)
+                                    {
+                                        offsetVector = offsetVector + left;
+                                    }
+                                    break;
+                                case Deviant.Direction.Right:
+                                    for (int i = 0; i < offset.Distance; i++)
+                                    {
+                                        offsetVector = offsetVector + right;
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                    }
+
+                    Vector3Int offsetStart = offsetVector;
+
+                    switch (entry.Direction)
+                    {
+                        case Deviant.Direction.Up:
+                            for (int i = 0; i < entry.Distance; i++)
+                            {
+                                selectedPatternTilePositions[card.Action.Id]["up"].Add(offsetStart + entityCellLocation);
+
+                                offsetStart += up;
+                            }
+                            break;
+                        case Deviant.Direction.Down:
+                            for (int i = 0; i < entry.Distance; i++)
+                            {
+
+                                selectedPatternTilePositions[card.Action.Id]["down"].Add(offsetStart + entityCellLocation);
+
+                                offsetStart += down;
+                            }
+                            break;
+                        case Deviant.Direction.Left:
+                            for (int i = 0; i < entry.Distance; i++)
+                            {
+                                selectedPatternTilePositions[card.Action.Id]["left"].Add(offsetStart + entityCellLocation);
+                                offsetStart += left;
+                            }
+                            break;
+                        case Deviant.Direction.Right:
+                            for (int i = 0; i < entry.Distance; i++)
+                            {
+                                selectedPatternTilePositions[card.Action.Id]["right"].Add(offsetStart + entityCellLocation);
+                                offsetStart += right;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
     public async void OnPointerClick(PointerEventData eventData)
     {
         if(this.selected == true) {
@@ -117,129 +243,7 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             if (this.visable == true)
             {
-                GameObject entity = GameObject.Find("entity_" + activeEntity.Id); ;
-
-                GameObject isometricGameGrid = GameObject.Find("IsometricGrid");
-                GridLayout isometricGameGridLayout = isometricGameGrid.transform.GetComponent<GridLayout>();
-                Vector3Int entityCellLocation = isometricGameGridLayout.WorldToCell(entity.transform.position);
-
-                UnityEngine.Tilemaps.Tile selectedTile = Resources.Load<UnityEngine.Tilemaps.Tile>("Art/Tiles/select_0000");
-
-                Vector3Int up = new Vector3Int(1, 0, 0);
-                Vector3Int down = new Vector3Int(-1, 0, 0);
-                Vector3Int left = new Vector3Int(0, 1, 0);
-                Vector3Int right = new Vector3Int(0, -1, 0);
-
-                this.selectedPatternTilePositions = new Dictionary<string, Dictionary<string, List<Vector3Int>>>();
-
-                foreach (var card in activeEntity.Hand.Cards)
-                {
-                    if (card.InstanceId == gameObject.GetComponentInChildren<Card>().GetId())
-                    {
-                        this.cardType = card.Type;
-
-                        foreach (var entry in card.Action.Pattern)
-                        {
-                            if (!selectedPatternTilePositions.ContainsKey(card.Action.Id))
-                            {
-                                selectedPatternTilePositions.Add(card.Action.Id, new Dictionary<string, List<Vector3Int>> { });
-                            }
-                            if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("up"))
-                            {
-                                selectedPatternTilePositions[card.Action.Id].Add("up", new List<Vector3Int>());
-                            }
-                            if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("down"))
-                            {
-                                selectedPatternTilePositions[card.Action.Id].Add("down", new List<Vector3Int>());
-                            }
-                            if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("left"))
-                            {
-                                selectedPatternTilePositions[card.Action.Id].Add("left", new List<Vector3Int>());
-                            }
-                            if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("right"))
-                            {
-                                selectedPatternTilePositions[card.Action.Id].Add("right", new List<Vector3Int>());
-                            }
-
-                            Vector3Int offsetVector = new Vector3Int(0, 0, 0);
-
-                            if (entry.Offset != null)
-                            {
-                                foreach (var offset in entry.Offset)
-                                {
-                                    switch (offset.Direction)
-                                    {
-                                        case Deviant.Direction.Up:
-                                            for (int i = 0; i < offset.Distance; i++)
-                                            {
-                                                offsetVector = offsetVector + up;
-                                            }
-                                            break;
-                                        case Deviant.Direction.Down:
-                                            for (int i = 0; i < offset.Distance; i++)
-                                            {
-                                                offsetVector = offsetVector + down;
-                                            }
-                                            break;
-                                        case Deviant.Direction.Left:
-                                            for (int i = 0; i < offset.Distance; i++)
-                                            {
-                                                offsetVector = offsetVector + left;
-                                            }
-                                            break;
-                                        case Deviant.Direction.Right:
-                                            for (int i = 0; i < offset.Distance; i++)
-                                            {
-                                                offsetVector = offsetVector + right;
-                                            }
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                }
-                            }
-
-                            Vector3Int offsetStart = offsetVector;
-
-                            switch (entry.Direction)
-                            {
-                                case Deviant.Direction.Up:
-                                    for (int i = 0; i < entry.Distance; i++)
-                                    {
-                                        selectedPatternTilePositions[card.Action.Id]["up"].Add(offsetStart + entityCellLocation);
-
-                                        offsetStart += up;
-                                    }
-                                    break;
-                                case Deviant.Direction.Down:
-                                    for (int i = 0; i < entry.Distance; i++)
-                                    {
-
-                                        selectedPatternTilePositions[card.Action.Id]["down"].Add(offsetStart + entityCellLocation);
-
-                                        offsetStart += down;
-                                    }
-                                    break;
-                                case Deviant.Direction.Left:
-                                    for (int i = 0; i < entry.Distance; i++)
-                                    {
-                                        selectedPatternTilePositions[card.Action.Id]["left"].Add(offsetStart + entityCellLocation);
-                                        offsetStart += left;
-                                    }
-                                    break;
-                                case Deviant.Direction.Right:
-                                    for (int i = 0; i < entry.Distance; i++)
-                                    {
-                                        selectedPatternTilePositions[card.Action.Id]["right"].Add(offsetStart + entityCellLocation);
-                                        offsetStart += right;
-                                    }
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                    }
-                }
+               this.processTilePatterns(activeEntity);
 
                 if (this.selected == true)
                 {

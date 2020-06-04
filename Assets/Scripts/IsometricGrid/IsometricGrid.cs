@@ -28,6 +28,27 @@ public class IsometricGrid : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmosSelected()
+    {
+         GridLayout gridLayout = this.transform.GetComponent<GridLayout>();
+        Tilemap battlefield = this.transform.Find("LocalBattlefieldOverlay").GetComponent<Tilemap>();
+        Deviant.Entity activeEntity = encounterStateRef.encounter.ActiveEntity;
+        Entity[] entityObjects = FindObjectsOfType<Entity>();
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
+        
+        foreach (Entity entity in entityObjects)
+        {
+            if (validateEntityActive(entity, activeEntity) && activeEntity.State == Deviant.EntityStateNames.Moving)
+            {
+                // Draws a blue line from this transform to the target
+                Gizmos.color = Color.blue;
+                Gizmos.DrawLine(entity.transform.position, worldPoint);
+            }
+        }
+    }
+
     private void ProcessMouseHover()
     {
         GridLayout gridLayout = this.transform.GetComponent<GridLayout>();
