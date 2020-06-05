@@ -30,7 +30,7 @@ public class IsometricGrid : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-         GridLayout gridLayout = this.transform.GetComponent<GridLayout>();
+        GridLayout gridLayout = this.transform.GetComponent<GridLayout>();
         Tilemap battlefield = this.transform.Find("LocalBattlefieldOverlay").GetComponent<Tilemap>();
         Deviant.Entity activeEntity = encounterStateRef.encounter.ActiveEntity;
         Entity[] entityObjects = FindObjectsOfType<Entity>();

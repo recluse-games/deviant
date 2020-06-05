@@ -1,7 +1,6 @@
 ﻿using Deviant;
 using Google.Protobuf.Collections;
 using Google.Protobuf.Reflection;
-using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +11,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 using System.Threading.Tasks;
-
+using System.CodeDom;
 
 public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -98,6 +97,27 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         }
     }
 
+    public Vector3 RotateTilePatterns(Vector3 originPoint, Vector3 pointToRotate, float rotationAngle)
+    {
+        float radians = (Mathf.PI / 180) * rotationAngle;
+        float s = Mathf.Sin(radians);
+        float c = Mathf.Cos(radians);
+
+        // translate point back to origin:
+        pointToRotate.x -= originPoint.x;
+        pointToRotate.y -= originPoint.y;
+
+        // rotate point
+        float xnew = pointToRotate.x * c - pointToRotate.y * s;
+        float ynew = pointToRotate.x * s + pointToRotate.y * c;
+
+        // translate point back:
+        pointToRotate.x = xnew + originPoint.x;
+        pointToRotate.y = ynew + originPoint.y;
+
+        return pointToRotate;
+    }
+
     public void processTilePatterns(Deviant.Entity activeEntity) {
         GameObject entity = GameObject.Find("entity_" + activeEntity.Id); ;
 
@@ -126,21 +146,21 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                     {
                         selectedPatternTilePositions.Add(card.Action.Id, new Dictionary<string, List<Vector3Int>> { });
                     }
-                    if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("up"))
+                    if (!selectedPatternTilePositions[card.Action.Id].ContainsKey(Deviant.Direction.Up.ToString()))
                     {
-                        selectedPatternTilePositions[card.Action.Id].Add("up", new List<Vector3Int>());
+                        selectedPatternTilePositions[card.Action.Id].Add(Deviant.Direction.Up.ToString(), new List<Vector3Int>());
                     }
-                    if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("down"))
+                    if (!selectedPatternTilePositions[card.Action.Id].ContainsKey(Deviant.Direction.Down.ToString()))
                     {
-                        selectedPatternTilePositions[card.Action.Id].Add("down", new List<Vector3Int>());
+                        selectedPatternTilePositions[card.Action.Id].Add(Deviant.Direction.Down.ToString(), new List<Vector3Int>());
                     }
-                    if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("left"))
+                    if (!selectedPatternTilePositions[card.Action.Id].ContainsKey(Deviant.Direction.Left.ToString()))
                     {
-                        selectedPatternTilePositions[card.Action.Id].Add("left", new List<Vector3Int>());
+                        selectedPatternTilePositions[card.Action.Id].Add(Deviant.Direction.Left.ToString(), new List<Vector3Int>());
                     }
-                    if (!selectedPatternTilePositions[card.Action.Id].ContainsKey("right"))
+                    if (!selectedPatternTilePositions[card.Action.Id].ContainsKey(Deviant.Direction.Right.ToString()))
                     {
-                        selectedPatternTilePositions[card.Action.Id].Add("right", new List<Vector3Int>());
+                        selectedPatternTilePositions[card.Action.Id].Add(Deviant.Direction.Right.ToString(), new List<Vector3Int>());
                     }
 
                     Vector3Int offsetVector = new Vector3Int(0, 0, 0);
@@ -188,7 +208,7 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                         case Deviant.Direction.Up:
                             for (int i = 0; i < entry.Distance; i++)
                             {
-                                selectedPatternTilePositions[card.Action.Id]["up"].Add(offsetStart + entityCellLocation);
+                                selectedPatternTilePositions[card.Action.Id][Deviant.Direction.Up.ToString()].Add(offsetStart + entityCellLocation);
 
                                 offsetStart += up;
                             }
@@ -197,7 +217,7 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                             for (int i = 0; i < entry.Distance; i++)
                             {
 
-                                selectedPatternTilePositions[card.Action.Id]["down"].Add(offsetStart + entityCellLocation);
+                                selectedPatternTilePositions[card.Action.Id][Deviant.Direction.Down.ToString()].Add(offsetStart + entityCellLocation);
 
                                 offsetStart += down;
                             }
@@ -205,14 +225,14 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                         case Deviant.Direction.Left:
                             for (int i = 0; i < entry.Distance; i++)
                             {
-                                selectedPatternTilePositions[card.Action.Id]["left"].Add(offsetStart + entityCellLocation);
+                                selectedPatternTilePositions[card.Action.Id][Deviant.Direction.Left.ToString()].Add(offsetStart + entityCellLocation);
                                 offsetStart += left;
                             }
                             break;
                         case Deviant.Direction.Right:
                             for (int i = 0; i < entry.Distance; i++)
                             {
-                                selectedPatternTilePositions[card.Action.Id]["right"].Add(offsetStart + entityCellLocation);
+                                selectedPatternTilePositions[card.Action.Id][Deviant.Direction.Right.ToString()].Add(offsetStart + entityCellLocation);
                                 offsetStart += right;
                             }
                             break;
@@ -222,6 +242,23 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                 }
             }
         }
+    }
+
+    public float convertDirectionToDegree(Deviant.EntityRotationNames characterRotation)
+    {
+        switch (characterRotation)
+        {
+            case Deviant.EntityRotationNames.North:
+                return 180f;
+            case Deviant.EntityRotationNames.South:
+                return 0f;
+            case Deviant.EntityRotationNames.East:
+                return 270f;
+            case Deviant.EntityRotationNames.West:
+                return 90f;
+        }
+
+        return 0f;
     }
 
     public async void OnPointerClick(PointerEventData eventData)
@@ -234,48 +271,67 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         // Retrieve the Current Encounter From Shared State.
         Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
+        GridLayout gridLayout = FindObjectOfType<IsometricGrid>().GetComponent<GridLayout>();
         Deviant.Entity activeEntity = encounterState.ActiveEntity;
         GameObject battleFieldOverlay = GameObject.Find("BattlefieldOverlay");
         Tilemap battleFieldOverlayTilemap = battleFieldOverlay.GetComponent<Tilemap>();
+        Entity[] entityObjects = FindObjectsOfType<Entity>();
+        Vector3 activeEntityLocation;
 
-
-        if (activeEntity.OwnerId == encounterStateRef.GetPlayerId())
+        foreach (Entity entity in entityObjects)
         {
-            if (this.visable == true)
+            if (entity.GetId() == activeEntity.Id)
             {
-               this.processTilePatterns(activeEntity);
+                activeEntityLocation = entity.transform.position;
+                Vector3Int position = gridLayout.WorldToCell(activeEntityLocation);
 
-                if (this.selected == true)
+                if (activeEntity.OwnerId == encounterStateRef.GetPlayerId())
                 {
-                    Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-                    encounterRequest.EntityTargetAction = new EntityTargetAction();
-
-                    foreach (var action in this.selectedPatternTilePositions)
+                    if (this.visable == true)
                     {
-                        foreach (var pattern in this.selectedPatternTilePositions[action.Key])
-                        {
-                            foreach (var tileLocation in this.selectedPatternTilePositions[action.Key][pattern.Key])
-                            {
-                                Deviant.Tile newTile = new Deviant.Tile();
-                                newTile.Id = getTileTypeFromCardType(this.cardType);
-                                newTile.X = tileLocation.x;
-                                newTile.Y = tileLocation.y;
+                        this.processTilePatterns(activeEntity);
 
-                                encounterRequest.EntityTargetAction.Tiles.Add(newTile);
+                        if (this.selected == true)
+                        {
+                            Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+                            encounterRequest.EntityTargetAction = new EntityTargetAction();
+
+                            foreach (var action in this.selectedPatternTilePositions)
+                            {
+                                foreach (var pattern in this.selectedPatternTilePositions[action.Key])
+                                {
+                                    foreach (var tileLocation in this.selectedPatternTilePositions[action.Key][pattern.Key])
+                                    {
+                                        Deviant.Tile newTile = new Deviant.Tile();
+                                        newTile.Id = getTileTypeFromCardType(this.cardType);
+                                        float degreeToRotation = convertDirectionToDegree(activeEntity.Rotation);
+                                        Vector3 rotatedTilePositions = RotateTilePatterns(new Vector3(position.x, position.y, 0), new Vector3(tileLocation.x, tileLocation.y, 0), degreeToRotation);
+
+                                        Debug.Log("Rounding Error 1?: " + rotatedTilePositions);
+
+                                        // WARNING UNITY BUG HERE - 2.0 gets rounded to 1.0 if using TypeCasting without math.round...
+                                        newTile.X = (int)Math.Round(rotatedTilePositions.x, 0);
+                                        newTile.Y = (int)Math.Round(rotatedTilePositions.y, 0);
+
+                                        Debug.Log("Rounding Error 2?: " + newTile);
+
+                                        encounterRequest.EntityTargetAction.Tiles.Add(newTile);
+                                    }
+                                }
                             }
+
+                            await encounterStateRef.UpdateEncounterAsync(encounterRequest);
+                        }
+                        else
+                        {
+                            Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+                            encounterRequest.EntityTargetAction = new EntityTargetAction();
+                            encounterRequest.EntityTargetAction.Tiles.Clear();
+                            await encounterStateRef.UpdateEncounterAsync(encounterRequest);
+
+                            selected = true;
                         }
                     }
-
-                    await encounterStateRef.UpdateEncounterAsync(encounterRequest);
-                }
-                else
-                {
-                    Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-                    encounterRequest.EntityTargetAction = new EntityTargetAction();
-                    encounterRequest.EntityTargetAction.Tiles.Clear();
-                    await encounterStateRef.UpdateEncounterAsync(encounterRequest);
-
-                    selected = true;
                 }
             }
         }
