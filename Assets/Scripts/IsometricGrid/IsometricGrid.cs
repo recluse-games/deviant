@@ -146,43 +146,6 @@ public class IsometricGrid : MonoBehaviour
         return true;
     }
 
-    private async Task<bool> ProcessAttack(CardPrefab selectedCard)
-    {
-        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-        encounterRequest.EntityActionName = Deviant.EntityActionNames.Play;
-        encounterRequest.EntityPlayAction = new Deviant.EntityPlayAction();
-        encounterRequest.EntityPlayAction.CardId = selectedCard.GetInstanceId();
-
-        foreach (var action in selectedCard.GetSelectedTilePositions())
-        {
-            foreach (var pattern in selectedCard.GetSelectedTilePositions()[action.Key])
-            {
-                foreach (var tileLocation in selectedCard.GetSelectedTilePositions()[action.Key][pattern.Key])
-                {
-                    Deviant.Play newPlay = new Deviant.Play();
-                    newPlay.X = tileLocation.x;
-                    newPlay.Y = tileLocation.y;
-
-                    encounterRequest.EntityPlayAction.Plays.Add(newPlay);
-                }
-            }
-        }
-
-        selectedCard.SetSelected(false);
-        await encounterStateRef.UpdateEncounterAsync(encounterRequest);
-
-        var activeEntity = encounterStateRef.GetEncounter().ActiveEntity;
-
-        // Remove all highlighted tiles.
-        Deviant.EncounterRequest encounterOverlayTilesRequest = new Deviant.EncounterRequest();
-        encounterOverlayTilesRequest.EntityTargetAction = new Deviant.EntityTargetAction();
-        encounterOverlayTilesRequest.EntityTargetAction.Id = activeEntity.Id;
-        encounterOverlayTilesRequest.EntityTargetAction.Tiles.Clear();
-        await encounterStateRef.UpdateEncounterAsync(encounterOverlayTilesRequest);
-
-        return true;
-    }
-
     async public void Update()
     {
         // Block input to this component while we're on a GUI element.
@@ -196,18 +159,7 @@ public class IsometricGrid : MonoBehaviour
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
-                        CardPrefab selectedCard = UpdateSelectedCard();
-
-                        if (selectedCard)
-                        {
-                            if (selectedCard.GetSelected())
-                            {
-                                if (selectedCard.GetSelectedTilePositions().Count > 0)
-                                {
-                                    await ProcessAttack(selectedCard);
-                                }
-                            }
-                        } else if (encounterStateRef.GetEncounter().ActiveEntity.State == Deviant.EntityStateNames.Rotating)
+                        if (encounterStateRef.GetEncounter().ActiveEntity.State == Deviant.EntityStateNames.Rotating)
                         {
                             await ProcessRotation();
                         }

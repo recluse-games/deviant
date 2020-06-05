@@ -12,6 +12,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 using System.Threading.Tasks;
 using System.CodeDom;
+using UnityEditorInternal;
 
 public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -23,6 +24,7 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private bool visable = false;
     public string id = default;
     public string instanceId = default;
+    public int Cost = default;
     private Deviant.CardType cardType = default;
     public EncounterState encounterStateRef = default;
 
@@ -50,6 +52,11 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void SetId(string id)
     {
         this.id = id;
+    }
+
+    public void SetCost(int cost)
+    {
+        this.Cost = cost;
     }
 
     public string GetId()
@@ -81,19 +88,96 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         return this.selected;
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    private async Task<bool> ProcessAttack()
     {
-        if(this.visable == true) {
-            this.gameObject.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+        encounterRequest.EntityActionName = Deviant.EntityActionNames.Play;
+        encounterRequest.EntityPlayAction = new Deviant.EntityPlayAction();
+        encounterRequest.EntityPlayAction.CardId = GetInstanceId();
+
+        if (encounterStateRef.GetEncounter().ActiveEntity.Ap >= this.Cost)
+        {
+            foreach (var action in GetSelectedTilePositions())
+            {
+                foreach (var pattern in GetSelectedTilePositions()[action.Key])
+                {
+                    foreach (var tileLocation in GetSelectedTilePositions()[action.Key][pattern.Key])
+                    {
+                        Deviant.Play newPlay = new Deviant.Play();
+                        newPlay.X = tileLocation.x;
+                        newPlay.Y = tileLocation.y;
+
+                        encounterRequest.EntityPlayAction.Plays.Add(newPlay);
+                    }
+                }
+            }
+        }
+
+        this.selected = false;
+        await encounterStateRef.UpdateEncounterAsync(encounterRequest);
+
+        var activeEntity = encounterStateRef.GetEncounter().ActiveEntity;
+
+
+        // Remove all highlighted tiles.
+        Deviant.EncounterRequest encounterOverlayTilesRequest = new Deviant.EncounterRequest();
+        encounterOverlayTilesRequest.EntityTargetAction = new Deviant.EntityTargetAction();
+        encounterOverlayTilesRequest.EntityTargetAction.Id = activeEntity.Id;
+        encounterOverlayTilesRequest.EntityTargetAction.Tiles.Clear();
+        await encounterStateRef.UpdateEncounterAsync(encounterOverlayTilesRequest);
+
+        return true;
+    }
+
+    async public void OnPointerEnter(PointerEventData eventData)
+    {
+        bool isOnlyActiveCard = true;
+
+        CardPrefab[] cardPrefabs = FindObjectsOfType<CardPrefab>();
+
+        foreach(var card in cardPrefabs)
+        {
+            if(card.GetInstanceId() != this.instanceId && card.selected == true) {
+                isOnlyActiveCard = false;
+            }
+        }
+
+
+        if (this.visable == true && isOnlyActiveCard == true) {
             mouse_over = true;
+            await drawTargettingTiles();
         }
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    async public void OnPointerExit(PointerEventData eventData)
     {
-        if(this.visable == true) {
-            this.gameObject.transform.localScale = new Vector3(1, 1, 1);
+        bool isOnlyActiveCard = true;
+
+        CardPrefab[] cardPrefabs = FindObjectsOfType<CardPrefab>();
+
+        if (this.visable == true && this.selected == false) {
             mouse_over = false;
+        }
+
+
+        foreach (var card in cardPrefabs)
+        {
+            if (card.GetInstanceId() != this.instanceId && card.GetSelected() == true)
+            {
+                isOnlyActiveCard = false;
+            }
+        }
+
+        if (this.mouse_over == false && isOnlyActiveCard == true)
+        {
+            // Remove all highlighted tiles.
+            var activeEntity = encounterStateRef.GetEncounter().ActiveEntity;
+            Deviant.EncounterRequest encounterOverlayTilesRequest = new Deviant.EncounterRequest();
+            encounterOverlayTilesRequest.EntityTargetAction = new Deviant.EntityTargetAction();
+            encounterOverlayTilesRequest.EntityTargetAction.Id = activeEntity.Id;
+            encounterOverlayTilesRequest.EntityTargetAction.Tiles.Clear();
+
+            await encounterStateRef.UpdateEncounterAsync(encounterOverlayTilesRequest);
         }
     }
 
@@ -261,14 +345,8 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         return 0f;
     }
 
-    public async void OnPointerClick(PointerEventData eventData)
+    async public Task<bool> drawTargettingTiles()
     {
-        if(this.selected == true) {
-            this.selected = false;
-        } else {
-            this.selected = true;
-        }
-
         // Retrieve the Current Encounter From Shared State.
         Deviant.Encounter encounterState = encounterStateRef.GetEncounter();
         GridLayout gridLayout = FindObjectOfType<IsometricGrid>().GetComponent<GridLayout>();
@@ -291,8 +369,6 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                     {
                         this.processTilePatterns(activeEntity);
 
-                        if (this.selected == true)
-                        {
                             Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
                             encounterRequest.EntityTargetAction = new EntityTargetAction();
 
@@ -322,17 +398,37 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
                             await encounterStateRef.UpdateEncounterAsync(encounterRequest);
                         }
-                        else
-                        {
-                            Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
-                            encounterRequest.EntityTargetAction = new EntityTargetAction();
-                            encounterRequest.EntityTargetAction.Tiles.Clear();
-                            await encounterStateRef.UpdateEncounterAsync(encounterRequest);
-
-                            selected = true;
-                        }
                     }
                 }
+            }
+        return true;
+
+    }
+
+    public async void OnPointerClick(PointerEventData eventData)
+    {
+        bool isOnlyActiveCard = true;
+
+        CardPrefab[] cardPrefabs = FindObjectsOfType<CardPrefab>();
+
+
+        foreach (var card in cardPrefabs)
+        {
+            if (card.GetInstanceId() != this.instanceId && card.GetSelected() == true)
+            {
+                isOnlyActiveCard = false;
+            }
+        }
+
+        if (this.selected == true)
+        {
+            await ProcessAttack();
+            
+        } else {
+            if (isOnlyActiveCard == true)
+            {
+                this.selected = true;
+                await drawTargettingTiles();
             }
         }
     }
@@ -347,4 +443,22 @@ public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         encounterStateRef = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
     }
+
+    void Update()
+    {
+        if (this.visable == true)
+        {
+            if (this.selected == true)
+            {
+                this.gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+            } else if (this.selected == false && mouse_over == true)
+            {
+                this.gameObject.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+            } else
+            {
+                this.gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            }
+        }
+    }
 }
+    

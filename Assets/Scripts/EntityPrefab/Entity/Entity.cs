@@ -361,13 +361,19 @@ public class Entity : MonoBehaviour
 
     async public void OnMouseUp()
     {
+        Deviant.Encounter encounterState = _encounterStateComponentReference.GetEncounter();
+
         GameObject actionMenu = GameObject.Find("/UI/ActionMenu");
-        actionMenu.GetComponent<ActionMenu>().Show();
 
-        Vector3 point = Camera.main.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z));
+        if(encounterState.ActiveEntity.Id == this.id)
+        {
+            actionMenu.GetComponent<ActionMenu>().Show();
 
-        actionMenu.transform.position = point;
-        SetCollider(false);
+            Vector3 point = Camera.main.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z));
+
+            actionMenu.transform.position = point;
+            SetCollider(false);
+        }
     }
 
     public void Update()

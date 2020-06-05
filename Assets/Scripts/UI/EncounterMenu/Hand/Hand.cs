@@ -41,6 +41,7 @@ namespace Hand
                 newCard.SetId(card.Id);
                 newCard.SetInstanceId(card.InstanceId);
                 newCard.SetVisability(true);
+                newCard.SetCost(card.Cost);
                 newCard.GetComponentInChildren<Name>().UpdateValue(card.Title);
                 newCard.GetComponentInChildren<Description>().UpdateValue(card.Description);
                 newCard.GetComponentInChildren<AP>().UpdateValue(card.Cost.ToString());
