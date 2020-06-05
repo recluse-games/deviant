@@ -24,10 +24,10 @@ namespace Deviant {
     static EntityActionNamesReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChdFbnRpdHlBY3Rpb25OYW1lcy5wcm90bxIHRGV2aWFudCpdChFFbnRpdHlB",
+            "ChdFbnRpdHlBY3Rpb25OYW1lcy5wcm90bxIHRGV2aWFudCppChFFbnRpdHlB",
             "Y3Rpb25OYW1lcxIICgRQTEFZEAASCAoETU9WRRABEggKBERSQVcQAhILCgdE",
-            "SVNDQVJEEAMSCwoHTk9USElORxAEEhAKDENIQU5HRV9QSEFTRRAFQglaB2Rl",
-            "dmlhbnRiBnByb3RvMw=="));
+            "SVNDQVJEEAMSCwoHTk9USElORxAEEhAKDENIQU5HRV9QSEFTRRAFEgoKBlJP",
+            "VEFURRAGQglaB2RldmlhbnRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Deviant.EntityActionNames), }, null, null));
@@ -43,6 +43,7 @@ namespace Deviant {
     [pbr::OriginalName("DISCARD")] Discard = 3,
     [pbr::OriginalName("NOTHING")] Nothing = 4,
     [pbr::OriginalName("CHANGE_PHASE")] ChangePhase = 5,
+    [pbr::OriginalName("ROTATE")] Rotate = 6,
   }
 
   #endregion

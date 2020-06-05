@@ -24,10 +24,11 @@ namespace Deviant {
     static EntityStateNamesReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChZFbnRpdHlTdGF0ZU5hbWVzLnByb3RvEgdEZXZpYW50KngKEEVudGl0eVN0",
-            "YXRlTmFtZXMSCAoESURMRRAAEgoKBk1PVklORxABEg0KCUFUVEFDS0lORxAC",
-            "EgsKB0NBU1RJTkcQAxIOCgpSRUNPVkVSSU5HEAQSDQoJUkVDT0lMSU5HEAUS",
-            "CQoFRFlJTkcQBhIICgRERUFEEAdCCVoHZGV2aWFudGIGcHJvdG8z"));
+            "ChZFbnRpdHlTdGF0ZU5hbWVzLnByb3RvEgdEZXZpYW50KoYBChBFbnRpdHlT",
+            "dGF0ZU5hbWVzEggKBElETEUQABIKCgZNT1ZJTkcQARINCglBVFRBQ0tJTkcQ",
+            "AhILCgdDQVNUSU5HEAMSDgoKUkVDT1ZFUklORxAEEg0KCVJFQ09JTElORxAF",
+            "EgkKBURZSU5HEAYSCAoEREVBRBAHEgwKCFJPVEFUSU5HEAhCCVoHZGV2aWFu",
+            "dGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Deviant.EntityStateNames), }, null, null));
@@ -45,6 +46,7 @@ namespace Deviant {
     [pbr::OriginalName("RECOILING")] Recoiling = 5,
     [pbr::OriginalName("DYING")] Dying = 6,
     [pbr::OriginalName("DEAD")] Dead = 7,
+    [pbr::OriginalName("ROTATING")] Rotating = 8,
   }
 
   #endregion
