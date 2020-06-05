@@ -29,7 +29,8 @@ public class TurnButton : MonoBehaviour
             {
                 await entity.activeRotateAction();
                 GameObject actionMenu = GameObject.Find("/UI/ActionMenu");
-                actionMenu.GetComponent<ActionMenu>().Hide();   
+                actionMenu.GetComponent<ActionMenu>().Hide();
+                entity.SetCollider(true);
             }
         }
     }

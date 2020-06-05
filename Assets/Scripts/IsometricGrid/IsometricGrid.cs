@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityAsync;
 using UnityEngine.EventSystems;
+using System.Runtime.Remoting.Lifetime;
 
 public class IsometricGrid : MonoBehaviour
 {
@@ -79,13 +80,44 @@ public class IsometricGrid : MonoBehaviour
 
         foreach (Entity entity in entityObjects)
         {
-            if (validateEntityActive(entity, activeEntity) && activeEntity.State == Deviant.EntityStateNames.Moving)
+            if (validateEntityActive(entity, activeEntity) && activeEntity.State == Deviant.EntityStateNames.Rotating)
             {
-                Vector3 startingPos = entity.transform.parent.position;
-                await updatePlayerPosition(battlefield.WorldToCell(startingPos).x, battlefield.WorldToCell(startingPos).y, position.x, position.y);
+                Deviant.EntityRotationNames rotation;
+
+                Vector3 startingPos = gridLayout.WorldToCell(entity.transform.parent.position);
+
+                if(startingPos.x > position.x)
+                {
+                    rotation = Deviant.EntityRotationNames.South;
+
+                } else if (startingPos.x < position.x)
+                {
+                    rotation = Deviant.EntityRotationNames.North;
+                }
+                else if (startingPos.y > position.y)
+                {
+                    rotation = Deviant.EntityRotationNames.West;
+                }
+                else if (startingPos.y < position.y)
+                {
+                    rotation = Deviant.EntityRotationNames.East;
+                } else
+                {
+                    rotation = activeEntity.Rotation;
+                }
+
+                await updatePlayerRotation(rotation);
+             
                 break;
             };
         }
+
+        // Remove all highlighted tiles.
+        Deviant.EncounterRequest encounterOverlayTilesRequest = new Deviant.EncounterRequest();
+        encounterOverlayTilesRequest.EntityTargetAction = new Deviant.EntityTargetAction();
+        encounterOverlayTilesRequest.EntityTargetAction.Id = activeEntity.Id;
+        encounterOverlayTilesRequest.EntityTargetAction.Tiles.Clear();
+        await encounterStateRef.UpdateEncounterAsync(encounterOverlayTilesRequest);
 
         return true;
     }
@@ -175,6 +207,9 @@ public class IsometricGrid : MonoBehaviour
                                     await ProcessAttack(selectedCard);
                                 }
                             }
+                        } else if (encounterStateRef.GetEncounter().ActiveEntity.State == Deviant.EntityStateNames.Rotating)
+                        {
+                            await ProcessRotation();
                         }
                         else
                         {
@@ -201,6 +236,7 @@ public class IsometricGrid : MonoBehaviour
                             if (validateEntityActive(entity, activeEntity))
                             {
                                 await entity.SetIdle();
+                                entity.SetCollider(true);
                                 break;
                             };
                         }
@@ -262,8 +298,19 @@ public class IsometricGrid : MonoBehaviour
         return true;
     }
 
-    async public Task<bool> updatePlayerRotation(int startx, int starty, int endx, int endy)
+    async public Task<bool> updatePlayerRotation(Deviant.EntityRotationNames rotation)
     {
+        Deviant.EntityRotateAction entityRotateAction = new Deviant.EntityRotateAction();
+        entityRotateAction.Rotation = rotation;
+
+        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+        encounterRequest.EntityActionName = Deviant.EntityActionNames.Rotate;
+        encounterRequest.EntityRotateAction = entityRotateAction;
+
+
+        Debug.Log("Rotating");
+        await encounterStateRef.UpdateEncounterAsync(encounterRequest);
+
         return true;
     }
 }

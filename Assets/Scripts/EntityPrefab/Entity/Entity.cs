@@ -49,6 +49,18 @@ public class Entity : MonoBehaviour
         return true;
     }
 
+    async public Task<bool> SetRotating()
+    {
+        // Update the Server With New Entity Animation State
+        Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();
+        encounterRequest.EntityStateAction = new Deviant.EntityStateAction();
+        encounterRequest.EntityStateAction.Id = this.id;
+        encounterRequest.EntityStateAction.State = Deviant.EntityStateNames.Rotating;
+        await _encounterStateComponentReference.UpdateEncounterAsync(encounterRequest);
+
+        return true;
+    }
+
     public void UpdateAnimation(Deviant.Encounter encounter)
     {
         for (int y = 0; y < encounter.Board.Entities.Entities_.Count; y++)
@@ -258,7 +270,7 @@ public class Entity : MonoBehaviour
         // Retrieve the Current Encounter From Shared State.
         Deviant.Encounter encounterState = _encounterStateComponentReference.GetEncounter();
 
-        if (encounterState.ActiveEntity.OwnerId == _encounterStateComponentReference.GetPlayerId() && encounterState.ActiveEntity.Id == this.id && encounterState.ActiveEntity.Ap > 0)
+        if (encounterState.ActiveEntity.OwnerId == _encounterStateComponentReference.GetPlayerId() && encounterState.ActiveEntity.Id == this.id)
         {
             // Update the Server With New Entity Animation State
             Deviant.EncounterRequest encounterEntityStateRequest = new Deviant.EncounterRequest();
@@ -291,6 +303,7 @@ public class Entity : MonoBehaviour
             }
 
             await _encounterStateComponentReference.UpdateEncounterAsync(encounterOverlayTilesRequest);
+            await SetRotating();
         }
 
         return true;
@@ -340,7 +353,13 @@ public class Entity : MonoBehaviour
         return true;
     }
 
-    async public void OnMouseDown()
+    public void SetCollider(bool enabled)
+    {
+        BoxCollider2D entityCollider = GetComponent<BoxCollider2D>();
+        entityCollider.enabled = enabled;
+    }
+
+    async public void OnMouseUp()
     {
         GameObject actionMenu = GameObject.Find("/UI/ActionMenu");
         actionMenu.GetComponent<ActionMenu>().Show();
@@ -348,6 +367,7 @@ public class Entity : MonoBehaviour
         Vector3 point = Camera.main.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z));
 
         actionMenu.transform.position = point;
+        SetCollider(false);
     }
 
     public void Update()

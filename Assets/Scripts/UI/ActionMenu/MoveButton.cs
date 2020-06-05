@@ -31,6 +31,7 @@ public class MoveButton : MonoBehaviour
                 await entity.activateMoveAction();
                 GameObject actionMenu = GameObject.Find("/UI/ActionMenu");
                 actionMenu.GetComponent<ActionMenu>().Hide();
+                entity.SetCollider(true);
             }
         }
     }
