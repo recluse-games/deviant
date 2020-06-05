@@ -222,7 +222,81 @@ public class Entity : MonoBehaviour
         return filteredResult;
     }
 
-    async public void OnMouseDown()
+    public List<Deviant.Tile> GeneratePermissableRotations(Vector3Int currentLocation)
+    {
+        List<Deviant.Tile> tiles = new List<Deviant.Tile>();
+
+        var up = new Deviant.Tile();
+        up.X = currentLocation.x + 1;
+        up.Y = currentLocation.y;
+        up.Id = "select_0001";
+        var down = new Deviant.Tile();
+        down.X = currentLocation.x - 1;
+        down.Y = currentLocation.y;
+        down.Id = "select_0001";
+        var left = new Deviant.Tile();
+        left.X = currentLocation.x;
+        left.Y = currentLocation.y + 1;
+        left.Id = "select_0001";
+        var right = new Deviant.Tile();
+        right.X = currentLocation.x;
+        right.Y = currentLocation.y - 1;
+        right.Id = "select_0001";
+
+        tiles.Add(up);
+        tiles.Add(down);
+        tiles.Add(left);
+        tiles.Add(right);
+
+        return tiles;
+    }
+
+    async public Task<bool> activeRotateAction ()
+    {
+        Deviant.Encounter encounter = _encounterStateComponentReference.GetEncounter();
+
+        // Retrieve the Current Encounter From Shared State.
+        Deviant.Encounter encounterState = _encounterStateComponentReference.GetEncounter();
+
+        if (encounterState.ActiveEntity.OwnerId == _encounterStateComponentReference.GetPlayerId() && encounterState.ActiveEntity.Id == this.id && encounterState.ActiveEntity.Ap > 0)
+        {
+            // Update the Server With New Entity Animation State
+            Deviant.EncounterRequest encounterEntityStateRequest = new Deviant.EncounterRequest();
+            encounterEntityStateRequest.EntityStateAction = new Deviant.EntityStateAction();
+            encounterEntityStateRequest.EntityStateAction.Id = this.id;
+            encounterEntityStateRequest.EntityStateAction.State = Deviant.EntityStateNames.Moving;
+            await _encounterStateComponentReference.UpdateEncounterAsync(encounterEntityStateRequest);
+
+            // Update the Server With Newly Highlighted Overlay Tiles
+            Deviant.EncounterRequest encounterOverlayTilesRequest = new Deviant.EncounterRequest();
+            encounterOverlayTilesRequest.EntityTargetAction = new Deviant.EntityTargetAction();
+            encounterOverlayTilesRequest.EntityTargetAction.Id = this.id;
+
+            List<Deviant.Tile> selectedTiles;
+
+            for (int y = 0; y < encounter.Board.Entities.Entities_.Count; y++)
+            {
+                for (int x = 0; x < encounter.Board.Entities.Entities_[y].Entities.Count; x++)
+                {
+                    if (this.id == encounter.Board.Entities.Entities_[y].Entities[x].Id)
+                    {
+                        selectedTiles = GeneratePermissableRotations(new Vector3Int(y, x, 0));
+
+                        foreach (var tile in selectedTiles)
+                        {
+                            encounterOverlayTilesRequest.EntityTargetAction.Tiles.Add(tile);
+                        }
+                    }
+                }
+            }
+
+            await _encounterStateComponentReference.UpdateEncounterAsync(encounterOverlayTilesRequest);
+        }
+
+        return true;
+    }
+
+    async public Task<bool> activateMoveAction()
     {
         Deviant.Encounter encounter = _encounterStateComponentReference.GetEncounter();
 
@@ -262,6 +336,18 @@ public class Entity : MonoBehaviour
 
             await _encounterStateComponentReference.UpdateEncounterAsync(encounterOverlayTilesRequest);
         }
+
+        return true;
+    }
+
+    async public void OnMouseDown()
+    {
+        GameObject actionMenu = GameObject.Find("/UI/ActionMenu");
+        actionMenu.GetComponent<ActionMenu>().Show();
+
+        Vector3 point = Camera.main.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z));
+
+        actionMenu.transform.position = point;
     }
 
     public void Update()

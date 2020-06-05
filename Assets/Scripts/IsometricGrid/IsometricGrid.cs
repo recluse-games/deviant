@@ -66,6 +66,30 @@ public class IsometricGrid : MonoBehaviour
         battlefield.RefreshTile(position);
     }
     
+    private async Task<bool> ProcessRotation()
+    {
+        GridLayout gridLayout = this.transform.GetComponent<GridLayout>();
+        Tilemap battlefield = this.transform.Find("Battlefield").GetComponent<Tilemap>();
+        Deviant.Entity activeEntity = encounterStateRef.encounter.ActiveEntity;
+        Entity[] entityObjects = FindObjectsOfType<Entity>();
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
+        Vector3Int position = gridLayout.WorldToCell(worldPoint);
+
+        foreach (Entity entity in entityObjects)
+        {
+            if (validateEntityActive(entity, activeEntity) && activeEntity.State == Deviant.EntityStateNames.Moving)
+            {
+                Vector3 startingPos = entity.transform.parent.position;
+                await updatePlayerPosition(battlefield.WorldToCell(startingPos).x, battlefield.WorldToCell(startingPos).y, position.x, position.y);
+                break;
+            };
+        }
+
+        return true;
+    }
+
     private async Task<bool> ProcessMove()
     {
         GridLayout gridLayout = this.transform.GetComponent<GridLayout>();
@@ -164,7 +188,10 @@ public class IsometricGrid : MonoBehaviour
                         var activeEntity = encounterStateRef.GetEncounter().ActiveEntity;
                         var entityObjects = FindObjectsOfType<Entity>();
 
-                        if(selectedCard)
+                        var actionMenu = FindObjectOfType<ActionMenu>();
+                        actionMenu.Hide();
+
+                        if (selectedCard)
                         {
                             selectedCard.SetSelected(false);
                         }
@@ -232,6 +259,11 @@ public class IsometricGrid : MonoBehaviour
 
         await encounterStateRef.UpdateEncounterAsync(encounterRequest);
 
+        return true;
+    }
+
+    async public Task<bool> updatePlayerRotation(int startx, int starty, int endx, int endy)
+    {
         return true;
     }
 }
