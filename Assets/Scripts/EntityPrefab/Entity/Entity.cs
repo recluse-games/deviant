@@ -12,6 +12,7 @@ public class Entity : MonoBehaviour
 {
     public string id = default;
     public string state = default;
+    public bool selected = default;
 
     GameObject selectionArrow;
     private EncounterState _encounterStateComponentReference = default;
@@ -23,6 +24,11 @@ public class Entity : MonoBehaviour
         gameObject.GetComponent<Renderer>().material = material;
 
         _encounterStateComponentReference = GameObject.Find("/EncounterState").GetComponent<EncounterState>();
+    }
+
+    public void SetSelected(bool selectionState)
+    {
+        this.selected = selectionState;
     }
 
     public string GetId()
@@ -72,7 +78,6 @@ public class Entity : MonoBehaviour
                 {
                     var currentState = encounter.Board.Entities.Entities_[y].Entities[x].State;
 
-                    Debug.Log("Current state is: " + currentState);
                     // Update Animation State Machine Triggers
                     GetComponent<Animator>().SetTrigger(currentState.ToString().ToUpper());
                 }
@@ -353,27 +358,32 @@ public class Entity : MonoBehaviour
         return true;
     }
 
-    public void SetCollider(bool enabled)
+    async public Task<bool> activatePlayerMenu()
     {
-        BoxCollider2D entityCollider = GetComponent<BoxCollider2D>();
-        entityCollider.enabled = enabled;
-    }
-
-    async public void OnMouseUp()
-    {
-        Deviant.Encounter encounterState = _encounterStateComponentReference.GetEncounter();
-
-        GameObject actionMenu = GameObject.Find("/UI/ActionMenu");
-
-        if(encounterState.ActiveEntity.Id == this.id)
+        if(this.selected == true)
         {
-            actionMenu.GetComponent<ActionMenu>().Show();
+            this.selected = false;
+            return true;
+        } else
+        {
+            Deviant.Encounter encounterState = _encounterStateComponentReference.GetEncounter();
 
-            Vector3 point = Camera.main.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z));
+            GameObject actionMenu = GameObject.Find("/UI/ActionMenu");
 
-            actionMenu.transform.position = point;
-            SetCollider(false);
+            if (encounterState.ActiveEntity.Id == this.id)
+            {
+                actionMenu.GetComponent<ActionMenu>().Show();
+
+                Vector3 point = Camera.main.WorldToScreenPoint(new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z));
+
+                actionMenu.transform.position = point;
+            }
+
+            this.selected = true;
+
+            return true;
         }
+
     }
 
     public void Update()

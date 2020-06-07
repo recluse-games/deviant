@@ -146,6 +146,40 @@ public class IsometricGrid : MonoBehaviour
         return true;
     }
 
+    private async Task<bool> ProcessEntitySelection()
+    {
+        GridLayout gridLayout = this.transform.GetComponent<GridLayout>();
+        Tilemap battlefield = this.transform.Find("LocalBattlefieldOverlay").GetComponent<Tilemap>();
+        Deviant.Entity activeEntity = encounterStateRef.encounter.ActiveEntity;
+        Entity[] entityObjects = FindObjectsOfType<Entity>();
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
+        Vector3Int position = gridLayout.WorldToCell(worldPoint);
+
+        var encounter = encounterStateRef.GetEncounter();
+
+        for(var y = 0; y < encounter.Board.Entities.Entities_.Count; y ++)
+        {
+            for (var x = 0; x < encounter.Board.Entities.Entities_[y].Entities.Count; x++)
+            {
+                if(encounter.ActiveEntity.Id == encounter.Board.Entities.Entities_[y].Entities[x].Id && position.y == x && position.x == y)
+                {
+                    foreach (Entity entity in entityObjects)
+                    {
+                        if (entity.GetId() == encounter.Board.Entities.Entities_[y].Entities[x].Id)
+                        {
+                            await entity.activatePlayerMenu();
+                            break;
+                        };
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
     async public void Update()
     {
         // Block input to this component while we're on a GUI element.
@@ -159,6 +193,8 @@ public class IsometricGrid : MonoBehaviour
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
+                        await ProcessEntitySelection();
+
                         if (encounterStateRef.GetEncounter().ActiveEntity.State == Deviant.EntityStateNames.Rotating)
                         {
                             await ProcessRotation();
@@ -188,7 +224,6 @@ public class IsometricGrid : MonoBehaviour
                             if (validateEntityActive(entity, activeEntity))
                             {
                                 await entity.SetIdle();
-                                entity.SetCollider(true);
                                 break;
                             };
                         }

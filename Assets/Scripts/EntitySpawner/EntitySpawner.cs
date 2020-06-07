@@ -48,7 +48,6 @@ public class EntitySpawner : MonoBehaviour
                     entity.transform.gameObject.name = "entity_" + entityId;
 
                     AlignSpriteToTile(entity, currentTileLocation);
-                    Enable2DBoxCollider(entity);
                     FlipEnemyOrientation(entity, entityAlignment);
                     TagEntity(entity, entityAlignment);
 
@@ -104,11 +103,6 @@ public class EntitySpawner : MonoBehaviour
 
         Entity existingEntityInstance = entity.GetComponentInChildren<Entity>();
         existingEntityInstance.transform.localPosition = newPosition;
-    }
-
-    private void Enable2DBoxCollider(EntityPrefab entity)
-    {
-        entity.transform.gameObject.GetComponentInChildren<BoxCollider2D>().enabled = true;
     }
 
     private void TagEntity(EntityPrefab entity, Deviant.Alignment entityAlignment)
