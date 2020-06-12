@@ -71,6 +71,11 @@ public class EncounterState : MonoBehaviour
         subject.GetComponent<Subject>().AddObserver(newEntityObserver);
     }
 
+    public void RemoveEntityObserver(GameObject entityObj)
+    {
+        subject.GetComponent<Subject>().RemoveObserver(entityObj);
+    }
+
     public async Task<bool> CreateEncounterAsync()
     {
         Deviant.EncounterRequest encounterRequest = new Deviant.EncounterRequest();

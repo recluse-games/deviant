@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 using UnityAsync;
 using UnityEngine.XR.WSA;
 using System.Linq;
+using AStarSharp;
 
 public class Entity : MonoBehaviour
 {

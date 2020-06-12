@@ -86,8 +86,11 @@ public class EntitySpawner : MonoBehaviour
             if (currentEntities.Contains(entityId) == false)
             {
                 Debug.Log("Removing: " + entityId);
+                GameObject existingDeadEntityObserver = GameObject.Find("observer_entity_" + entityId);
                 GameObject existingDeadEntity = GameObject.Find("entity_" + entityId);
+                _encounterStateComponentReference.RemoveEntityObserver(existingDeadEntityObserver);
                 GameObject.Destroy(existingDeadEntity);
+                GameObject.Destroy(existingDeadEntityObserver);
             }
         }
     }

@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 using UnityAsync;
 using UnityEngine.EventSystems;
 using System.Runtime.Remoting.Lifetime;
+using AStarSharp;
+using TMPro;
 
 public class IsometricGrid : MonoBehaviour
 {
@@ -61,6 +63,8 @@ public class IsometricGrid : MonoBehaviour
         Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
         Vector3Int position = gridLayout.WorldToCell(worldPoint);
         UnityEngine.Tilemaps.Tile newTileAsset = Resources.Load<UnityEngine.Tilemaps.Tile>($"Art/Tiles/select_0000");
+
+        //TestAStar(new Vector2(position.x, position.y));
 
         battlefield.ClearAllTiles();
         battlefield.SetTile(position, newTileAsset);
@@ -263,8 +267,6 @@ public class IsometricGrid : MonoBehaviour
         return selectedCard;
     }
 
-
-
     async public Task<bool> updatePlayerPosition(int startx, int starty, int endx, int endy)
     {
         Deviant.EntityMoveAction entityMoveAction = new Deviant.EntityMoveAction();
@@ -300,4 +302,69 @@ public class IsometricGrid : MonoBehaviour
 
         return true;
     }
+
+    /**
+    private List<List<Node>> ConstructAStarGrid()
+    {
+        List<List<Node>> temp = new List<List<Node>>();
+        bool walkable = false;
+
+        Deviant.Encounter encounter = encounterStateRef.GetEncounter();
+
+        for (int y = 0; y < encounter.Board.Entities.Entities_.Count; y++)
+        {
+            temp.Add(new List<Node>());
+
+            for (int x = 0; x < encounter.Board.Entities.Entities_[y].Entities.Count; x++)
+            {
+                if (encounter.Board.Entities.Entities_[y].Entities[x].Id != "" && encounter.Board.Entities.Entities_[y].Entities[x].Id != encounter.ActiveEntity.Id)
+                {
+                    walkable = false;
+                }
+                else
+                {
+                    walkable = true;
+                }
+
+                temp[y].Add(new Node(new Vector2(y, x), walkable));
+            }
+        }
+
+        return temp;
+    }
+
+    public void TestAStar(Vector2 mousePosition)
+    {
+        Deviant.Encounter encounter = encounterStateRef.GetEncounter();
+
+        GameObject overLayGrid = GameObject.Find("IsometricGrid");
+        Vector2 pathfindOrigin = new Vector2();
+
+        for (int y = 0; y < encounter.Board.Entities.Entities_.Count; y++)
+        {
+            for (int x = 0; x < encounter.Board.Entities.Entities_[y].Entities.Count; x++)
+            {
+                if (encounter.Board.Entities.Entities_[y].Entities[x].Id == encounter.ActiveEntity.Id)
+                {
+                    pathfindOrigin = new Vector2(y, x);
+                }
+
+            }
+        }
+
+        var A = new Astar(ConstructAStarGrid());
+        var path = A.FindPath(pathfindOrigin, mousePosition, encounter.ActiveEntity.Ap);
+        Tilemap battlefield = this.transform.Find("LocalBattlefieldOverlay").GetComponent<Tilemap>();
+        UnityEngine.Tilemaps.Tile newTileAsset = Resources.Load<UnityEngine.Tilemaps.Tile>($"Art/Tiles/select_0001");
+
+        battlefield.ClearAllTiles();
+        while (path.Count > 0)
+        {
+            var input = path.Pop();
+            Debug.Log("DrawMe" + input.Position);
+            battlefield.SetTile(new Vector3Int((int)input.Position.x, (int)input.Position.y, 0), newTileAsset);
+            battlefield.RefreshTile(new Vector3Int((int)input.Position.x, (int)input.Position.y, 0));
+        }
+    }
+    **/
 }

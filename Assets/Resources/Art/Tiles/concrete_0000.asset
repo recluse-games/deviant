@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: concrete_0000
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 62b7906d4ffba8a4f8781df57cc6e57a, type: 3}
+  m_Sprite: {fileID: -581752517993153817, guid: dcb69f7d317d585469fbb37a244c9b6b,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

@@ -32,6 +32,7 @@ namespace ObserverPattern
         //Remove observer from the list
         public void RemoveObserver(GameObject observer)
         {
+            observers.Remove(observer);
         }
     }
 }
