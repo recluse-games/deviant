@@ -25,12 +25,12 @@ namespace Directory {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg1zZXJ2aWNlLnByb3RvEglEaXJlY3RvcnkaDHBsYXllci5wcm90bxoIaWQu",
-            "cHJvdG8y1AEKCURpcmVjdG9yeRItCgdHZXRVc2VyEg0uRGlyZWN0b3J5LklE",
-            "GhEuRGlyZWN0b3J5LlBsYXllciIAEjQKClVwZGF0ZVVzZXISES5EaXJlY3Rv",
-            "cnkuUGxheWVyGhEuRGlyZWN0b3J5LlBsYXllciIAEjQKCkNyZWF0ZVVzZXIS",
-            "ES5EaXJlY3RvcnkuUGxheWVyGhEuRGlyZWN0b3J5LlBsYXllciIAEiwKCkRl",
-            "bGV0ZVVzZXISDS5EaXJlY3RvcnkuSUQaDS5EaXJlY3RvcnkuSUQiAEINWgsu",
-            "O2RpcmVjdG9yeWIGcHJvdG8z"));
+            "cHJvdG8y3AEKCURpcmVjdG9yeRIvCglHZXRQbGF5ZXISDS5EaXJlY3Rvcnku",
+            "SUQaES5EaXJlY3RvcnkuUGxheWVyIgASNgoMVXBkYXRlUGxheWVyEhEuRGly",
+            "ZWN0b3J5LlBsYXllchoRLkRpcmVjdG9yeS5QbGF5ZXIiABI2CgxDcmVhdGVQ",
+            "bGF5ZXISES5EaXJlY3RvcnkuUGxheWVyGhEuRGlyZWN0b3J5LlBsYXllciIA",
+            "Ei4KDERlbGV0ZVBsYXllchINLkRpcmVjdG9yeS5JRBoNLkRpcmVjdG9yeS5J",
+            "RCIAQg1aCy47ZGlyZWN0b3J5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Directory.PlayerReflection.Descriptor, global::Directory.IdReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, null));
