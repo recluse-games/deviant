@@ -117,7 +117,7 @@ namespace Deviant {
 
     /// <summary>Field number for the "status" field.</summary>
     public const int StatusFieldNumber = 3;
-    private global::Deviant.CardActionStatusTypes status_ = global::Deviant.CardActionStatusTypes.Unblocked;
+    private global::Deviant.CardActionStatusTypes status_ = global::Deviant.CardActionStatusTypes.Empty;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Deviant.CardActionStatusTypes Status {
       get { return status_; }
@@ -250,7 +250,7 @@ namespace Deviant {
       int hash = 1;
       if (Id.Length != 0) hash ^= Id.GetHashCode();
       if (Type != global::Deviant.CardType.Attack) hash ^= Type.GetHashCode();
-      if (Status != global::Deviant.CardActionStatusTypes.Unblocked) hash ^= Status.GetHashCode();
+      if (Status != global::Deviant.CardActionStatusTypes.Empty) hash ^= Status.GetHashCode();
       if (TargetingType != global::Deviant.CardActionTargetingTypes.Path) hash ^= TargetingType.GetHashCode();
       hash ^= north_.GetHashCode();
       hash ^= south_.GetHashCode();
@@ -281,7 +281,7 @@ namespace Deviant {
         output.WriteRawTag(16);
         output.WriteEnum((int) Type);
       }
-      if (Status != global::Deviant.CardActionStatusTypes.Unblocked) {
+      if (Status != global::Deviant.CardActionStatusTypes.Empty) {
         output.WriteRawTag(24);
         output.WriteEnum((int) Status);
       }
@@ -311,7 +311,7 @@ namespace Deviant {
       if (Type != global::Deviant.CardType.Attack) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
       }
-      if (Status != global::Deviant.CardActionStatusTypes.Unblocked) {
+      if (Status != global::Deviant.CardActionStatusTypes.Empty) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Status);
       }
       if (TargetingType != global::Deviant.CardActionTargetingTypes.Path) {
@@ -342,7 +342,7 @@ namespace Deviant {
       if (other.Type != global::Deviant.CardType.Attack) {
         Type = other.Type;
       }
-      if (other.Status != global::Deviant.CardActionStatusTypes.Unblocked) {
+      if (other.Status != global::Deviant.CardActionStatusTypes.Empty) {
         Status = other.Status;
       }
       if (other.TargetingType != global::Deviant.CardActionTargetingTypes.Path) {

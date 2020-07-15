@@ -24,9 +24,9 @@ namespace Deviant {
     static CardActionStatusTypesReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Ch5jYXJkX2FjdGlvbl9zdGF0dXNfdHlwZXMucHJvdG8SB0RldmlhbnQqMwoV",
-            "Q2FyZEFjdGlvblN0YXR1c1R5cGVzEg0KCVVOQkxPQ0tFRBAAEgsKB0JMT0NL",
-            "RUQQAUILWgkuO2RldmlhbnRiBnByb3RvMw=="));
+            "Ch5jYXJkX2FjdGlvbl9zdGF0dXNfdHlwZXMucHJvdG8SB0RldmlhbnQqPgoV",
+            "Q2FyZEFjdGlvblN0YXR1c1R5cGVzEgkKBUVNUFRZEAASDQoJVU5CTE9DS0VE",
+            "EAESCwoHQkxPQ0tFRBACQgtaCS47ZGV2aWFudGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Deviant.CardActionStatusTypes), }, null, null));
@@ -36,8 +36,9 @@ namespace Deviant {
   }
   #region Enums
   public enum CardActionStatusTypes {
-    [pbr::OriginalName("UNBLOCKED")] Unblocked = 0,
-    [pbr::OriginalName("BLOCKED")] Blocked = 1,
+    [pbr::OriginalName("EMPTY")] Empty = 0,
+    [pbr::OriginalName("UNBLOCKED")] Unblocked = 1,
+    [pbr::OriginalName("BLOCKED")] Blocked = 2,
   }
 
   #endregion
