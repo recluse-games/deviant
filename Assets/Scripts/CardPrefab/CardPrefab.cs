@@ -12,7 +12,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 using System.Threading.Tasks;
 using System.CodeDom;
-using UnityEditorInternal;
 
 public class CardPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
