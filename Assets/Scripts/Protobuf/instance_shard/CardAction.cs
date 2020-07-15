@@ -26,22 +26,22 @@ namespace Deviant {
           string.Concat(
             "ChFjYXJkX2FjdGlvbi5wcm90bxIHRGV2aWFudBoeY2FyZF9hY3Rpb25fc3Rh",
             "dHVzX3R5cGVzLnByb3RvGiFjYXJkX2FjdGlvbl90YXJnZXRpbmdfdHlwZXMu",
-            "cHJvdG8aD2NhcmRfdHlwZS5wcm90byLWAwoKQ2FyZEFjdGlvbhIKCgJpZBgB",
+            "cHJvdG8aD2NhcmRfdHlwZS5wcm90byLNAwoKQ2FyZEFjdGlvbhIKCgJpZBgB",
             "IAEoCRIfCgR0eXBlGAIgASgOMhEuRGV2aWFudC5DYXJkVHlwZRIuCgZzdGF0",
             "dXMYAyABKA4yHi5EZXZpYW50LkNhcmRBY3Rpb25TdGF0dXNUeXBlcxI5Cg50",
             "YXJnZXRpbmdfdHlwZRgEIAEoDjIhLkRldmlhbnQuQ2FyZEFjdGlvblRhcmdl",
-            "dGluZ1R5cGVzEiIKBW5vcnRoGAUgAygLMhMuRGV2aWFudC5DYXJkQWN0aW9u",
-            "EiIKBXNvdXRoGAYgAygLMhMuRGV2aWFudC5DYXJkQWN0aW9uEiEKBGVhc3QY",
-            "ByADKAsyEy5EZXZpYW50LkNhcmRBY3Rpb24SIQoEd2VzdBgIIAMoCzITLkRl",
-            "dmlhbnQuQ2FyZEFjdGlvbhInCgpub3J0aF9lYXN0GAkgAygLMhMuRGV2aWFu",
-            "dC5DYXJkQWN0aW9uEicKCm5vcnRoX3dlc3QYCiADKAsyEy5EZXZpYW50LkNh",
-            "cmRBY3Rpb24SJwoKc291dGhfZWFzdBgLIAMoCzITLkRldmlhbnQuQ2FyZEFj",
-            "dGlvbhInCgpzb3V0aF93ZXN0GAwgAygLMhMuRGV2aWFudC5DYXJkQWN0aW9u",
-            "QgtaCS47ZGV2aWFudGIGcHJvdG8z"));
+            "dGluZ1R5cGVzEh8KAnVwGAUgAygLMhMuRGV2aWFudC5DYXJkQWN0aW9uEiEK",
+            "BGRvd24YBiADKAsyEy5EZXZpYW50LkNhcmRBY3Rpb24SIQoEbGVmdBgHIAMo",
+            "CzITLkRldmlhbnQuQ2FyZEFjdGlvbhIiCgVyaWdodBgIIAMoCzITLkRldmlh",
+            "bnQuQ2FyZEFjdGlvbhIkCgd1cF9sZWZ0GAkgAygLMhMuRGV2aWFudC5DYXJk",
+            "QWN0aW9uEiUKCHVwX3JpZ2h0GAogAygLMhMuRGV2aWFudC5DYXJkQWN0aW9u",
+            "EiYKCWRvd25fbGVmdBgLIAMoCzITLkRldmlhbnQuQ2FyZEFjdGlvbhInCgpk",
+            "b3duX3JpZ2h0GAwgAygLMhMuRGV2aWFudC5DYXJkQWN0aW9uQgtaCS47ZGV2",
+            "aWFudGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.CardActionStatusTypesReflection.Descriptor, global::Deviant.CardActionTargetingTypesReflection.Descriptor, global::Deviant.CardTypeReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.CardAction), global::Deviant.CardAction.Parser, new[]{ "Id", "Type", "Status", "TargetingType", "North", "South", "East", "West", "NorthEast", "NorthWest", "SouthEast", "SouthWest" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.CardAction), global::Deviant.CardAction.Parser, new[]{ "Id", "Type", "Status", "TargetingType", "Up", "Down", "Left", "Right", "UpLeft", "UpRight", "DownLeft", "DownRight" }, null, null, null, null)
           }));
     }
     #endregion
@@ -77,14 +77,14 @@ namespace Deviant {
       type_ = other.type_;
       status_ = other.status_;
       targetingType_ = other.targetingType_;
-      north_ = other.north_.Clone();
-      south_ = other.south_.Clone();
-      east_ = other.east_.Clone();
-      west_ = other.west_.Clone();
-      northEast_ = other.northEast_.Clone();
-      northWest_ = other.northWest_.Clone();
-      southEast_ = other.southEast_.Clone();
-      southWest_ = other.southWest_.Clone();
+      up_ = other.up_.Clone();
+      down_ = other.down_.Clone();
+      left_ = other.left_.Clone();
+      right_ = other.right_.Clone();
+      upLeft_ = other.upLeft_.Clone();
+      upRight_ = other.upRight_.Clone();
+      downLeft_ = other.downLeft_.Clone();
+      downRight_ = other.downRight_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -137,84 +137,84 @@ namespace Deviant {
       }
     }
 
-    /// <summary>Field number for the "north" field.</summary>
-    public const int NorthFieldNumber = 5;
-    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_north_codec
+    /// <summary>Field number for the "up" field.</summary>
+    public const int UpFieldNumber = 5;
+    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_up_codec
         = pb::FieldCodec.ForMessage(42, global::Deviant.CardAction.Parser);
-    private readonly pbc::RepeatedField<global::Deviant.CardAction> north_ = new pbc::RepeatedField<global::Deviant.CardAction>();
+    private readonly pbc::RepeatedField<global::Deviant.CardAction> up_ = new pbc::RepeatedField<global::Deviant.CardAction>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Deviant.CardAction> North {
-      get { return north_; }
+    public pbc::RepeatedField<global::Deviant.CardAction> Up {
+      get { return up_; }
     }
 
-    /// <summary>Field number for the "south" field.</summary>
-    public const int SouthFieldNumber = 6;
-    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_south_codec
+    /// <summary>Field number for the "down" field.</summary>
+    public const int DownFieldNumber = 6;
+    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_down_codec
         = pb::FieldCodec.ForMessage(50, global::Deviant.CardAction.Parser);
-    private readonly pbc::RepeatedField<global::Deviant.CardAction> south_ = new pbc::RepeatedField<global::Deviant.CardAction>();
+    private readonly pbc::RepeatedField<global::Deviant.CardAction> down_ = new pbc::RepeatedField<global::Deviant.CardAction>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Deviant.CardAction> South {
-      get { return south_; }
+    public pbc::RepeatedField<global::Deviant.CardAction> Down {
+      get { return down_; }
     }
 
-    /// <summary>Field number for the "east" field.</summary>
-    public const int EastFieldNumber = 7;
-    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_east_codec
+    /// <summary>Field number for the "left" field.</summary>
+    public const int LeftFieldNumber = 7;
+    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_left_codec
         = pb::FieldCodec.ForMessage(58, global::Deviant.CardAction.Parser);
-    private readonly pbc::RepeatedField<global::Deviant.CardAction> east_ = new pbc::RepeatedField<global::Deviant.CardAction>();
+    private readonly pbc::RepeatedField<global::Deviant.CardAction> left_ = new pbc::RepeatedField<global::Deviant.CardAction>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Deviant.CardAction> East {
-      get { return east_; }
+    public pbc::RepeatedField<global::Deviant.CardAction> Left {
+      get { return left_; }
     }
 
-    /// <summary>Field number for the "west" field.</summary>
-    public const int WestFieldNumber = 8;
-    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_west_codec
+    /// <summary>Field number for the "right" field.</summary>
+    public const int RightFieldNumber = 8;
+    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_right_codec
         = pb::FieldCodec.ForMessage(66, global::Deviant.CardAction.Parser);
-    private readonly pbc::RepeatedField<global::Deviant.CardAction> west_ = new pbc::RepeatedField<global::Deviant.CardAction>();
+    private readonly pbc::RepeatedField<global::Deviant.CardAction> right_ = new pbc::RepeatedField<global::Deviant.CardAction>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Deviant.CardAction> West {
-      get { return west_; }
+    public pbc::RepeatedField<global::Deviant.CardAction> Right {
+      get { return right_; }
     }
 
-    /// <summary>Field number for the "north_east" field.</summary>
-    public const int NorthEastFieldNumber = 9;
-    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_northEast_codec
+    /// <summary>Field number for the "up_left" field.</summary>
+    public const int UpLeftFieldNumber = 9;
+    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_upLeft_codec
         = pb::FieldCodec.ForMessage(74, global::Deviant.CardAction.Parser);
-    private readonly pbc::RepeatedField<global::Deviant.CardAction> northEast_ = new pbc::RepeatedField<global::Deviant.CardAction>();
+    private readonly pbc::RepeatedField<global::Deviant.CardAction> upLeft_ = new pbc::RepeatedField<global::Deviant.CardAction>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Deviant.CardAction> NorthEast {
-      get { return northEast_; }
+    public pbc::RepeatedField<global::Deviant.CardAction> UpLeft {
+      get { return upLeft_; }
     }
 
-    /// <summary>Field number for the "north_west" field.</summary>
-    public const int NorthWestFieldNumber = 10;
-    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_northWest_codec
+    /// <summary>Field number for the "up_right" field.</summary>
+    public const int UpRightFieldNumber = 10;
+    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_upRight_codec
         = pb::FieldCodec.ForMessage(82, global::Deviant.CardAction.Parser);
-    private readonly pbc::RepeatedField<global::Deviant.CardAction> northWest_ = new pbc::RepeatedField<global::Deviant.CardAction>();
+    private readonly pbc::RepeatedField<global::Deviant.CardAction> upRight_ = new pbc::RepeatedField<global::Deviant.CardAction>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Deviant.CardAction> NorthWest {
-      get { return northWest_; }
+    public pbc::RepeatedField<global::Deviant.CardAction> UpRight {
+      get { return upRight_; }
     }
 
-    /// <summary>Field number for the "south_east" field.</summary>
-    public const int SouthEastFieldNumber = 11;
-    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_southEast_codec
+    /// <summary>Field number for the "down_left" field.</summary>
+    public const int DownLeftFieldNumber = 11;
+    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_downLeft_codec
         = pb::FieldCodec.ForMessage(90, global::Deviant.CardAction.Parser);
-    private readonly pbc::RepeatedField<global::Deviant.CardAction> southEast_ = new pbc::RepeatedField<global::Deviant.CardAction>();
+    private readonly pbc::RepeatedField<global::Deviant.CardAction> downLeft_ = new pbc::RepeatedField<global::Deviant.CardAction>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Deviant.CardAction> SouthEast {
-      get { return southEast_; }
+    public pbc::RepeatedField<global::Deviant.CardAction> DownLeft {
+      get { return downLeft_; }
     }
 
-    /// <summary>Field number for the "south_west" field.</summary>
-    public const int SouthWestFieldNumber = 12;
-    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_southWest_codec
+    /// <summary>Field number for the "down_right" field.</summary>
+    public const int DownRightFieldNumber = 12;
+    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_downRight_codec
         = pb::FieldCodec.ForMessage(98, global::Deviant.CardAction.Parser);
-    private readonly pbc::RepeatedField<global::Deviant.CardAction> southWest_ = new pbc::RepeatedField<global::Deviant.CardAction>();
+    private readonly pbc::RepeatedField<global::Deviant.CardAction> downRight_ = new pbc::RepeatedField<global::Deviant.CardAction>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Deviant.CardAction> SouthWest {
-      get { return southWest_; }
+    public pbc::RepeatedField<global::Deviant.CardAction> DownRight {
+      get { return downRight_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -234,14 +234,14 @@ namespace Deviant {
       if (Type != other.Type) return false;
       if (Status != other.Status) return false;
       if (TargetingType != other.TargetingType) return false;
-      if(!north_.Equals(other.north_)) return false;
-      if(!south_.Equals(other.south_)) return false;
-      if(!east_.Equals(other.east_)) return false;
-      if(!west_.Equals(other.west_)) return false;
-      if(!northEast_.Equals(other.northEast_)) return false;
-      if(!northWest_.Equals(other.northWest_)) return false;
-      if(!southEast_.Equals(other.southEast_)) return false;
-      if(!southWest_.Equals(other.southWest_)) return false;
+      if(!up_.Equals(other.up_)) return false;
+      if(!down_.Equals(other.down_)) return false;
+      if(!left_.Equals(other.left_)) return false;
+      if(!right_.Equals(other.right_)) return false;
+      if(!upLeft_.Equals(other.upLeft_)) return false;
+      if(!upRight_.Equals(other.upRight_)) return false;
+      if(!downLeft_.Equals(other.downLeft_)) return false;
+      if(!downRight_.Equals(other.downRight_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -252,14 +252,14 @@ namespace Deviant {
       if (Type != global::Deviant.CardType.Attack) hash ^= Type.GetHashCode();
       if (Status != global::Deviant.CardActionStatusTypes.Empty) hash ^= Status.GetHashCode();
       if (TargetingType != global::Deviant.CardActionTargetingTypes.Path) hash ^= TargetingType.GetHashCode();
-      hash ^= north_.GetHashCode();
-      hash ^= south_.GetHashCode();
-      hash ^= east_.GetHashCode();
-      hash ^= west_.GetHashCode();
-      hash ^= northEast_.GetHashCode();
-      hash ^= northWest_.GetHashCode();
-      hash ^= southEast_.GetHashCode();
-      hash ^= southWest_.GetHashCode();
+      hash ^= up_.GetHashCode();
+      hash ^= down_.GetHashCode();
+      hash ^= left_.GetHashCode();
+      hash ^= right_.GetHashCode();
+      hash ^= upLeft_.GetHashCode();
+      hash ^= upRight_.GetHashCode();
+      hash ^= downLeft_.GetHashCode();
+      hash ^= downRight_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -289,14 +289,14 @@ namespace Deviant {
         output.WriteRawTag(32);
         output.WriteEnum((int) TargetingType);
       }
-      north_.WriteTo(output, _repeated_north_codec);
-      south_.WriteTo(output, _repeated_south_codec);
-      east_.WriteTo(output, _repeated_east_codec);
-      west_.WriteTo(output, _repeated_west_codec);
-      northEast_.WriteTo(output, _repeated_northEast_codec);
-      northWest_.WriteTo(output, _repeated_northWest_codec);
-      southEast_.WriteTo(output, _repeated_southEast_codec);
-      southWest_.WriteTo(output, _repeated_southWest_codec);
+      up_.WriteTo(output, _repeated_up_codec);
+      down_.WriteTo(output, _repeated_down_codec);
+      left_.WriteTo(output, _repeated_left_codec);
+      right_.WriteTo(output, _repeated_right_codec);
+      upLeft_.WriteTo(output, _repeated_upLeft_codec);
+      upRight_.WriteTo(output, _repeated_upRight_codec);
+      downLeft_.WriteTo(output, _repeated_downLeft_codec);
+      downRight_.WriteTo(output, _repeated_downRight_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -317,14 +317,14 @@ namespace Deviant {
       if (TargetingType != global::Deviant.CardActionTargetingTypes.Path) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) TargetingType);
       }
-      size += north_.CalculateSize(_repeated_north_codec);
-      size += south_.CalculateSize(_repeated_south_codec);
-      size += east_.CalculateSize(_repeated_east_codec);
-      size += west_.CalculateSize(_repeated_west_codec);
-      size += northEast_.CalculateSize(_repeated_northEast_codec);
-      size += northWest_.CalculateSize(_repeated_northWest_codec);
-      size += southEast_.CalculateSize(_repeated_southEast_codec);
-      size += southWest_.CalculateSize(_repeated_southWest_codec);
+      size += up_.CalculateSize(_repeated_up_codec);
+      size += down_.CalculateSize(_repeated_down_codec);
+      size += left_.CalculateSize(_repeated_left_codec);
+      size += right_.CalculateSize(_repeated_right_codec);
+      size += upLeft_.CalculateSize(_repeated_upLeft_codec);
+      size += upRight_.CalculateSize(_repeated_upRight_codec);
+      size += downLeft_.CalculateSize(_repeated_downLeft_codec);
+      size += downRight_.CalculateSize(_repeated_downRight_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -348,14 +348,14 @@ namespace Deviant {
       if (other.TargetingType != global::Deviant.CardActionTargetingTypes.Path) {
         TargetingType = other.TargetingType;
       }
-      north_.Add(other.north_);
-      south_.Add(other.south_);
-      east_.Add(other.east_);
-      west_.Add(other.west_);
-      northEast_.Add(other.northEast_);
-      northWest_.Add(other.northWest_);
-      southEast_.Add(other.southEast_);
-      southWest_.Add(other.southWest_);
+      up_.Add(other.up_);
+      down_.Add(other.down_);
+      left_.Add(other.left_);
+      right_.Add(other.right_);
+      upLeft_.Add(other.upLeft_);
+      upRight_.Add(other.upRight_);
+      downLeft_.Add(other.downLeft_);
+      downRight_.Add(other.downRight_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -384,35 +384,35 @@ namespace Deviant {
             break;
           }
           case 42: {
-            north_.AddEntriesFrom(input, _repeated_north_codec);
+            up_.AddEntriesFrom(input, _repeated_up_codec);
             break;
           }
           case 50: {
-            south_.AddEntriesFrom(input, _repeated_south_codec);
+            down_.AddEntriesFrom(input, _repeated_down_codec);
             break;
           }
           case 58: {
-            east_.AddEntriesFrom(input, _repeated_east_codec);
+            left_.AddEntriesFrom(input, _repeated_left_codec);
             break;
           }
           case 66: {
-            west_.AddEntriesFrom(input, _repeated_west_codec);
+            right_.AddEntriesFrom(input, _repeated_right_codec);
             break;
           }
           case 74: {
-            northEast_.AddEntriesFrom(input, _repeated_northEast_codec);
+            upLeft_.AddEntriesFrom(input, _repeated_upLeft_codec);
             break;
           }
           case 82: {
-            northWest_.AddEntriesFrom(input, _repeated_northWest_codec);
+            upRight_.AddEntriesFrom(input, _repeated_upRight_codec);
             break;
           }
           case 90: {
-            southEast_.AddEntriesFrom(input, _repeated_southEast_codec);
+            downLeft_.AddEntriesFrom(input, _repeated_downLeft_codec);
             break;
           }
           case 98: {
-            southWest_.AddEntriesFrom(input, _repeated_southWest_codec);
+            downRight_.AddEntriesFrom(input, _repeated_downRight_codec);
             break;
           }
         }
