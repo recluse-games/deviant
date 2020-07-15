@@ -24,13 +24,24 @@ namespace Deviant {
     static CardActionReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChFjYXJkX2FjdGlvbi5wcm90bxIHRGV2aWFudBoNcGF0dGVybi5wcm90byI7",
-            "CgpDYXJkQWN0aW9uEgoKAmlkGAEgASgJEiEKB3BhdHRlcm4YAiADKAsyEC5E",
-            "ZXZpYW50LlBhdHRlcm5CC1oJLjtkZXZpYW50YgZwcm90bzM="));
+            "ChFjYXJkX2FjdGlvbi5wcm90bxIHRGV2aWFudBoeY2FyZF9hY3Rpb25fc3Rh",
+            "dHVzX3R5cGVzLnByb3RvGiFjYXJkX2FjdGlvbl90YXJnZXRpbmdfdHlwZXMu",
+            "cHJvdG8aD2NhcmRfdHlwZS5wcm90byLWAwoKQ2FyZEFjdGlvbhIKCgJpZBgB",
+            "IAEoCRIfCgR0eXBlGAIgASgOMhEuRGV2aWFudC5DYXJkVHlwZRIuCgZzdGF0",
+            "dXMYAyABKA4yHi5EZXZpYW50LkNhcmRBY3Rpb25TdGF0dXNUeXBlcxI5Cg50",
+            "YXJnZXRpbmdfdHlwZRgEIAEoDjIhLkRldmlhbnQuQ2FyZEFjdGlvblRhcmdl",
+            "dGluZ1R5cGVzEiIKBW5vcnRoGAUgAygLMhMuRGV2aWFudC5DYXJkQWN0aW9u",
+            "EiIKBXNvdXRoGAYgAygLMhMuRGV2aWFudC5DYXJkQWN0aW9uEiEKBGVhc3QY",
+            "ByADKAsyEy5EZXZpYW50LkNhcmRBY3Rpb24SIQoEd2VzdBgIIAMoCzITLkRl",
+            "dmlhbnQuQ2FyZEFjdGlvbhInCgpub3J0aF9lYXN0GAkgAygLMhMuRGV2aWFu",
+            "dC5DYXJkQWN0aW9uEicKCm5vcnRoX3dlc3QYCiADKAsyEy5EZXZpYW50LkNh",
+            "cmRBY3Rpb24SJwoKc291dGhfZWFzdBgLIAMoCzITLkRldmlhbnQuQ2FyZEFj",
+            "dGlvbhInCgpzb3V0aF93ZXN0GAwgAygLMhMuRGV2aWFudC5DYXJkQWN0aW9u",
+            "QgtaCS47ZGV2aWFudGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Deviant.PatternReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::Deviant.CardActionStatusTypesReflection.Descriptor, global::Deviant.CardActionTargetingTypesReflection.Descriptor, global::Deviant.CardTypeReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.CardAction), global::Deviant.CardAction.Parser, new[]{ "Id", "Pattern" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.CardAction), global::Deviant.CardAction.Parser, new[]{ "Id", "Type", "Status", "TargetingType", "North", "South", "East", "West", "NorthEast", "NorthWest", "SouthEast", "SouthWest" }, null, null, null, null)
           }));
     }
     #endregion
@@ -63,7 +74,17 @@ namespace Deviant {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public CardAction(CardAction other) : this() {
       id_ = other.id_;
-      pattern_ = other.pattern_.Clone();
+      type_ = other.type_;
+      status_ = other.status_;
+      targetingType_ = other.targetingType_;
+      north_ = other.north_.Clone();
+      south_ = other.south_.Clone();
+      east_ = other.east_.Clone();
+      west_ = other.west_.Clone();
+      northEast_ = other.northEast_.Clone();
+      northWest_ = other.northWest_.Clone();
+      southEast_ = other.southEast_.Clone();
+      southWest_ = other.southWest_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -83,14 +104,117 @@ namespace Deviant {
       }
     }
 
-    /// <summary>Field number for the "pattern" field.</summary>
-    public const int PatternFieldNumber = 2;
-    private static readonly pb::FieldCodec<global::Deviant.Pattern> _repeated_pattern_codec
-        = pb::FieldCodec.ForMessage(18, global::Deviant.Pattern.Parser);
-    private readonly pbc::RepeatedField<global::Deviant.Pattern> pattern_ = new pbc::RepeatedField<global::Deviant.Pattern>();
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 2;
+    private global::Deviant.CardType type_ = global::Deviant.CardType.Attack;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Deviant.Pattern> Pattern {
-      get { return pattern_; }
+    public global::Deviant.CardType Type {
+      get { return type_; }
+      set {
+        type_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "status" field.</summary>
+    public const int StatusFieldNumber = 3;
+    private global::Deviant.CardActionStatusTypes status_ = global::Deviant.CardActionStatusTypes.Unblocked;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Deviant.CardActionStatusTypes Status {
+      get { return status_; }
+      set {
+        status_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "targeting_type" field.</summary>
+    public const int TargetingTypeFieldNumber = 4;
+    private global::Deviant.CardActionTargetingTypes targetingType_ = global::Deviant.CardActionTargetingTypes.Path;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Deviant.CardActionTargetingTypes TargetingType {
+      get { return targetingType_; }
+      set {
+        targetingType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "north" field.</summary>
+    public const int NorthFieldNumber = 5;
+    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_north_codec
+        = pb::FieldCodec.ForMessage(42, global::Deviant.CardAction.Parser);
+    private readonly pbc::RepeatedField<global::Deviant.CardAction> north_ = new pbc::RepeatedField<global::Deviant.CardAction>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Deviant.CardAction> North {
+      get { return north_; }
+    }
+
+    /// <summary>Field number for the "south" field.</summary>
+    public const int SouthFieldNumber = 6;
+    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_south_codec
+        = pb::FieldCodec.ForMessage(50, global::Deviant.CardAction.Parser);
+    private readonly pbc::RepeatedField<global::Deviant.CardAction> south_ = new pbc::RepeatedField<global::Deviant.CardAction>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Deviant.CardAction> South {
+      get { return south_; }
+    }
+
+    /// <summary>Field number for the "east" field.</summary>
+    public const int EastFieldNumber = 7;
+    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_east_codec
+        = pb::FieldCodec.ForMessage(58, global::Deviant.CardAction.Parser);
+    private readonly pbc::RepeatedField<global::Deviant.CardAction> east_ = new pbc::RepeatedField<global::Deviant.CardAction>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Deviant.CardAction> East {
+      get { return east_; }
+    }
+
+    /// <summary>Field number for the "west" field.</summary>
+    public const int WestFieldNumber = 8;
+    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_west_codec
+        = pb::FieldCodec.ForMessage(66, global::Deviant.CardAction.Parser);
+    private readonly pbc::RepeatedField<global::Deviant.CardAction> west_ = new pbc::RepeatedField<global::Deviant.CardAction>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Deviant.CardAction> West {
+      get { return west_; }
+    }
+
+    /// <summary>Field number for the "north_east" field.</summary>
+    public const int NorthEastFieldNumber = 9;
+    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_northEast_codec
+        = pb::FieldCodec.ForMessage(74, global::Deviant.CardAction.Parser);
+    private readonly pbc::RepeatedField<global::Deviant.CardAction> northEast_ = new pbc::RepeatedField<global::Deviant.CardAction>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Deviant.CardAction> NorthEast {
+      get { return northEast_; }
+    }
+
+    /// <summary>Field number for the "north_west" field.</summary>
+    public const int NorthWestFieldNumber = 10;
+    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_northWest_codec
+        = pb::FieldCodec.ForMessage(82, global::Deviant.CardAction.Parser);
+    private readonly pbc::RepeatedField<global::Deviant.CardAction> northWest_ = new pbc::RepeatedField<global::Deviant.CardAction>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Deviant.CardAction> NorthWest {
+      get { return northWest_; }
+    }
+
+    /// <summary>Field number for the "south_east" field.</summary>
+    public const int SouthEastFieldNumber = 11;
+    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_southEast_codec
+        = pb::FieldCodec.ForMessage(90, global::Deviant.CardAction.Parser);
+    private readonly pbc::RepeatedField<global::Deviant.CardAction> southEast_ = new pbc::RepeatedField<global::Deviant.CardAction>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Deviant.CardAction> SouthEast {
+      get { return southEast_; }
+    }
+
+    /// <summary>Field number for the "south_west" field.</summary>
+    public const int SouthWestFieldNumber = 12;
+    private static readonly pb::FieldCodec<global::Deviant.CardAction> _repeated_southWest_codec
+        = pb::FieldCodec.ForMessage(98, global::Deviant.CardAction.Parser);
+    private readonly pbc::RepeatedField<global::Deviant.CardAction> southWest_ = new pbc::RepeatedField<global::Deviant.CardAction>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::Deviant.CardAction> SouthWest {
+      get { return southWest_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -107,7 +231,17 @@ namespace Deviant {
         return true;
       }
       if (Id != other.Id) return false;
-      if(!pattern_.Equals(other.pattern_)) return false;
+      if (Type != other.Type) return false;
+      if (Status != other.Status) return false;
+      if (TargetingType != other.TargetingType) return false;
+      if(!north_.Equals(other.north_)) return false;
+      if(!south_.Equals(other.south_)) return false;
+      if(!east_.Equals(other.east_)) return false;
+      if(!west_.Equals(other.west_)) return false;
+      if(!northEast_.Equals(other.northEast_)) return false;
+      if(!northWest_.Equals(other.northWest_)) return false;
+      if(!southEast_.Equals(other.southEast_)) return false;
+      if(!southWest_.Equals(other.southWest_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -115,7 +249,17 @@ namespace Deviant {
     public override int GetHashCode() {
       int hash = 1;
       if (Id.Length != 0) hash ^= Id.GetHashCode();
-      hash ^= pattern_.GetHashCode();
+      if (Type != global::Deviant.CardType.Attack) hash ^= Type.GetHashCode();
+      if (Status != global::Deviant.CardActionStatusTypes.Unblocked) hash ^= Status.GetHashCode();
+      if (TargetingType != global::Deviant.CardActionTargetingTypes.Path) hash ^= TargetingType.GetHashCode();
+      hash ^= north_.GetHashCode();
+      hash ^= south_.GetHashCode();
+      hash ^= east_.GetHashCode();
+      hash ^= west_.GetHashCode();
+      hash ^= northEast_.GetHashCode();
+      hash ^= northWest_.GetHashCode();
+      hash ^= southEast_.GetHashCode();
+      hash ^= southWest_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -133,7 +277,26 @@ namespace Deviant {
         output.WriteRawTag(10);
         output.WriteString(Id);
       }
-      pattern_.WriteTo(output, _repeated_pattern_codec);
+      if (Type != global::Deviant.CardType.Attack) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) Type);
+      }
+      if (Status != global::Deviant.CardActionStatusTypes.Unblocked) {
+        output.WriteRawTag(24);
+        output.WriteEnum((int) Status);
+      }
+      if (TargetingType != global::Deviant.CardActionTargetingTypes.Path) {
+        output.WriteRawTag(32);
+        output.WriteEnum((int) TargetingType);
+      }
+      north_.WriteTo(output, _repeated_north_codec);
+      south_.WriteTo(output, _repeated_south_codec);
+      east_.WriteTo(output, _repeated_east_codec);
+      west_.WriteTo(output, _repeated_west_codec);
+      northEast_.WriteTo(output, _repeated_northEast_codec);
+      northWest_.WriteTo(output, _repeated_northWest_codec);
+      southEast_.WriteTo(output, _repeated_southEast_codec);
+      southWest_.WriteTo(output, _repeated_southWest_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -145,7 +308,23 @@ namespace Deviant {
       if (Id.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
       }
-      size += pattern_.CalculateSize(_repeated_pattern_codec);
+      if (Type != global::Deviant.CardType.Attack) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
+      }
+      if (Status != global::Deviant.CardActionStatusTypes.Unblocked) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Status);
+      }
+      if (TargetingType != global::Deviant.CardActionTargetingTypes.Path) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) TargetingType);
+      }
+      size += north_.CalculateSize(_repeated_north_codec);
+      size += south_.CalculateSize(_repeated_south_codec);
+      size += east_.CalculateSize(_repeated_east_codec);
+      size += west_.CalculateSize(_repeated_west_codec);
+      size += northEast_.CalculateSize(_repeated_northEast_codec);
+      size += northWest_.CalculateSize(_repeated_northWest_codec);
+      size += southEast_.CalculateSize(_repeated_southEast_codec);
+      size += southWest_.CalculateSize(_repeated_southWest_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -160,7 +339,23 @@ namespace Deviant {
       if (other.Id.Length != 0) {
         Id = other.Id;
       }
-      pattern_.Add(other.pattern_);
+      if (other.Type != global::Deviant.CardType.Attack) {
+        Type = other.Type;
+      }
+      if (other.Status != global::Deviant.CardActionStatusTypes.Unblocked) {
+        Status = other.Status;
+      }
+      if (other.TargetingType != global::Deviant.CardActionTargetingTypes.Path) {
+        TargetingType = other.TargetingType;
+      }
+      north_.Add(other.north_);
+      south_.Add(other.south_);
+      east_.Add(other.east_);
+      west_.Add(other.west_);
+      northEast_.Add(other.northEast_);
+      northWest_.Add(other.northWest_);
+      southEast_.Add(other.southEast_);
+      southWest_.Add(other.southWest_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -176,8 +371,48 @@ namespace Deviant {
             Id = input.ReadString();
             break;
           }
-          case 18: {
-            pattern_.AddEntriesFrom(input, _repeated_pattern_codec);
+          case 16: {
+            Type = (global::Deviant.CardType) input.ReadEnum();
+            break;
+          }
+          case 24: {
+            Status = (global::Deviant.CardActionStatusTypes) input.ReadEnum();
+            break;
+          }
+          case 32: {
+            TargetingType = (global::Deviant.CardActionTargetingTypes) input.ReadEnum();
+            break;
+          }
+          case 42: {
+            north_.AddEntriesFrom(input, _repeated_north_codec);
+            break;
+          }
+          case 50: {
+            south_.AddEntriesFrom(input, _repeated_south_codec);
+            break;
+          }
+          case 58: {
+            east_.AddEntriesFrom(input, _repeated_east_codec);
+            break;
+          }
+          case 66: {
+            west_.AddEntriesFrom(input, _repeated_west_codec);
+            break;
+          }
+          case 74: {
+            northEast_.AddEntriesFrom(input, _repeated_northEast_codec);
+            break;
+          }
+          case 82: {
+            northWest_.AddEntriesFrom(input, _repeated_northWest_codec);
+            break;
+          }
+          case 90: {
+            southEast_.AddEntriesFrom(input, _repeated_southEast_codec);
+            break;
+          }
+          case 98: {
+            southWest_.AddEntriesFrom(input, _repeated_southWest_codec);
             break;
           }
         }
