@@ -25,16 +25,16 @@ namespace Deviant {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CgpjYXJkLnByb3RvEgdEZXZpYW50GhFjYXJkX2FjdGlvbi5wcm90bxoPY2Fy",
-            "ZF90eXBlLnByb3RvItABCgRDYXJkEgoKAmlkGAEgASgJEhIKCmluc3RhbmNl",
+            "ZF90eXBlLnByb3RvIs8BCgRDYXJkEgoKAmlkGAEgASgJEhIKCmluc3RhbmNl",
             "SWQYAiABKAkSDgoGYmFja0lkGAMgASgJEgwKBGNvc3QYBCABKAUSDgoGZGFt",
             "YWdlGAUgASgFEg0KBXRpdGxlGAYgASgJEg4KBmZsYXZvchgHIAEoCRITCgtk",
-            "ZXNjcmlwdGlvbhgIIAEoCRIgCgV0eXBlcxgJIAMoDjIRLkRldmlhbnQuQ2Fy",
-            "ZFR5cGUSJAoHYWN0aW9ucxgKIAMoCzITLkRldmlhbnQuQ2FyZEFjdGlvbkIL",
-            "WgkuO2RldmlhbnRiBnByb3RvMw=="));
+            "ZXNjcmlwdGlvbhgIIAEoCRIfCgR0eXBlGAkgASgOMhEuRGV2aWFudC5DYXJk",
+            "VHlwZRIkCgdhY3Rpb25zGAogAygLMhMuRGV2aWFudC5DYXJkQWN0aW9uQgta",
+            "CS47ZGV2aWFudGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.CardActionReflection.Descriptor, global::Deviant.CardTypeReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Card), global::Deviant.Card.Parser, new[]{ "Id", "InstanceId", "BackId", "Cost", "Damage", "Title", "Flavor", "Description", "Types_", "Actions" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.Card), global::Deviant.Card.Parser, new[]{ "Id", "InstanceId", "BackId", "Cost", "Damage", "Title", "Flavor", "Description", "Type", "Actions" }, null, null, null, null)
           }));
     }
     #endregion
@@ -74,7 +74,7 @@ namespace Deviant {
       title_ = other.title_;
       flavor_ = other.flavor_;
       description_ = other.description_;
-      types_ = other.types_.Clone();
+      type_ = other.type_;
       actions_ = other.actions_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -172,14 +172,15 @@ namespace Deviant {
       }
     }
 
-    /// <summary>Field number for the "types" field.</summary>
-    public const int Types_FieldNumber = 9;
-    private static readonly pb::FieldCodec<global::Deviant.CardType> _repeated_types_codec
-        = pb::FieldCodec.ForEnum(74, x => (int) x, x => (global::Deviant.CardType) x);
-    private readonly pbc::RepeatedField<global::Deviant.CardType> types_ = new pbc::RepeatedField<global::Deviant.CardType>();
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 9;
+    private global::Deviant.CardType type_ = global::Deviant.CardType.Attack;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Deviant.CardType> Types_ {
-      get { return types_; }
+    public global::Deviant.CardType Type {
+      get { return type_; }
+      set {
+        type_ = value;
+      }
     }
 
     /// <summary>Field number for the "actions" field.</summary>
@@ -213,7 +214,7 @@ namespace Deviant {
       if (Title != other.Title) return false;
       if (Flavor != other.Flavor) return false;
       if (Description != other.Description) return false;
-      if(!types_.Equals(other.types_)) return false;
+      if (Type != other.Type) return false;
       if(!actions_.Equals(other.actions_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -229,7 +230,7 @@ namespace Deviant {
       if (Title.Length != 0) hash ^= Title.GetHashCode();
       if (Flavor.Length != 0) hash ^= Flavor.GetHashCode();
       if (Description.Length != 0) hash ^= Description.GetHashCode();
-      hash ^= types_.GetHashCode();
+      if (Type != global::Deviant.CardType.Attack) hash ^= Type.GetHashCode();
       hash ^= actions_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -276,7 +277,10 @@ namespace Deviant {
         output.WriteRawTag(66);
         output.WriteString(Description);
       }
-      types_.WriteTo(output, _repeated_types_codec);
+      if (Type != global::Deviant.CardType.Attack) {
+        output.WriteRawTag(72);
+        output.WriteEnum((int) Type);
+      }
       actions_.WriteTo(output, _repeated_actions_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -310,7 +314,9 @@ namespace Deviant {
       if (Description.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Description);
       }
-      size += types_.CalculateSize(_repeated_types_codec);
+      if (Type != global::Deviant.CardType.Attack) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
+      }
       size += actions_.CalculateSize(_repeated_actions_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -347,7 +353,9 @@ namespace Deviant {
       if (other.Description.Length != 0) {
         Description = other.Description;
       }
-      types_.Add(other.types_);
+      if (other.Type != global::Deviant.CardType.Attack) {
+        Type = other.Type;
+      }
       actions_.Add(other.actions_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -392,9 +400,8 @@ namespace Deviant {
             Description = input.ReadString();
             break;
           }
-          case 74:
           case 72: {
-            types_.AddEntriesFrom(input, _repeated_types_codec);
+            Type = (global::Deviant.CardType) input.ReadEnum();
             break;
           }
           case 82: {
