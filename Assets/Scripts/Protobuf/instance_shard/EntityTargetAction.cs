@@ -24,13 +24,15 @@ namespace Deviant {
     static EntityTargetActionReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChplbnRpdHlfdGFyZ2V0X2FjdGlvbi5wcm90bxIHRGV2aWFudBoKdGlsZS5w",
-            "cm90byI+ChJFbnRpdHlUYXJnZXRBY3Rpb24SCgoCaWQYASABKAkSHAoFdGls",
-            "ZXMYAiADKAsyDS5EZXZpYW50LlRpbGVCC1oJLjtkZXZpYW50YgZwcm90bzM="));
+            "ChplbnRpdHlfdGFyZ2V0X2FjdGlvbi5wcm90bxIHRGV2aWFudBogZW50aXR5",
+            "X3RhcmdldF9hY3Rpb25fdHlwZXMucHJvdG8iYAoSRW50aXR5VGFyZ2V0QWN0",
+            "aW9uEgoKAmlkGAEgASgJEi4KBHR5cGUYAiABKA4yIC5EZXZpYW50LkVudGl0",
+            "eVRhcmdldEFjdGlvblR5cGVzEg4KBmNhcmRJZBgDIAEoCUILWgkuO2Rldmlh",
+            "bnRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Deviant.TileReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::Deviant.EntityTargetActionTypesReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EntityTargetAction), global::Deviant.EntityTargetAction.Parser, new[]{ "Id", "Tiles" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.EntityTargetAction), global::Deviant.EntityTargetAction.Parser, new[]{ "Id", "Type", "CardId" }, null, null, null, null)
           }));
     }
     #endregion
@@ -63,7 +65,8 @@ namespace Deviant {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EntityTargetAction(EntityTargetAction other) : this() {
       id_ = other.id_;
-      tiles_ = other.tiles_.Clone();
+      type_ = other.type_;
+      cardId_ = other.cardId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -83,14 +86,26 @@ namespace Deviant {
       }
     }
 
-    /// <summary>Field number for the "tiles" field.</summary>
-    public const int TilesFieldNumber = 2;
-    private static readonly pb::FieldCodec<global::Deviant.Tile> _repeated_tiles_codec
-        = pb::FieldCodec.ForMessage(18, global::Deviant.Tile.Parser);
-    private readonly pbc::RepeatedField<global::Deviant.Tile> tiles_ = new pbc::RepeatedField<global::Deviant.Tile>();
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 2;
+    private global::Deviant.EntityTargetActionTypes type_ = global::Deviant.EntityTargetActionTypes.Targetmove;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pbc::RepeatedField<global::Deviant.Tile> Tiles {
-      get { return tiles_; }
+    public global::Deviant.EntityTargetActionTypes Type {
+      get { return type_; }
+      set {
+        type_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "cardId" field.</summary>
+    public const int CardIdFieldNumber = 3;
+    private string cardId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string CardId {
+      get { return cardId_; }
+      set {
+        cardId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -107,7 +122,8 @@ namespace Deviant {
         return true;
       }
       if (Id != other.Id) return false;
-      if(!tiles_.Equals(other.tiles_)) return false;
+      if (Type != other.Type) return false;
+      if (CardId != other.CardId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -115,7 +131,8 @@ namespace Deviant {
     public override int GetHashCode() {
       int hash = 1;
       if (Id.Length != 0) hash ^= Id.GetHashCode();
-      hash ^= tiles_.GetHashCode();
+      if (Type != global::Deviant.EntityTargetActionTypes.Targetmove) hash ^= Type.GetHashCode();
+      if (CardId.Length != 0) hash ^= CardId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -133,7 +150,14 @@ namespace Deviant {
         output.WriteRawTag(10);
         output.WriteString(Id);
       }
-      tiles_.WriteTo(output, _repeated_tiles_codec);
+      if (Type != global::Deviant.EntityTargetActionTypes.Targetmove) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) Type);
+      }
+      if (CardId.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(CardId);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -145,7 +169,12 @@ namespace Deviant {
       if (Id.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
       }
-      size += tiles_.CalculateSize(_repeated_tiles_codec);
+      if (Type != global::Deviant.EntityTargetActionTypes.Targetmove) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Type);
+      }
+      if (CardId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(CardId);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -160,7 +189,12 @@ namespace Deviant {
       if (other.Id.Length != 0) {
         Id = other.Id;
       }
-      tiles_.Add(other.tiles_);
+      if (other.Type != global::Deviant.EntityTargetActionTypes.Targetmove) {
+        Type = other.Type;
+      }
+      if (other.CardId.Length != 0) {
+        CardId = other.CardId;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -176,8 +210,12 @@ namespace Deviant {
             Id = input.ReadString();
             break;
           }
-          case 18: {
-            tiles_.AddEntriesFrom(input, _repeated_tiles_codec);
+          case 16: {
+            Type = (global::Deviant.EntityTargetActionTypes) input.ReadEnum();
+            break;
+          }
+          case 26: {
+            CardId = input.ReadString();
             break;
           }
         }
