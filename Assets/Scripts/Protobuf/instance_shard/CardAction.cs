@@ -26,7 +26,7 @@ namespace Deviant {
           string.Concat(
             "ChFjYXJkX2FjdGlvbi5wcm90bxIHRGV2aWFudBoeY2FyZF9hY3Rpb25fc3Rh",
             "dHVzX3R5cGVzLnByb3RvGiFjYXJkX2FjdGlvbl90YXJnZXRpbmdfdHlwZXMu",
-            "cHJvdG8aD2NhcmRfdHlwZS5wcm90byLNAwoKQ2FyZEFjdGlvbhIKCgJpZBgB",
+            "cHJvdG8aD2NhcmRfdHlwZS5wcm90byLdAwoKQ2FyZEFjdGlvbhIKCgJpZBgB",
             "IAEoCRIfCgR0eXBlGAIgASgOMhEuRGV2aWFudC5DYXJkVHlwZRIuCgZzdGF0",
             "dXMYAyABKA4yHi5EZXZpYW50LkNhcmRBY3Rpb25TdGF0dXNUeXBlcxI5Cg50",
             "YXJnZXRpbmdfdHlwZRgEIAEoDjIhLkRldmlhbnQuQ2FyZEFjdGlvblRhcmdl",
@@ -36,12 +36,12 @@ namespace Deviant {
             "bnQuQ2FyZEFjdGlvbhIkCgd1cF9sZWZ0GAkgAygLMhMuRGV2aWFudC5DYXJk",
             "QWN0aW9uEiUKCHVwX3JpZ2h0GAogAygLMhMuRGV2aWFudC5DYXJkQWN0aW9u",
             "EiYKCWRvd25fbGVmdBgLIAMoCzITLkRldmlhbnQuQ2FyZEFjdGlvbhInCgpk",
-            "b3duX3JpZ2h0GAwgAygLMhMuRGV2aWFudC5DYXJkQWN0aW9uQgtaCS47ZGV2",
-            "aWFudGIGcHJvdG8z"));
+            "b3duX3JpZ2h0GAwgAygLMhMuRGV2aWFudC5DYXJkQWN0aW9uEg4KBm9yaWdp",
+            "bhgNIAEoCEILWgkuO2RldmlhbnRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Deviant.CardActionStatusTypesReflection.Descriptor, global::Deviant.CardActionTargetingTypesReflection.Descriptor, global::Deviant.CardTypeReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.CardAction), global::Deviant.CardAction.Parser, new[]{ "Id", "Type", "Status", "TargetingType", "Up", "Down", "Left", "Right", "UpLeft", "UpRight", "DownLeft", "DownRight" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Deviant.CardAction), global::Deviant.CardAction.Parser, new[]{ "Id", "Type", "Status", "TargetingType", "Up", "Down", "Left", "Right", "UpLeft", "UpRight", "DownLeft", "DownRight", "Origin" }, null, null, null, null)
           }));
     }
     #endregion
@@ -85,6 +85,7 @@ namespace Deviant {
       upRight_ = other.upRight_.Clone();
       downLeft_ = other.downLeft_.Clone();
       downRight_ = other.downRight_.Clone();
+      origin_ = other.origin_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -217,6 +218,17 @@ namespace Deviant {
       get { return downRight_; }
     }
 
+    /// <summary>Field number for the "origin" field.</summary>
+    public const int OriginFieldNumber = 13;
+    private bool origin_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Origin {
+      get { return origin_; }
+      set {
+        origin_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as CardAction);
@@ -242,6 +254,7 @@ namespace Deviant {
       if(!upRight_.Equals(other.upRight_)) return false;
       if(!downLeft_.Equals(other.downLeft_)) return false;
       if(!downRight_.Equals(other.downRight_)) return false;
+      if (Origin != other.Origin) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -260,6 +273,7 @@ namespace Deviant {
       hash ^= upRight_.GetHashCode();
       hash ^= downLeft_.GetHashCode();
       hash ^= downRight_.GetHashCode();
+      if (Origin != false) hash ^= Origin.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -297,6 +311,10 @@ namespace Deviant {
       upRight_.WriteTo(output, _repeated_upRight_codec);
       downLeft_.WriteTo(output, _repeated_downLeft_codec);
       downRight_.WriteTo(output, _repeated_downRight_codec);
+      if (Origin != false) {
+        output.WriteRawTag(104);
+        output.WriteBool(Origin);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -325,6 +343,9 @@ namespace Deviant {
       size += upRight_.CalculateSize(_repeated_upRight_codec);
       size += downLeft_.CalculateSize(_repeated_downLeft_codec);
       size += downRight_.CalculateSize(_repeated_downRight_codec);
+      if (Origin != false) {
+        size += 1 + 1;
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -356,6 +377,9 @@ namespace Deviant {
       upRight_.Add(other.upRight_);
       downLeft_.Add(other.downLeft_);
       downRight_.Add(other.downRight_);
+      if (other.Origin != false) {
+        Origin = other.Origin;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -413,6 +437,10 @@ namespace Deviant {
           }
           case 98: {
             downRight_.AddEntriesFrom(input, _repeated_downRight_codec);
+            break;
+          }
+          case 104: {
+            Origin = input.ReadBool();
             break;
           }
         }
